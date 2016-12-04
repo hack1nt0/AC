@@ -1,0 +1,49 @@
+12 RepeatString
+13 minimalModify
+3 int
+1
+16 java.lang.String
+1 s
+6
+0
+1
+String
+3 aba
+int 1
+1
+1
+1
+String
+4 adam
+int 1
+1
+2
+1
+String
+1 x
+int 1
+1
+3
+1
+String
+12 aaabbbaaaccc
+int 3
+1
+4
+1
+String
+12 repeatstring
+int 6
+1
+5
+1
+String
+20 aaaaaaaaaaaaaaaaaaaa
+int 0
+1
+10 2016.09.23
+17 TopCoder SRM #698
+0
+17 main.RepeatString
+0
+4 256M

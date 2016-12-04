@@ -1,0 +1,43 @@
+10 CircleGame
+9 cardsLeft
+3 int
+1
+16 java.lang.String
+4 deck
+5
+0
+1
+String
+10 KKKKKKKKKK
+int 0
+1
+1
+1
+String
+10 KKKKKAQT23
+int 1
+1
+2
+1
+String
+10 KKKKATQ23J
+int 6
+1
+3
+1
+String
+22 AT68482AK6875QJ5K9573Q
+int 4
+1
+4
+1
+String
+32 AQK262362TKKAQ6262437892KTTJA332
+int 24
+1
+10 2016.10.06
+17 TopCoder SRM #148
+0
+15 main.CircleGame
+1
+3 64M

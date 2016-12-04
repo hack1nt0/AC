@@ -1,0 +1,28 @@
+16 QuicksortInPlace
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+1
+0
+15 7
+1 3 9 8 2 7 5
+41 1 3 2 5 9 7 8
+1 2 3 5 9 7 8
+1 2 3 5 7 8 9
+1
+8 src/main
+16 -Xmx256m -Xss64m
+4 Main
+21 main.QuicksortInPlace
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2016.11.27
+11 hackerrrank
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+1

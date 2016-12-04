@@ -1,0 +1,87 @@
+11 Masterbrain
+15 possibleSecrets
+3 int
+2
+18 java.lang.String[]
+7 guesses
+18 java.lang.String[]
+7 results
+5
+0
+2
+String[] 1
+4 1575
+String[] 1
+5 4b 0w
+int 2400
+1
+1
+2
+String[] 1
+4 1234
+String[] 1
+5 0b 4w
+int 2392
+1
+2
+2
+String[] 3
+4 6172
+4 6162
+4 3617
+String[] 3
+5 3b 0w
+5 2b 1w
+5 0b 3w
+int 14
+1
+3
+2
+String[] 6
+4 1513
+4 5654
+4 4564
+4 1377
+4 1671
+4 1342
+String[] 6
+5 1b 0w
+5 0b 1w
+5 1b 0w
+5 1b 0w
+5 0b 1w
+5 0b 1w
+int 6
+1
+4
+2
+String[] 10
+4 2611
+4 1371
+4 7417
+4 2647
+4 3735
+4 4272
+4 2442
+4 3443
+4 1252
+4 3353
+String[] 10
+5 0b 2w
+5 0b 2w
+5 0b 1w
+5 0b 2w
+5 1b 0w
+5 1b 0w
+5 1b 0w
+5 0b 1w
+5 1b 1w
+5 0b 1w
+int 1
+1
+10 2016.10.03
+17 TopCoder SRM #146
+0
+16 main.Masterbrain
+0
+3 64M

@@ -1,0 +1,84 @@
+16 DivisibleSetDiv2
+10 isPossible
+16 java.lang.String
+1
+5 int[]
+1 b
+7
+0
+1
+int[] 2
+3
+2
+String
+8 Possible
+1
+1
+1
+int[] 3
+3
+3
+3
+String
+8 Possible
+1
+2
+1
+int[] 2
+1
+10
+String
+10 Impossible
+1
+3
+1
+int[] 3
+2
+3
+10
+String
+8 Possible
+1
+4
+1
+int[] 5
+7
+10
+4
+6
+3
+String
+8 Possible
+1
+5
+1
+int[] 9
+9
+9
+9
+9
+9
+9
+9
+9
+9
+String
+8 Possible
+1
+6
+1
+int[] 5
+3
+4
+5
+6
+7
+String
+10 Impossible
+1
+10 2016.09.20
+17 TopCoder SRM #697
+0
+21 main.DivisibleSetDiv2
+0
+4 256M

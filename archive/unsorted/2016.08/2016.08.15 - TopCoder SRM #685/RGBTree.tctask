@@ -1,0 +1,100 @@
+7 RGBTree
+5 exist
+16 java.lang.String
+1
+18 java.lang.String[]
+1 G
+6
+0
+1
+String[] 4
+4 .RGB
+4 R...
+4 G...
+4 B...
+String
+5 Exist
+1
+1
+1
+String[] 4
+4 .RRB
+4 R...
+4 R...
+4 B...
+String
+14 Does not exist
+1
+2
+1
+String[] 13
+13 .R..BG..G..RG
+13 R...GG..BR.G.
+13 ...G.GG.RR.BB
+13 ..G.RR.B..GRB
+13 BG.R.G.BRRR.G
+13 GGGRG.R....RR
+13 ..G..R.BGRR..
+13 ...BB.B.RB.G.
+13 GBR.R.GR.B.R.
+13 .RR.R.RBB.BRB
+13 ...GR.R..B...
+13 RGBR.R.GRR...
+13 G.BBGR...B...
+String
+5 Exist
+1
+3
+1
+String[] 13
+13 .............
+13 .......BB.R..
+13 .......RR....
+13 .....G.G....R
+13 ........BB...
+13 ...G.........
+13 ........B...R
+13 .BRG.......G.
+13 .BR.B.B...GB.
+13 ....B......GR
+13 .R......G....
+13 .......GBG..B
+13 ...R..R..R.B.
+String
+14 Does not exist
+1
+4
+1
+String[] 13
+13 ..B.BB...RB..
+13 ......R..B.G.
+13 B.......BB...
+13 .......R...G.
+13 B....GRB..R..
+13 B...G.RG.R...
+13 .R..RR..B.RB.
+13 ...RBG...G...
+13 ..B...B......
+13 RBB..R.G....R
+13 B...R.R......
+13 .G.G..B.....R
+13 .........R.R.
+String
+5 Exist
+1
+5
+1
+String[] 4
+4 ....
+4 ....
+4 ....
+4 ....
+String
+14 Does not exist
+1
+10 2016.08.15
+17 TopCoder SRM #685
+0
+12 main.RGBTree
+0
+4 256M

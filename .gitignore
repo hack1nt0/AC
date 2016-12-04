@@ -7,3 +7,12 @@ release.properties
 dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
+
+.DS_Store
+.idea
+AC.iml
+*.template
+output
+chelper.properties
+CHelperReport.txt
+

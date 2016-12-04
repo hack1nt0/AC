@@ -1,0 +1,22 @@
+7 Clique1
+12 MULTI_NUMBER
+12 LOCAL_REGEXP
+13 Clique[.]*.in
+8 STANDARD
+10 output.txt
+0
+8 src/main
+16 -Xmx256m -Xss64m
+4 Main
+12 main.Clique1
+24 chelper.PrecisionChecker
+10 -verbose=2
+1
+20 main.Clique1TestCase
+10 2016.12.03
+10 hackerrank
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+1

@@ -1,0 +1,83 @@
+12 TreeAndCycle
+8 minimize
+3 int
+3
+5 int[]
+5 costV
+5 int[]
+3 pre
+5 int[]
+5 costE
+3
+0
+3
+int[] 4
+7
+2
+5
+8
+int[] 3
+0
+1
+2
+int[] 3
+6
+4
+3
+int 15
+1
+1
+3
+int[] 4
+100
+5
+9
+8
+int[] 3
+0
+0
+0
+int[] 3
+6
+2
+2
+int 32
+1
+2
+3
+int[] 9
+10
+20
+30
+40
+50
+60
+70
+80
+90
+int[] 8
+0
+1
+2
+2
+3
+4
+5
+7
+int[] 8
+5
+15
+25
+35
+45
+55
+65
+75
+int 205
+1
+10 2016.09.12
+17 TopCoder SRM #693
+0
+17 main.TreeAndCycle
+0
+4 256M

@@ -1,0 +1,48 @@
+16 SquareFreeString
+12 isSquareFree
+16 java.lang.String
+1
+16 java.lang.String
+1 s
+5
+0
+1
+String
+4 bobo
+String
+15 not square-free
+1
+1
+1
+String
+5 apple
+String
+15 not square-free
+1
+2
+1
+String
+3 pen
+String
+11 square-free
+1
+3
+1
+String
+23 aydyamrbnauhftmphyrooyq
+String
+15 not square-free
+1
+4
+1
+String
+26 qwertyuiopasdfghjklzxcvbnm
+String
+11 square-free
+1
+10 2016.11.11
+17 TopCoder SRM #701
+0
+21 main.SquareFreeString
+1
+4 256M

@@ -1,0 +1,53 @@
+6 Undiv2
+6 getsum
+4 long
+1
+3 int
+1 n
+8
+0
+1
+int 1
+long 3
+0
+1
+1
+int 2
+long 7
+0
+2
+1
+int 3
+long 11
+0
+3
+1
+int 5
+long 19
+0
+4
+1
+int 8
+long 32
+0
+5
+1
+int 13
+long 53
+0
+6
+1
+int 1000000000
+-1
+0
+7
+1
+int 813117
+long 3486167
+1
+10 2016.09.07
+17 TopCoder SRM #691
+0
+11 main.Undiv2
+0
+4 256M

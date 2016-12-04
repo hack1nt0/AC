@@ -1,0 +1,41 @@
+22 UniqueDivideAndConquer
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+5
+0
+5 1 103
+1 1
+1
+1
+5 2 103
+1 0
+1
+2
+5 3 103
+1 3
+1
+3
+5 4 103
+1 4
+1
+4
+12 1000 1000013
+-1
+1
+12 src/template
+16 -Xmx256m -Xss64m
+8 Solution
+31 template.UniqueDivideAndConquer
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2016.11.26
+10 hackerrank
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+1

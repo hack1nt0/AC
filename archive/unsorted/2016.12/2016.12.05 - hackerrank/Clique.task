@@ -1,0 +1,39 @@
+6 Clique
+12 MULTI_NUMBER
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+2
+0
+19 3  
+3 2  
+4 6  
+5 7
+9 2  
+4  
+3
+1
+1
+26 3
+19 166 
+34 549 
+49 1108 
+8 14
+22
+14
+1
+18 src/main/java/main
+16 -Xmx256m -Xss64m
+4 Main
+11 main.Clique
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2016.12.05
+10 hackerrank
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+1

@@ -1,0 +1,27 @@
+12 Abbreviation
+12 MULTI_NUMBER
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+1
+0
+11 1
+daBcd
+ABC
+3 YES
+1
+18 src/main/java/main
+16 -Xmx256m -Xss64m
+4 Main
+17 main.Abbreviation
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2016.12.18
+10 hackerrank
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+1

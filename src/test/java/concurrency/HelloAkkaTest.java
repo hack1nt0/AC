@@ -1,6 +1,7 @@
-/**
+package concurrency; /**
  * Created by dy on 16-12-27.
  */
+import concurrency.HelloAkkaJava;
 import scala.concurrent.duration.Duration;
 import akka.actor.*;
 import akka.testkit.JavaTestKit;

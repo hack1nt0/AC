@@ -1,3 +1,5 @@
+package template.debug;
+
 import edu.princeton.cs.algs4.Draw;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.*;
@@ -11,7 +13,7 @@ import java.util.function.Function;
 /**
  * Created by dy on 16-10-27.
  */
-public class Tmp extends Thread {
+public class GraphStreamTest extends Thread {
 
     private static int MOD;
     private static BigInteger mBig;

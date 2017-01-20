@@ -1,3 +1,5 @@
+package concurrency;
+
 import template.graph_theory.Edge;
 import template.graph_theory.Graph;
 
@@ -6,7 +8,7 @@ import java.util.concurrent.*;
 /**
  * Created by dy on 16-12-25.
  */
-public class Parallel {
+public class ParallelTest {
     public static void main(String[] args) {
 //        ConcurrentHashMap<String, String> map = new ConcurrentHashMap<>();
 //        map.put("foo", "bar");

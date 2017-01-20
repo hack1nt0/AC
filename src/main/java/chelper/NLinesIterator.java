@@ -1,4 +1,4 @@
-package main.chelper;
+package chelper;
 
 import net.egork.chelper.tester.StringInputStream;
 

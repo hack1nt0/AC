@@ -10,7 +10,7 @@ buildNumber.properties
 
 .DS_Store
 .idea
-AC.iml
+*.iml
 *.template
 output
 chelper.properties

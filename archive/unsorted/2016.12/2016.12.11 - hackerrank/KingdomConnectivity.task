@@ -25,7 +25,7 @@
 1
 18 src/main/java/main
 16 -Xmx256m -Xss64m
-4 Main
+4 Main1
 24 main.KingdomConnectivity
 39 net.egork.chelper.checkers.TokenChecker
 0 

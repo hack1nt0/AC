@@ -1,0 +1,31 @@
+17 JimAndHisLANParty
+6 SINGLE
+8 STANDARD
+6 Jim.in
+8 STANDARD
+10 output.txt
+1
+0
+33 5 2 4
+1 2 2 2 1
+1 2 
+2 3
+1 5
+4 5 
+3 3
+4
+1
+18 src/main/java/main
+16 -Xmx256m -Xss64m
+4 Main
+22 main.JimAndHisLANParty
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2016.12.24
+10 hackerrank
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+1

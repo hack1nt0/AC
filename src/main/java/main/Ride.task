@@ -1,0 +1,32 @@
+4 Ride
+6 SINGLE
+7 TASK_ID
+9 input.txt
+7 TASK_ID
+10 output.txt
+2
+0
+14 COMETQ
+HVNGAT
+
+2 GO
+1
+1
+13 ABSTAR
+USACO 
+4 STAY
+1
+18 src/main/java/main
+16 -Xmx256m -Xss64m
+4 ride
+9 main.Ride
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.01.04
+5 usaco
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+1

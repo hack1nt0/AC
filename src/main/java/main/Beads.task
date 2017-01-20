@@ -1,0 +1,31 @@
+5 Beads
+6 SINGLE
+7 TASK_ID
+9 input.txt
+7 TASK_ID
+10 output.txt
+2
+0
+32 29
+wwwbbrwrbrbrrbrbrwrwwrbwrwrrb
+2 11
+1
+1
+12 8 
+rrwwwwbb 
+1 8
+1
+18 src/main/java/main
+16 -Xmx256m -Xss64m
+5 beads
+10 main.Beads
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.01.08
+5 usaco
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+1

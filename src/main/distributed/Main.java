@@ -11,7 +11,7 @@ import java.util.*;
 // accumulating the result from the previous node. The last node prints the
 // final result.
 //
-// Note: In Java solutions, you must name the main class "Main". Otherwise,
+// Note: In Java solutions, you must name the main class "Main1". Otherwise,
 // you will get a compilation error.
 public class Main {
     public static void main(String[] args) {

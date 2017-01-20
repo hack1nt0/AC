@@ -1,0 +1,37 @@
+9 PalSquare
+6 SINGLE
+7 TASK_ID
+9 input.txt
+7 TASK_ID
+10 output.txt
+1
+0
+2 10
+93 1 1
+2 4
+3 9
+11 121
+22 484
+26 676
+101 10201
+111 12321
+121 14641
+202 40804
+212 44944
+264 69696
+
+1
+18 src/main/java/main
+16 -Xmx256m -Xss64m
+9 palsquare
+14 main.PalSquare
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.01.10
+5 usaco
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+1

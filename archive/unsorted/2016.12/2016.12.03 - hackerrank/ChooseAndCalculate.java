@@ -26,10 +26,10 @@ public class ChooseAndCalculate {
         //C(i + 1, j) = (i+1)!/(i+1-j)!/j! = C(i,j)*(i+1)/(i+1-j)
         Numbers.MOD = MOD;
         long[] C = new long[N]; C[K - 2] = 1;
-//        for (int i = K - 2; i + 1 < N; ++i) C[i + 1] = C[i] * (i + 1) % MOD * Numbers.inv(i + 1 - K + 2) % MOD;
+//        for (int i = K - 2; i + 1 < N; ++i) C[i + 1] = C[i] * (i + 1) % modulus * IntegerUtils.inv(i + 1 - K + 2) % modulus;
 //        for (int i = 0; i < N; ++i)
 //            for (int j = i + K - 1; j < N; ++j) {
-//            res = (res + Math.abs(A[i] - A[j]) * C[j - i - 1] % MOD) % MOD;
+//            res = (res + Math.abs(A[i] - A[j]) * C[j - i - 1] % modulus) % modulus;
 //        }
 //        out.println(res);
 

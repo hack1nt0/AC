@@ -1,0 +1,49 @@
+8 Wormhole
+6 SINGLE
+7 TASK_ID
+9 input.txt
+7 TASK_ID
+10 output.txt
+3
+0
+17 4
+0 0
+1 0
+1 1
+0 1
+1 2
+1
+1
+91 6 
+        1 15 
+        20 15 
+        17 11 
+        22 21 
+        25 11 
+        20 17 
+1 6
+1
+2
+171 6 
+        879221060 76350727 
+        161945371 76350727 
+        380619073 76350727 
+        896289713 76350727 
+        852891025 852349940 
+        519959866 76350727 
+2 10
+1
+18 src/main/java/main
+16 -Xmx256m -Xss64m
+8 wormhole
+13 main.Wormhole
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.01.15
+5 usaco
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+1

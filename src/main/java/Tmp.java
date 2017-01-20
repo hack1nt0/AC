@@ -6,6 +6,7 @@ import org.graphstream.ui.view.Viewer;
 import java.io.*;
 import java.math.BigInteger;
 import java.util.*;
+import java.util.function.Function;
 
 /**
  * Created by dy on 16-10-27.
@@ -28,7 +29,7 @@ public class Tmp extends Thread {
         graph.addEdge( "CA", "C", "A" );
         Viewer viewer = graph.display();
 // Let the layout work ...
-        viewer.disableAutoLayout();
+        //viewer.disableAutoLayout();
 // Do some work ...
         //viewer.enableAutoLayout();
     }

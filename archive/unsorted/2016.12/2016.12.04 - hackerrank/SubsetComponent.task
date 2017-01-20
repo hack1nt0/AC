@@ -42,7 +42,7 @@
 0
 18 src/main/java/main
 17 -Xmx2560m -Xss64m
-4 Main
+4 Main1
 20 main.SubsetComponent
 39 net.egork.chelper.checkers.TokenChecker
 0 

@@ -123,7 +123,7 @@
 1
 8 src/main
 16 -Xmx256m -Xss64m
-4 Main
+4 Main1
 13 main.EvenTree
 39 net.egork.chelper.checkers.TokenChecker
 0 

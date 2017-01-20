@@ -1,0 +1,29 @@
+7 NameNum
+6 SINGLE
+7 TASK_ID
+9 input.txt
+7 TASK_ID
+10 output.txt
+2
+0
+4 4734
+4 GREG
+1
+1
+11 26678268463
+-1
+1
+18 src/main/java/main
+16 -Xmx256m -Xss64m
+7 namenum
+12 main.NameNum
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.01.10
+5 usaco
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+1

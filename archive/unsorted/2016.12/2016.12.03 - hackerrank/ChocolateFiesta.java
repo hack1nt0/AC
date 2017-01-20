@@ -23,7 +23,7 @@ public class ChocolateFiesta {
 //            C[i][0] = 1;
 //        }
 //        for (int i = 1; i <= N; ++i)
-//            for (int j = 1; j <= N; ++j) C[i][j] = (C[i - 1][j - 1] + C[i - 1][j]) % MOD;
+//            for (int j = 1; j <= N; ++j) C[i][j] = (C[i - 1][j - 1] + C[i - 1][j]) % modulus;
 
         for (int i = 0; i <= cnt[1];) {
             B = (B + nCi) % MOD;
@@ -31,7 +31,7 @@ public class ChocolateFiesta {
             nCi = nCi * (cnt[1] - i + 2) % MOD * (cnt[1] - i + 1) % MOD * Numbers.inv(i * (i - 1)) % MOD;
         }
 
-        //System.err.println(B + ", " + Numbers.pow(2, cnt[1] - 1));
+        //System.err.println(B + ", " + IntegerUtils.pow(2, cnt[1] - 1));
 
         long res = A * B % MOD;
         out.println(res - 1);

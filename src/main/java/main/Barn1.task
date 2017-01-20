@@ -1,0 +1,43 @@
+5 Barn1
+6 SINGLE
+7 TASK_ID
+9 input.txt
+7 TASK_ID
+10 output.txt
+1
+0
+57 4 50 18
+3
+4
+6
+8
+14
+15
+16
+17
+21
+25
+26
+27
+30
+31
+40
+41
+42
+43
+2 25
+1
+18 src/main/java/main
+20 -Xmx256m -Xss64m -ea
+5 barn1
+10 main.Barn1
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.01.15
+5 usaco
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+1

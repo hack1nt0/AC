@@ -38,7 +38,7 @@ public class WolfHockeyTeamEasy {
             if (i >= K) {
                 int k = i - N + 1;
                 long acc = dp[k][i + 1 - 2 * k];
-                res = (res + acc) % MOD;
+                res = (res + acc) % modulus;
             }
         }*/
 
@@ -52,13 +52,13 @@ public class WolfHockeyTeamEasy {
                     if (j + 1 <= 2 * N)
                         nxt[i + 1][j] = cur[i][j + 1];
                     if (j > 0)
-                        nxt[i + 1][j] = (nxt[i + 1][j] + nxt[i][j - 1]) % MOD;
+                        nxt[i + 1][j] = (nxt[i + 1][j] + nxt[i][j - 1]) % modulus;
                 }
 
             long curCnt = nxt[k + N + 1][N + k + 1 - 2 * (k + 1)];
             //System.out.println(curCnt);
             if (k + N >= K)
-                res = (res + curCnt) % MOD;
+                res = (res + curCnt) % modulus;
 
             long[][] tmp = cur;
             cur = nxt;

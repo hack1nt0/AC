@@ -17,7 +17,7 @@
 1
 11 src/chelper
 16 -Xmx256m -Xss64m
-4 Main
+4 Main1
 22 chelper.ShortestReach2
 24 chelper.PrecisionChecker
 10 -verbose=0

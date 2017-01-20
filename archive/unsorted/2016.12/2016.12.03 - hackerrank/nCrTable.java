@@ -9,7 +9,7 @@ public class nCrTable {
         int N = in.nextInt();
         long MOD = (long)1e9;
         //long[] C = new long[N + 1]; C[0] = 1;
-        //for (int i = 0; i + 1 <= N; ++i) C[i + 1] = C[i] * (N - i) % MOD * Numbers.minv(i + 1, MOD) % MOD;
+        //for (int i = 0; i + 1 <= N; ++i) C[i + 1] = C[i] * (N - i) % modulus * IntegerUtils.minv(i + 1, modulus) % modulus;
         BigInteger[] C = new BigInteger[N + 1]; C[0] = BigInteger.ONE;
         for (int i = 0; i + 1 <= N; ++i) C[i + 1] = C[i].multiply(BigInteger.valueOf(N - i)).divide(BigInteger.valueOf(i + 1));
         BigInteger gMOD = BigInteger.valueOf(MOD);

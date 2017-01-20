@@ -49,14 +49,14 @@ public class UniqueDivideAndConquer {
 //        if (i == 0 && j >= 0) res = 1;
 //        else if (i > 0 && j <= 0) res = 0;
 //        else {
-//            if (j >= 1) res = (res + dfs(i, j - 1)) % MOD;
+//            if (j >= 1) res = (res + dfs(i, j - 1)) % modulus;
 //            for (int k = 1; i >= k * j; ++k) {
 //                //if (k + 1 > k * j) throw new RuntimeException(k + 1 + ", " + k * j);
 //                long partitions = fact[k * j].divide(fact[k].multiply(fact[j - 1].pow(k))).mod(mBig).longValue();
 //                //System.out.println(k + ", " + j + ", " + partitions);
 //                long chdRes = BigInteger.valueOf(ret[j]).pow(k).mod(mBig).longValue();
-//                res = (res + dfs(i - k * j, j - 1) * chdRes % MOD * C[i][k * j] % MOD * partitions % MOD) % MOD;
-//                //res = (res + dfs(i - k * j, j - 1) * chdRes % MOD ) % MOD;
+//                res = (res + dfs(i - k * j, j - 1) * chdRes % modulus * C[i][k * j] % modulus * partitions % modulus) % modulus;
+//                //res = (res + dfs(i - k * j, j - 1) * chdRes % modulus ) % modulus;
 //            }
 //        }
 //

@@ -1,0 +1,28 @@
+5 Milk2
+6 SINGLE
+7 TASK_ID
+9 input.txt
+7 TASK_ID
+10 output.txt
+1
+0
+29 3
+300 1000
+700 1200
+1500 2100
+7 900 300
+1
+18 src/main/java/main
+16 -Xmx256m -Xss64m
+5 milk2
+10 main.Milk2
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.01.10
+5 usaco
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+1

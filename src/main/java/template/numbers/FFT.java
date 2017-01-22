@@ -15,7 +15,7 @@
  *      an object type for representing complex numbers and because
  *      it re-allocates memory for the subarray, instead of doing
  *      in-place or reusing a single temporary array)
- *  
+ *
  *
  *  % java FFT 4
  *  x
@@ -61,6 +61,9 @@
 
 package template.numbers;
 
+import template.debug.StopWatch;
+import template.string.StringUtils;
+
 /**
  *  The <tt>FFT</tt> class provides methods for computing the 
  *  FFT (Fast-Fourier Transform), inverse FFT, linear convolution,
@@ -73,7 +76,7 @@ package template.numbers;
  *  It is not the most memory efficient implementation because it uses
  *  objects to represents complex numbers and it it re-allocates memory
  *  for the subarray, instead of doing in-place or reusing a single temporary array.
- *  
+ *
  *  <p>
  *  For additional documentation, see <a href="http://algs4.cs.princeton.edu/99scientific">Section 9.9</a> of
  *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
@@ -131,7 +134,6 @@ public class FFT {
         return y;
     }
 
-
     /**
      * Returns the inverse FFT of the specified complex array.
      *
@@ -188,7 +190,7 @@ public class FFT {
         Complex[] a = fft(x);
         Complex[] b = fft(y);
 
-        // point-wise multiply
+        // point-wise multiplyX
         Complex[] c = new Complex[N];
         for (int i = 0; i < N; i++) {
             c[i] = a[i].times(b[i]);
@@ -234,15 +236,22 @@ public class FFT {
     }
 
 
-   /***************************************************************************
-    *  Test client.
-    ***************************************************************************/
+    /***************************************************************************
+     *  Test client.
+     ***************************************************************************/
 
     /**
      * Unit tests the <tt>FFT</tt> class.
      */
-    public static void main(String[] args) { 
+    public static void main(String[] args) {
         //int N = Integer.parseInt(args[0]);
+        while (true) {
+            test2();
+            System.out.println(StringUtils.repeat("=", 12));
+        }
+    }
+
+    private static void test1() {
         int N = 4;
         Complex[] x = new Complex[N];
 
@@ -268,8 +277,296 @@ public class FFT {
         // linear convolution of x with itself
         Complex[] d = convolve(x, x);
         show(d, "d = convolve(x, x)");
+
     }
 
+    private static Complex[] toComplexArr(int[] real) {
+        int N = real.length;
+        Complex[] res = new Complex[N];
+        for (int i = 0; i < N; ++i) res[i] = new Complex(real[i], 0);
+        return res;
+    }
+
+    private static Complex[] toComplexArr(long[] real) {
+        int N = real.length;
+        Complex[] res = new Complex[N];
+        for (int i = 0; i < N; ++i) res[i] = new Complex(real[i], 0);
+        return res;
+    }
+
+    private static long[] fromComplexArr(Complex[] arr) {
+        int N = arr.length;
+        long[] real = new long[N];
+        for (int i = 0; i < N; ++i) real[i] = Math.round(arr[i].re());
+        return real;
+    }
+
+    private static void test2 () {
+        int N = 1 << 20;
+
+        int[] a = IntegerUtils.randomInts(N, -10000000, 10000000);
+        int[] b = IntegerUtils.randomInts(N, -10000000, 10000000);
+
+        Complex[] ac = toComplexArr(a);
+        Complex[] bc = toComplexArr(b);
+
+        // FFT of original data
+        Complex[] y = fft(ac);
+        //show(y, "y = fft(x)");
+
+        // take inverse FFT
+        Complex[] z = ifft(y);
+        if (!equals(ac, z)) {
+            show(ac, "x");
+            show(z, "z = ifft(fft(x))");
+            throw new RuntimeException();
+        }
+
+
+        // circular convolution of x with itself
+        StopWatch.tic();
+        Complex[] c = convolve(ac, bc);
+        StopWatch.toc();
+//        StopWatch.tic();
+//        long[] prod = product(a, b);
+//        StopWatch.toc();
+//        if (!equals(c, toComplexArr(prod))) {
+//            show(c, "c = convolve(x, x)");
+//            show(toComplexArr(prod), "prod = product(x, x)");
+//            throw new RuntimeException();
+//        }
+        StopWatch.tic();
+        long[] prod2 = multiplyX(a, b);
+        StopWatch.toc();
+        if (!equals(prod2, fromComplexArr(c))) {
+            //show(prod, "prod = product(x, x)");
+            //show(toComplexArr(prod2), "prod2 = multiplyX(x, x)");
+            throw new RuntimeException();
+
+        }
+    }
+
+    private static boolean equals(long[] a, long[] b) {
+        if (a.length != b.length) return false;
+        boolean ok = true;
+        for (int i = 0; i < a.length; ++i)
+            if (a[i] != b[i]) {
+                ok = false;
+                //System.out.println(a[i] + " " + b[i]);
+            }
+        if (!ok) System.out.println("error");
+        return true;
+    }
+
+    private static boolean equals(Complex[] a, Complex[] b) {
+        if (a.length != b.length) return false;
+        for (int i = 0; i < a.length; ++i)
+            if (Math.round(a[i].re()) != Math.round(b[i].re())) {
+                return false;
+            }
+        return true;
+    }
+
+    private static long[] product(int[] a, int[] b) {
+        int N = a.length;
+        long[] prod = new long[2 * N];
+        for (int i = 0; i < N; ++i) {
+            for (int j = 0; j < N; ++j) {
+                prod[i + j] += (long)a[i] * b[j];
+            }
+        }
+        return prod;
+    }
+
+    /**
+     * @author Egor Kulikov (egorku@yandex-team.ru)
+     * 10x faster than convolve, but unstable a lot too...
+     */
+    public static void fft1(double[] a, double[] b, boolean invert) {
+        int count = a.length;
+        for (int i = 1, j = 0; i < count; i++) {
+            int bit = count >> 1;
+            for (; j >= bit; bit >>= 1) {
+                j -= bit;
+            }
+            j += bit;
+            if (i < j) {
+                double temp = a[i];
+                a[i] = a[j];
+                a[j] = temp;
+                temp = b[i];
+                b[i] = b[j];
+                b[j] = temp;
+            }
+        }
+        for (int len = 2; len <= count; len <<= 1) {
+            int halfLen = len >> 1;
+            double angle = 2 * Math.PI / len;
+            if (invert) {
+                angle = -angle;
+            }
+            double wLenA = Math.cos(angle);
+            double wLenB = Math.sin(angle);
+            for (int i = 0; i < count; i += len) {
+                double wA = 1;
+                double wB = 0;
+                for (int j = 0; j < halfLen; j++) {
+                    double uA = a[i + j];
+                    double uB = b[i + j];
+                    double vA = a[i + j + halfLen] * wA - b[i + j + halfLen] * wB;
+                    double vB = a[i + j + halfLen] * wB + b[i + j + halfLen] * wA;
+                    a[i + j] = uA + vA;
+                    b[i + j] = uB + vB;
+                    a[i + j + halfLen] = uA - vA;
+                    b[i + j + halfLen] = uB - vB;
+                    double nextWA = wA * wLenA - wB * wLenB;
+                    wB = wA * wLenB + wB * wLenA;
+                    wA = nextWA;
+                }
+            }
+        }
+        if (invert) {
+            for (int i = 0; i < count; i++) {
+                a[i] /= count;
+                b[i] /= count;
+            }
+        }
+    }
+    /***************************************************************
+     00089   * fft.c
+     00090   * Douglas L. Jones
+     00091   * University of Illinois at Urbana-Champaign
+     00092   * January 19, 1992
+     00093   * http://cnx.rice.edu/content/m12016/latest/
+     00094   *
+     00095   *   fft: in-place radix-2 DIT DFT of a complex input
+     00096   *
+     00097   *   input:
+     00098   * n: length of FFT: must be a power of two
+     00099   * m: n = 2**m
+     00100   *   input/output
+     00101   * x: double array of length n with real part of data
+     00102   * y: double array of length n with imag part of data
+     00103   *
+     00104   *   Permission to copy and use this program is granted
+     00105   *   as long as this header is included.
+     00106   ****************************************************************/
+    /**
+     * 6x faster than convolve
+     * @param x
+     * @param y
+     * @param invert
+     */
+    public static void fft(double[] x, double[] y, boolean invert) {
+
+        int n = x.length;
+        int m = (int)(Math.log(n) / Math.log(2));
+        if(n != (1<<m))
+            throw new RuntimeException("FFT length must be power of 2");
+
+        // precompute tables
+        double[] cos = new double[n/2];
+        double[] sin = new double[n/2];
+
+        for(int i=0; i<n/2; i++) {
+            double angle = -2*Math.PI*i/n;
+            if (invert) angle = -angle;
+            cos[i] = Math.cos(angle);
+            sin[i] = Math.sin(angle);
+        }
+
+        int i,j,k,n1,n2,a;
+        double c,s,e,t1,t2;
+
+
+        // Bit-reverse
+        j = 0;
+        n2 = n/2;
+        for (i=1; i < n - 1; i++) {
+            n1 = n2;
+            while ( j >= n1 ) {
+                j = j - n1;
+                n1 = n1/2;
+            }
+            j = j + n1;
+
+            if (i < j) {
+                t1 = x[i];
+                x[i] = x[j];
+                x[j] = t1;
+                t1 = y[i];
+                y[i] = y[j];
+                y[j] = t1;
+            }
+        }
+
+        // FFT
+        n1 = 0;
+        n2 = 1;
+
+        for (i=0; i < m; i++) {
+            n1 = n2;
+            n2 = n2 + n2;
+            a = 0;
+
+            for (j=0; j < n1; j++) {
+                c = cos[a];
+                s = sin[a];
+                a +=  1 << (m-i-1);
+
+                for (k=j; k < n; k=k+n2) {
+                    t1 = c*x[k+n1] - s*y[k+n1];
+                    t2 = s*x[k+n1] + c*y[k+n1];
+                    x[k+n1] = x[k] - t1;
+                    y[k+n1] = y[k] - t2;
+                    x[k] = x[k] + t1;
+                    y[k] = y[k] + t2;
+                }
+            }
+        }
+        if (invert) {
+            for (i = 0; i < n; i++) {
+                x[i] /= n;
+                y[i] /= n;
+            }
+        }
+    }
+
+    /**
+     * @author Egor Kulikov (egorku@yandex-team.ru)
+     */
+    public static long[] multiplyX(int[] a, int[] b) {
+        int resultSize = Integer.highestOneBit(Math.max(a.length, b.length) - 1) << 2;
+        resultSize = Math.max(resultSize, 1);
+        double[] aReal = new double[resultSize];
+        double[] aImaginary = new double[resultSize];
+        double[] bReal = new double[resultSize];
+        double[] bImaginary = new double[resultSize];
+        for (int i = 0; i < a.length; i++) {
+            aReal[i] = a[i];
+        }
+        for (int i = 0; i < b.length; i++) {
+            bReal[i] = b[i];
+        }
+        fft(aReal, aImaginary, false);
+        if (a == b) {
+            System.arraycopy(aReal, 0, bReal, 0, aReal.length);
+            System.arraycopy(aImaginary, 0, bImaginary, 0, aImaginary.length);
+        } else {
+            fft(bReal, bImaginary, false);
+        }
+        for (int i = 0; i < resultSize; i++) {
+            double real = aReal[i] * bReal[i] - aImaginary[i] * bImaginary[i];
+            aImaginary[i] = aImaginary[i] * bReal[i] + bImaginary[i] * aReal[i];
+            aReal[i] = real;
+        }
+        fft(aReal, aImaginary, true);
+        long[] result = new long[resultSize];
+        for (int i = 0; i < resultSize; i++) {
+            result[i] = Math.round(aReal[i]);
+        }
+        return result;
+    }
 }
 
 /******************************************************************************

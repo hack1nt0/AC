@@ -1,5 +1,7 @@
 package template.numbers;
 
+import template.debug.RandomUtils;
+
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -175,8 +177,7 @@ public class IntegerUtils {
     public static int[] randomInts(int W, int from, int to) {
         assert from < to;
         int[] res = new int[W];
-        Random random = new Random();
-        for (int i = 0; i < W; ++i) res[i] = from + random.nextInt(to - from);
+        for (int i = 0; i < W; ++i) res[i] = RandomUtils.uniform(from, to);
         return res;
     }
 

@@ -1,5 +1,10 @@
 package template.collection.sequence;
 
+import template.debug.RandomUtils;
+import template.debug.StopWatch;
+import template.numbers.IntegerUtils;
+import template.string.StringUtils;
+
 import java.io.PrintStream;
 import java.util.Arrays;
 
@@ -7,6 +12,117 @@ import java.util.Arrays;
  * Created by dy on 16-12-22.
  */
 public class ArrayUtils {
+    public static void main(String[] args) {
+        while (true) {
+            testSort();
+            System.out.println(StringUtils.repeat("=", 12));
+        }
+    }
+
+    private static void testSort() {
+        int[] arr = IntegerUtils.randomInts(10000000, -100000000, 100000000);
+        int[] arr1 = arr.clone();
+        int[] arr2 = arr.clone();
+        StopWatch.tic();
+        mergeSort(arr1);
+        StopWatch.toc();
+        StopWatch.tic();
+        Arrays.sort(arr2);
+        StopWatch.toc();
+        if (!Arrays.equals(arr1, arr2)) {
+            //ArrayUtils.printlnH(arr1, arr2);
+            System.out.println("error");
+        }
+    }
+
+    /**
+     * @complexity O(nlogn) and stable
+     * In practice, it is slower than Arrays.sort by 6~7x.
+     * @param arr
+     */
+    public static void mergeSort(int[] arr) {
+        int N = arr.length;
+        if (N < 2) return;
+        int[] tmp = new int[N];
+        for (int len = 1; len < N; len *= 2) {
+            for (int from = 0; from + len < N; from += 2 * len) {
+                //merge(arr, from, from + len, tmp);
+                int p = from + len;
+                int q = p + len;
+                if (q > N) q = N;
+
+                if (q - from < 7) {
+                    insertionSort(arr, from, q);
+                    continue;
+                }
+
+                int i = from;
+                int j = p;
+                int k = from;
+                while (true) {
+                    if (j == q && i == p) break;
+                    // <=(not <) here to maintain original order of elements
+                    if (j == q || i < p && arr[i] <= arr[j]) {
+                        tmp[k++] = arr[i++];
+                    } else {
+                        tmp[k++] = arr[j++];
+                    }
+                }
+                //assert i == p && j == q && k == q;
+                if (arr[p] < arr[p - 1]) {
+                    //faster than loop
+                    System.arraycopy(tmp, from, arr, from, q - from);
+                }
+//                if (!sorted(arr, from, q)) {
+//                    throw new RuntimeException();
+//                }
+            }
+        }
+    }
+
+
+    /**
+     * @complexity O(n^2) and stable
+     * @param arr
+     * @param from
+     * @param to
+     */
+    public static void insertionSort(int[] arr, int from, int to) {
+        for (int i = from + 1; i < to; ++i) {
+            for (int j = from; j < i; ++j) {
+                if (arr[i] < arr[j]) {
+                    int arri = arr[i];
+                    for (int k = i; k > j; --k) arr[k] = arr[k - 1];
+                    arr[j] = arri;
+                    break;
+                }
+            }
+//            if (!sorted(arr, from, i + 1)) {
+//                throw new RuntimeException();
+//            }
+        }
+    }
+
+    public static void swap(int[] arr, int i, int j) {
+        int t = arr[i];
+        arr[i] = arr[j];
+        arr[j] = t;
+    }
+
+    public static void swap(Object[] arr, int i, int j) {
+        Object t = arr[i];
+        arr[i] = arr[j];
+        arr[j] = t;
+    }
+
+    public static boolean sorted(int[] arr, int from, int to) {
+        assert from < to;
+        int prev = Integer.MIN_VALUE;
+        for (int i = from; i < to; ++i)
+            if (i > from && arr[i - 1] > arr[i]) return false;
+        return true;
+    }
+
     public static long max(long[] a) {
         if (a.length <= 0) throw new RuntimeException();
         long res = a[0];

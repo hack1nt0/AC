@@ -59,7 +59,7 @@ public class AshAndShopping {
     FFT fft2 = new FFT(1107296257);
 
     private long[] multiply(long[] a, long[] b) {
-//                return FastFourierTransform.multiply(a, b);
+//                return FastFourierTransform.multiplyX(a, b);
         long[] res1 = new long[a.length];
         fft1.multiply(res1, a, b, a.length);
         long[] res2 = new long[a.length];

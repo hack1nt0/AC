@@ -20,7 +20,7 @@ public class UniqueDivideAndConquer {
         for (int i = 1; i < C.length; ++i)
             for (int j = 1; j < C[i].length; ++j) C[i][j] = (C[i - 1][j] + C[i - 1][j - 1]) % MOD;
 //        fact = new BigInteger[N + 1]; fact[0] = BigInteger.ONE;
-//        for (int i = 1; i < fact.length; ++i) fact[i] = fact[i - 1].multiply(BigInteger.valueOf(i));
+//        for (int i = 1; i < fact.length; ++i) fact[i] = fact[i - 1].multiplyX(BigInteger.valueOf(i));
 
         ret = new long[N + 1];
         ret[1] = 1;
@@ -52,7 +52,7 @@ public class UniqueDivideAndConquer {
 //            if (j >= 1) res = (res + dfs(i, j - 1)) % modulus;
 //            for (int k = 1; i >= k * j; ++k) {
 //                //if (k + 1 > k * j) throw new RuntimeException(k + 1 + ", " + k * j);
-//                long partitions = fact[k * j].divide(fact[k].multiply(fact[j - 1].pow(k))).mod(mBig).longValue();
+//                long partitions = fact[k * j].divide(fact[k].multiplyX(fact[j - 1].pow(k))).mod(mBig).longValue();
 //                //System.out.println(k + ", " + j + ", " + partitions);
 //                long chdRes = BigInteger.valueOf(ret[j]).pow(k).mod(mBig).longValue();
 //                res = (res + dfs(i - k * j, j - 1) * chdRes % modulus * C[i][k * j] % modulus * partitions % modulus) % modulus;

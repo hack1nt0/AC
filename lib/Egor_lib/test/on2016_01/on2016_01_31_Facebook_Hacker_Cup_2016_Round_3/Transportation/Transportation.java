@@ -99,7 +99,7 @@ public class Transportation {
                     }
 
                     private long[] multiply(long[] a, long[] b) {
-//                return FastFourierTransform.multiply(a, b);
+//                return FastFourierTransform.multiplyX(a, b);
                         FFT fft1 = new FFT(998244353);
                         long[] res1 = new long[a.length * 2 - 1];
                         fft1.multiply(res1, a, b, a.length);

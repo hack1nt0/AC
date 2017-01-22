@@ -1,6 +1,6 @@
 package main;
 
-import template.collection.intervals.Interval1D;
+import template.collection.intervals.Interval;
 
 import java.util.Collections;
 import java.util.PriorityQueue;
@@ -23,14 +23,14 @@ public class Barn1 {
         int L = 1, R = S;
         while (!occ[L]) L++;
         while (!occ[R]) R--;
-        PriorityQueue<Interval1D> pq = new PriorityQueue<Interval1D>(Collections.reverseOrder());
+        PriorityQueue<Interval> pq = new PriorityQueue<Interval>(Collections.reverseOrder());
         for (int i = L; i <= R;) {
             while (i <= R && occ[i]) i++;
             if (i > R) break;
             int j = i;
             while (j <= R && !occ[j]) j++;
             //System.out.println(new Interval(i, j));
-            pq.add(new Interval1D(i, j));
+            pq.add(new Interval(i, j));
             i = j;
         }
         N--;

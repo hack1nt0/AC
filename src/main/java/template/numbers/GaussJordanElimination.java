@@ -374,7 +374,8 @@ public class GaussJordanElimination {
         test6();
 
         // N-by-N random system (likely full rank)
-        int N = Integer.parseInt(args[0]);
+        //int N = Integer.parseInt(args[0]);
+        int N = 10;
         double[][] A = new double[N][N];
         for (int i = 0; i < N; i++)
             for (int j = 0; j < N; j++)

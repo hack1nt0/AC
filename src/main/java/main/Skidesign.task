@@ -1,0 +1,84 @@
+9 Skidesign
+6 SINGLE
+7 TASK_ID
+9 input.txt
+7 TASK_ID
+10 output.txt
+2
+0
+14 5
+20
+4
+1
+24
+21
+2 18
+1
+1
+149 50
+50
+84
+22
+44
+38
+0
+46
+66
+22
+73
+25
+92
+5
+56
+13
+73
+48
+32
+42
+91
+3
+100
+97
+8
+27
+34
+73
+58
+42
+80
+53
+59
+55
+52
+3
+30
+84
+100
+31
+80
+79
+11
+70
+55
+64
+92
+29
+77
+71
+72
+5 22946
+1
+18 src/main/java/main
+16 -Xmx256m -Xss64m
+9 skidesign
+14 main.Skidesign
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.01.22
+5 usaco
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+1

@@ -1,8 +1,6 @@
 package template.collection.sequence;
 
-import edu.princeton.cs.algs4.Out;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-import template.collection.intervals.Interval1D;
+import template.collection.intervals.Interval;
 import template.debug.StopWatch;
 import template.numbers.IntegerUtils;
 import template.string.StringUtils;
@@ -36,7 +34,7 @@ public class QuerySquareRootDecomposition {
         this.bucketSize = (int)Math.sqrt(N);
     }
 
-    public int[] queryOffline(Interval1D[] queries) {
+    public int[] queryOffline(Interval[] queries) {
         if (queries.length > intArray.length) throw new RuntimeException("This algo maybe not approciated.");
 
         //Integer[] index = new Integer[queries.length];
@@ -54,7 +52,7 @@ public class QuerySquareRootDecomposition {
         return solve(queries, index);
     }
 
-    private int[] solve(Interval1D[] queries, Integer[] index) {
+    private int[] solve(Interval[] queries, Integer[] index) {
         /**
          * Task Specified
          */
@@ -130,7 +128,7 @@ public class QuerySquareRootDecomposition {
         else cntMap.put(intArray[i], c - 1);
     }
 
-    public int[] queryBruteforce(Interval1D[] queries) {
+    public int[] queryBruteforce(Interval[] queries) {
         Integer[] index = (Integer[]) ArrayUtils.inbox(ArrayUtils.index(queries.length));
         return solve(queries, index);
     }
@@ -144,12 +142,12 @@ public class QuerySquareRootDecomposition {
         int N = 100000, M = 100000;
         int[] arr = IntegerUtils.randomInts(N, 0, 10);
         QuerySquareRootDecomposition querySquareRootDecomposition = new QuerySquareRootDecomposition(arr);
-        Interval1D[] interval1Ds = new Interval1D[M];
+        Interval[] interval1Ds = new Interval[M];
         Random random = new Random();
         for (int i = 0; i < M; ++i) {
             int l = random.nextInt(N + 1);
             int r = random.nextInt(N + 1);
-            interval1Ds[i] = new Interval1D(Math.min(l, r), Math.max(l, r));
+            interval1Ds[i] = new Interval(Math.min(l, r), Math.max(l, r));
         }
         StopWatch.tic();
         int[] ans1 = querySquareRootDecomposition.queryOffline(interval1Ds);

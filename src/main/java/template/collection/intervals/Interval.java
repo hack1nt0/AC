@@ -25,27 +25,27 @@ import java.util.Comparator;
  *  @author Robert Sedgewick
  *  @author Kevin Wayne
  */
-public class Interval1D implements Comparable<Interval1D> {
+public class Interval implements Comparable<Interval> {
 
     /**
      * Compares two intervals by left endpoint.
      */
-    public static final Comparator<Interval1D> LEFT_ENDPOINT_ORDER = new LeftComparator();
+    public static final Comparator<Interval> LEFT_ENDPOINT_ORDER = new LeftComparator();
 
     /**
      * Compares two intervals by right endpoint.
      */
-    public static final Comparator<Interval1D> RIGHT_ENDPOINT_ORDER = new RightComparator();
+    public static final Comparator<Interval> RIGHT_ENDPOINT_ORDER = new RightComparator();
 
     /**
      * Compares two intervals by length.
      */
-    public static final Comparator<Interval1D> LENGTH_ORDER = new LengthComparator();
+    public static final Comparator<Interval> LENGTH_ORDER = new LengthComparator();
 
     int left;
     int right;
 
-    public Interval1D() {
+    public Interval() {
 
     }
 
@@ -59,7 +59,7 @@ public class Interval1D implements Comparable<Interval1D> {
      *                                  is <tt>Double.NaN</tt>, <tt>Double.POSITIVE_INFINITY</tt> or
      *                                  <tt>Double.NEGATIVE_INFINITY</tt>
      */
-    public Interval1D(int left, int right) {
+    public Interval(int left, int right) {
         if (left <= right) {
             this.left = left;
             this.right = right;
@@ -91,7 +91,7 @@ public class Interval1D implements Comparable<Interval1D> {
      * @return <tt>true</tt> if this interval intersects the argument interval;
      * <tt>false</tt> otherwise
      */
-    public boolean intersects(Interval1D that) {
+    public boolean intersects(Interval that) {
         if (this.right < that.left) return false;
         if (that.right < this.left) return false;
         return true;
@@ -131,7 +131,7 @@ public class Interval1D implements Comparable<Interval1D> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Interval1D that = (Interval1D) o;
+        Interval that = (Interval) o;
 
         if (left != that.left) return false;
         return right == that.right;
@@ -146,13 +146,13 @@ public class Interval1D implements Comparable<Interval1D> {
     }
 
     @Override
-    public int compareTo(Interval1D o) {
+    public int compareTo(Interval o) {
         return LENGTH_ORDER.compare(this, o);
     }
 
     // ascending order of left endpoint, breaking ties by right endpoint
-    private static class LeftComparator implements Comparator<Interval1D> {
-        public int compare(Interval1D a, Interval1D b) {
+    private static class LeftComparator implements Comparator<Interval> {
+        public int compare(Interval a, Interval b) {
             if (a.left < b.left) return -1;
             else if (a.left > b.left) return +1;
             else if (a.right < b.right) return -1;
@@ -162,8 +162,8 @@ public class Interval1D implements Comparable<Interval1D> {
     }
 
     // ascending order of right endpoint, breaking ties by left endpoint
-    private static class RightComparator implements Comparator<Interval1D> {
-        public int compare(Interval1D a, Interval1D b) {
+    private static class RightComparator implements Comparator<Interval> {
+        public int compare(Interval a, Interval b) {
             if (a.right < b.right) return -1;
             else if (a.right > b.right) return +1;
             else if (a.left < b.left) return -1;
@@ -173,8 +173,8 @@ public class Interval1D implements Comparable<Interval1D> {
     }
 
     // ascending order of length
-    private static class LengthComparator implements Comparator<Interval1D> {
-        public int compare(Interval1D a, Interval1D b) {
+    private static class LengthComparator implements Comparator<Interval> {
+        public int compare(Interval a, Interval b) {
             double alen = a.length();
             double blen = b.length();
             if (alen < blen) return -1;

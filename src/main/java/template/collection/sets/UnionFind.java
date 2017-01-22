@@ -5,12 +5,12 @@ package template.collection.sets;
  */
 public class UnionFind {
     private int[] parent;
-    private int[] top;
+    private int[] rank;
     private int count;
 
     public UnionFind(int N) {
         parent = new int[N];
-        top = new int[N];
+        rank = new int[N];
         count = N;
         for (int i = 0; i < N; i++) {
             parent[i] = i;
@@ -33,10 +33,10 @@ public class UnionFind {
         int rootP = find(p);
         int rootQ = find(q);
         if (rootP == rootQ) return;
-        if (top[rootP] == top[rootQ]) {
+        if (rank[rootP] == rank[rootQ]) {
             parent[rootP] = rootQ;
-            top[rootP]++;
-        } else if (top[rootP] > top[rootQ]) {
+            rank[rootP]++;
+        } else if (rank[rootP] > rank[rootQ]) {
             parent[rootQ] = rootP;
         } else {
             parent[rootP] = rootQ;

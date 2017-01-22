@@ -343,7 +343,8 @@ public class GaussianElimination {
         test9();
 
         // N-by-N random system
-        int N = Integer.parseInt(args[0]);
+        //int N = Integer.parseInt(args[0]);
+        int N = 10;
         double[][] A = new double[N][N];
         for (int i = 0; i < N; i++)
             for (int j = 0; j < N; j++)

@@ -27,9 +27,9 @@ public class RoadsInHackerLand {
             minSpanningTree.addE(b, a, c);
         }
 
-        //System.err.println(minSpanningTree.cost());
+        //System.err.printlnTable(minSpanningTree.cost());
         Graph tree = minSpanningTree.tree();
-        //System.err.println(tree);
+        //System.err.printlnTable(tree);
         dfs(0, -1, tree.adj);
         out.println(ret.toString(2));
     }
@@ -38,12 +38,12 @@ public class RoadsInHackerLand {
         int res = 1;
         for (Graph.Edge e : adj[cur]) {
             if (e.b == fa) continue;
-            //System.err.println(cur + " " + e.b);
+            //System.err.printlnTable(cur + " " + e.b);
             int chds = dfs(e.b, cur, adj);
             BigInteger cure = BigInteger.ONE.shiftLeft(e.cost);
             BigInteger cnte = BigInteger.valueOf((long)chds * (adj.length - chds));
 
-            //System.err.println(cure.toString(2) + " " + cnte);
+            //System.err.printlnTable(cure.toString(2) + " " + cnte);
 
             ret = ret.add(cure.multiply(cnte));
             res += chds;

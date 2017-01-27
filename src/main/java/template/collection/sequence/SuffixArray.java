@@ -3,9 +3,6 @@ package template.collection.sequence;
 import template.numbers.DoubleUtils;
 import template.numbers.IntegerUtils;
 
-import java.io.BufferedWriter;
-import java.io.PrintStream;
-import java.io.PrintWriter;
 import java.util.*;
 
 /**
@@ -300,7 +297,7 @@ public class SuffixArray<T extends Comparable> {
             System.out.println("]");
         }
         System.out.println(suffixArray.longestCommonSubstrings(2, null));
-        //System.out.println(suffixArray.longestRepeatedSubstrings(2, null));
+        //System.out.printlnTable(suffixArray.longestRepeatedSubstrings(2, null));
     }
 
     static void test4() {
@@ -308,7 +305,7 @@ public class SuffixArray<T extends Comparable> {
         Integer[] sa1 = new SuffixArray(t1).sortedIndex;
         Integer[] sa2 = new SuffixArray(t1).suffixArrayBruteforce();
         if (!Arrays.deepEquals(sa1, sa2)) {
-            ArrayUtils.printlnH(t1, sa1, sa2);
+            ArrayUtils.printlnTableH(t1, sa1, sa2);
             Integer[] tmp = new SuffixArray(t1).sortedIndex;
         }
     }

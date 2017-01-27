@@ -26,7 +26,7 @@ public class Dualpal {
             }
 
             if (cb >= 2) ans.add(S);
-            //System.out.println(S);
+            //System.out.printlnTable(S);
         }
 
         for (int r : ans) out.println(r);

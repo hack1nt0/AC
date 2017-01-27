@@ -34,7 +34,7 @@ public class RecordingEpisodes {
         }
         int S = 0, T = 0;
         while (true) {
-            //System.err.println(S + " " + T + " " + N);
+            //System.err.printlnTable(S + " " + T + " " + N);
             if (T == N) break;
             if (S + maxL >= N) break;
 
@@ -71,7 +71,7 @@ public class RecordingEpisodes {
         }
 
         out.println((maxS + 1) + " " + (maxS + 1 + maxL - 1));
-        //System.err.println((maxS + 1) + " " + (maxS + 1 + maxL - 1));
+        //System.err.printlnTable((maxS + 1) + " " + (maxS + 1 + maxL - 1));
     }
 
     private boolean join(int x1, int y1, int x2, int y2) {

@@ -1,11 +1,11 @@
 package template.collection.sequence;
 
 import template.debug.RandomUtils;
-import template.debug.StopWatch;
+import template.debug.Stopwatch;
 import template.numbers.IntegerUtils;
-import template.string.StringUtils;
 
 import java.io.PrintStream;
+import java.io.PrintWriter;
 import java.util.Arrays;
 
 /**
@@ -13,28 +13,63 @@ import java.util.Arrays;
  */
 public class ArrayUtils {
     public static void main(String[] args) {
-        while (true) {
-            testSort();
-            System.out.println(StringUtils.repeat("=", 12));
-        }
+        //testSort();
+        testReverseOrderPairs();
     }
 
     private static void testSort() {
-        int[] arr = IntegerUtils.randomInts(10000000, -100000000, 100000000);
-        int[] arr1 = arr.clone();
-        int[] arr2 = arr.clone();
-        StopWatch.tic();
-        mergeSort(arr1);
-        StopWatch.toc();
-        StopWatch.tic();
-        Arrays.sort(arr2);
-        StopWatch.toc();
-        if (!Arrays.equals(arr1, arr2)) {
-            //ArrayUtils.printlnH(arr1, arr2);
-            System.out.println("error");
+        while (true) {
+            int[] arr = IntegerUtils.randomInts(10000000, -100000000, 100000000);
+            int[] arr1 = arr.clone();
+            int[] arr2 = arr.clone();
+            Stopwatch.tic();
+            mergeSort(arr1);
+            Stopwatch.toc();
+            Stopwatch.tic();
+            Arrays.sort(arr2);
+            Stopwatch.toc();
+            if (!Arrays.equals(arr1, arr2)) {
+                //ArrayUtils.printlnTableH(arr1, arr2);
+                System.out.println("error");
+            }
         }
     }
 
+    public static void testReverseOrderPairs() {
+        while (true) {
+            int[] arr = IntegerUtils.randomInts(RandomUtils.uniform(100), 0, 10);
+            int ans = 0;
+            for (int i = 0; i < arr.length; ++i)
+                for (int j = i + 1; j < arr.length; ++j) if (arr[i] > arr[j]) ans++;
+            if (ans != reverseOrderPairs(arr)) {
+                throw new RuntimeException();
+            }
+        }
+    }
+
+
+    public static int reverseOrderPairs(int[] arr) {
+        int[] buf = new int[arr.length];
+        return reverseOrderPairs(arr, 0, arr.length, buf);
+    }
+
+    public static int reverseOrderPairs(int[] arr, int from, int to, int[] buf) {
+        if (from + 1 >= to) return 0;
+        int mid = from + (to - from) / 2;
+        int res = reverseOrderPairs(arr, from, mid, buf) + reverseOrderPairs(arr, mid, to, buf);
+        int i = from, j = mid, k = from;
+        while (true) {
+            if (i == mid && j == to) break;
+            if (j == to || i < mid && arr[i] <= arr[j]) buf[k++] = arr[i++];
+            else {
+                res += mid - i;
+                buf[k++] = arr[j++];
+            }
+        }
+        System.arraycopy(buf, from, arr, from, to - from);
+        //if (!ArrayUtils.sorted(arr, from, to)) throw new RuntimeException();
+        return res;
+    }
     /**
      * @complexity O(nlogn) and stable
      * In practice, it is slower than Arrays.sort by 6~7x.
@@ -115,6 +150,10 @@ public class ArrayUtils {
         arr[j] = t;
     }
 
+    public static boolean sorted(int[] arr) {
+        return sorted(arr, 0, arr.length);
+    }
+
     public static boolean sorted(int[] arr, int from, int to) {
         assert from < to;
         int prev = Integer.MIN_VALUE;
@@ -127,6 +166,24 @@ public class ArrayUtils {
         if (a.length <= 0) throw new RuntimeException();
         long res = a[0];
         for (int i = 0; i < a.length; ++i) if (res < a[i]) res = a[i];
+        return res;
+    }
+
+    public static int max(int[] a) {
+        if (a.length <= 0) throw new RuntimeException();
+        int res = a[0];
+        for (int i = 0; i < a.length; ++i) if (res < a[i]) res = a[i];
+        return res;
+    }
+    public static int min(int[] a) {
+        if (a.length <= 0) throw new RuntimeException();
+        int res = a[0];
+        for (int i = 0; i < a.length; ++i) if (res > a[i]) res = a[i];
+        return res;
+    }
+    public static int sum(int[] a) {
+        int res = 0;
+        for (int i = 0; i < a.length; ++i) res += a[i];
         return res;
     }
 
@@ -283,19 +340,19 @@ public class ArrayUtils {
         return res.toString();
     }
 
-    public static void printlnV(Object... objects) {
-        println(null, true, objects);
+    public static void printlnTableV(Object... objects) {
+        printlnTable(null, true, objects);
     }
 
-    public static void printlnVWithHeads(String[] heads, Object... objects) {
-        println(heads, true, objects);
+    public static void printlnTableVWithHeads(String[] heads, Object... objects) {
+        printlnTable(heads, true, objects);
     }
 
-    public static void printlnH(Object... objects) {
-        println(null, false, objects);
+    public static void printlnTableH(Object... objects) {
+        printlnTable(null, false, objects);
     }
 
-    public static void println(String[] heads, boolean vertical, Object... objects) {
+    public static void printlnTable(String[] heads, boolean vertical, Object... objects) {
         final PrintStream out = System.out;
         int W = 10;
         String formateStr = "%10s";
@@ -303,7 +360,7 @@ public class ArrayUtils {
         int N = objects.length;
         if (N == 0) return;
 
-        //println("-", (N + 1) * W + N);
+        //printlnTable("-", (N + 1) * W + N);
 
         Object[][] matrix = new Object[N][];
         for (int i = 0; i < N; ++i) matrix[i] = inbox(objects[i]);
@@ -315,7 +372,7 @@ public class ArrayUtils {
                     out.printf(formateStr, heads[i]);
                 out.println();
 
-                //println("-", (N + 1) * W + N);
+                //printlnTable("-", (N + 1) * W + N);
             }
 
 
@@ -332,7 +389,7 @@ public class ArrayUtils {
                 out.printf(formateStr, i);
             out.println();
 
-            //println("-", (N + 1) * W + N);
+            //printlnTable("-", (N + 1) * W + N);
 
             for (int i = 0; i < N; ++i) {
                 out.printf(formateStr, i);
@@ -342,7 +399,48 @@ public class ArrayUtils {
                 out.println();
             }
         }
-        //println("-", (N + 1) * W + N);
+        //printlnTable("-", (N + 1) * W + N);
         out.println();
+    }
+
+    public static void println(Object arr1, PrintWriter out) {
+        if (out == null) {
+            out = new PrintWriter(System.out);
+        }
+        Object[] arr = inbox(arr1);
+        for (int i = 0; i < arr.length; ++i) {
+            if (i > 0) out.print(' ');
+            out.print(arr[i]);
+        }
+        out.println();
+    }
+
+    public static void reverse(int[] arr) {
+        reverse(arr, 0, arr.length);
+    }
+
+    public static void reverse(int[] arr, int from, int to) {
+        if (from < 0 || to > arr.length || from >= to) throw new RuntimeException();
+        int l = from, r = to - 1;
+        while (true) {
+            if (l >= r) break;
+            int t = arr[l];
+            arr[l] = arr[r];
+            arr[r] = t;
+            l++; r--;
+        }
+    }
+
+    public static int upperBound(int[] arr, int value) {
+        return upperBound(arr, 0, arr.length, value);
+    }
+
+    public static int upperBound(int[] arr, int from, int to, int value) {
+
+        return -1;
+    }
+
+    public static void println(Object arr1) {
+        println(arr1, null);
     }
 }

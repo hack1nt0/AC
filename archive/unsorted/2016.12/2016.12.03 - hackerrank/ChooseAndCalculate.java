@@ -31,7 +31,7 @@ public class ChooseAndCalculate {
 //            for (int j = i + K - 1; j < N; ++j) {
 //            res = (res + Math.abs(A[i] - A[j]) * C[j - i - 1] % modulus) % modulus;
 //        }
-//        out.println(res);
+//        out.printlnTable(res);
 
         Arrays.fill(C, 0);
         C[K - 1] = 1;

@@ -44,9 +44,9 @@ public class CyclicShiftsInPermutation {
                         }
                     }
                 }
-                System.err.println(i + " " + j + " " + set.size());
+                System.err.printlnTable(i + " " + j + " " + set.size());
                 for (IntList list : set) {
-                    System.err.println(list.toString() + " " + ArrayUtils.getOddity(list.toArray()));
+                    System.err.printlnTable(list.toString() + " " + ArrayUtils.getOddity(list.toArray()));
                 }
             }
         }*/

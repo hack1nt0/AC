@@ -1,7 +1,7 @@
 package template.string;
 
 import template.collection.sequence.ArrayUtils;
-import template.debug.StopWatch;
+import template.debug.Stopwatch;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -85,18 +85,18 @@ public abstract class PatternSearch {
         while (true) {
             String pattern = StringUtils.random(1000, 'a', 'z' + 1);
             String text = StringUtils.random(150000, 'a', 'z' + 1);
-            new StopWatch() {{
+            new Stopwatch() {{
                 ans2 = PatternSearch.search(text, pattern);
             }}.toc();
 
             //if (ans2.size() == 0) continue;
-            new StopWatch(){{
+            new Stopwatch(){{
                 stringSearch = new KMP(pattern);
                 ans1 = stringSearch.search(text);
             }}.toc();
 
-            ArrayUtils.printlnV(pattern, text);
-            ArrayUtils.printlnV(ans1, ans2);
+            ArrayUtils.printlnTableV(pattern, text);
+            ArrayUtils.printlnTableV(ans1, ans2);
             if (!ans1.equals(ans2)) {
                 //PatternSearch.search(text, pattern);
                 //stringSearch.search(text);

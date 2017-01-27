@@ -14,7 +14,7 @@ public class JackGoesToRapture {
             int a = in.nextInt() - 1;
             int b = in.nextInt() - 1;
             long c = in.nextLong();
-            //System.err.println(i + " " + a + " " + b + " " + c);
+            //System.err.printlnTable(i + " " + a + " " + b + " " + c);
             sp.addE(a, b, c);
             sp.addE(b, a, c);
         }

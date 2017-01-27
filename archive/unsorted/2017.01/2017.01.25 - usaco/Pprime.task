@@ -1,0 +1,40 @@
+6 Pprime
+6 SINGLE
+7 TASK_ID
+9 input.txt
+7 TASK_ID
+10 output.txt
+2
+0
+5 5 500
+42 5
+7
+11
+101
+131
+151
+181
+191
+313
+353
+373
+383
+1
+1
+11 5 100000000
+-1
+1
+18 src/main/java/main
+16 -Xmx256m -Xss64m
+6 pprime
+11 main.Pprime
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.01.25
+5 usaco
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+1

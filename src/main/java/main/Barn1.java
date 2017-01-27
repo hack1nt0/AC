@@ -29,7 +29,7 @@ public class Barn1 {
             if (i > R) break;
             int j = i;
             while (j <= R && !occ[j]) j++;
-            //System.out.println(new Interval(i, j));
+            //System.out.printlnTable(new Interval(i, j));
             pq.add(new Interval(i, j));
             i = j;
         }

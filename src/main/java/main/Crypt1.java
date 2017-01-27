@@ -29,7 +29,7 @@ public class Crypt1 {
                             if (!validate(partial2, 3)) continue;
                             int mul = a * b;
                             if (!validate(mul, 4)) continue;
-                            //Out.printlnV(a, b, partial1, partial2, mul);
+                            //Out.printlnTableV(a, b, partial1, partial2, mul);
                             ans++;
                         }
 

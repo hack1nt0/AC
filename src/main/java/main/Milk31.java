@@ -8,10 +8,10 @@ import java.util.Set;
 /*
  ID: hackint1
  LANG: JAVA
- TASK: Milk3
+ TASK: milk31
 */
 
-public class Milk3 {
+public class Milk31 {
 
     private int ac;
     private int bc;

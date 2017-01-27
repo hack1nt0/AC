@@ -27,7 +27,7 @@ public class ByteLandianTours {
         for (int i = 0; i < N - 1; ++i) {
             int a = in.nextInt();
             int b = in.nextInt();
-            //if (testNumber == 14) System.err.println(a + " " + b);
+            //if (testNumber == 14) System.err.printlnTable(a + " " + b);
             G.addEdge(new Graph.Edge(a, b, 1));
             G.addEdge(new Graph.Edge(b, a, 1));
         }
@@ -41,7 +41,7 @@ public class ByteLandianTours {
 
         dfs(0, -1);
         out.println(cycle[0]);
-        //if (testNumber == 14) System.err.println(cycle[0]);
+        //if (testNumber == 14) System.err.printlnTable(cycle[0]);
     }
 
     private void dfs(int cur, int fa) {

@@ -1,0 +1,32 @@
+6 Castle
+6 SINGLE
+7 TASK_ID
+9 input.txt
+7 TASK_ID
+10 output.txt
+1
+0
+73 7 4
+11 6 11 6 3 10 6
+7 9 6 13 5 15 5
+1 10 12 7 13 7 5
+13 11 10 8 10 12 13
+12 5
+9
+16
+4 1 E
+1
+18 src/main/java/main
+16 -Xmx256m -Xss64m
+6 castle
+11 main.Castle
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.01.27
+5 usaco
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+1

@@ -70,10 +70,10 @@ public class DemandingMoney {
         int c = 0;
         for (int ts = 0; ts < 1 << N - K; ++ts) {
             long s = (long)ts << K;
-            //System.err.println(s);
+            //System.err.printlnTable(s);
             //s is an Independent Set
             if (!indep(s)) continue;
-            //System.err.println(++c);
+            //System.err.printlnTable(++c);
             long invalid = 0;
             int max = 0;
             for (int house : Bits.elements(s)) {
@@ -87,12 +87,12 @@ public class DemandingMoney {
             if (res > retMax) {
                 retMax = res;
                 retCnt = firstCnt[firstS];
-                //System.err.println(Long.toBinaryString(s | firstS) + " " + retMax + " " + firstMax[firstS] + " " + firstCnt[firstS]);
+                //System.err.printlnTable(Long.toBinaryString(s | firstS) + " " + retMax + " " + firstMax[firstS] + " " + firstCnt[firstS]);
             } else if (res == retMax) {
                 retCnt += firstCnt[firstS];
-                //System.err.println(Long.toBinaryString(s | firstS) + " " + retMax + " " + firstMax[firstS] + " " + firstCnt[firstS]);
+                //System.err.printlnTable(Long.toBinaryString(s | firstS) + " " + retMax + " " + firstMax[firstS] + " " + firstCnt[firstS]);
             }
-            //System.err.println(retMax + " " + retCnt);
+            //System.err.printlnTable(retMax + " " + retCnt);
         }
 
         out.println(retMax + " " + retCnt);

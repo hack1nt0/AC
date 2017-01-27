@@ -12,7 +12,7 @@ public class Clique {
         int M = in.nextInt();
         int L = 0, R = N;
         while (true) {
-            //System.err.println(L + " " + R);
+            //System.err.printlnTable(L + " " + R);
             if (L + 1 >= R) break;
             int maxClique = L + (R - L) / 2;
             if (C(N, M, maxClique)) R = maxClique;

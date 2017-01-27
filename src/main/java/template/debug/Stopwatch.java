@@ -3,7 +3,7 @@ package template.debug;
 /**
  * Created by dy on 17-1-11.
  */
-public class StopWatch {
+public class Stopwatch {
     private static long t1 = System.currentTimeMillis();
 
     public static void toc() {

@@ -31,7 +31,7 @@ public class ChocolateFiesta {
             nCi = nCi * (cnt[1] - i + 2) % MOD * (cnt[1] - i + 1) % MOD * Numbers.inv(i * (i - 1)) % MOD;
         }
 
-        //System.err.println(B + ", " + IntegerUtils.pow(2, cnt[1] - 1));
+        //System.err.printlnTable(B + ", " + IntegerUtils.pow(2, cnt[1] - 1));
 
         long res = A * B % MOD;
         out.println(res - 1);

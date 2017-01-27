@@ -177,9 +177,9 @@ public class Interval implements Comparable<Interval> {
         public int compare(Interval a, Interval b) {
             double alen = a.length();
             double blen = b.length();
-            if (alen < blen) return -1;
-            else if (alen > blen) return +1;
-            else return 0;
+            if (alen > blen) return +1;
+            else if (alen < blen) return -1;
+            else return a.left - b.left;
         }
     }
 }

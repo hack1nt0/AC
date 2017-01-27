@@ -22,14 +22,14 @@ public class SubsetComponent {
             d[i] = new BigInteger(in.next()).longValue();
         }
         long ret = 0;
-//        out.println((long)Math.pow(2, 63));
-//        out.println(Long.MAX_VALUE);
+//        out.printlnTable((long)Math.pow(2, 63));
+//        out.printlnTable(Long.MAX_VALUE);
 
 //        List<Integer>[] ibs = new ArrayList[N];
 //        for (int i = 0; i < N; ++i) ibs[i] = elements(d[i]);
 //        List<Integer>[] ids = new ArrayList[1 << N];
 //        for (int i = 0; i < 1 << N; ++i) ids[i] = elements(i);
-//        //System.out.println("done");
+//        //System.out.printlnTable("done");
 //
 //        for (int s = 0; s < 1 << N; ++s) {
 //            //UnionFind uf = new UnionFind(nbit);
@@ -52,7 +52,7 @@ public class SubsetComponent {
 //
 //                //res += Math.max(Long.MIN_VALUE, - Long.bitCount(or) + 1);
 //            }
-//            //System.out.println(res);
+//            //System.out.printlnTable(res);
 //            ret += res + nbits;
 
 //            for (int id : ids[s]) {
@@ -67,7 +67,7 @@ public class SubsetComponent {
 //                    preb = ib;
 //                }
 //            }
-            //System.out.println(uf.count());
+            //System.out.printlnTable(uf.count());
             //ret += uf.count();
         ret = dfs(0, new ArrayList<Integer>());
         out.println(ret);

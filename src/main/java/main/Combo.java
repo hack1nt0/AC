@@ -40,7 +40,7 @@ public class Combo {
             totMaster *= validMaster.size();
             //validJohn.retainAll(validMaster);
             common *= SetUtils.intersect(validJohn, validMaster);
-            //System.out.println(Arrays.toString(validJohn.toArray(new Integer[0])));
+            //System.out.printlnTable(Arrays.toString(validJohn.toArray(new Integer[0])));
         }
 
         long ans = totJohn + totMaster - common;

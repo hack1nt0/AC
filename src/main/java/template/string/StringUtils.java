@@ -1,10 +1,10 @@
 package template.string;
 
-import template.debug.StopWatch;
+import template.debug.RandomUtils;
 
 import java.util.Arrays;
 import java.util.Random;
-import static template.debug.StopWatch.*;
+import static template.debug.Stopwatch.*;
 
 
 /**
@@ -128,7 +128,7 @@ public class StringUtils {
         }
         sortMSDWay3(ss, p, q, d + 1);
 
-        //System.out.println(q + " " + hi + " " + d);
+        //System.out.printlnTable(q + " " + hi + " " + d);
         sortMSDWay3(ss, q, hi, d);
     }
 
@@ -246,8 +246,31 @@ public class StringUtils {
         return res.toString();
     }
 
-    public static void main(String[] args) {
+    public static String randPalindrome(int n, int from, int to) {
+        StringBuilder res = new StringBuilder();
+        for (int i = 0; i < (n + 1) / 2; ++i) res.append((char)RandomUtils.uniform(from, to));
+        for (int i = res.length() - (n % 2 == 0 ? 1 : 2); i >= 0; --i)
+            res.append(res.charAt(i));
+        return res.toString();
+    }
 
+    public static void main(String[] args) {
+        testPal();
+    }
+
+    public static void testPal() {
+        while (true) {
+            int n = RandomUtils.uniform(100);
+            String pal = randPalindrome(n, '0', '9' + 1);
+            //System.out.println(pal);
+            if (pal.length() != n || !isPal(pal)) {
+                System.err.println(pal);
+                throw new RuntimeException();
+            }
+        }
+    }
+
+    public static void testSort() {
         int N = 20000, W = 10000;
         Random rand = new Random();
         String[] ss = new String[N];

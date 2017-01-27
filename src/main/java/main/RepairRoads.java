@@ -93,7 +93,7 @@ public class RepairRoads {
 
             @Override
             public void write(PrintWriter out, int testNumber) {
-                //out.println("Case #" + testNumber + ":");
+                //out.printlnTable("Case #" + testNumber + ":");
                 out.println(ret[0]);
             }
         }, 4);

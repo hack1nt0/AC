@@ -1,7 +1,7 @@
 package template.collection.sequence;
 
 import template.collection.intervals.Interval;
-import template.debug.StopWatch;
+import template.debug.Stopwatch;
 import template.numbers.IntegerUtils;
 import template.string.StringUtils;
 
@@ -94,7 +94,7 @@ public class QuerySquareRootDecomposition {
 //            Set<Integer> set = new HashSet<>();
 //            for (int j = curL; j < curR; ++j) set.add(intArray[j]);
 //            if (!set.equals(cntMap.keySet())) {
-//                ArrayUtils.printlnH(set.toArray(new Integer[0]), cntMap.keySet().toArray(new Integer[0]));
+//                ArrayUtils.printlnTableH(set.toArray(new Integer[0]), cntMap.keySet().toArray(new Integer[0]));
 //            }
             /**
              * Task Specified
@@ -149,15 +149,15 @@ public class QuerySquareRootDecomposition {
             int r = random.nextInt(N + 1);
             interval1Ds[i] = new Interval(Math.min(l, r), Math.max(l, r));
         }
-        StopWatch.tic();
+        Stopwatch.tic();
         int[] ans1 = querySquareRootDecomposition.queryOffline(interval1Ds);
-        StopWatch.toc();
-        StopWatch.tic();
+        Stopwatch.toc();
+        Stopwatch.tic();
         int[] ans2 = querySquareRootDecomposition.queryBruteforce(interval1Ds);
-        StopWatch.toc();
+        Stopwatch.toc();
         System.out.println(StringUtils.repeat("-", 20));
         if (!Arrays.equals(ans1, ans2)) {
-            ArrayUtils.printlnH(ans1, ans2);
+            ArrayUtils.printlnTableH(ans1, ans2);
         }
     }
 }

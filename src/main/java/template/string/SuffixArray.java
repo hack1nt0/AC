@@ -79,11 +79,11 @@ public class SuffixArray {
             }
             for (int i = 0; i < N; ++i) rank[i] = tmp[i];
 
-//            System.err.println(l * 2);
+//            System.err.printlnTable(l * 2);
 //            for (int i = 0; i < N; ++i) {
-//                System.err.println(rank[sortedIndex[i]] + " " + text.substring(sortedIndex[i]));
+//                System.err.printlnTable(rank[sortedIndex[i]] + " " + text.substring(sortedIndex[i]));
 //            }
-//            System.err.println("========================");
+//            System.err.printlnTable("========================");
 
             //small optimization
             boolean unique = true;
@@ -341,7 +341,7 @@ public class SuffixArray {
 
 
     public static void main(String[] args) {
-        ArrayUtils.printlnV((int)Character.MIN_VALUE, (int)Character.MAX_VALUE);
+        ArrayUtils.printlnTableV((int)Character.MIN_VALUE, (int)Character.MAX_VALUE);
         String text1 = "ABRACADABRA!";
         SuffixArray suffixArray1 = new SuffixArray(text1);
         for (int r = 0; r < text1.length(); ++r) {
@@ -359,9 +359,9 @@ public class SuffixArray {
 /*
         for (int i = 0; i < text.length(); ++i)
             for (int j = i; j < text.length(); ++j) {
-                Out.printlnV(text.substring(i), text.substring(j), suffixArray.lcp(i, j));
+                Out.printlnTableV(text.substring(i), text.substring(j), suffixArray.lcp(i, j));
             }
-        System.out.println("========================");*/
+        System.out.printlnTable("========================");*/
         test3();
 
         while (true) test4();
@@ -388,7 +388,7 @@ public class SuffixArray {
         Integer[] sa1 = new SuffixArray(t1).sortedIndex;
         Integer[] sa2 = new SuffixArray(t1).suffixArrayBruteforce();
         if (!Arrays.deepEquals(sa1, sa2)) {
-            ArrayUtils.printlnH(sa1, sa2);
+            ArrayUtils.printlnTableH(sa1, sa2);
         }
     }
 }

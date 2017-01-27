@@ -53,13 +53,13 @@ public class Undiv2 {
             System.out.print(BSUM[i]);
             if (i < BSUM.length - 1) System.out.print(",");
             if (i % 100 == 0) {
-                System.out.println();
+                System.out.printlnTable();
             }
         }
-        System.out.println();
+        System.out.printlnTable();
 
         for (int i = 0; i < BSUM.length; ++i)
-            System.out.println(BSNUM[i]);*/
+            System.out.printlnTable(BSNUM[i]);*/
 
 
            long res = 0;

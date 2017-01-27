@@ -61,7 +61,7 @@
 
 package template.numbers;
 
-import template.debug.StopWatch;
+import template.debug.Stopwatch;
 import template.string.StringUtils;
 
 /**
@@ -324,20 +324,20 @@ public class FFT {
 
 
         // circular convolution of x with itself
-        StopWatch.tic();
+        Stopwatch.tic();
         Complex[] c = convolve(ac, bc);
-        StopWatch.toc();
-//        StopWatch.tic();
+        Stopwatch.toc();
+//        Stopwatch.tic();
 //        long[] prod = product(a, b);
-//        StopWatch.toc();
+//        Stopwatch.toc();
 //        if (!equals(c, toComplexArr(prod))) {
 //            show(c, "c = convolve(x, x)");
 //            show(toComplexArr(prod), "prod = product(x, x)");
 //            throw new RuntimeException();
 //        }
-        StopWatch.tic();
+        Stopwatch.tic();
         long[] prod2 = multiplyX(a, b);
-        StopWatch.toc();
+        Stopwatch.toc();
         if (!equals(prod2, fromComplexArr(c))) {
             //show(prod, "prod = product(x, x)");
             //show(toComplexArr(prod2), "prod2 = multiplyX(x, x)");
@@ -352,7 +352,7 @@ public class FFT {
         for (int i = 0; i < a.length; ++i)
             if (a[i] != b[i]) {
                 ok = false;
-                //System.out.println(a[i] + " " + b[i]);
+                //System.out.printlnTable(a[i] + " " + b[i]);
             }
         if (!ok) System.out.println("error");
         return true;

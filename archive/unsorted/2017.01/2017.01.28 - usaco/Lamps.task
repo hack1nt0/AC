@@ -1,0 +1,30 @@
+5 Lamps
+6 SINGLE
+7 TASK_ID
+9 input.txt
+7 TASK_ID
+10 output.txt
+1
+0
+12 10
+1
+-1
+7 -1
+32 0000000000
+0101010101
+0110110110
+1
+18 src/main/java/main
+16 -Xmx256m -Xss64m
+5 lamps
+10 main.Lamps
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.01.28
+5 usaco
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+1

@@ -82,12 +82,12 @@ public abstract class StringSearch<T extends Comparable> {
 //        while (true) {
 //            String pattern = StringUtils.random(1000, 'a', 'z' + 1);
 //            String text = StringUtils.random(150000, 'a', 'z' + 1);
-//            new StopWatch() {{
+//            new Stopwatch() {{
 //                ans2 = PatternSearch.search(text, pattern);
 //            }}.toc();
 //
 //            //if (ans2.size() == 0) continue;
-//            new StopWatch(){{
+//            new Stopwatch(){{
 //                stringSearch = new KMP(pattern);
 //                ans1 = stringSearch.search(text);
 //            }}.toc();

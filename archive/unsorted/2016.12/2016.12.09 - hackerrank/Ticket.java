@@ -112,8 +112,8 @@ public class Ticket {
 //            }
 //        }
 //
-//        out.println(ret);
-//        for (int i = 0; i < N; ++i) out.println(p2q[i] + 1);
+//        out.printlnTable(ret);
+//        for (int i = 0; i < N; ++i) out.printlnTable(p2q[i] + 1);
     }
 
     private int dfs(int cur, ArrayList<MinCostFlow.Edge>[] adj) {

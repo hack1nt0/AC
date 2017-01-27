@@ -20,24 +20,24 @@ public class ParallelTest {
 //        map.put("r21", "d2");
 //        map.put("c31", "p0");
 //        map.search(1, (key, value) -> {
-//            System.out.println("Search: " + Thread.currentThread().getName() + " " + key + "," + value);
+//            System.out.printlnTable("Search: " + Thread.currentThread().getName() + " " + key + "," + value);
 //            return key.equals("r2");
 //        });
 //
 //
 //        map.forEach(1, (key, value) -> map.compute(key,
 //                (key1, value1) -> {
-//                    System.out.println("Transform: " + Thread.currentThread().getName() + " " + key + "," + value);
+//                    System.out.printlnTable("Transform: " + Thread.currentThread().getName() + " " + key + "," + value);
 //                    return key + "=" + value;
 //                }));
 //
 //        String result = map.reduceValues(100,
 //                (s1, s2) -> {
-//                    System.out.println("Reduce: " + Thread.currentThread().getName() + " " + s1 + "," + s2);
+//                    System.out.printlnTable("Reduce: " + Thread.currentThread().getName() + " " + s1 + "," + s2);
 //                    return s1 + ", " + s2;
 //                });
 //
-//        System.out.println("Result: " + result);
+//        System.out.printlnTable("Result: " + result);
 
         int N = 30;
         int M = 100;

@@ -116,10 +116,15 @@ public class IntegerUtils {
         return pow(a, modulus - 2);
     }
 
-    private static boolean isPrime(long a) {
+    public static boolean isPrime(long a) {
         //approximate first, brute force second.
-        if (!(BigInteger.valueOf(a).isProbablePrime(100)))
-            return false;
+
+        //the approximate check is very costly
+//        if (!(BigInteger.valueOf(a).isProbablePrime(100)))
+//            return false;
+
+        if (a <= 1) return false;
+        if (a == 2) return true;
         for (long d = 2; d * d <= a; ++d) {
             if (a % d == 0) return false;
         }
@@ -165,7 +170,7 @@ public class IntegerUtils {
         boolean[] isPrime = new boolean[lessThan];
         Arrays.fill(isPrime, true);
         // TODO: 17-1-18
-        isPrime[2] = true;
+        isPrime[1] = false;
         for (int i = 2; i < lessThan; ++i) {
             if (!isPrime[i]) continue;
             res.add(i);
@@ -188,6 +193,31 @@ public class IntegerUtils {
             for (int j = 1; j <= n; ++j) C[i][j] = (C[i - 1][j] + C[i - 1][j - 1]) % modulus;
         return C;
     }
+
+    public static int reverse(int n) {
+        if (n < 0) throw new IllegalArgumentException();
+        int ans = 0;
+        while (true) {
+            if (n == 0) break;
+            ans = ans * 10 + n % 10;
+            n /= 10;
+        }
+        return ans;
+    }
+
+    public static int[] toArray(long n) {
+        String nstr = String.valueOf(n);
+        int[] res = new int[nstr.length()];
+        for (int i = 0; i < res.length; ++i) res[i] = nstr.charAt(i) - '0';
+        return res;
+    }
+
+    public static long fromArray(int[] arr) {
+        long res = 0;
+        for (int i = 0; i < arr.length; ++i) res = res * 10 + arr[i];
+        return res;
+    }
+
 
     public static void main(String[] args) {
         long MOD = (long)1e9 + 7;

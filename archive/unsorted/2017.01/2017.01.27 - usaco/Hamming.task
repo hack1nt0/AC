@@ -1,0 +1,28 @@
+7 Hamming
+6 SINGLE
+7 TASK_ID
+9 input.txt
+7 TASK_ID
+10 output.txt
+1
+0
+6 16 7 3
+50 0 7 25 30 42 45 51 52 75 76
+82 85 97 102 120 127
+
+
+1
+18 src/main/java/main
+16 -Xmx256m -Xss64m
+7 hamming
+12 main.Hamming
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.01.27
+5 usaco
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+1

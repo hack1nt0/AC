@@ -5,6 +5,7 @@ import template.debug.RandomUtils;
 import template.numbers.IntegerUtils;
 import template.string.StringUtils;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -26,7 +27,11 @@ public class CombinatoricsUtils {
         int n = arr.length;
         for (int i = n - 2; i >= 0; --i) {
             if (arr[i] >= arr[i + 1]) continue;
-            int upper = ArrayUtils.upperBound(arr, i + 1, n, arr[i]);
+            int upper = n - 1;
+            while (true) {
+                if (arr[upper] > arr[i]) break;
+                upper--;
+            }
             ArrayUtils.swap(arr, i, upper);
             ArrayUtils.reverse(arr, i + 1, n);
             found = true;
@@ -122,7 +127,16 @@ public class CombinatoricsUtils {
     // End of Permutation
 
     public static void main(String[] args) {
-        testPermutation();
+        //testPermutation();
+        testNextPerm();
+    }
+
+    private static void testNextPerm() {
+        int[] arr = ArrayUtils.index(4);
+        while (true) {
+            System.out.println(Arrays.toString(arr));
+            if (!nextPermutation(arr)) break;
+        }
     }
 
     private static void testPermutation() {

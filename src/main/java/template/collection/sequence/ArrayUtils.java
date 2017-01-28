@@ -436,8 +436,33 @@ public class ArrayUtils {
     }
 
     public static int upperBound(int[] arr, int from, int to, int value) {
+        if (from < 0 || to > arr.length || from >= to) throw new RuntimeException();
+        int l = from, r = to;
+        while (true) {
+            if (l >= r) break;
+            int mid = l + (r - l) / 2;
+            if (arr[mid] <= value) l = mid + 1;
+            else r = mid;
+        }
+        if (l != r) throw new RuntimeException();
+        return l;
+    }
 
-        return -1;
+    public static int lowerBound(int[] arr, int value) {
+        return lowerBound(arr, 0, arr.length, value);
+    }
+
+    public static int lowerBound(int[] arr, int from, int to, int value) {
+        if (from < 0 || to > arr.length || from >= to) throw new RuntimeException();
+        int l = from, r = to;
+        while (true) {
+            if (l >= r) break;
+            int mid = l + (r - l) / 2;
+            if (arr[mid] >= value) r = mid;
+            else l = mid + 1;
+        }
+        if (l != r) throw new RuntimeException();
+        return l;
     }
 
     public static void println(Object arr1) {

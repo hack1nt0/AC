@@ -1,5 +1,7 @@
 package main;
 
+
+
 import template.combinatorics.CombinatoricsUtils;
 import template.numbers.IntegerUtils;
 
@@ -35,6 +37,7 @@ public class Runround {
 //            }
 //            if (repeated) continue;
 
+            System.err.println("end " + IntegerUtils.fromArray(ans));
             int from = 0;
             int runN = 0;
             boolean ok = true;
@@ -50,7 +53,6 @@ public class Runround {
                 runN++;
             }
 
-            System.err.println("end " + ans);
             if (ok) break;
 
             if (!CombinatoricsUtils.nextPermutation(ans)) {

@@ -7,6 +7,10 @@ import template.numbers.IntegerUtils;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.IntSummaryStatistics;
+import java.util.Set;
+import java.util.function.ToIntFunction;
 
 /**
  * Created by dy on 16-12-22.
@@ -181,9 +185,15 @@ public class ArrayUtils {
         for (int i = 0; i < a.length; ++i) if (res > a[i]) res = a[i];
         return res;
     }
-    public static int sum(int[] a) {
-        int res = 0;
+    public static long sum(int[] a) {
+        long res = 0;
         for (int i = 0; i < a.length; ++i) res += a[i];
+        return res;
+    }
+
+    public static long sum(Collection<Integer> a) {
+        int res = 0;
+        for (int e : a) res += e;
         return res;
     }
 

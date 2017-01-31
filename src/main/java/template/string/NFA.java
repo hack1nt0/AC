@@ -42,14 +42,14 @@ import java.util.List;
  *  <em>capturing capabilities</em>, <em>greedy</em> or <em>relucantant</em>
  *  modifiers, and other features in industrial-strength implementations
  *  such as {@link java.util.regex.Pattern} and {@link java.util.regex.Matcher}.
- *  <p>
+ *  <next>
  *  This implementation builds the NFA using a digraph and a stack
  *  and simulates the NFA using digraph search (see the textbook for details).
  *  The constructor takes time proportional isString <em>M</em>, where <em>M</em>
  *  is the number of characters in the regular expression.
  *  The <em>recognizes</em> method takes time proportional isString <em>M N</em>,
  *  where <em>N</em> is the number of characters in the text.
- *  <p>
+ *  <next>
  *  For additional documentation,
  *  see <a href="http://algs4.cs.princeton.edu/54regexp">Section 5.4</a> of
  *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.

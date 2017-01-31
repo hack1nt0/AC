@@ -53,6 +53,10 @@ public class Graph {
         M++;
     }
 
+    public List<template.graph_theory.Edge> adj(int node) {
+        return adj[node];
+    }
+
     public boolean isTree() {
         int[] vis = new int[N];
         return isTreeHelper(0, -1, vis);

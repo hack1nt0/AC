@@ -1,12 +1,10 @@
 package template.numbers;
 
+import template.collection.sequence.ArrayUtils;
 import template.debug.RandomUtils;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by dy on 16-10-8.
@@ -219,12 +217,99 @@ public class IntegerUtils {
     }
 
 
+    public static String toRoman(long n) {
+        TreeMap<Integer, String> romanMap = new TreeMap<>();
+        romanMap.put(1, "I");
+        romanMap.put(5, "V");
+        romanMap.put(10, "X");
+        romanMap.put(50, "L");
+        romanMap.put(100, "C");
+        romanMap.put(500, "D");
+        romanMap.put(1000, "M");
+        romanMap.put(4, "IV");
+        romanMap.put(9, "IX");
+        romanMap.put(40, "XL");
+        romanMap.put(90, "XC");
+        romanMap.put(400, "CD");
+        romanMap.put(900, "CM");
+        StringBuilder res = new StringBuilder();
+        long tmpn = n;
+        for (int factor : romanMap.descendingKeySet()) {
+            while (true) {
+                if (factor > tmpn) break;
+                res.append(romanMap.get(factor));
+                tmpn -= factor;
+            }
+        }
+        return res.toString();
+    }
+
+    public static long fromRoman(String roman) {
+        TreeMap<String, Integer> romanMap = new TreeMap<>();
+        romanMap.put("I", 1);
+        romanMap.put("V", 5);
+        romanMap.put("X", 10);
+        romanMap.put("L", 50);
+        romanMap.put("C", 100);
+        romanMap.put("D", 500);
+        romanMap.put("M", 1000);
+        romanMap.put("IV", 4);
+        romanMap.put("IX", 9);
+        romanMap.put("XL", 40);
+        romanMap.put("XC", 90);
+        romanMap.put("CD", 400);
+        romanMap.put("CM", 900);
+        long res = 0;
+        List<Integer> factors = new ArrayList<>();
+        for (int i = 0; i < roman.length(); ) {
+            if (i + 1 < roman.length()) {
+                String minus = roman.substring(i, i + 2);
+                if (romanMap.containsKey(minus)) {
+                    factors.add(romanMap.get(minus));
+                    i += 2;
+                    continue;
+                }
+            }
+            String cur = roman.substring(i, i + 1);
+            if (!romanMap.containsKey(cur)) throw new IllegalArgumentException();
+            factors.add(romanMap.get(cur));
+            i++;
+        }
+
+        boolean decending = true;
+        for (int i = 0; i < factors.size() - 1; ++i) if (factors.get(i) < factors.get(i + 1)) {decending = false; break;}
+        if (!decending) throw new IllegalArgumentException();
+
+        return ArrayUtils.sum(factors);
+    }
+
+    private static boolean isValidRoman(String roman) {
+        return true;
+    }
+
     public static void main(String[] args) {
-        long MOD = (long)1e9 + 7;
-        IntegerUtils.modulus = MOD;
-        for (int i = 1; i < MOD; ++i) {
-            long a = inv(i), b = minv(i, MOD);
-            if (a != b) System.err.println(i + ", " + a + ", " + b);
+//        long MOD = (long)1e9 + 7;
+//        IntegerUtils.modulus = MOD;
+//        for (int i = 1; i < MOD; ++i) {
+//            long a = inv(i), b = minv(i, MOD);
+//            if (a != b) System.err.println(i + ", " + a + ", " + b);
+//        }
+        testRoman();
+    }
+
+    public static void testRoman() {
+        while (true) {
+            int n = RandomUtils.uniform(1000);
+            String roman = toRoman(n);
+            long rn = fromRoman(roman);
+            System.out.println(n + " -> " + roman);
+            System.out.println(roman + " -> " + rn);
+            if (rn != n) {
+                System.out.println(n + " -> " + roman);
+                System.out.println(roman + " -> " + rn);
+                throw new RuntimeException();
+            }
         }
     }
+
 }

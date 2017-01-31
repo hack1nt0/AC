@@ -287,7 +287,7 @@ public class SuffixArray {
         List<Integer> Ps = new ArrayList<>();
         int maxL = 0;
         int p = 0;
-        //while (text[sortedIndex[p]] == DELIMITER) p++;
+        //while (text[sortedIndex[next]] == DELIMITER) next++;
         p += nRepeated - 1;
 
         while (true) {

@@ -13,12 +13,12 @@ import java.util.*;
  *  in the set that is the <em>longest prefix</em> of a given prefix,
  *  finding all strings in the set that <em>start with</em> a given prefix,
  *  and finding all strings in the set that <em>match</em> a given pattern.
- *  <p>
+ *  <next>
  *  This implementation uses a 256-way trie.
  *  The <em>add</em>, <em>contains</em>, <em>delete</em>, and
  *  <em>longest prefix</em> methods take time proportional to the length
  *  of the key (in the worst case). Construction takes constant time.
- *  <p>
+ *  <next>
  *  For additional documentation, see
  *  <a href="http://algs4.cs.princeton.edu/52trie">Section 5.2</a> of
  *  <i>Algorithms in Java, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
@@ -27,13 +27,13 @@ import java.util.*;
  *  @author Kevin Wayne
  */
 public class TrieSet extends AbstractSet<String> implements Iterable<String> {
-    private int R = Character.MAX_VALUE;
+    private int R = 127;
     private int N;
     private class Node {
-        Node[] p;
+        Node[] next;
         boolean isString;
         public Node() {
-            p = new Node[R];
+            next = new Node[R];
         }
     }
     private Node root = new Node();
@@ -42,6 +42,7 @@ public class TrieSet extends AbstractSet<String> implements Iterable<String> {
         for (String s : strings) add(s);
     }
 
+    public TrieSet() {}
 
     /**
      * Returns all of the keys in the set, as an iterator.
@@ -71,7 +72,7 @@ public class TrieSet extends AbstractSet<String> implements Iterable<String> {
         if (x == null) return null;
         if (d == key.length()) return x;
         char c = key.charAt(d);
-        return get(x.p[c], key, d+1);
+        return get(x.next[c], key, d+1);
     }
 
     private void collect(Node x, StringBuilder prefix, Queue<String> results) {
@@ -79,7 +80,7 @@ public class TrieSet extends AbstractSet<String> implements Iterable<String> {
         if (x.isString) results.add(prefix.toString());
         for (char c = 0; c < R; c++) {
             prefix.append(c);
-            collect(x.p[c], prefix, results);
+            collect(x.next[c], prefix, results);
             prefix.deleteCharAt(prefix.length() - 1);
         }
     }
@@ -109,13 +110,13 @@ public class TrieSet extends AbstractSet<String> implements Iterable<String> {
         if (c == '.') {
             for (char ch = 0; ch < R; ch++) {
                 prefix.append(ch);
-                collect(x.p[ch], prefix, pattern, results);
+                collect(x.next[ch], prefix, pattern, results);
                 prefix.deleteCharAt(prefix.length() - 1);
             }
         }
         else {
             prefix.append(c);
-            collect(x.p[c], prefix, pattern, results);
+            collect(x.next[c], prefix, pattern, results);
             prefix.deleteCharAt(prefix.length() - 1);
         }
     }
@@ -143,7 +144,7 @@ public class TrieSet extends AbstractSet<String> implements Iterable<String> {
         if (x.isString) length = d;
         if (d == query.length()) return length;
         char c = query.charAt(d);
-        return longestPrefixOf(x.p[c], query, d+1, length);
+        return longestPrefixOf(x.next[c], query, d+1, length);
     }
 
     @Override
@@ -156,12 +157,12 @@ public class TrieSet extends AbstractSet<String> implements Iterable<String> {
         Node treep = root;
         for (int i = 0; i < string.length(); ++i) {
             char c = string.charAt(i);
-            if (treep.p[c] == null) {
-                treep.p[c] = new Node();
+            if (treep.next[c] == null) {
+                treep.next[c] = new Node();
                 res = true;
-                treep = treep.p[c];
+                treep = treep.next[c];
             } else {
-                treep = treep.p[c];
+                treep = treep.next[c];
                 //treep.cnt++;
             }
         }
@@ -174,10 +175,10 @@ public class TrieSet extends AbstractSet<String> implements Iterable<String> {
         Node treep = root;
         for (int i = 0; i < string.length(); ++i) {
             char c = string.charAt(i);
-            if (treep.p[c] == null) {
+            if (treep.next[c] == null) {
                 return false;
             }
-            treep = treep.p[c];
+            treep = treep.next[c];
         }
         return treep.isString;
     }
@@ -187,9 +188,9 @@ public class TrieSet extends AbstractSet<String> implements Iterable<String> {
         Node treep = root;
         for (int i = 0; i < string.length(); ++i) {
             char c = string.charAt(i);
-            treep.p[c].cnt--;
-            if (treep.p[c].cnt == 0) {
-                treep.p[c] = null;
+            treep.next[c].cnt--;
+            if (treep.next[c].cnt == 0) {
+                treep.next[c] = null;
                 return true;
             }
         }
@@ -214,13 +215,13 @@ public class TrieSet extends AbstractSet<String> implements Iterable<String> {
         }
         else {
             char c = key.charAt(d);
-            x.p[c] = remove(x.p[c], key, d+1);
+            x.next[c] = remove(x.next[c], key, d+1);
         }
 
         // remove subtrie rooted at x if it is completely empty
         if (x.isString) return x;
         for (int c = 0; c < R; c++)
-            if (x.p[c] != null)
+            if (x.next[c] != null)
                 return x;
         return null;
     }
@@ -229,5 +230,18 @@ public class TrieSet extends AbstractSet<String> implements Iterable<String> {
     }
     public int getR() {
         return this.R;
+    }
+
+    private Node nodePointer = root;
+    public int accept(char c) {
+        //if (nodePointer == null) nodePointer = root;
+        nodePointer = nodePointer.next[c];
+        if (nodePointer == null) return -1;
+        if (nodePointer.isString) return 1;
+        return 0;
+    }
+
+    public void backToRoot() {
+        nodePointer = root;
     }
 }

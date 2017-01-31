@@ -218,6 +218,11 @@ public class StringUtils {
         a[j] = temp;
     }
 
+    public static String reverse(String s) {
+        StringBuilder res = new StringBuilder(s);
+        return res.reverse().toString();
+    }
+
     public static String random(int W, int from, int to) {
         assert from < to;
         StringBuilder res = new StringBuilder();

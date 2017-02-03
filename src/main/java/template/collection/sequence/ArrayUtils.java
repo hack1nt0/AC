@@ -8,10 +8,6 @@ import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.IntSummaryStatistics;
-import java.util.Set;
-import java.util.function.ToIntFunction;
-
 /**
  * Created by dy on 16-12-22.
  */
@@ -166,19 +162,43 @@ public class ArrayUtils {
         return true;
     }
 
-    public static long max(long[] a) {
+    public static long max(long... a) {
         if (a.length <= 0) throw new RuntimeException();
         long res = a[0];
         for (int i = 0; i < a.length; ++i) if (res < a[i]) res = a[i];
         return res;
     }
 
-    public static int max(int[] a) {
+    public static int max(int... a) {
         if (a.length <= 0) throw new RuntimeException();
         int res = a[0];
         for (int i = 0; i < a.length; ++i) if (res < a[i]) res = a[i];
         return res;
     }
+
+    public static int max(int[]... a) {
+        if (a.length <= 0) throw new RuntimeException();
+        int res = a[0][0];
+        for (int i = 0; i < a.length; ++i)
+            for (int j = 0; j < a[i].length; ++j) if (res < a[i][j]) res = a[i][j];
+        return res;
+    }
+
+    public static double max(double... a) {
+        if (a.length <= 0) throw new RuntimeException();
+        double res = a[0];
+        for (int i = 0; i < a.length; ++i) if (res < a[i]) res = a[i];
+        return res;
+    }
+
+    public static double max(double[]... a) {
+        if (a.length <= 0) throw new RuntimeException();
+        double res = a[0][0];
+        for (int i = 0; i < a.length; ++i)
+            for (int j = 0; j < a[i].length; ++j) if (res < a[i][j]) res = a[i][j];
+        return res;
+    }
+
     public static int min(int[] a) {
         if (a.length <= 0) throw new RuntimeException();
         int res = a[0];
@@ -207,10 +227,20 @@ public class ArrayUtils {
         return res;
     }
 
-    public int count(int[] arr, int a) {
+    public static int count(int[] arr, int a) {
         int res = 0;
         for (int i = 0; i < arr.length; ++i)
             if (arr[i] == a) res++;
+        return res;
+    }
+
+    public static double[][] clone(double[][] a) {
+        if (a.length <= 0) throw new IllegalArgumentException();
+        double[][] res = new double[a.length][];
+        for (int i = 0; i < a.length; ++i) {
+            res[i] = new double[a[i].length];
+            for (int j = 0; j < a[i].length; ++j) res[i][j] = a[i][j];
+        }
         return res;
     }
 
@@ -348,6 +378,13 @@ public class ArrayUtils {
         StringBuilder res = new StringBuilder();
         for (int i = 0; i < nRepeated; ++i) res.append(str);
         return res.toString();
+    }
+
+    public static int[] randomIndexIntArr(int from, int to) {
+        int[] arr = new int[to - from];
+        for (int i = from; i < to; ++i) arr[i - from] = i;
+        RandomUtils.shuffle(arr);
+        return arr;
     }
 
     public static void printlnTableV(Object... objects) {

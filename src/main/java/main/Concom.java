@@ -53,14 +53,13 @@ public class Concom {
                     if (visited[from] || shares[from] <= 50) continue;
                     if (start != from) ans.add(new Tuple2<>(start, from));
                     visited[from] = true;
-                    updated = true;
                     for (Edge e : graph.adj(from)) {
                         int to = e.getTo();
                         int share = e.getCost();
                         shares[to] += share;
-//                        if (shares[to] > 50) {
-//                            updated = true;
-//                        }
+                        if (!visited[to] && shares[to] > 50) {
+                            updated = true;
+                        }
                     }
                 }
                 if (!updated) break;

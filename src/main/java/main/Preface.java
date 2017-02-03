@@ -24,6 +24,6 @@ public class Preface {
         }
 //        Map.Entry<Character, Integer>[] ans = cnt.entrySet().toArray(new Map.Entry[0]);
 //        Arrays.sort(ans, Map.Entry.comparingByValue(Collections.reverseOrder()));
-//        for (int i = 0; i < ans.length; ++i) out.println(ans[i].getKey() + " " + ans[i].getValue());
+//        for (int i = 0; i < ans.length; ++i) out.println(ans[i].getKey() + " " + ans[i].getFromValue());
     }
 }

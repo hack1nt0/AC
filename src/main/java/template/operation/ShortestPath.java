@@ -1,5 +1,6 @@
 package template.operation;
 
+import template.collection.tuple.Tuple2;
 import template.graph_theory.Graph;
 
 import java.util.*;
@@ -18,14 +19,17 @@ public class ShortestPath {
         for (int i = 0; i < N; ++i) adj[i] = new HashMap<Integer, Long>();
     }
 
-    public void addE (int a, int b, long cost) {
+    public boolean addE (int a, int b, long cost) {
         if (a == b) {
-            if (cost < 0) throw new RuntimeException("Negative loops exist.");
-            return;
+            if (cost < 0) {
+                //throw new RuntimeException("Negative loops exist.");
+                return false;
+            }
+        } else {
+            if (!adj[a].containsKey(b) || adj[a].get(b) > cost) adj[a].put(b, cost);
+            M++;
         }
-        if (adj[a].containsKey(b) && adj[a].get(b) > cost) adj[a].put(b, cost);
-        else adj[a].put(b, cost);
-        M++;
+        return true;
     }
 
     public long[] bfs(int S) {
@@ -48,17 +52,8 @@ public class ShortestPath {
         return d;
     }
 
-    private class Tuple2 {
-        int b; long cost;
-
-        public Tuple2(int b, long cost) {
-            this.b = b;
-            this.cost = cost;
-        }
-
-    }
     //bellman-ford
-    public long[] shortestPath(int S) {
+    public long[] bellmanford(int S) {
         long[] d = new long[N];
         Arrays.fill(d, Long.MAX_VALUE);
         boolean[] inque = new boolean[N];
@@ -71,70 +66,43 @@ public class ShortestPath {
             inque[a] = false;
             for (int b : adj[a].keySet()) {
                 long a2b = d[a] + adj[a].get(b);
-                if (a2b < d[b] && !inque[b]) {
+                if (a2b >= d[b]) continue;
+                d[b] = a2b;
+                if (!inque[b]) {
                     que.add(b);
                     inque[b] = true;
                 }
-                d[b] = Math.min(d[b], a2b);
             }
         }
         return d;
     }
 
-    public long[] shortestPath1(int S) {
-        long[] d = new long[N];
-        Arrays.fill(d, Long.MAX_VALUE);
-        boolean[] inque = new boolean[N];
-        d[S] = 0;
-        Queue<Integer> que = new LinkedList<Integer>();
-        que.add(S);
-        while (true) {
-            if (que.isEmpty()) break;
-            int a = que.poll();
-            //System.err.println(a + " " + d[a]);
-            inque[a] = false;
-            for (int b : adj[a].keySet()) {
-                long a2b = d[a] + Math.max(0, adj[a].get(b) - d[a]);
-                if (a2b < d[b] && !inque[b]) {
-                    que.add(b);
-                    inque[b] = true;
-                }
-                d[b] = Math.min(d[b], a2b);
-            }
-        }
-        return d;
+    public long[] dijkstra(int S) {
+        return dijkstra(S, -1);
     }
 
-
-
-    public long dijkstra1(int S, int T) {
+    public long[] dijkstra(int S, int T) {
         final long[] d = new long[N];
         Arrays.fill(d, Long.MAX_VALUE);
-        PriorityQueue<Tuple2> pq = new PriorityQueue<Tuple2>(new Comparator<Tuple2>() {
-            public int compare(Tuple2 o1, Tuple2 o2) {
-                if (o1.cost > o2.cost) return 1;
-                if (o1.cost < o2.cost) return -1;
-                return o2.b - o1.b;
-            }
-        });
-        pq.add(new Tuple2(S, 0));
+        PriorityQueue<Tuple2<Integer, Long>> pq = new PriorityQueue<>(Tuple2.SENCOND_ELEMENT_ORDER);
+        pq.add(new Tuple2(S, 0L));
         while (true) {
             if (pq.isEmpty()) break;
 
-            Tuple2 cur = pq.poll();
-            int a = cur.b;
-            if (d[a] < Long.MAX_VALUE) continue;
-            long cost = cur.cost;
-            d[a] = cost;
-            if (a == T) break;
+            Tuple2<Integer, Long> cur = pq.poll();
+            int from = cur.getFirst();
+            if (d[from] < Long.MAX_VALUE) continue;
+            long cost = cur.getSecond();
+            d[from] = cost;
+            if (from == T) break;
 
-            for (int b : adj[a].keySet()) {
+            for (int b : adj[from].keySet()) {
                 if (d[b] < Long.MAX_VALUE) continue;
-                long ndb = d[a] + Math.max(0, adj[a].get(b) - d[a]);
+                long ndb = d[from] + adj[from].get(b);
                 pq.add(new Tuple2(b, ndb));
             }
         }
-        return d[T];
+        return d;
     }
 
     public long[][] floyd() {

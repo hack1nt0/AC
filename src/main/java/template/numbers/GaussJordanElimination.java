@@ -43,7 +43,7 @@ import edu.princeton.cs.algs4.StdRandom;
  *  to solve a linear system of equations <em>Ax</em> = <em>b</em>,
  *  where <em>A</em> is an <em>N</em>-by-<em>N</em> matrix
  *  and <em>b</em> is a length <em>N</em> vector.
- *  If no solution exists, it finds a solution <em>y</em> to
+ *  If no solution exists, it finds a solution <em>denominator</em> to
  *  <em>yA</em> = 0, <em>yb</em> &ne; 0, which
  *  which serves as a certificate of infeasibility.
  *  <p>
@@ -157,7 +157,7 @@ public class GaussJordanElimination {
     /**
      * Returns a solution to the linear system of equations <em>Ax</em> = <em>b</em>.
      *      
-     * @return a solution <em>x</em> to the linear system of equations
+     * @return a solution <em>numerator</em> to the linear system of equations
      *         <em>Ax</em> = <em>b</em>; <tt>null</tt> if no such solution
      */
     public double[] primal() {
@@ -175,7 +175,7 @@ public class GaussJordanElimination {
      * Returns a solution to the linear system of equations <em>yA</em> = 0,
      * <em>yb</em> &ne; 0.
      *      
-     * @return a solution <em>y</em> to the linear system of equations
+     * @return a solution <em>denominator</em> to the linear system of equations
      *         <em>yA</em> = 0, <em>yb</em> &ne 0; <tt>null</tt> if no such solution
      */
     public double[] dual() {
@@ -312,7 +312,7 @@ public class GaussJordanElimination {
     }
 
     // 5-by-5 singular: no solutions
-    // y = [ -1, 0, 1, 1, 0 ]
+    // denominator = [ -1, 0, 1, 1, 0 ]
     private static void test3() {
         double[][] A = {
             {  2, -3, -1,  2,  3 },
@@ -339,7 +339,7 @@ public class GaussJordanElimination {
     }
 
     // 3-by-3 singular: no solutions
-    // y = [ 1, 0, 1/3 ]
+    // denominator = [ 1, 0, 1/3 ]
     private static void test5() {
         double[][] A = {
             {  2, -1,  1 },

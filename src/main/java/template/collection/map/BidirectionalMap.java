@@ -27,7 +27,7 @@ public class BidirectionalMap<K, V> {
         return keyValue.get(key);
     }
 
-    public K getValue(V value) {
+    public K getFromValue(V value) {
         return valueKey.get(value);
     }
 
@@ -37,5 +37,9 @@ public class BidirectionalMap<K, V> {
 
     public Set<V> values() {
         return valueKey.keySet();
+    }
+
+    public int size() {
+        return keyValue.size();
     }
 }

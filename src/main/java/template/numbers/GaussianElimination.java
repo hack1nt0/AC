@@ -140,7 +140,7 @@ public class GaussianElimination {
     /**
      * Returns a solution to the linear system of equations <em>Ax</em> = <em>b</em>.
      *      
-     * @return a solution <em>x</em> to the linear system of equations
+     * @return a solution <em>numerator</em> to the linear system of equations
      *         <em>Ax</em> = <em>b</em>; <tt>null</tt> if no such solution
      */
     public double[] primal() {

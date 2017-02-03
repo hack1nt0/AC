@@ -30,7 +30,7 @@
         3_5
         4_5
 
-1
+0
 18 src/main/java/main
 15 -Xmx16m -Xss16m
 6 concom

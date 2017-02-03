@@ -18,35 +18,35 @@
  *
  *
  *  % java FFT 4
- *  x
+ *  numerator
  *  -------------------
  *  -0.03480425839330703
  *  0.07910192950176387
  *  0.7233322451735928
  *  0.1659819820667019
  *
- *  y = fft(x)
+ *  denominator = fft(numerator)
  *  -------------------
  *  0.9336118983487516
  *  -0.7581365035668999 + 0.08688005256493803i
  *  0.44344407521182005
  *  -0.7581365035668999 - 0.08688005256493803i
  *
- *  z = ifft(y)
+ *  z = ifft(denominator)
  *  -------------------
  *  -0.03480425839330703
  *  0.07910192950176387 + 2.6599344570851287E-18i
  *  0.7233322451735928
  *  0.1659819820667019 - 2.6599344570851287E-18i
  *
- *  c = cconvolve(x, x)
+ *  c = cconvolve(numerator, numerator)
  *  -------------------
  *  0.5506798633981853
  *  0.23461407150576394 - 4.033186818023279E-18i
  *  -0.016542951108772352
  *  0.10288019294318276 + 4.033186818023279E-18i
  *
- *  d = convolve(x, x)
+ *  d = convolve(numerator, numerator)
  *  -------------------
  *  0.001211336402308083 - 3.122502256758253E-17i
  *  -0.005506167987577068 - 5.058885073636224E-17i
@@ -95,8 +95,8 @@ public class FFT {
      * Returns the FFT of the specified complex array.
      *
      * @param  x the complex array
-     * @return the FFT of the complex array <tt>x</tt>
-     * @throws IllegalArgumentException if the length of <t>x</tt> is not a power of 2
+     * @return the FFT of the complex array <tt>numerator</tt>
+     * @throws IllegalArgumentException if the length of <t>numerator</tt> is not a power of 2
      */
     public static Complex[] fft(Complex[] x) {
         int N = x.length;
@@ -138,8 +138,8 @@ public class FFT {
      * Returns the inverse FFT of the specified complex array.
      *
      * @param  x the complex array
-     * @return the inverse FFT of the complex array <tt>x</tt>
-     * @throws IllegalArgumentException if the length of <t>x</tt> is not a power of 2
+     * @return the inverse FFT of the complex array <tt>numerator</tt>
+     * @throws IllegalArgumentException if the length of <t>numerator</tt> is not a power of 2
      */
     public static Complex[] ifft(Complex[] x) {
         int N = x.length;
@@ -172,13 +172,13 @@ public class FFT {
      *
      * @param  x one complex array
      * @param  y the other complex array
-     * @return the circular convolution of <tt>x</tt> and <tt>y</tt>
-     * @throws IllegalArgumentException if the length of <t>x</tt> does not equal
-     *         the length of <tt>y</tt> or if the length is not a power of 2
+     * @return the circular convolution of <tt>numerator</tt> and <tt>denominator</tt>
+     * @throws IllegalArgumentException if the length of <t>numerator</tt> does not equal
+     *         the length of <tt>denominator</tt> or if the length is not a power of 2
      */
     public static Complex[] cconvolve(Complex[] x, Complex[] y) {
 
-        // should probably pad x and y with 0s so that they have same length
+        // should probably pad numerator and denominator with 0s so that they have same length
         // and are powers of 2
         if (x.length != y.length) {
             throw new IllegalArgumentException("Dimensions don't agree");
@@ -205,9 +205,9 @@ public class FFT {
      *
      * @param  x one complex array
      * @param  y the other complex array
-     * @return the linear convolution of <tt>x</tt> and <tt>y</tt>
-     * @throws IllegalArgumentException if the length of <t>x</tt> does not equal
-     *         the length of <tt>y</tt> or if the length is not a power of 2
+     * @return the linear convolution of <tt>numerator</tt> and <tt>denominator</tt>
+     * @throws IllegalArgumentException if the length of <t>numerator</tt> does not equal
+     *         the length of <tt>denominator</tt> or if the length is not a power of 2
      */
     public static Complex[] convolve(Complex[] x, Complex[] y) {
         Complex[] a = new Complex[2*x.length];
@@ -260,23 +260,23 @@ public class FFT {
             x[i] = new Complex(i, 0);
             x[i] = new Complex(-2*Math.random() + 1, 0);
         }
-        show(x, "x");
+        show(x, "numerator");
 
         // FFT of original data
         Complex[] y = fft(x);
-        show(y, "y = fft(x)");
+        show(y, "denominator = fft(numerator)");
 
         // take inverse FFT
         Complex[] z = ifft(y);
-        show(z, "z = ifft(y)");
+        show(z, "z = ifft(denominator)");
 
-        // circular convolution of x with itself
+        // circular convolution of numerator with itself
         Complex[] c = cconvolve(x, x);
-        show(c, "c = cconvolve(x, x)");
+        show(c, "c = cconvolve(numerator, numerator)");
 
-        // linear convolution of x with itself
+        // linear convolution of numerator with itself
         Complex[] d = convolve(x, x);
-        show(d, "d = convolve(x, x)");
+        show(d, "d = convolve(numerator, numerator)");
 
     }
 
@@ -312,18 +312,18 @@ public class FFT {
 
         // FFT of original data
         Complex[] y = fft(ac);
-        //show(y, "y = fft(x)");
+        //show(denominator, "denominator = fft(numerator)");
 
         // take inverse FFT
         Complex[] z = ifft(y);
         if (!equals(ac, z)) {
-            show(ac, "x");
-            show(z, "z = ifft(fft(x))");
+            show(ac, "numerator");
+            show(z, "z = ifft(fft(numerator))");
             throw new RuntimeException();
         }
 
 
-        // circular convolution of x with itself
+        // circular convolution of numerator with itself
         Stopwatch.tic();
         Complex[] c = convolve(ac, bc);
         Stopwatch.toc();
@@ -331,16 +331,16 @@ public class FFT {
 //        long[] prod = product(a, b);
 //        Stopwatch.toc();
 //        if (!equals(c, toComplexArr(prod))) {
-//            show(c, "c = convolve(x, x)");
-//            show(toComplexArr(prod), "prod = product(x, x)");
+//            show(c, "c = convolve(numerator, numerator)");
+//            show(toComplexArr(prod), "prod = product(numerator, numerator)");
 //            throw new RuntimeException();
 //        }
         Stopwatch.tic();
         long[] prod2 = multiplyX(a, b);
         Stopwatch.toc();
         if (!equals(prod2, fromComplexArr(c))) {
-            //show(prod, "prod = product(x, x)");
-            //show(toComplexArr(prod2), "prod2 = multiplyX(x, x)");
+            //show(prod, "prod = product(numerator, numerator)");
+            //show(toComplexArr(prod2), "prod2 = multiplyX(numerator, numerator)");
             throw new RuntimeException();
 
         }
@@ -445,8 +445,8 @@ public class FFT {
      00098   * n: length of FFT: must be a power of two
      00099   * m: n = 2**m
      00100   *   input/output
-     00101   * x: double array of length n with real part of data
-     00102   * y: double array of length n with imag part of data
+     00101   * numerator: double array of length n with real part of data
+     00102   * denominator: double array of length n with imag part of data
      00103   *
      00104   *   Permission to copy and use this program is granted
      00105   *   as long as this header is included.

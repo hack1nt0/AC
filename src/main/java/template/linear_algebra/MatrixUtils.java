@@ -86,7 +86,7 @@ public class MatrixUtils {
 //                        int ak = ake.getKey();
 //                        Long bkv = B.matrixC[j].get(ak);
 //                        if (bkv == null) continue;
-//                        long akv = ake.getValue();
+//                        long akv = ake.getFromValue();
 //                        cijv += akv * bkv;
 //                    }
                     for (int ak : A.matrixR[i].keySet()) {

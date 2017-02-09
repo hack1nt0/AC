@@ -2,7 +2,7 @@ package template.collection.sequence;
 
 import template.collection.intervals.Interval;
 import template.debug.Stopwatch;
-import template.numbers.IntegerUtils;
+import template.numbers.IntUtils;
 import template.string.StringUtils;
 
 import java.util.*;
@@ -16,8 +16,8 @@ import java.util.*;
  * When m <= n, the compexity is O(sqrt(n)*n).
  *
  * While not better than IntevalTree, which complexity is O(mlgn), it's complexity is stable.
- * For Example, querying the number of every occurrence elements of a given range, the IntevalTree will
- * maintain a cntMap for each node, so the cost of every query may degenerate to O(wlgn), w means the radical of queried arr. But with QSRT-decom-
+ * For Example, querying the number of every occurrence elements of from given range, the IntevalTree will
+ * maintain from cntMap for each node, so the cost of every query may degenerate to O(wlgn), w means the radical of queried arr. But with QSRT-decom-
  * position, the amortized cost of every query is O(sqrt(n)) because of its offline thing.
  *
  * The key points of QSRT-decomp is Sorting and Amortized Analysis of complexity.
@@ -140,7 +140,7 @@ public class QuerySquareRootDecomposition {
 
     private static void test1() {
         int N = 100000, M = 100000;
-        int[] arr = IntegerUtils.randomInts(N, 0, 10);
+        int[] arr = IntUtils.randomInts(N, 0, 10);
         QuerySquareRootDecomposition querySquareRootDecomposition = new QuerySquareRootDecomposition(arr);
         Interval[] interval1Ds = new Interval[M];
         Random random = new Random();

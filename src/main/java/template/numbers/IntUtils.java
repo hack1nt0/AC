@@ -1,6 +1,8 @@
 package template.numbers;
 
 import template.collection.sequence.ArrayUtils;
+import template.collection.tuple.Tuple2;
+import template.collection.tuple.Tuple3;
 import template.debug.RandomUtils;
 
 import java.math.BigInteger;
@@ -14,7 +16,7 @@ import java.util.*;
  * This is a world of mod, all values return are no-negative.
  *
  */
-public class IntegerUtils {
+public class IntUtils {
 
     public static long modulus = Long.MAX_VALUE;
 
@@ -23,7 +25,7 @@ public class IntegerUtils {
         return a;
     }
 
-    // what about a < 0 or b < 0 ?
+    // what about from < 0 or to < 0 ?
     public static long lcm(long a, long b) {
         long d = gcd(a, b);
         if (d == 0) return 0;
@@ -75,41 +77,41 @@ public class IntegerUtils {
         return add(a, add(b, c, d, e));
     }
 
-    public static long div(long a, long b) {
-        return mul(a, inv(b));
-    }
+//    public static long div(long a, long b) {
+//        return mul(a, inv(b));
+//    }
+//
+//    public static long div(long a, long b, long c) {
+//        return mul(a, inv(b), inv(c));
+//    }
+//
+//    public static long div(long a, long b, long c, long d) {
+//        return mul(a, inv(b), inv(c), inv(d));
+//    }
+//
+//    public static long div(long a, long b, long c, long d, long e) {
+//        return mul(a, inv(b), inv(c), inv(d), inv(e));
+//    }
 
-    public static long div(long a, long b, long c) {
-        return mul(a, inv(b), inv(c));
-    }
+//    public static long div(long a, long b, long[] modReversal) {
+//        return mul(a, modReversal[(int)b]);
+//    }
+//
+//    public static long div(long a, long b, long c, long[] inv) {
+//        return mul(a, inv[(int)b], inv[(int)c]);
+//    }
+//
+//    public static long div(long a, long b, long c, long d, long[] inv) {
+//        return mul(a, inv[(int)b], inv[(int)c], inv[(int)d]);
+//    }
+//
+//    public static long div(long a, long b, long c, long d, long e, long[] inv) {
+//        return mul(a, inv[(int)b], inv[(int)c], inv[(int)d], inv[(int)e]);
+//    }
 
-    public static long div(long a, long b, long c, long d) {
-        return mul(a, inv(b), inv(c), inv(d));
-    }
-
-    public static long div(long a, long b, long c, long d, long e) {
-        return mul(a, inv(b), inv(c), inv(d), inv(e));
-    }
-
-    public static long div(long a, long b, long[] inv) {
-        return mul(a, inv[(int)b]);
-    }
-
-    public static long div(long a, long b, long c, long[] inv) {
-        return mul(a, inv[(int)b], inv[(int)c]);
-    }
-
-    public static long div(long a, long b, long c, long d, long[] inv) {
-        return mul(a, inv[(int)b], inv[(int)c], inv[(int)d]);
-    }
-
-    public static long div(long a, long b, long c, long d, long e, long[] inv) {
-        return mul(a, inv[(int)b], inv[(int)c], inv[(int)d], inv[(int)e]);
-    }
-
-    //when modulus is a prime
-    public static long inv(long a) {
-        assert isPrime(a);
+    //when modulus is from prime
+    public static long modReverse(long a) {
+        assert isPrime(modulus);
         a %= modulus;
         return pow(a, modulus - 2);
     }
@@ -117,8 +119,8 @@ public class IntegerUtils {
     public static boolean isPrime(long a) {
         //approximate first, brute force second.
 
-        //the approximate check is very costly
-//        if (!(BigInteger.valueOf(a).isProbablePrime(100)))
+        //the approximate check is very consuming
+//        if (!(BigInteger.valueOf(from).isProbablePrime(100)))
 //            return false;
 
         if (a <= 1) return false;
@@ -129,22 +131,42 @@ public class IntegerUtils {
         return true;
     }
 
-    //when modulus is not a prime
-    public static long minv(long a, long MOD) {
+    //when modulus is not from prime
+    public static long modReverse(long a, long MOD) {
         if (gcd(a, MOD) != 1) throw new RuntimeException("modInverse(" + a + "," + MOD + ") not exist.");
-        long x = extgcd(a, MOD)[0];
+        long x = extgcd(a, MOD).getFirst();
         return (MOD + x % MOD) % MOD;
     }
 
-    public static long[] extgcd(long a, long b) {
-        if (b == 0) return new long[]{1, 0, a};
-        long[] nxt = extgcd(b, a % b);
+    public static Tuple3<Long, Long, Long> extgcd(long a, long b) {
+        if (b == 0) return new Tuple3<>(1L, 0L, a);
+        Tuple3<Long, Long, Long> nxt = extgcd(b, a % b);
         long x, y, gcd;
-        x = nxt[1];
-        y = nxt[0] - a / b * nxt[1];
-        gcd = nxt[2];
+        x = nxt.getSecond();
+        y = nxt.getFirst() - a / b * x;
+        gcd = nxt.getThird();
 
-        return new long[]{x, y, gcd};
+        return new Tuple3<>(x, y, gcd);
+    }
+
+    /**
+     * Code from Programming Contest Challenge Book
+     * @param A
+     * @param B
+     * @param Mod
+     * @return
+     */
+    public static Tuple2<Long, Long> linearCongruence(long[] A, long[] B, long[] Mod) {
+        long x = 0, mod = 1;
+        int n = A.length;
+        for (int i = 0; i < n; ++i) {
+            long a = A[i] * mod, b = B[i] - A[i] * x, d = gcd(Mod[i], a);
+            if (b % d != 0) throw new RuntimeException(); // no solution
+            long t = b / d * modReverse(a / d, Mod[i] / d) % (Mod[i] / d);
+            x += mod * t;
+            mod *= Mod[i] / d;
+        }
+        return new Tuple2<>(x % mod, mod);
     }
 
     public static long pow(long a, long p) {
@@ -289,12 +311,13 @@ public class IntegerUtils {
 
     public static void main(String[] args) {
 //        long MOD = (long)1e9 + 7;
-//        IntegerUtils.modulus = MOD;
+//        IntUtils.modulus = MOD;
 //        for (int i = 1; i < MOD; ++i) {
-//            long a = inv(i), b = minv(i, MOD);
-//            if (a != b) System.err.println(i + ", " + a + ", " + b);
+//            long from = inv(i), to = minv(i, MOD);
+//            if (from != to) System.err.printlnConcisely(i + ", " + from + ", " + to);
 //        }
-        testRoman();
+        //testRoman();
+        testLinearCongruence();
     }
 
     public static void testRoman() {
@@ -310,6 +333,13 @@ public class IntegerUtils {
                 throw new RuntimeException();
             }
         }
+    }
+
+    public static void testLinearCongruence() {
+        long[] A = new long[]{3};
+        long[] B = new long[]{0};
+        long[] Mod = new long[]{100};
+        System.out.println(linearCongruence(A, B, Mod));
     }
 
 }

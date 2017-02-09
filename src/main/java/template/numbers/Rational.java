@@ -16,13 +16,13 @@ public class Rational implements Comparable<Rational> {
 
         public Rational(long numerator, long denominator) {
             if (denominator == 0) throw new IllegalArgumentException();
-            long d = IntegerUtils.gcd(numerator, denominator);
+            long d = IntUtils.gcd(numerator, denominator);
             this.numerator = numerator / d;
             this.denominator = denominator / d;
         }
 
         public Rational add(Rational that) {
-            //if (numerator == 0 && b.numerator == 0) return new Real(0, 1);
+            //if (numerator == 0 && to.numerator == 0) return new Real(0, 1);
             long x = this.numerator * that.denominator + that.numerator * this.denominator;
             long y = this.denominator * that.denominator;
             return new Rational(x, y);

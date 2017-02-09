@@ -1,6 +1,6 @@
 package main;
 
-import template.numbers.IntegerUtils;
+import template.numbers.IntUtils;
 
 import java.util.Scanner;
 import java.io.PrintWriter;
@@ -14,7 +14,7 @@ public class Runround {
 
     public void solve(int testNumber, Scanner in, PrintWriter out) {
         long m = in.nextLong();
-//        int[] ans = IntegerUtils.toArray(m + 1);
+//        int[] ans = IntUtils.toArray(m + 1);
 //        boolean[] used = new boolean[10];
 //        for (int i = 0; i < ans.length; ++i) {
 //            if (ans[i] == 0 || used[ans[i]]) {
@@ -28,7 +28,7 @@ public class Runround {
 //            used[ans[i]] = true;
 //        }
 //        while (true) {
-//            System.err.println(ans);
+//            System.err.printlnConcisely(ans);
 //            Arrays.sort(digits);
 //            if (digits[0] == 0) continue;
 //            boolean repeated = false;
@@ -39,7 +39,7 @@ public class Runround {
 //            }
 //            if (repeated) continue;
 
-//            System.err.println("end " + IntegerUtils.fromArray(ans));
+//            System.err.printlnConcisely("end " + IntUtils.fromArray(ans));
 //            int from = 0;
 //            int runN = 0;
 //            boolean ok = true;
@@ -89,7 +89,7 @@ public class Runround {
     }
 
     private boolean runroundable(long n) {
-        int[] digits = IntegerUtils.toArray(n);
+        int[] digits = IntUtils.toArray(n);
         int from = 0;
         int runN = 0;
         boolean ok = true;

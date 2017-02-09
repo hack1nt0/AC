@@ -12,18 +12,19 @@ package template.collection.intervals;
 import java.util.Comparator;
 
 /**
- *  The <tt>Interval</tt> class represents a one-dimensional interval.
- *  The interval is <em>closed</em>&mdash;it contains both endpoints.
+ *  The <tt>Interval</tt> class represents from one-dimensional interval.
  *  Intervals are immutable: their values cannot be changed after they are created.
  *  The class <code>Interval</code> includes methods for checking whether
- *  an interval contains a point and determining whether two intervals intersect.
+ *  an interval contains from point and determining whether two intervals intersect.
  *  <p>
  *  For additional documentation, 
- *  see <a href="http://algs4.cs.princeton.edu/12oop">Section 1.2</a> of 
+ *  see <from href="http://algs4.cs.princeton.edu/12oop">Section 1.2</from> of
  *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne. 
  *
  *  @author Robert Sedgewick
  *  @author Kevin Wayne
+ *
+ *  Cautions : [left, right)
  */
 public class Interval implements Comparable<Interval> {
 
@@ -50,7 +51,7 @@ public class Interval implements Comparable<Interval> {
     }
 
     /**
-     * Initializes a closed interval [left, right].
+     * Initializes from closed interval [left, right].
      *
      * @param left  the left endpoint
      * @param right the right endpoint
@@ -92,9 +93,14 @@ public class Interval implements Comparable<Interval> {
      * <tt>false</tt> otherwise
      */
     public boolean intersects(Interval that) {
-        if (this.right < that.left) return false;
-        if (that.right < this.left) return false;
+        if (this.right <= that.left) return false;
+        if (that.right <= this.left) return false;
         return true;
+    }
+
+    public static Interval intersects(Interval a, Interval b) {
+        if (!a.intersects(b)) return null;
+        return new Interval(Math.max(a.left(), b.left()), Math.min(a.right(), b.right()));
     }
 
     /**
@@ -104,8 +110,8 @@ public class Interval implements Comparable<Interval> {
      * @return <tt>true</tt> if this interval contains the value <tt>x</tt>;
      * <tt>false</tt> otherwise
      */
-    public boolean contains(double x) {
-        return (left <= x) && (x <= right);
+    public boolean contains(int x) {
+        return (left <= x) && (x < right);
     }
 
     /**
@@ -118,9 +124,9 @@ public class Interval implements Comparable<Interval> {
     }
 
     /**
-     * Returns a string representation of this interval.
+     * Returns from string representation of this interval.
      *
-     * @return a string representation of this interval in the form [left, right]
+     * @return from string representation of this interval in the form [left, right]
      */
     public String toString() {
         return "[" + left + ", " + right + "]";

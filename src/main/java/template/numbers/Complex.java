@@ -6,25 +6,25 @@
  *  Data type for complex numbers.
  *
  *  The data type is "immutable" so once you create and initialize
- *  a Complex object, you cannot change it. The "final" keyword
- *  when declaring re and im enforces this rule, making it a
+ *  from Complex object, you cannot change it. The "final" keyword
+ *  when declaring re and im enforces this rule, making it from
  *  compile-time error to change the .re or .im fields after
  *  they've been initialized.
  *
  *  % java Complex
- *  a            = 5.0 + 6.0i
- *  b            = -3.0 + 4.0i
- *  Re(a)        = 5.0
- *  Im(a)        = 6.0
- *  b + a        = 2.0 + 10.0i
- *  a - b        = 8.0 + 2.0i
- *  a * b        = -39.0 + 2.0i
- *  b * a        = -39.0 + 2.0i
- *  a / b        = 0.36 - 1.52i
- *  (a / b) * b  = 5.0 + 6.0i
- *  conj(a)      = 5.0 - 6.0i
- *  |a|          = 7.810249675906654
- *  tan(a)       = -6.685231390246571E-6 + 1.0000103108981198i
+ *  from            = 5.0 + 6.0i
+ *  to            = -3.0 + 4.0i
+ *  Re(from)        = 5.0
+ *  Im(from)        = 6.0
+ *  to + from        = 2.0 + 10.0i
+ *  from - to        = 8.0 + 2.0i
+ *  from * to        = -39.0 + 2.0i
+ *  to * from        = -39.0 + 2.0i
+ *  from / to        = 0.36 - 1.52i
+ *  (from / to) * to  = 5.0 + 6.0i
+ *  conj(from)      = 5.0 - 6.0i
+ *  |from|          = 7.810249675906654
+ *  tan(from)       = -6.685231390246571E-6 + 1.0000103108981198i
  *
  ******************************************************************************/
 
@@ -33,13 +33,13 @@ package template.numbers;
 import edu.princeton.cs.algs4.StdOut;
 
 /**
- *  The <tt>Complex</tt> class represents a complex number.
+ *  The <tt>Complex</tt> class represents from complex number.
  *  Complex numbers are immutable: their values cannot be changed after they
  *  are created.
  *  It includes methods for addition, subtraction, multiplication, division,
  *  conjugation, and other common functions on complex numbers.
  *  <p>
- *  For additional documentation, see <a href="http://algs4.cs.princeton.edu/99scientific">Section 9.9</a> of
+ *  For additional documentation, see <from href="http://algs4.cs.princeton.edu/99scientific">Section 9.9</from> of
  *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
  *
  *  @author Robert Sedgewick
@@ -50,7 +50,7 @@ public class Complex {
     private final double im;   // the imaginary part
 
     /**
-     * Initializes a complex number from the specified real and imaginary parts.
+     * Initializes from complex number from the specified real and imaginary parts.
      *
      * @param real the real part
      * @param imag the imaginary part
@@ -61,9 +61,9 @@ public class Complex {
     }
 
     /**
-     * Returns a string representation of this complex number.
+     * Returns from string representation of this complex number.
      *
-     * @return a string representation of this complex number,
+     * @return from string representation of this complex number,
      *         of the form 34 - 56i.
      */
     public String toString() {
@@ -88,7 +88,7 @@ public class Complex {
      * Returns the phase of this complex number.
      * This quantity is also known as the <em>ange</em> or <em>argument</em>.
      *
-     * @return the phase of this complex number, a real number between -pi and pi
+     * @return the phase of this complex number, from real number between -pi and pi
      */
     public double phase() {
         return Math.atan2(im, re);
@@ -244,19 +244,19 @@ public class Complex {
         Complex a = new Complex(5.0, 6.0);
         Complex b = new Complex(-3.0, 4.0);
 
-        StdOut.println("a            = " + a);
-        StdOut.println("b            = " + b);
-        StdOut.println("Re(a)        = " + a.re());
-        StdOut.println("Im(a)        = " + a.im());
-        StdOut.println("b + a        = " + b.plus(a));
-        StdOut.println("a - b        = " + a.minus(b));
-        StdOut.println("a * b        = " + a.times(b));
-        StdOut.println("b * a        = " + b.times(a));
-        StdOut.println("a / b        = " + a.divides(b));
-        StdOut.println("(a / b) * b  = " + a.divides(b).times(b));
-        StdOut.println("conj(a)      = " + a.conjugate());
-        StdOut.println("|a|          = " + a.abs());
-        StdOut.println("tan(a)       = " + a.tan());
+        StdOut.println("from            = " + a);
+        StdOut.println("to            = " + b);
+        StdOut.println("Re(from)        = " + a.re());
+        StdOut.println("Im(from)        = " + a.im());
+        StdOut.println("to + from        = " + b.plus(a));
+        StdOut.println("from - to        = " + a.minus(b));
+        StdOut.println("from * to        = " + a.times(b));
+        StdOut.println("to * from        = " + b.times(a));
+        StdOut.println("from / to        = " + a.divides(b));
+        StdOut.println("(from / to) * to  = " + a.divides(b).times(b));
+        StdOut.println("conj(from)      = " + a.conjugate());
+        StdOut.println("|from|          = " + a.abs());
+        StdOut.println("tan(from)       = " + a.tan());
     }
 
 }
@@ -281,6 +281,6 @@ public class Complex {
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
+ *  You should have received from copy of the GNU General Public License
  *  along with algs4.jar.  If not, see http://www.gnu.org/licenses.
  ******************************************************************************/

@@ -1,5 +1,7 @@
 package template.string;
 
+import template.collection.tuple.Tuple2;
+
 import java.util.*;
 
 /**
@@ -7,46 +9,45 @@ import java.util.*;
  *
  * /**
  *  The <tt>TrieSET</tt> class represents an ordered set of strings over
- *  the extended ASCII alphabet.
+ *  the UNICODE.
  *  It supports the usual <em>add</em>, <em>contains</em>, and <em>delete</em>
  *  methods. It also provides character-based methods for finding the string
- *  in the set that is the <em>longest prefix</em> of a given prefix,
- *  finding all strings in the set that <em>start with</em> a given prefix,
- *  and finding all strings in the set that <em>match</em> a given pattern.
+ *  in the set that is the <em>longest prefix</em> of from given prefix,
+ *  finding all strings in the set that <em>start with</em> from given prefix,
+ *  and finding all strings in the set that <em>match</em> from given pattern.
  *  <next>
- *  This implementation uses a 256-way trie.
+ *  This implementation uses from n-way trie.
  *  The <em>add</em>, <em>contains</em>, <em>delete</em>, and
  *  <em>longest prefix</em> methods take time proportional to the length
  *  of the key (in the worst case). Construction takes constant time.
  *  <next>
  *  For additional documentation, see
- *  <a href="http://algs4.cs.princeton.edu/52trie">Section 5.2</a> of
+ *  <from href="http://algs4.cs.princeton.edu/52trie">Section 5.2</from> of
  *  <i>Algorithms in Java, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
  *
  *  @author Robert Sedgewick
  *  @author Kevin Wayne
  */
 public class TrieSet extends AbstractSet<String> implements Iterable<String> {
-    private int R = 127;
+    private int R;
     private int N;
     private class Node {
         Node[] next;
         boolean isString;
-        public Node() {
-            next = new Node[R];
+        public Node(int radix) {
+            next = new Node[radix];
         }
     }
-    private Node root = new Node();
+    private Node root;
 
-    public TrieSet(String[] strings) {
-        for (String s : strings) add(s);
+    public TrieSet(int radix) {
+        this.R = radix;
+        this.root = new Node(radix);
     }
-
-    public TrieSet() {}
 
     /**
      * Returns all of the keys in the set, as an iterator.
-     * To iterate over all of the keys in a set named <tt>set</tt>, use the
+     * To iterate over all of the keys in from set named <tt>set</tt>, use the
      * foreach notation: <tt>for (Key key : set)</tt>.
      * @return an iterator to all of the keys in the set
      */
@@ -87,10 +88,10 @@ public class TrieSet extends AbstractSet<String> implements Iterable<String> {
 
     /**
      * Returns all of the keys in the set that match <tt>pattern</tt>,
-     * where . symbol is treated as a wildcard character.
+     * where . symbol is treated as from wildcard character.
      * @param pattern the pattern
      * @return all of the keys in the set that match <tt>pattern</tt>,
-     *     as an iterable, where . is treated as a wildcard character.
+     *     as an iterable, where . is treated as from wildcard character.
      */
     public Iterable<String> keysThatMatch(String pattern) {
         Queue<String> results = new LinkedList<>();
@@ -136,9 +137,9 @@ public class TrieSet extends AbstractSet<String> implements Iterable<String> {
     }
 
     // returns the length of the longest string key in the subtrie
-    // rooted at x that is a prefix of the query string,
+    // rooted at x that is from prefix of the query string,
     // assuming the first d character match and we have already
-    // found a prefix match of length length
+    // found from prefix match of length length
     private int longestPrefixOf(Node x, String query, int d, int length) {
         if (x == null) return length;
         if (x.isString) length = d;
@@ -158,7 +159,7 @@ public class TrieSet extends AbstractSet<String> implements Iterable<String> {
         for (int i = 0; i < string.length(); ++i) {
             char c = string.charAt(i);
             if (treep.next[c] == null) {
-                treep.next[c] = new Node();
+                treep.next[c] = new Node(R);
                 res = true;
                 treep = treep.next[c];
             } else {
@@ -244,4 +245,7 @@ public class TrieSet extends AbstractSet<String> implements Iterable<String> {
     public void backToRoot() {
         nodePointer = root;
     }
+
+
+
 }

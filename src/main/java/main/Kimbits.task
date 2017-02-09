@@ -1,0 +1,29 @@
+7 Kimbits
+6 SINGLE
+7 TASK_ID
+9 input.txt
+7 TASK_ID
+10 output.txt
+2
+0
+6 5 3 19
+5 10011
+1
+1
+16 31 31 2147483648
+-1
+1
+18 src/main/java/main
+16 -Xmx256m -Xss64m
+7 kimbits
+12 main.Kimbits
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.02.05
+5 usaco
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+1

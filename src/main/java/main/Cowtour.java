@@ -77,7 +77,7 @@ public class Cowtour {
                 double diameter = ArrayUtils.max(pastureDiameter[i] + pastureDiameter[j] + pastures[i].distance(pastures[j]),
                         fieldDiameter[field[i]],
                         fieldDiameter[field[j]]);
-                //System.err.println(diameter + " " + (char)(i + 'A') + " " + (char)(j + 'A'));
+                //System.err.printlnConcisely(diameter + " " + (char)(i + 'A') + " " + (char)(j + 'A'));
                 minDiameter = Math.min(minDiameter, diameter);
             }
         }

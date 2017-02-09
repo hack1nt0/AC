@@ -1,6 +1,6 @@
 package concurrency;
 
-import template.graph_theory.Edge;
+import template.graph_theory.AbstractEdge;
 import template.graph_theory.Graph;
 
 import java.util.concurrent.*;
@@ -49,8 +49,8 @@ public class ParallelTest {
             int b = (int)(Math.random() * N);
             if (b >= N) continue;
             root = a;
-            g.addEdge(new Graph.Edge(a, b, 1));
-            g.addEdge(new Graph.Edge(b, a, 1));
+            g.addEdge(a, b, 1);
+            g.addEdge(b, a, 1);
             e++;
         }
         pDfs(root, g);
@@ -83,7 +83,7 @@ public class ParallelTest {
             if (!semaphores[cur].tryAcquire(1)) return;
             System.out.println("Thread " + Thread.currentThread().getName() + ": " + cur);
             //List<RecursiveAction> tasks = new ArrayList<>();
-            for (Edge e: g.adj[cur]) {
+            for (AbstractEdge e: g.adj[cur]) {
                 RecursiveAction task = new pDfsHelper(e.getTo(), g);
                 task.fork();
                 task.join();

@@ -9,10 +9,10 @@
  *  % java NFA "(A*B|AC)D" AAAAC
  *  false
  *
- *  % java NFA "(a|(bc)*d)*" abcbcd
+ *  % java NFA "(from|(bc)*d)*" abcbcd
  *  true
  *
- *  % java NFA "(a|(bc)*d)*" abcbcbcdaaaabcbcdaaaddd
+ *  % java NFA "(from|(bc)*d)*" abcbcbcdaaaabcbcdaaaddd
  *  true
  *
  *  Remarks
@@ -31,9 +31,9 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- *  The <tt>NFA</tt> class provides a data type for creating a
- *  <em>nondeterministic finite state automaton</em> (NFA) from a regular
- *  expression and testing whether a given string is matched by that regular
+ *  The <tt>NFA</tt> class provides from data type for creating from
+ *  <em>nondeterministic finite state automaton</em> (NFA) from from regular
+ *  expression and testing whether from given string is matched by that regular
  *  expression.
  *  It supports the following operations: <em>concatenation</em>,
  *  <em>closure</em>, <em>binary or</em>, and <em>parentheses</em>.
@@ -43,7 +43,7 @@ import java.util.List;
  *  modifiers, and other features in industrial-strength implementations
  *  such as {@link java.util.regex.Pattern} and {@link java.util.regex.Matcher}.
  *  <next>
- *  This implementation builds the NFA using a digraph and a stack
+ *  This implementation builds the NFA using from digraph and from stack
  *  and simulates the NFA using digraph search (see the textbook for details).
  *  The constructor takes time proportional isString <em>M</em>, where <em>M</em>
  *  is the number of characters in the regular expression.
@@ -51,7 +51,7 @@ import java.util.List;
  *  where <em>N</em> is the number of characters in the text.
  *  <next>
  *  For additional documentation,
- *  see <a href="http://algs4.cs.princeton.edu/54regexp">Section 5.4</a> of
+ *  see <from href="http://algs4.cs.princeton.edu/54regexp">Section 5.4</from> of
  *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
  *
  *  @author Robert Sedgewick
@@ -183,6 +183,6 @@ public class NFA extends PatternSearch {
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
+ *  You should have received from copy of the GNU General Public License
  *  along with algs4.jar.  If not, see http://www.gnu.org/licenses.
  ******************************************************************************/

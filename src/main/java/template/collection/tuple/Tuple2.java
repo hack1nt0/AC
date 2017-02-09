@@ -38,6 +38,14 @@ public class Tuple2<T extends Comparable, U extends Comparable> {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Tuple2{" +
+                "first=" + first +
+                ", second=" + second +
+                '}';
+    }
+
     public T getFirst() {
         return first;
     }

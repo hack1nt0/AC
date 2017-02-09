@@ -1,6 +1,8 @@
 package template.operation;
 
-import template.collection.tuple.Tuple2;
+import template.collection.sequence.IntBinaryHeap;
+import template.collection.sequence.IntArrayQueue;
+import template.graph_theory.AbstractEdge;
 import template.graph_theory.Graph;
 
 import java.util.*;
@@ -11,37 +13,62 @@ import java.util.*;
 public class ShortestPath {
 
     int N, M;
-    public HashMap<Integer, Long> [] adj;
+    public HashMap<Integer, AbstractEdge> [] adj;
+    
+    public final long INF = Long.MAX_VALUE;
 
     public ShortestPath(int N) {
         this.N = N;
         adj = new HashMap[N];
-        for (int i = 0; i < N; ++i) adj[i] = new HashMap<Integer, Long>();
+        for (int i = 0; i < N; ++i) adj[i] = new HashMap<>();
     }
 
-    public boolean addE (int a, int b, long cost) {
-        if (a == b) {
+    public boolean addE (int from, int to, long cost) {
+        if (from == to) {
             if (cost < 0) {
                 //throw new RuntimeException("Negative loops exist.");
                 return false;
             }
         } else {
-            if (!adj[a].containsKey(b) || adj[a].get(b) > cost) adj[a].put(b, cost);
+            if (dist(from, to) > cost) adj[from].put(to, new AbstractEdge() {
+                @Override
+                public Long getCost() {
+                    return cost;
+                }
+            });
             M++;
         }
         return true;
     }
 
+    public boolean addE (AbstractEdge abstractEdge) {
+        int from = abstractEdge.getFrom();
+        int to = abstractEdge.getTo();
+        long cost = abstractEdge.getCost();
+        if (from == to) {
+            if (cost < 0) {
+                //throw new RuntimeException("Negative loops exist.");
+                return false;
+            }
+        } else {
+            if (dist(from, to) > cost) adj[from].put(to, abstractEdge);
+            M++;
+        }
+        return true;
+    }
+
+
+
     public long[] bfs(int S) {
         long[] d = new long[N];
-        Arrays.fill(d, Long.MAX_VALUE);
+        Arrays.fill(d, INF);
         d[S] = 0;
         Queue<Integer> que = new LinkedList<Integer>();
         que.add(S);
         while (!que.isEmpty()) {
             int a = que.poll();
             for (int b : adj[a].keySet()) {
-                long a2b = d[a] + adj[a].get(b);
+                long a2b = d[a] + dist(a, b);
                 if (a2b < d[b]) {
                     d[b] = a2b;
                     que.add(b);
@@ -55,17 +82,18 @@ public class ShortestPath {
     //bellman-ford
     public long[] bellmanford(int S) {
         long[] d = new long[N];
-        Arrays.fill(d, Long.MAX_VALUE);
+        Arrays.fill(d, INF);
         boolean[] inque = new boolean[N];
         d[S] = 0;
-        Queue<Integer> que = new LinkedList<Integer>();
+        //Queue<Integer> que = new LinkedList<Integer>();
+        IntArrayQueue que = new IntArrayQueue(N);
         que.add(S);
         while (true) {
             if (que.isEmpty()) break;
             int a = que.poll();
             inque[a] = false;
             for (int b : adj[a].keySet()) {
-                long a2b = d[a] + adj[a].get(b);
+                long a2b = d[a] + dist(a, b);
                 if (a2b >= d[b]) continue;
                 d[b] = a2b;
                 if (!inque[b]) {
@@ -83,23 +111,43 @@ public class ShortestPath {
 
     public long[] dijkstra(int S, int T) {
         final long[] d = new long[N];
-        Arrays.fill(d, Long.MAX_VALUE);
-        PriorityQueue<Tuple2<Integer, Long>> pq = new PriorityQueue<>(Tuple2.SENCOND_ELEMENT_ORDER);
-        pq.add(new Tuple2(S, 0L));
+        boolean[] fixed = new boolean[N];
+        Arrays.fill(d, INF);
+        //PriorityQueue<Tuple2<Integer, Long>> pq = new PriorityQueue<>(Tuple2.SENCOND_ELEMENT_ORDER);
+        IntBinaryHeap pq = new IntBinaryHeap(N, new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                if (d[o1] > d[o2]) return +1;
+                if (d[o1] < d[o2]) return -1;
+                return 0;
+            }
+        });
+        d[S] = 0;
+        for (int i = 0; i < N; ++i) pq.add(i);
+
         while (true) {
             if (pq.isEmpty()) break;
-
-            Tuple2<Integer, Long> cur = pq.poll();
-            int from = cur.getFirst();
-            if (d[from] < Long.MAX_VALUE) continue;
-            long cost = cur.getSecond();
-            d[from] = cost;
+            int from = pq.poll();
+            if (fixed[from]) {
+                throw new RuntimeException();
+            }
+            fixed[from] = true;
+            if (d[from] == INF) {
+                throw new RuntimeException();
+            }
+            //long cost = d[from];
+            //d[from] = cost;
             if (from == T) break;
 
-            for (int b : adj[from].keySet()) {
-                if (d[b] < Long.MAX_VALUE) continue;
-                long ndb = d[from] + adj[from].get(b);
-                pq.add(new Tuple2(b, ndb));
+            for (int to : adj[from].keySet()) {
+                if (fixed[to]) continue;
+                long from2To = dist(from, to);
+                if (from2To == INF) continue;
+                long start2to = d[from] + from2To;
+                if (start2to < d[to]) {
+                    d[to] = start2to;
+                    pq.adjust(to);
+                }
             }
         }
         return d;
@@ -108,12 +156,13 @@ public class ShortestPath {
     public long[][] floyd() {
         long[][] ret = new long[N][N];
         for (int i = 0; i < N; ++i)
-            for (int j = 0; j < N; ++j) ret[i][j] = adj[i].containsKey(j) ? adj[i].get(j) : Long.MAX_VALUE;
+            for (int j = 0; j < N; ++j) ret[i][j] = dist(i, j);
         for (int k = 0; k < N; ++k)
             for (int i = 0; i < N; ++i)
                 for (int j = 0; j < N; ++j) {
-                    if (ret[i][k] == Long.MAX_VALUE || ret[k][j] == Long.MAX_VALUE) continue;
-                    ret[i][j] = Math.min(ret[i][j], ret[i][k] + ret[k][j]);
+                    if (ret[i][k] != INF || ret[k][j] != INF) {
+                        ret[i][j] = Math.min(ret[i][j], ret[i][k] + ret[k][j]);
+                    }
                 }
         return ret;
     }
@@ -129,26 +178,125 @@ public class ShortestPath {
         return null;
     }
 
-    public boolean hasCycle(int S, int T) {
-        return false;
+    /**
+     * @param S
+     * @return Null if contains negative cycle, d[] else wise.
+     */
+    public long[] hasNegativeCycle(int S) {
+        long[] d = new long[N];
+        for (int i = 0; i < N; ++i) {
+            boolean updated = false;
+            for (int from = 0; from < N; ++from) {
+                for (int to : adj[from].keySet()) {
+                    long ndist = d[from] + dist(from, to);
+                    if (ndist < d[to]) {
+                        d[to] = ndist;
+                        updated = true;
+                    }
+                }
+            }
+            if (updated && i == N - 1) return null;
+        }
+        return d;
     }
 
-    public boolean hasNegativeCycle() {
-        return false;
-    }
-
-    public List<List<Integer>> cycles() {
-        // TODO: 16-12-11 How to effeciently hashing cycles(Lists)?
+    public List<List<Integer>> negativeCycles(){
+        // TODO: 2017/2/3 How to hashing the cycles?
         return null;
     }
 
-    public List<List<Integer>> negativeCycles() {
-        return null;
+    public long dist(int from, int to) {
+        if (from == to) return 0L;
+        return adj[from].containsKey(to) ? adj[from].get(to).getCost() : INF;
     }
 
-    public List<Integer> minCycle() {
-        // TODO: 16-12-11
-        return null;
+    public long minCycle() {
+        return minCycle(null);
+    }
+
+    /**
+     * Return the minimum cycle of all one-more-node cycles.
+     * In the form of " from -> to -> c -> ... -> from "
+     * @param cycle
+     * @return length of minimum cycle
+     */
+    public long minCycle(List<Integer> cycle) {
+        int[][] next = null;
+        if (cycle != null) {
+            next = new int[N][N];
+            //for (int i = 0; i < N; ++i) Arrays.fill(next[i], i);
+        }
+        long[][] minDist = new long[N][N];
+        long res = INF;
+        for (int i = 0; i < N; ++i)
+            for (int j = 0; j < N; ++j) {
+                minDist[i][j] = dist(i, j);
+                if (minDist[i][j] != INF && cycle != null) next[i][j] = j;
+            }
+
+        int cycleI, cycleJ, cycleK;
+        cycleI = cycleJ = cycleK = -1;
+        for (int k = 0; k < N; ++k)
+            for (int i = 0; i < N; ++i)
+                for (int j = 0; j < N; ++j) {
+                    if (i <= j && j < k && minDist[i][j] != INF && dist(j, k) != INF && dist(k, i) != INF) {
+                        long curCycleLen = minDist[i][j] + dist(j, k) + dist(k, i);
+                        if (curCycleLen < res) {
+                            res = curCycleLen;
+                            if (cycle != null) {
+                                cycleI = i;
+                                cycleJ = j;
+                                cycleK = k;
+                            }
+                        }
+                    }
+                    if (minDist[i][k] != INF || minDist[k][j] != INF) {
+                        long curDist = minDist[i][k] + minDist[k][j];
+                        if (curDist < minDist[i][j]) {
+                            minDist[i][j] = curDist;
+                            if (cycle != null) {
+                                next[i][j] = next[i][k];
+                            }
+                        }
+                    }
+
+                }
+        if (cycle != null) {
+            /**
+             * Cycle with two or more nodes not exist. Which means there are no edges in this graph(only lonely
+             * separated nodes).
+             */
+            if (cycleI == -1 && cycleJ == -1 && cycleK == -1) {
+                cycle.add(0);
+            } else {
+                while (true) {
+                    if (cycleI == cycleJ) break;
+                    cycle.add(cycleI);
+                    cycleI = next[cycleI][cycleJ];
+                }
+                cycle.add(cycleJ);
+                cycle.add(cycleK);
+                cycle.add(cycleI);
+            }
+        }
+
+        return res;
+    }
+
+    public static void main(String[] args) {
+        testCycle();
+    }
+
+    public static void testCycle() {
+        ShortestPath shortestPath = new ShortestPath(3);
+        shortestPath.addE(0, 1, 2);
+        shortestPath.addE(1, 0, 2);
+        shortestPath.addE(1, 2, -3242342);
+        shortestPath.addE(2, 1, 2);
+        List<Integer> cycle = new ArrayList<>();
+        System.out.println(shortestPath.minCycle(cycle));
+        System.out.println(Arrays.toString(cycle.toArray()));
+
     }
 
 }

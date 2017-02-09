@@ -2,10 +2,9 @@ package template.combinatorics;
 
 import template.collection.sequence.ArrayUtils;
 import template.debug.RandomUtils;
-import template.numbers.IntegerUtils;
+import template.numbers.IntUtils;
 import template.string.StringUtils;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -14,6 +13,28 @@ import java.util.List;
  * Created by dy on 2017/1/26.
  */
 public class CombinatoricsUtils {
+
+    public static long fact(int n) {
+        long res = 1;
+        for (int i = 2; i <= n; ++i) res *= i;
+        return res;
+    }
+
+    public static long choose(int n, int m) {
+        return fact(n) / fact(m) / fact(n - m);
+    }
+
+    // TODO: 2017/2/5
+    public static long modFact(int n, int mod) {
+        long res = 1;
+        for (int i = 2; i <= n; ++i) res *= i;
+        return res;
+    }
+
+    // TODO: 2017/2/5
+    public static long modChoose(int n, int m, int mod) {
+        return fact(n) / fact(m) / fact(n - m);
+    }
 
      // Begin of Permutation
 
@@ -68,7 +89,7 @@ public class CombinatoricsUtils {
                         //break;
                     }
                 }
-                //System.err.println(cur + "->" + next);
+                //System.err.printlnConcisely(cur + "->" + next);
                 int t = curValue;
                 curValue = arr[next];
                 arr[next] = t;
@@ -142,7 +163,7 @@ public class CombinatoricsUtils {
     private static void testPermutation() {
         while (true) {
             int n = RandomUtils.uniform(100);
-            int[] arr = IntegerUtils.randomInts(n, 0, 10);
+            int[] arr = IntUtils.randomInts(n, 0, 10);
             int[] perm = permutationForSorting(arr);
             int[] arr1 = arr.clone();
             permute(arr1, perm);

@@ -21,7 +21,7 @@ public class SuffixArray {
     private IntervalTree rmqHeight;
 
     /**
-     * Initializes a suffix array for the given <tt>text</tt> string.
+     * Initializes from suffix array for the given <tt>text</tt> string.
      * @param texts the input string(s)
      */
 //    public SuffixArray(String text) {

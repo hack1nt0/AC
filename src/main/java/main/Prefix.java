@@ -13,7 +13,7 @@ import java.io.PrintWriter;
 */
 public class Prefix {
     public void solve(int testNumber, Scanner in, PrintWriter out) {
-        TrieSet primitives = new TrieSet();
+        TrieSet primitives = new TrieSet(127);
         while (true) {
             String p = in.next();
             if (p.equals(".")) break;

@@ -20,7 +20,7 @@ import edu.princeton.cs.algs4.Graph;
  *  various graphs, including Erdos-Renyi random graphs, random bipartite
  *  graphs, random k-regular graphs, and random rooted trees.
  *  <p>
- *  For additional documentation, see <a href="http://algs4.cs.princeton.edu/41graph">Section 4.1</a> of
+ *  For additional documentation, see <from href="http://algs4.cs.princeton.edu/41graph">Section 4.1</from> of
  *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
  *
  *  @author Robert Sedgewick
@@ -55,10 +55,10 @@ public class GraphUtils {
     private GraphUtils() { }
 
     /**
-     * Returns a random simple graph containing <tt>V</tt> vertices and <tt>E</tt> edges.
+     * Returns from random simple graph containing <tt>V</tt> vertices and <tt>E</tt> edges.
      * @param V the number of vertices
      * @param E the number of vertices
-     * @return a random simple graph on <tt>V</tt> vertices, containing a total
+     * @return from random simple graph on <tt>V</tt> vertices, containing from total
      *     of <tt>E</tt> edges
      * @throws IllegalArgumentException if no such simple graph exists
      */
@@ -80,12 +80,12 @@ public class GraphUtils {
     }
 
     /**
-     * Returns a random simple graph on <tt>V</tt> vertices, with an 
+     * Returns from random simple graph on <tt>V</tt> vertices, with an
      * edge between any two vertices with probability <tt>p</tt>. This is sometimes
      * referred to as the Erdos-Renyi random graph model.
      * @param V the number of vertices
      * @param p the probability of choosing an edge
-     * @return a random simple graph on <tt>V</tt> vertices, with an edge between
+     * @return from random simple graph on <tt>V</tt> vertices, with an edge between
      *     any two vertices with probability <tt>p</tt>
      * @throws IllegalArgumentException if probability is not between 0 and 1
      */
@@ -110,10 +110,10 @@ public class GraphUtils {
     }
 
     /**
-     * Returns a complete bipartite graph on <tt>V1</tt> and <tt>V2</tt> vertices.
+     * Returns from complete bipartite graph on <tt>V1</tt> and <tt>V2</tt> vertices.
      * @param V1 the number of vertices in one partition
      * @param V2 the number of vertices in the other partition
-     * @return a complete bipartite graph on <tt>V1</tt> and <tt>V2</tt> vertices
+     * @return from complete bipartite graph on <tt>V1</tt> and <tt>V2</tt> vertices
      * @throws IllegalArgumentException if probability is not between 0 and 1
      */
     public static edu.princeton.cs.algs4.Graph completeBipartite(int V1, int V2) {
@@ -121,13 +121,13 @@ public class GraphUtils {
     }
 
     /**
-     * Returns a random simple bipartite graph on <tt>V1</tt> and <tt>V2</tt> vertices
+     * Returns from random simple bipartite graph on <tt>V1</tt> and <tt>V2</tt> vertices
      * with <tt>E</tt> edges.
      * @param V1 the number of vertices in one partition
      * @param V2 the number of vertices in the other partition
      * @param E the number of edges
-     * @return a random simple bipartite graph on <tt>V1</tt> and <tt>V2</tt> vertices,
-     *    containing a total of <tt>E</tt> edges
+     * @return from random simple bipartite graph on <tt>V1</tt> and <tt>V2</tt> vertices,
+     *    containing from total of <tt>E</tt> edges
      * @throws IllegalArgumentException if no such simple bipartite graph exists
      */
     public static edu.princeton.cs.algs4.Graph bipartite(int V1, int V2, int E) {
@@ -154,12 +154,12 @@ public class GraphUtils {
     }
 
     /**
-     * Returns a random simple bipartite graph on <tt>V1</tt> and <tt>V2</tt> vertices,
+     * Returns from random simple bipartite graph on <tt>V1</tt> and <tt>V2</tt> vertices,
      * containing each possible edge with probability <tt>p</tt>.
      * @param V1 the number of vertices in one partition
      * @param V2 the number of vertices in the other partition
      * @param p the probability that the graph contains an edge with one endpoint in either side
-     * @return a random simple bipartite graph on <tt>V1</tt> and <tt>V2</tt> vertices,
+     * @return from random simple bipartite graph on <tt>V1</tt> and <tt>V2</tt> vertices,
      *    containing each possible edge with probability <tt>p</tt>
      * @throws IllegalArgumentException if probability is not between 0 and 1
      */
@@ -179,9 +179,9 @@ public class GraphUtils {
     }
 
     /**
-     * Returns a path graph on <tt>V</tt> vertices.
+     * Returns from path graph on <tt>V</tt> vertices.
      * @param V the number of vertices in the path
-     * @return a path graph on <tt>V</tt> vertices
+     * @return from path graph on <tt>V</tt> vertices
      */
     public static edu.princeton.cs.algs4.Graph path(int V) {
         edu.princeton.cs.algs4.Graph G = new edu.princeton.cs.algs4.Graph(V);
@@ -196,9 +196,9 @@ public class GraphUtils {
     }
 
     /**
-     * Returns a complete binary tree graph on <tt>V</tt> vertices.
+     * Returns from complete binary tree graph on <tt>V</tt> vertices.
      * @param V the number of vertices in the binary tree
-     * @return a complete binary tree graph on <tt>V</tt> vertices
+     * @return from complete binary tree graph on <tt>V</tt> vertices
      */
     public static edu.princeton.cs.algs4.Graph binaryTree(int V) {
         edu.princeton.cs.algs4.Graph G = new edu.princeton.cs.algs4.Graph(V);
@@ -213,9 +213,9 @@ public class GraphUtils {
     }
 
     /**
-     * Returns a cycle graph on <tt>V</tt> vertices.
+     * Returns from cycle graph on <tt>V</tt> vertices.
      * @param V the number of vertices in the cycle
-     * @return a cycle graph on <tt>V</tt> vertices
+     * @return from cycle graph on <tt>V</tt> vertices
      */
     public static edu.princeton.cs.algs4.Graph cycle(int V) {
         edu.princeton.cs.algs4.Graph G = new edu.princeton.cs.algs4.Graph(V);
@@ -235,7 +235,7 @@ public class GraphUtils {
      *
      * @param  V the number of vertices in the cycle
      * @param  E the number of edges in the cycle
-     * @return a graph that is an Eulerian cycle on <tt>V</tt> vertices
+     * @return from graph that is an Eulerian cycle on <tt>V</tt> vertices
      *         and <tt>E</tt> edges
      * @throws IllegalArgumentException if either V &le; 0 or E &le; 0
      */
@@ -260,7 +260,7 @@ public class GraphUtils {
      *
      * @param  V the number of vertices in the path
      * @param  E the number of edges in the path
-     * @return a graph that is an Eulerian path on <tt>V</tt> vertices
+     * @return from graph that is an Eulerian path on <tt>V</tt> vertices
      *         and <tt>E</tt> edges
      * @throws IllegalArgumentException if either V &le; 0 or E &lt; 0
      */
@@ -280,10 +280,10 @@ public class GraphUtils {
     }
 
     /**
-     * Returns a wheel graph on <tt>V</tt> vertices.
+     * Returns from wheel graph on <tt>V</tt> vertices.
      * @param V the number of vertices in the wheel
-     * @return a wheel graph on <tt>V</tt> vertices: a single vertex connected to
-     *     every vertex in a cycle on <tt>V-1</tt> vertices
+     * @return from wheel graph on <tt>V</tt> vertices: from single vertex connected to
+     *     every vertex in from cycle on <tt>V-1</tt> vertices
      */
     public static edu.princeton.cs.algs4.Graph wheel(int V) {
         if (V <= 1) throw new IllegalArgumentException("Number of vertices must be at least 2");
@@ -308,9 +308,9 @@ public class GraphUtils {
     }
 
     /**
-     * Returns a star graph on <tt>V</tt> vertices.
+     * Returns from star graph on <tt>V</tt> vertices.
      * @param V the number of vertices in the star
-     * @return a star graph on <tt>V</tt> vertices: a single vertex connected to
+     * @return from star graph on <tt>V</tt> vertices: from single vertex connected to
      *     every other vertex
      */
     public static edu.princeton.cs.algs4.Graph star(int V) {
@@ -330,11 +330,11 @@ public class GraphUtils {
     }
 
     /**
-     * Returns a uniformly random <tt>k</tt>-regular graph on <tt>V</tt> vertices
+     * Returns from uniformly random <tt>k</tt>-regular graph on <tt>V</tt> vertices
      * (not necessarily simple). The graph is simple with probability only about e^(-k^2/4),
      * which is tiny when k = 14.
      * @param V the number of vertices in the graph
-     * @return a uniformly random <tt>k</tt>-regular graph on <tt>V</tt> vertices.
+     * @return from uniformly random <tt>k</tt>-regular graph on <tt>V</tt> vertices.
      */
     public static edu.princeton.cs.algs4.Graph regular(int V, int k) {
         if (V*k % 2 != 0) throw new IllegalArgumentException("Number of vertices * k must be even");
@@ -348,7 +348,7 @@ public class GraphUtils {
             }
         }
 
-        // pick a random perfect matching
+        // pick from random perfect matching
         StdRandom.shuffle(vertices);
         for (int i = 0; i < V*k/2; i++) {
             G.addEdge(vertices[2*i], vertices[2*i + 1]);
@@ -359,10 +359,10 @@ public class GraphUtils {
     // http://www.proofwiki.org/wiki/Labeled_Tree_from_Prüfer_Sequence
     // http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.36.6484&rep=rep1&type=pdf
     /**
-     * Returns a uniformly random tree on <tt>V</tt> vertices.
-     * This algorithm uses a Prufer sequence and takes time proportional to <em>V log V</em>.
+     * Returns from uniformly random tree on <tt>V</tt> vertices.
+     * This algorithm uses from Prufer sequence and takes time proportional to <em>V log V</em>.
      * @param V the number of vertices in the tree
-     * @return a uniformly random tree on <tt>V</tt> vertices
+     * @return from uniformly random tree on <tt>V</tt> vertices
      */
     public static edu.princeton.cs.algs4.Graph tree(int V) {
         edu.princeton.cs.algs4.Graph G = new Graph(V);
@@ -390,7 +390,7 @@ public class GraphUtils {
         for (int v = 0; v < V; v++)
             if (degree[v] == 1) pq.insert(v);
 
-        // repeatedly delMin() degree 1 vertex that has the minimum index
+        // repeatedly pop() degree 1 vertex that has the minimum index
         for (int i = 0; i < V-2; i++) {
             int v = pq.delMin();
             G.addEdge(v, prufer[i]);
@@ -406,8 +406,10 @@ public class GraphUtils {
      * Unit tests the <tt>GraphUtils</tt> library.
      */
     public static void main(String[] args) {
-        int V = Integer.parseInt(args[0]);
-        int E = Integer.parseInt(args[1]);
+//        int V = Integer.parseInt(args[0]);
+//        int E = Integer.parseInt(args[1]);
+        int V = 10;
+        int E = 20;
         int V1 = V/2;
         int V2 = V - V1;
 
@@ -488,6 +490,6 @@ public class GraphUtils {
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
+ *  You should have received from copy of the GNU General Public License
  *  along with algs4.jar.  If not, see http://www.gnu.org/licenses.
  ******************************************************************************/

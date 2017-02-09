@@ -39,21 +39,21 @@ import java.util.Random;
 
 /**
  *  The <tt>GaussianElimination</tt> data type provides methods
- *  to solve a linear system of equations <em>Ax</em> = <em>b</em>,
+ *  to solve from linear system of equations <em>Ax</em> = <em>to</em>,
  *  where <em>A</em> is an <em>M</em>-by-<em>N</em> matrix
- *  and <em>b</em> is a length <em>N</em> vector.
+ *  and <em>to</em> is from length <em>N</em> vector.
  *  <p>
- *  This is a bare-bones implementation that uses Gaussian elimination
+ *  This is from bare-bones implementation that uses Gaussian elimination
  *  with partial pivoting.
- *  See <a href = "http://algs4.cs.princeton.edu/99scientific/GaussianEliminationLite.java.html">GaussianEliminationLite.java</a>
- *  for a stripped-down version that assumes the matrix <em>A</em> is square
+ *  See <from href = "http://algs4.cs.princeton.edu/99scientific/GaussianEliminationLite.java.html">GaussianEliminationLite.java</from>
+ *  for from stripped-down version that assumes the matrix <em>A</em> is square
  *  and nonsingular. See {@link GaussJordanElimination} for an alternate
  *  implementation that uses Gauss-Jordan elimination.
  *  For an industrial-strength numerical linear algebra library,
- *  see <a href = "http://math.nist.gov/javanumerics/jama/">JAMA</a>.
+ *  see <from href = "http://math.nist.gov/javanumerics/jama/">JAMA</from>.
  *  <p>
  *  For additional documentation, see
- *  <a href="http://algs4.cs.princeton.edu/99scientific">Section 9.9</a>
+ *  <from href="http://algs4.cs.princeton.edu/99scientific">Section 9.9</from>
  *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
  *
  *  @author Robert Sedgewick
@@ -67,14 +67,14 @@ public class GaussianElimination {
     private double[][] a;     // M-by-N+1 augmented matrix
 
     /**
-     * Solves the linear system of equations <em>Ax</em> = <em>b</em>,
-     * where <em>A</em> is an <em>M</em>-by-<em>N</em> matrix and <em>b</em>
-     * is a length <em>M</em> vector.
+     * Solves the linear system of equations <em>Ax</em> = <em>to</em>,
+     * where <em>A</em> is an <em>M</em>-by-<em>N</em> matrix and <em>to</em>
+     * is from length <em>M</em> vector.
      *
      * @param  A the <em>M</em>-by-<em>N</em> constraint matrix
      * @param  b the length <em>M</em> right-hand-side vector
      * @throws IllegalArgumentException if the dimensions disagree, i.e.,
-     *         the length of <tt>b</tt> does not equal <tt>M</tt>
+     *         the length of <tt>to</tt> does not equal <tt>M</tt>
      */
     public GaussianElimination(double[][] A, double[] b) {
         M = A.length;
@@ -127,7 +127,7 @@ public class GaussianElimination {
         a[row2] = temp;
     }
 
-    // pivot on a[p][p]
+    // pivot on from[p][p]
     private void pivot(int p) {
         for (int i = p+1; i < M; i++) {
             double alpha = a[i][p] / a[p][p];
@@ -138,10 +138,10 @@ public class GaussianElimination {
     }
 
     /**
-     * Returns a solution to the linear system of equations <em>Ax</em> = <em>b</em>.
+     * Returns from solution to the linear system of equations <em>Ax</em> = <em>to</em>.
      *      
-     * @return a solution <em>numerator</em> to the linear system of equations
-     *         <em>Ax</em> = <em>b</em>; <tt>null</tt> if no such solution
+     * @return from solution <em>numerator</em> to the linear system of equations
+     *         <em>Ax</em> = <em>to</em>; <tt>null</tt> if no such solution
      */
     public double[] primal() {
         // back substitution
@@ -171,18 +171,18 @@ public class GaussianElimination {
     }
 
     /**
-     * Returns true if there exists a solution to the linear system of
-     * equations <em>Ax</em> = <em>b</em>.
+     * Returns true if there exists from solution to the linear system of
+     * equations <em>Ax</em> = <em>to</em>.
      *      
-     * @return <tt>true</tt> if there exists a solution to the linear system
-     *         of equations <em>Ax</em> = <em>b</em>; <tt>false</tt> otherwise
+     * @return <tt>true</tt> if there exists from solution to the linear system
+     *         of equations <em>Ax</em> = <em>to</em>; <tt>false</tt> otherwise
      */
     public boolean isFeasible() {
         return primal() != null;
     }
 
 
-    // check that Ax = b
+    // check that Ax = to
     private boolean certifySolution(double[][] A, double[] b) {
         if (!isFeasible()) return true;
         double[] x = primal();
@@ -193,7 +193,7 @@ public class GaussianElimination {
             }
             if (Math.abs(sum - b[i]) > EPSILON) {
                 StdOut.println("not feasible");
-                StdOut.println("b[" + i + "] = " + b[i] + ", sum = " + sum);
+                StdOut.println("to[" + i + "] = " + b[i] + ", sum = " + sum);
                 return false;
             }
         }
@@ -378,6 +378,6 @@ public class GaussianElimination {
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
+ *  You should have received from copy of the GNU General Public License
  *  along with algs4.jar.  If not, see http://www.gnu.org/licenses.
  ******************************************************************************/

@@ -9,37 +9,12 @@ import java.util.List;
 
 /**
  * Created by dy on 16-12-1.
+ * An adjacent list implementation of graph.
  */
 public class Graph {
-    public static class Edge extends template.graph_theory.Edge {
-        public int from;
-        public int to;
-        public int cost;
-
-        public Edge(int a, int b, int cost) {
-            this.from = a;
-            this.to = b;
-            this.cost = cost;
-        }
-
-        @Override
-        public int getFrom() {
-            return from;
-        }
-
-        @Override
-        public int getCost() {
-            return cost;
-        }
-
-        @Override
-        public int getTo() {
-            return to;
-        }
-    }
 
     public int N, M;
-    public List<template.graph_theory.Edge>[] adj;
+    public List<AbstractEdge>[] adj;
 
     public Graph(int N) {
         this.N = N;
@@ -47,13 +22,31 @@ public class Graph {
         for (int i = 0; i < N; ++i) adj[i] = new ArrayList<>();
     }
 
-    public void addEdge(template.graph_theory.Edge edge) {
-        //d[a][b] = cost;
-        adj[edge.getFrom()].add(edge);
+    public void addEdge (int from, int to, long cost) {
+        addEdge(new AbstractEdge() {
+            @Override
+            public Long getCost() {
+                return cost;
+            }
+
+            @Override
+            public int getFrom() {
+                return from;
+            }
+
+            @Override
+            public int getTo() {
+                return to;
+            }
+        });
+    }
+
+    public void addEdge(AbstractEdge e) {
+        adj[e.getFrom()].add(e);
         M++;
     }
 
-    public List<template.graph_theory.Edge> adj(int node) {
+    public List<AbstractEdge> adj(int node) {
         return adj[node];
     }
 
@@ -65,7 +58,7 @@ public class Graph {
     private boolean isTreeHelper(int cur, int fa, int[] vis) {
         if (vis[cur] != 0) return false;
         vis[cur] = -1;
-        for (template.graph_theory.Edge e : adj[cur]) {
+        for (AbstractEdge e : adj[cur]) {
             if (e.getTo() == fa) continue;
             if (!isTreeHelper(e.getTo(), cur, vis)) return false;
         }
@@ -77,7 +70,7 @@ public class Graph {
     public String toString() {
         StringBuffer res = new StringBuffer(N + " " + M + "\n");
         for (int i = 0; i < N; ++i)
-            for (template.graph_theory.Edge e : adj[i]) res.append(i + "-->" + e.getTo() + " " + e.getCost() + "\n");
+            for (AbstractEdge e : adj[i]) res.append(i + "-->" + e.getTo() + " " + e.getCost() + "\n");
         return res.toString();
     }
 
@@ -117,7 +110,7 @@ public class Graph {
         if (vis[cur]) return;
         vis[cur] = true;
 
-        for (template.graph_theory.Edge e : adj[cur]) {
+        for (AbstractEdge e : adj[cur]) {
             dot.append(cur).append(edgeStyle).append(e.getTo()).append(';');
             visDag(e.getTo(), vis, dot);
         }
@@ -131,7 +124,7 @@ public class Graph {
     private boolean isDagHelper(int cur, int fa, int[] vis) {
         if (vis[cur] == -1) return false;
         vis[cur] = -1;
-        for (template.graph_theory.Edge e : adj[cur]) {
+        for (AbstractEdge e : adj[cur]) {
             if (e.getTo() == fa) continue;
             if (!isDagHelper(e.getTo(), cur, vis)) return false;
         }
@@ -149,7 +142,7 @@ public class Graph {
         StringBuffer commd = new StringBuffer("echo \"")
                 .append(dot).append("\"")
                 .append(" | dot -Tpng -Gsize=").append(w).append(",").append(h).append("\\! > ").append(tmp.getAbsolutePath());
-        //System.err.println(commd.toString());
+        //System.err.printlnConcisely(commd.toString());
         try {
             Runtime.getRuntime().exec(new String[] { "bash", "-c", commd.toString()}).waitFor();
         } catch (Exception e) {
@@ -163,11 +156,11 @@ public class Graph {
     }
 
     private void visTree(int cur, int fa, StringBuffer dot) {
-        for (template.graph_theory.Edge e : adj[cur]) {
+        for (AbstractEdge e : adj[cur]) {
             if (e.getTo() == fa) continue;
             dot.append(cur).append(edgeStyle).append(e.getTo()).append(' ');
         }
-        for (template.graph_theory.Edge e : adj[cur]) {
+        for (AbstractEdge e : adj[cur]) {
             if (e.getTo() == fa) continue;
             visTree(e.getTo(), cur, dot);
         }
@@ -175,12 +168,12 @@ public class Graph {
 
     public static void main(String[] args) {
         Graph g = new Graph(3);
-        g.addEdge(new Edge(0, 1, 1));
-        g.addEdge(new Edge(0, 2, 1));
-        g.addEdge(new Edge(1, 2, 1));
-        g.addEdge(new Edge(1, 2, 1));
-        g.addEdge(new Edge(1, 2, 1));
-        g.addEdge(new Edge(1, 2, 1));
+        g.addEdge(0, 1, 1);
+        g.addEdge(0, 2, 1);
+        g.addEdge(1, 2, 1);
+        g.addEdge(1, 2, 1);
+        g.addEdge(1, 2, 1);
+        g.addEdge(1, 2, 1);
         g.viz("null", true, 1000, 1000);
     }
 

@@ -18,7 +18,7 @@ public class CCKosaraju {
     }
 
     public void addE(int a, int b) {
-        //if (a == b) throw new RuntimeException();
+        //if (from == to) throw new RuntimeException();
         adj[a].add(b);
         iadj[b].add(a);
     }

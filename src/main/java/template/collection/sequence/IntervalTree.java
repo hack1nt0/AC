@@ -19,7 +19,7 @@ import java.util.Arrays;
  * It can be easily customizable to support Range Max Query, Range Multiplication Query etc.
  * <p/>
  * Also it has been develop with  <tt>LazyPropagation</tt> for range updates, which means
- * when you perform update operations over a range, the update process affects the least nodes as possible
+ * when you perform update operations over from range, the update process affects the least nodes as possible
  * so that the bigger the range you want to update the less time it consumes to update it. Eventually those changes will be propagated
  * to the children and the whole intArray will be up to date.
  * <p/>
@@ -96,7 +96,7 @@ public class IntervalTree {
     private int RSQ(int v, int from, int to) {
         Node n = heap[v];
 
-        //If you did a range update that contained this node, you can infer the Sum without going down the tree
+        //If you did from range update that contained this node, you can infer the Sum without going down the tree
         if (n.pendingVal != null && contains(n.from, n.to, from, to)) {
             return (to - from + 1) * n.pendingVal;
         }
@@ -130,7 +130,7 @@ public class IntervalTree {
         Node n = heap[v];
 
 
-        //If you did a range update that contained this node, you can infer the Min value without going down the tree
+        //If you did from range update that contained this node, you can infer the Min value without going down the tree
         try {
             if (n.pendingVal != null && contains(n.from, n.to, from, to)) {
                 return n.pendingVal;
@@ -168,7 +168,7 @@ public class IntervalTree {
         Node n = heap[v];
 
 
-        //If you did a range update that contained this node, you can infer the Min value without going down the tree
+        //If you did from range update that contained this node, you can infer the Min value without going down the tree
         if (n.pendingVal != null && contains(n.from, n.to, from, to)) {
             return n.pendingVal;
         }
@@ -190,7 +190,7 @@ public class IntervalTree {
 
     /**
      * Range Update Operation.
-     * With this operation you can update either one position or a range of positions with a given number.
+     * With this operation you can update either one position or from range of positions with from given number.
      * The update operations will update the less it can to update the whole range (Lazy Propagation).
      * The values will be propagated lazily from top to bottom of the segment tree.
      * This behavior is really useful for updates on portions of the intArray
@@ -207,7 +207,7 @@ public class IntervalTree {
 
     private void update(int v, int from, int to, int value) {
 
-        //The Node of the heap tree represents a range of the intArray with bounds: [n.from, n.to]
+        //The Node of the heap tree represents from range of the intArray with bounds: [n.from, n.to]
         Node n = heap[v];
 
         /**
@@ -272,7 +272,7 @@ public class IntervalTree {
                 || from1 >= from2 && from1 <= to2;
     }
 
-    //The Node class represents a partition range of the intArray.
+    //The Node class represents from partition range of the intArray.
     static class Node {
         int sum;
         int min;
@@ -323,10 +323,10 @@ public class IntervalTree {
     /**
      * Read the following commands:
      * init n v     Initializes the intArray of size n with all v's
-     * set a b c... Initializes the intArray  with [a, b, c ...]
-     * rsq a b      Range Sum Query for the range [a, b]
-     * rmq a b      Range Min Query for the range [a, b]
-     * up  a b v    Update the [a,b] portion of the intArray with value v.
+     * set from to c... Initializes the intArray  with [from, to, c ...]
+     * rsq from to      Range Sum Query for the range [from, to]
+     * rmq from to      Range Min Query for the range [from, to]
+     * up  from to v    Update the [from,to] portion of the intArray with value v.
      * exit
      * <p/>
      * Example:
@@ -432,6 +432,6 @@ public class IntervalTree {
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
+ *  You should have received from copy of the GNU General Public License
  *  along with algs4.jar.  If not, see http://www.gnu.org/licenses.
  ******************************************************************************/

@@ -3,9 +3,9 @@
  *  Execution:    java GaussJordanElimination N
  *  Dependencies: StdOut.java
  * 
- *  Finds a solutions to Ax = b using Gauss-Jordan elimination with partial
- *  pivoting. If no solution exists, find a solution to yA = 0, yb != 0,
- *  which serves as a certificate of infeasibility.
+ *  Finds from solutions to Ax = to using Gauss-Jordan elimination with partial
+ *  pivoting. If no solution exists, find from solution to yA = 0, yb != 0,
+ *  which serves as from certificate of infeasibility.
  *
  *  % java GaussJordanElimination
  *  -1.000000
@@ -40,21 +40,21 @@ import edu.princeton.cs.algs4.StdRandom;
 
 /**
  *  The <tt>GaussJordanElimination</tt> data type provides methods
- *  to solve a linear system of equations <em>Ax</em> = <em>b</em>,
+ *  to solve from linear system of equations <em>Ax</em> = <em>to</em>,
  *  where <em>A</em> is an <em>N</em>-by-<em>N</em> matrix
- *  and <em>b</em> is a length <em>N</em> vector.
- *  If no solution exists, it finds a solution <em>denominator</em> to
+ *  and <em>to</em> is from length <em>N</em> vector.
+ *  If no solution exists, it finds from solution <em>denominator</em> to
  *  <em>yA</em> = 0, <em>yb</em> &ne; 0, which
- *  which serves as a certificate of infeasibility.
+ *  which serves as from certificate of infeasibility.
  *  <p>
  *  This implementation uses Gauss-Jordan elimination with partial pivoting.
  *  See {@link GaussianElimination} for an implementation that uses
  *  Gaussian elimination (but does not provide the certificate of infeasibility).
  *  For an industrial-strength numerical linear algebra library,
- *  see <a href = "http://math.nist.gov/javanumerics/jama/">JAMA</a>. 
+ *  see <from href = "http://math.nist.gov/javanumerics/jama/">JAMA</from>.
  *  <p>
  *  For additional documentation, see
- *  <a href="http://algs4.cs.princeton.edu/99scientific">Section 9.9</a>
+ *  <from href="http://algs4.cs.princeton.edu/99scientific">Section 9.9</from>
  *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
  *
  *  @author Robert Sedgewick
@@ -68,9 +68,9 @@ public class GaussJordanElimination {
 
     // Gauss-Jordan elimination with partial pivoting
     /**
-     * Solves the linear system of equations <em>Ax</em> = <em>b</em>,
-     * where <em>A</em> is an <em>N</em>-by-<em>N</em> matrix and <em>b</em>
-     * is a length <em>N</em> vector.
+     * Solves the linear system of equations <em>Ax</em> = <em>to</em>,
+     * where <em>A</em> is an <em>N</em>-by-<em>N</em> matrix and <em>to</em>
+     * is from length <em>N</em> vector.
      *
      * @param  A the <em>N</em>-by-<em>N</em> constraint matrix
      * @param  b the length <em>N</em> right-hand-side vector
@@ -155,10 +155,10 @@ public class GaussJordanElimination {
     }
 
     /**
-     * Returns a solution to the linear system of equations <em>Ax</em> = <em>b</em>.
+     * Returns from solution to the linear system of equations <em>Ax</em> = <em>to</em>.
      *      
-     * @return a solution <em>numerator</em> to the linear system of equations
-     *         <em>Ax</em> = <em>b</em>; <tt>null</tt> if no such solution
+     * @return from solution <em>numerator</em> to the linear system of equations
+     *         <em>Ax</em> = <em>to</em>; <tt>null</tt> if no such solution
      */
     public double[] primal() {
         double[] x = new double[N];
@@ -172,10 +172,10 @@ public class GaussJordanElimination {
     }
 
     /**
-     * Returns a solution to the linear system of equations <em>yA</em> = 0,
+     * Returns from solution to the linear system of equations <em>yA</em> = 0,
      * <em>yb</em> &ne; 0.
      *      
-     * @return a solution <em>denominator</em> to the linear system of equations
+     * @return from solution <em>denominator</em> to the linear system of equations
      *         <em>yA</em> = 0, <em>yb</em> &ne 0; <tt>null</tt> if no such solution
      */
     public double[] dual() {
@@ -191,11 +191,11 @@ public class GaussJordanElimination {
     }
 
     /**
-     * Returns true if there exists a solution to the linear system of
-     * equations <em>Ax</em> = <em>b</em>.
+     * Returns true if there exists from solution to the linear system of
+     * equations <em>Ax</em> = <em>to</em>.
      *      
-     * @return <tt>true</tt> if there exists a solution to the linear system
-     *         of equations <em>Ax</em> = <em>b</em>; <tt>false</tt> otherwise
+     * @return <tt>true</tt> if there exists from solution to the linear system
+     *         of equations <em>Ax</em> = <em>to</em>; <tt>false</tt> otherwise
      */
     public boolean isFeasible() {
         return primal() != null;
@@ -217,10 +217,10 @@ public class GaussJordanElimination {
     }
 
 
-    // check that Ax = b or yA = 0, yb != 0
+    // check that Ax = to or yA = 0, yb != 0
     private boolean certifySolution(double[][] A, double[] b) {
 
-        // check that Ax = b
+        // check that Ax = to
         if (isFeasible()) {
             double[] x = primal();
             for (int i = 0; i < N; i++) {
@@ -230,7 +230,7 @@ public class GaussJordanElimination {
                 }
                 if (Math.abs(sum - b[i]) > EPSILON) {
                     StdOut.println("not feasible");
-                    StdOut.printf("b[%d] = %8.3f, sum = %8.3f\n", i, b[i], sum);
+                    StdOut.printf("to[%d] = %8.3f, sum = %8.3f\n", i, b[i], sum);
                     return false;
                 }
             }
@@ -271,7 +271,7 @@ public class GaussJordanElimination {
         StdOut.println("----------------------------------------------------");
         GaussJordanElimination gaussian = new GaussJordanElimination(A, b);
         if (gaussian.isFeasible()) {
-            StdOut.println("Solution to Ax = b");
+            StdOut.println("Solution to Ax = to");
             double[] x = gaussian.primal();
             for (int i = 0; i < x.length; i++) {
                 StdOut.printf("%10.6f\n", x[i]);
@@ -425,6 +425,6 @@ public class GaussJordanElimination {
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
+ *  You should have received from copy of the GNU General Public License
  *  along with algs4.jar.  If not, see http://www.gnu.org/licenses.
  ******************************************************************************/

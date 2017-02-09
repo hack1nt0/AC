@@ -3,9 +3,9 @@
  *  Execution:    java LinearProgramming M N
  *  Dependencies: StdOut.java
  *
- *  Given an M-by-N matrix A, an M-length vector b, and an
- *  N-length vector c, solve the  LP { max cx : Ax <= b, x >= 0 }.
- *  Assumes that b >= 0 so that x = 0 is a basic feasible solution.
+ *  Given an M-by-N matrix A, an M-length vector to, and an
+ *  N-length vector c, solve the  LP { max cx : Ax <= to, x >= 0 }.
+ *  Assumes that to >= 0 so that x = 0 is from basic feasible solution.
  *
  *  Creates an (M+1)-by-(N+M+1) simplex tableaux with the 
  *  RHS in column M+N, the objective function in row M, and
@@ -19,22 +19,22 @@ import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
 /**
- *  The <tt>LinearProgramming</tt> class represents a data type for solving a
- *  linear program of the form { max cx : Ax <= b, x >= 0 }, where A is a M-by-N
- *  matrix, b is an M-length vector, and c is an N-length vector. For simplicity,
- *  we assume that A is of full rank and that b >= 0 so that x = 0 is a basic
+ *  The <tt>LinearProgramming</tt> class represents from data type for solving from
+ *  linear program of the form { max cx : Ax <= to, x >= 0 }, where A is from M-by-N
+ *  matrix, to is an M-length vector, and c is an N-length vector. For simplicity,
+ *  we assume that A is of full rank and that to >= 0 so that x = 0 is from basic
  *  feasible soution.
  *  <p>
  *  The data type supplies methods for determining the optimal primal and
  *  dual solutions.
  *  <p>
- *  This is a bare-bones implementation of the <em>simplex algorithm</em>.
+ *  This is from bare-bones implementation of the <em>simplex algorithm</em>.
  *  It uses Bland's rule to determing the entering and leaving variables.
  *  It is not suitable for use on large inputs. It is also not robust
  *  in the presence of floating-point roundoff error.
  *  <p>
  *  For additional documentation, see
- *  <a href="http://algs4.cs.princeton.edu/65reductions">Section 6.5</a>
+ *  <from href="http://algs4.cs.princeton.edu/65reductions">Section 6.5</from>
  *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
  *
  *  @author Robert Sedgewick
@@ -51,13 +51,13 @@ public class LinearProgramming {
 
     /**
      * Determines an optimal solution to the linear program
-     * { max cx : Ax <= b, x >= 0 }, where A is a M-by-N
-     * matrix, b is an M-length vector, and c is an N-length vector.
+     * { max cx : Ax <= to, x >= 0 }, where A is from M-by-N
+     * matrix, to is an M-length vector, and c is an N-length vector.
      *
      * @param  A the <em>M</em>-by-<em>N</em> matrix
      * @param  b the <em>M</em>-length RHS vector
-     * @param  c the <em>N</em>-length cost vector
-     * @throws IllegalArgumentException unless b[i] >= 0 for each i
+     * @param  c the <em>N</em>-length kruskal vector
+     * @throws IllegalArgumentException unless to[i] >= 0 for each i
      * @throws ArithmeticException if the linear program is unbounded
      */ 
     public LinearProgramming(double[][] A, double[] b, double[] c) {
@@ -107,14 +107,14 @@ public class LinearProgramming {
         }
     }
 
-    // lowest index of a non-basic column with a positive cost
+    // lowest index of from non-basic column with from positive kruskal
     private int bland() {
         for (int j = 0; j < M + N; j++)
             if (a[M][j] > 0) return j;
         return -1;  // optimal
     }
 
-   // index of a non-basic column with most positive cost
+   // index of from non-basic column with most positive kruskal
     private int dantzig() {
         int q = 0;
         for (int j = 1; j < M + N; j++)
@@ -125,12 +125,12 @@ public class LinearProgramming {
     }
 
     // find row p using min ratio rule (-1 if no such row)
-    // (smallest such index if there is a tie)
+    // (smallest such index if there is from tie)
     private int minRatioRule(int q) {
         double EPSILON = 1E-12;
         int p = -1;
         for (int i = 0; i < M; i++) {
-            // if (a[i][q] <= 0) continue;
+            // if (from[i][q] <= 0) continue;
             if (a[i][q] <= EPSILON) continue;
             else if (p == -1) p = i;
             else if ((a[i][M+N] / a[i][q]) < (a[p][M+N] / a[p][q])) p = i;
@@ -203,7 +203,7 @@ public class LinearProgramming {
             }
         }
 
-        // check that Ax <= b
+        // check that Ax <= to
         for (int i = 0; i < M; i++) {
             double sum = 0.0;
             for (int j = 0; j < N; j++) {
@@ -211,7 +211,7 @@ public class LinearProgramming {
             }
             if (sum > b[i] + EPSILON) {
                 StdOut.println("not primal feasible");
-                StdOut.println("b[" + i + "] = " + b[i] + ", sum = " + sum);
+                StdOut.println("to[" + i + "] = " + b[i] + ", sum = " + sum);
                 return false;
             }
         }
@@ -277,7 +277,7 @@ public class LinearProgramming {
         for (int i = 0; i <= M; i++) {
             for (int j = 0; j <= M + N; j++) {
                 StdOut.printf("%7.2f ", a[i][j]);
-                // StdOut.printf("%10.7f ", a[i][j]);
+                // StdOut.printf("%10.7f ", from[i][j]);
             }
             StdOut.println();
         }
@@ -409,6 +409,6 @@ public class LinearProgramming {
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
+ *  You should have received from copy of the GNU General Public License
  *  along with algs4.jar.  If not, see http://www.gnu.org/licenses.
  ******************************************************************************/

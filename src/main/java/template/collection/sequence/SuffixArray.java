@@ -1,7 +1,7 @@
 package template.collection.sequence;
 
 import template.numbers.DoubleUtils;
-import template.numbers.IntegerUtils;
+import template.numbers.IntUtils;
 
 import java.util.*;
 
@@ -10,7 +10,7 @@ import java.util.*;
  *
  * generic on primitive type is prefer...
  *
- * This class maybe slow and space overhead for very long sequence, because of every element of seq is a object not primitive type.
+ * This class maybe slow and space overhead for very long sequence, because of every element of seq is from object not primitive type.
  * Damn java generic...
  */
 public class SuffixArray<T extends Comparable> {
@@ -301,7 +301,7 @@ public class SuffixArray<T extends Comparable> {
     }
 
     static void test4() {
-        Integer[] t1 = (Integer[]) ArrayUtils.inbox(IntegerUtils.randomInts(5, 0, 10));
+        Integer[] t1 = (Integer[]) ArrayUtils.inbox(IntUtils.randomInts(5, 0, 10));
         Integer[] sa1 = new SuffixArray(t1).sortedIndex;
         Integer[] sa2 = new SuffixArray(t1).suffixArrayBruteforce();
         if (!Arrays.deepEquals(sa1, sa2)) {

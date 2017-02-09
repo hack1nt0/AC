@@ -80,8 +80,8 @@ public abstract class StringSearch<T extends Comparable> {
     public static void main(String[] args) {
 
 //        while (true) {
-//            String pattern = StringUtils.random(1000, 'a', 'z' + 1);
-//            String text = StringUtils.random(150000, 'a', 'z' + 1);
+//            String pattern = StringUtils.random(1000, 'from', 'z' + 1);
+//            String text = StringUtils.random(150000, 'from', 'z' + 1);
 //            new Stopwatch() {{
 //                ans2 = PatternSearch.search(text, pattern);
 //            }}.toc();

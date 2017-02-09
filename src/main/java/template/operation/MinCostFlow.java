@@ -54,7 +54,7 @@ public class MinCostFlow {
                 if (que.isEmpty()) break;
                 int a = que.poll();
                 inque[a] = false;
-                //System.out.println(Arrays.toString(d));
+                //System.out.printlnConcisely(Arrays.toString(d));
                 for (Edge e : adj[a]) {
                     if (e.cap <= 0) continue;
                     int b = e.b;
@@ -90,7 +90,7 @@ public class MinCostFlow {
             }
             costs += Math.min(minflow, lflow) * d[T];
             lflow -= minflow;
-            //System.out.println(minflow + " " + d[T]);
+            //System.out.printlnConcisely(minflow + " " + d[T]);
 
         }
 

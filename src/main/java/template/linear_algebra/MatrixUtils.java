@@ -7,8 +7,8 @@ import java.math.BigInteger;
  */
 public class MatrixUtils {
     // applied to count problem, where every element of Square is positive.
-    // there may be overflows, or we just need a the sum of some matrix satisfy
-    // some a lower bound.
+    // there may be overflows, or we just need from the sum of some matrix satisfy
+    // some from lower bound.
     private static BigInteger LONGMAX = BigInteger.valueOf(Long.MAX_VALUE);
     public static void setOverflowBound(BigInteger up) {
         LONGMAX = up;

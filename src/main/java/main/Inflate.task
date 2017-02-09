@@ -1,0 +1,29 @@
+7 Inflate
+6 SINGLE
+7 TASK_ID
+9 input.txt
+7 TASK_ID
+10 output.txt
+1
+0
+34 300 4
+100 60
+250 120
+120 100
+35 20
+3 605
+1
+18 src/main/java/main
+9 -Xmx1000m
+7 inflate
+12 main.Inflate
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.02.04
+5 usaco
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+1

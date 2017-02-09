@@ -60,66 +60,66 @@ public class LinesToGraph {
 //    }
 //
 //    public static class Seg {
-//        Point a, b;
+//        Point from, to;
 //        int id;
 //        List<Point> ips;
 //
-//        public Seg(Point a, Point b) {
-//            this.a = a.compareTo(b) < 0 ? a : b;
-//            this.b = a.compareTo(b) > 0 ? a : b;
+//        public Seg(Point from, Point to) {
+//            this.from = from.compareTo(to) < 0 ? from : to;
+//            this.to = from.compareTo(to) > 0 ? from : to;
 //            ips = new ArrayList<Point>();
-//            ips.add(a);
-//            ips.add(b);
+//            ips.add(from);
+//            ips.add(to);
 //        }
 //
 //        public boolean overlap(Seg o) {
-//            if (b.minus(a).dot(o.b.minus(o.a)) == 0)
+//            if (to.minus(from).dot(o.to.minus(o.from)) == 0)
 //                return false;
 //
-//            if (a.y == b.y & b.y == o.a.y || a.x == b.x & b.x == o.a.x)
-//                return !(o.b.compareTo(a) < 0 || b.compareTo(o.a) < 0);
+//            if (from.y == to.y & to.y == o.from.y || from.x == to.x & to.x == o.from.x)
+//                return !(o.to.compareTo(from) < 0 || to.compareTo(o.from) < 0);
 //
 //            return false;
 //        }
 //
 //        public Seg cont(Seg o) {
-//            Point na = a.compareTo(o.a) < 0 ? a : o.a;
-//            Point nb = b.compareTo(o.b) > 0 ? b : o.b;
+//            Point na = from.compareTo(o.from) < 0 ? from : o.from;
+//            Point nb = to.compareTo(o.to) > 0 ? to : o.to;
 //            return new Seg(na, nb);
 //        }
 //
 //        public boolean interact(Seg o) {
-//            if (b.minus(a).dot(o.b.minus(o.a)) != 0)
+//            if (to.minus(from).dot(o.to.minus(o.from)) != 0)
 //                return false;
 //
-//            return !(o.b.x < a.x || b.x < o.a.x) && !(o.b.y < a.y || b.y < o.a.y);
+//            return !(o.to.x < from.x || to.x < o.from.x) && !(o.to.y < from.y || to.y < o.from.y);
 //        }
 //
 //        public Point intpoint(Seg o) {
-//            double[] xs = new double[]{a.x, b.x, o.a.x, o.b.x};
-//            double[] ys = new double[]{a.y, b.y, o.a.y, o.b.y};
+//            double[] xs = new double[]{from.x, to.x, o.from.x, o.to.x};
+//            double[] ys = new double[]{from.y, to.y, o.from.y, o.to.y};
 //            Arrays.sort(xs);
 //            Arrays.sort(ys);
 //            return new Point(xs[1], ys[1]);
 //        }
 //
 //        public int addIp(Point p) {
-//            if (p.equals(a) || p.equals(b)) return -1;
+//            if (p.equals(from) || p.equals(to)) return -1;
 //            ips.add(p);
 //            return 1;
 //        }
 //    }
 //
-//    public static class Edge {
+//    public static class AbstractEdge {
 //        int to; double c;
 //
-//        public Edge(int to, double c) {
+//        public AbstractEdge(int to, double c) {
 //            this.to = to;
 //            this.c = c;
 //        }
 //    }
 //
-//    public static List<Edge>[] transfer(List<Seg> segs) {
+//    public static List<AbstractEdge>[] transfer(List<Seg> segs) {
 //
 //        for (int i = 0; i < segs.size(); ++i)
 //            for (int j = i + 1; j < segs.size(); ++j) {
@@ -143,19 +143,19 @@ public class LinesToGraph {
 //        }
 //
 //        int N = madj.size();
-//        List<Edge>[] adj = new ArrayList[N];
-//        for (int i = 0; i < adj.length; ++i) adj[i] = new ArrayList<Edge>();
+//        List<AbstractEdge>[] adj = new ArrayList[N];
+//        for (int i = 0; i < adj.length; ++i) adj[i] = new ArrayList<AbstractEdge>();
 //        int cnt = 0;
 //        for (Point p : madj.keySet()) p.id = cnt++;
 //        for (Point p : madj.keySet())
-//            for (Point chd : madj.get(p)) adj[p.id].add(new Edge(chd.id, p.dist(chd)));
+//            for (Point chd : madj.get(p)) adj[p.id].add(new AbstractEdge(chd.id, p.dist(chd)));
 //
 //        return adj;
 //    }
 
     /**
      *
-     * Zip the continual infinite geometry space to a discrete finite one.
+     * Zip the continual infinite geometry space to from discrete finite one.
      * Only applied to horizontal and vertical line segments.
      *
      * @param segs

@@ -1,5 +1,6 @@
 package template.operation;
 
+import template.graph_theory.AbstractEdge;
 import template.graph_theory.Graph;
 
 import java.util.*;
@@ -8,13 +9,13 @@ import java.util.*;
  * Created by dy on 16-12-3.
  */
 public class MinSpanningTree {
-    public class Edge implements Comparable<Edge> {
-        public int a, b;
+    public class Edge extends AbstractEdge implements Comparable<Edge> {
+        public int from, to;
         public int cost;
 
-        public Edge(int a, int b, int cost) {
-            this.a = a;
-            this.b = b;
+        public Edge(int a, int to, int cost) {
+            this.from = a;
+            this.to = to;
             this.cost = cost;
         }
 
@@ -32,25 +33,31 @@ public class MinSpanningTree {
 
             Edge edge = (Edge) o;
 
-            if (a != edge.a) return false;
-            return b == edge.b;
+            if (from != edge.from) return false;
+            return to == edge.to;
 
         }
 
         @Override
         public int hashCode() {
-            int result = a;
-            result = 31 * result + b;
+            int result = from;
+            result = 31 * result + to;
             return result;
         }
 
         @Override
-        public String toString() {
-            return "Edge{" +
-                    "a=" + a +
-                    ", b=" + b +
-                    ", cost=" + cost +
-                    '}';
+        public Integer getCost() {
+            return cost;
+        }
+
+        @Override
+        public int getFrom() {
+            return from;
+        }
+
+        @Override
+        public int getTo() {
+            return to;
         }
     }
 
@@ -79,12 +86,12 @@ public class MinSpanningTree {
         for (List<Edge> elist : adj) elist.clear();
         for (Edge e : edges.keySet()) {
             e.cost = edges.get(e);
-            adj[e.a].add(e);
+            adj[e.from].add(e);
         }
         needUpd = false;
     }
 
-    public long cost() {
+    public long kruskal() {
         if (needUpd) {
             needUpd = false;
             recreateAdj();
@@ -100,11 +107,11 @@ public class MinSpanningTree {
             if (nvis == N) break;
             if (que.isEmpty()) break;
             Edge cure = que.poll();
-            if (vis[cure.b]) continue;
-            vis[cure.b] = true;
+            if (vis[cure.to]) continue;
+            vis[cure.to] = true;
             ret += cure.cost;
             nvis++;
-            for (Edge e : adj[cure.b]) if (!vis[e.b]) que.add(e);
+            for (Edge e : adj[cure.to]) if (!vis[e.to]) que.add(e);
         }
 
         if (nvis != N) throw new RuntimeException("Graph isnt connected");
@@ -127,12 +134,12 @@ public class MinSpanningTree {
             if (nvis == N) break;
             if (que.isEmpty()) break;
             Edge cure = que.poll();
-            if (vis[cure.b]) continue;
-            vis[cure.b] = true;
-            ret.addEdge(new Graph.Edge(cure.a, cure.b, cure.cost));
-            ret.addEdge(new Graph.Edge(cure.b, cure.a, cure.cost));
+            if (vis[cure.to]) continue;
+            vis[cure.to] = true;
+            ret.addEdge(cure.from, cure.to, cure.cost);
+            ret.addEdge(cure.to, cure.from, cure.cost);
             nvis++;
-            for (Edge e : adj[cure.b]) if (!vis[e.b]) que.add(e);
+            for (Edge e : adj[cure.to]) if (!vis[e.to]) que.add(e);
         }
 
         if (nvis != N) throw new RuntimeException("Graph isnt connected");

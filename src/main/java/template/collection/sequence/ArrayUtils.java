@@ -2,12 +2,12 @@ package template.collection.sequence;
 
 import template.debug.RandomUtils;
 import template.debug.Stopwatch;
-import template.numbers.IntegerUtils;
+import template.numbers.IntUtils;
 
 import java.io.PrintStream;
 import java.io.PrintWriter;
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.*;
+
 /**
  * Created by dy on 16-12-22.
  */
@@ -19,7 +19,7 @@ public class ArrayUtils {
 
     private static void testSort() {
         while (true) {
-            int[] arr = IntegerUtils.randomInts(10000000, -100000000, 100000000);
+            int[] arr = IntUtils.randomInts(10000000, -100000000, 100000000);
             int[] arr1 = arr.clone();
             int[] arr2 = arr.clone();
             Stopwatch.tic();
@@ -37,7 +37,7 @@ public class ArrayUtils {
 
     public static void testReverseOrderPairs() {
         while (true) {
-            int[] arr = IntegerUtils.randomInts(RandomUtils.uniform(100), 0, 10);
+            int[] arr = IntUtils.randomInts(RandomUtils.uniform(100), 0, 10);
             int ans = 0;
             for (int i = 0; i < arr.length; ++i)
                 for (int j = i + 1; j < arr.length; ++j) if (arr[i] > arr[j]) ans++;
@@ -205,6 +205,14 @@ public class ArrayUtils {
         for (int i = 0; i < a.length; ++i) if (res > a[i]) res = a[i];
         return res;
     }
+
+    public static long min(long[] a) {
+        if (a.length <= 0) throw new RuntimeException();
+        long res = a[0];
+        for (int i = 0; i < a.length; ++i) if (res > a[i]) res = a[i];
+        return res;
+    }
+
     public static long sum(int[] a) {
         long res = 0;
         for (int i = 0; i < a.length; ++i) res += a[i];
@@ -243,6 +251,14 @@ public class ArrayUtils {
         }
         return res;
     }
+
+    public static byte[] clone(byte[] a) {
+        if (a.length <= 0) throw new IllegalArgumentException();
+        byte[] res = new byte[a.length];
+        System.arraycopy(a, 0, res, 0, a.length);
+        return res;
+    }
+
 
     public static Object[] inbox(Object arr) {
         if (!(arr instanceof Object[] || arr.getClass().isArray())) {
@@ -291,7 +307,8 @@ public class ArrayUtils {
             byte[] tmp = (byte[]) arr;
             int N = tmp.length;
             Byte[] res = new Byte[N];
-            System.arraycopy(tmp, 0, res, 0, N);
+            //System.arraycopy(tmp, 0, res, 0, N);
+            for (int i = 0; i < N; ++i) res[i] = tmp[i];
             return res;
         }
         if (arr instanceof boolean[]) {
@@ -450,16 +467,43 @@ public class ArrayUtils {
         out.println();
     }
 
-    public static void println(Object arr1, PrintWriter out) {
+    public static void printlnConcisely(Object arr1, String spliter, PrintWriter out, int howManyOfOneRow) {
         if (out == null) {
             out = new PrintWriter(System.out);
         }
         Object[] arr = inbox(arr1);
         for (int i = 0; i < arr.length; ++i) {
-            if (i > 0) out.print(' ');
+            if (i > 0 && i % howManyOfOneRow == 0) out.println();
+            if (i % howManyOfOneRow != 0) out.print(spliter);
             out.print(arr[i]);
         }
         out.println();
+        out.flush();
+    }
+
+    public static void printlnConcisely(Object arr1, PrintWriter out, int howManyOfOneRow) {
+        printlnConcisely(arr1, " ", out, howManyOfOneRow);
+    }
+
+    public static void printlnConcisely(Iterable arr1, String spliter, PrintWriter out, int howManyOfOneRow) {
+        if (out == null) {
+            out = new PrintWriter(System.out);
+        }
+        Iterator iterator = arr1.iterator();
+        int i = 0;
+        while (true) {
+            if (!iterator.hasNext()) break;
+            if (i > 0 && i % howManyOfOneRow == 0) out.println();
+            if (i % howManyOfOneRow != 0) out.print(spliter);
+            out.print(iterator.next());
+            i++;
+        }
+        out.println();
+        out.flush();
+    }
+
+    public static void printlnConcisely(Iterable arr1, PrintWriter out, int howManyOfOneRow) {
+        printlnConcisely(arr1, " ", out, howManyOfOneRow);
     }
 
     public static void reverse(int[] arr) {
@@ -495,6 +539,23 @@ public class ArrayUtils {
         return l;
     }
 
+    public static <T> int upperBound(List<? extends Comparable<? super T>> arr, T value) {
+        return upperBound(arr, 0, arr.size(), value);
+    }
+
+    public static <T> int upperBound(List<? extends Comparable<? super T>> arr, int from, int to, T value) {
+        if (from < 0 || to > arr.size() || from >= to) throw new RuntimeException();
+        int l = from, r = to;
+        while (true) {
+            if (l >= r) break;
+            int mid = l + (r - l) / 2;
+            if (arr.get(mid).compareTo(value) <= 0) l = mid + 1;
+            else r = mid;
+        }
+        if (l != r) throw new RuntimeException();
+        return l;
+    }
+
     public static int lowerBound(int[] arr, int value) {
         return lowerBound(arr, 0, arr.length, value);
     }
@@ -512,7 +573,11 @@ public class ArrayUtils {
         return l;
     }
 
-    public static void println(Object arr1) {
-        println(arr1, null);
+    public static void printlnConcisely(Object arr1) {
+        printlnConcisely(arr1, null, 100);
+    }
+
+    public static void printlnConcisely(Iterable arr1) {
+        printlnConcisely(arr1, null, 100);
     }
 }

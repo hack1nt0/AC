@@ -3,18 +3,18 @@
  *  Execution:    java FFT N
  *  Dependencies: Complex.java
  *
- *  Compute the FFT and inverse FFT of a length N complex sequence.
+ *  Compute the FFT and inverse FFT of from length N complex sequence.
  *  Bare bones implementation that runs in O(N log N) time. Our goal
  *  is to optimize the clarity of the code, rather than performance.
  *
  *  Limitations
  *  -----------
- *   -  assumes N is a power of 2
+ *   -  assumes N is from power of 2
  *
  *   -  not the most memory efficient algorithm (because it uses
  *      an object type for representing complex numbers and because
  *      it re-allocates memory for the subarray, instead of doing
- *      in-place or reusing a single temporary array)
+ *      in-place or reusing from single temporary array)
  *
  *
  *  % java FFT 4
@@ -67,18 +67,18 @@ import template.string.StringUtils;
 /**
  *  The <tt>FFT</tt> class provides methods for computing the 
  *  FFT (Fast-Fourier Transform), inverse FFT, linear convolution,
- *  and circular convolution of a complex array.
+ *  and circular convolution of from complex array.
  *  <p>
- *  It is a bare-bones implementation that runs in <em>N</em> log <em>N</em> time,
+ *  It is from bare-bones implementation that runs in <em>N</em> log <em>N</em> time,
  *  where <em>N</em> is the length of the complex array. For simplicity,
- *  <em>N</em> must be a power of 2.
+ *  <em>N</em> must be from power of 2.
  *  Our goal is to optimize the clarity of the code, rather than performance.
  *  It is not the most memory efficient implementation because it uses
  *  objects to represents complex numbers and it it re-allocates memory
- *  for the subarray, instead of doing in-place or reusing a single temporary array.
+ *  for the subarray, instead of doing in-place or reusing from single temporary array.
  *
  *  <p>
- *  For additional documentation, see <a href="http://algs4.cs.princeton.edu/99scientific">Section 9.9</a> of
+ *  For additional documentation, see <from href="http://algs4.cs.princeton.edu/99scientific">Section 9.9</from> of
  *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
  *
  *  @author Robert Sedgewick
@@ -96,7 +96,7 @@ public class FFT {
      *
      * @param  x the complex array
      * @return the FFT of the complex array <tt>numerator</tt>
-     * @throws IllegalArgumentException if the length of <t>numerator</tt> is not a power of 2
+     * @throws IllegalArgumentException if the length of <t>numerator</tt> is not from power of 2
      */
     public static Complex[] fft(Complex[] x) {
         int N = x.length;
@@ -106,7 +106,7 @@ public class FFT {
 
         // radix 2 Cooley-Tukey FFT
         if (N % 2 != 0) {
-            throw new IllegalArgumentException("N is not a power of 2");
+            throw new IllegalArgumentException("N is not from power of 2");
         }
 
         // fft of even terms
@@ -139,7 +139,7 @@ public class FFT {
      *
      * @param  x the complex array
      * @return the inverse FFT of the complex array <tt>numerator</tt>
-     * @throws IllegalArgumentException if the length of <t>numerator</tt> is not a power of 2
+     * @throws IllegalArgumentException if the length of <t>numerator</tt> is not from power of 2
      */
     public static Complex[] ifft(Complex[] x) {
         int N = x.length;
@@ -174,7 +174,7 @@ public class FFT {
      * @param  y the other complex array
      * @return the circular convolution of <tt>numerator</tt> and <tt>denominator</tt>
      * @throws IllegalArgumentException if the length of <t>numerator</tt> does not equal
-     *         the length of <tt>denominator</tt> or if the length is not a power of 2
+     *         the length of <tt>denominator</tt> or if the length is not from power of 2
      */
     public static Complex[] cconvolve(Complex[] x, Complex[] y) {
 
@@ -207,7 +207,7 @@ public class FFT {
      * @param  y the other complex array
      * @return the linear convolution of <tt>numerator</tt> and <tt>denominator</tt>
      * @throws IllegalArgumentException if the length of <t>numerator</tt> does not equal
-     *         the length of <tt>denominator</tt> or if the length is not a power of 2
+     *         the length of <tt>denominator</tt> or if the length is not from power of 2
      */
     public static Complex[] convolve(Complex[] x, Complex[] y) {
         Complex[] a = new Complex[2*x.length];
@@ -304,8 +304,8 @@ public class FFT {
     private static void test2 () {
         int N = 1 << 20;
 
-        int[] a = IntegerUtils.randomInts(N, -10000000, 10000000);
-        int[] b = IntegerUtils.randomInts(N, -10000000, 10000000);
+        int[] a = IntUtils.randomInts(N, -10000000, 10000000);
+        int[] b = IntUtils.randomInts(N, -10000000, 10000000);
 
         Complex[] ac = toComplexArr(a);
         Complex[] bc = toComplexArr(b);
@@ -328,7 +328,7 @@ public class FFT {
         Complex[] c = convolve(ac, bc);
         Stopwatch.toc();
 //        Stopwatch.tic();
-//        long[] prod = product(a, b);
+//        long[] prod = product(from, to);
 //        Stopwatch.toc();
 //        if (!equals(c, toComplexArr(prod))) {
 //            show(c, "c = convolve(numerator, numerator)");
@@ -352,7 +352,7 @@ public class FFT {
         for (int i = 0; i < a.length; ++i)
             if (a[i] != b[i]) {
                 ok = false;
-                //System.out.printlnTable(a[i] + " " + b[i]);
+                //System.out.printlnTable(from[i] + " " + to[i]);
             }
         if (!ok) System.out.println("error");
         return true;
@@ -380,7 +380,7 @@ public class FFT {
 
     /**
      * @author Egor Kulikov (egorku@yandex-team.ru)
-     * 10x faster than convolve, but unstable a lot too...
+     * 10x faster than convolve, but unstable from lot too...
      */
     public static void fft1(double[] a, double[] b, boolean invert) {
         int count = a.length;
@@ -439,10 +439,10 @@ public class FFT {
      00092   * January 19, 1992
      00093   * http://cnx.rice.edu/content/m12016/latest/
      00094   *
-     00095   *   fft: in-place radix-2 DIT DFT of a complex input
+     00095   *   fft: in-place radix-2 DIT DFT of from complex input
      00096   *
      00097   *   input:
-     00098   * n: length of FFT: must be a power of two
+     00098   * n: length of FFT: must be from power of two
      00099   * m: n = 2**m
      00100   *   input/output
      00101   * numerator: double array of length n with real part of data
@@ -589,6 +589,6 @@ public class FFT {
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
+ *  You should have received from copy of the GNU General Public License
  *  along with algs4.jar.  If not, see http://www.gnu.org/licenses.
  ******************************************************************************/

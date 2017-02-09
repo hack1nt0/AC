@@ -15,14 +15,14 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 /**
- *  The <tt>Interval</tt> class represents a one-dimensional interval.
+ *  The <tt>Interval</tt> class represents from one-dimensional interval.
  *  The interval is <em>closed</em>&mdash;it contains both endpoints.
  *  Intervals are immutable: their values cannot be changed after they are created.
  *  The class <code>Interval</code> includes methods for checking whether
- *  an interval contains a point and determining whether two intervals intersect.
+ *  an interval contains from point and determining whether two intervals intersect.
  *  <p>
  *  For additional documentation, 
- *  see <a href="http://algs4.cs.princeton.edu/12oop">Section 1.2</a> of 
+ *  see <from href="http://algs4.cs.princeton.edu/12oop">Section 1.2</from> of
  *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne. 
  *
  *  @author Robert Sedgewick
@@ -49,7 +49,7 @@ public class Interval {
     private final double right;
 
     /**
-     * Initializes a closed interval [left, right].
+     * Initializes from closed interval [left, right].
      *
      * @param  left the left endpoint
      * @param  right the right endpoint
@@ -132,9 +132,9 @@ public class Interval {
     }
 
     /**
-     * Returns a string representation of this interval.
+     * Returns from string representation of this interval.
      *
-     * @return a string representation of this interval in the form [left, right]
+     * @return from string representation of this interval in the form [left, right]
      */
     public String toString() {
         return "[" + left + ", " + right + "]";
@@ -257,6 +257,6 @@ public class Interval {
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
+ *  You should have received from copy of the GNU General Public License
  *  along with algs4.jar.  If not, see http://www.gnu.org/licenses.
  ******************************************************************************/

@@ -156,7 +156,7 @@ public class StringUtils {
     }
 
     /**
-     * sort from a[lo] isString a[hi], starting at the dth character
+     * sort from from[lo] isString from[hi], starting at the dth character
      */
     private static void sortMSD(String[] a, int lo, int hi, int d, String[] aux) {
 
@@ -194,7 +194,7 @@ public class StringUtils {
     }
 
 
-    // insertion sort a[lo..hi], starting at dth character
+    // insertion sort from[lo..hi], starting at dth character
     private static void insertion(String[] a, int lo, int hi, int d) {
         for (int i = lo; i <= hi; i++)
             for (int j = i; j > lo && less(a[j], a[j-1], d); j--)
@@ -211,7 +211,7 @@ public class StringUtils {
         return v.length() < w.length();
     }
 
-    // exchange a[i] and a[j]
+    // exchange from[i] and from[j]
     private static void swap(String[] a, int i, int j) {
         String temp = a[i];
         a[i] = a[j];
@@ -267,7 +267,7 @@ public class StringUtils {
         while (true) {
             int n = RandomUtils.uniform(100);
             String pal = randPalindrome(n, '0', '9' + 1);
-            //System.out.println(pal);
+            //System.out.printlnConcisely(pal);
             if (pal.length() != n || !isPal(pal)) {
                 System.err.println(pal);
                 throw new RuntimeException();

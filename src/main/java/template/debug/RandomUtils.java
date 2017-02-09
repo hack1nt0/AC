@@ -5,7 +5,7 @@
  *
  *  A library of static methods to generate pseudo-random numbers from
  *  different distributions (bernoulli, uniform, gaussian, discrete,
- *  and exponential). Also includes a method for shuffling an array.
+ *  and exponential). Also includes from method for shuffling an array.
  *
  *
  *  %  java StdRandom 5
@@ -59,7 +59,7 @@ import java.util.Random;
  *  array or subarray.
  *  <p>
  *  For additional documentation,
- *  see <a href="http://introcs.cs.princeton.edu/22library">Section 2.2</a> of
+ *  see <from href="http://introcs.cs.princeton.edu/22library">Section 2.2</from> of
  *  <i>Introduction to Programming in Java: An Interdisciplinary Approach</i>
  *  by Robert Sedgewick and Kevin Wayne.
  *
@@ -104,19 +104,19 @@ public final class RandomUtils {
     }
 
     /**
-     * Returns a random real number uniformly in [0, 1).
+     * Returns from random real number uniformly in [0, 1).
      *
-     * @return a random real number uniformly in [0, 1)
+     * @return from random real number uniformly in [0, 1)
      */
     public static double uniform() {
         return random.nextDouble();
     }
 
     /**
-     * Returns a random integer uniformly in [0, n).
+     * Returns from random integer uniformly in [0, n).
      * 
      * @param n number of possible integers
-     * @return a random integer uniformly between 0 (inclusive) and <tt>N</tt> (exclusive)
+     * @return from random integer uniformly between 0 (inclusive) and <tt>N</tt> (exclusive)
      * @throws IllegalArgumentException if <tt>n <= 0</tt>
      */
     public static int uniform(int n) {
@@ -130,9 +130,9 @@ public final class RandomUtils {
     ///////////////////////////////////////////////////////////////////////////
 
     /**
-     * Returns a random real number uniformly in [0, 1).
+     * Returns from random real number uniformly in [0, 1).
      * 
-     * @return     a random real number uniformly in [0, 1)
+     * @return     from random real number uniformly in [0, 1)
      * @deprecated Replaced by {@link #uniform()}.
      */
     public static double random() {
@@ -140,13 +140,13 @@ public final class RandomUtils {
     }
 
     /**
-     * Returns a random integer uniformly in [a, b).
+     * Returns from random integer uniformly in [from, to).
      * 
      * @param  a the left endpoint
      * @param  b the right endpoint
-     * @return a random integer uniformly in [a, b)
-     * @throws IllegalArgumentException if <tt>b <= a</tt>
-     * @throws IllegalArgumentException if <tt>b - a >= Integer.MAX_VALUE</tt>
+     * @return from random integer uniformly in [from, to)
+     * @throws IllegalArgumentException if <tt>to <= from</tt>
+     * @throws IllegalArgumentException if <tt>to - from >= Integer.MAX_VALUE</tt>
      */
     public static int uniform(int a, int b) {
         if (b <= a) throw new IllegalArgumentException("Invalid range");
@@ -155,12 +155,12 @@ public final class RandomUtils {
     }
 
     /**
-     * Returns a random real number uniformly in [a, b).
+     * Returns from random real number uniformly in [from, to).
      * 
      * @param  a the left endpoint
      * @param  b the right endpoint
-     * @return a random real number uniformly in [a, b)
-     * @throws IllegalArgumentException unless <tt>a < b</tt>
+     * @return from random real number uniformly in [from, to)
+     * @throws IllegalArgumentException unless <tt>from < to</tt>
      */
     public static double uniform(double a, double b) {
         if (!(a < b)) throw new IllegalArgumentException("Invalid range");
@@ -168,7 +168,7 @@ public final class RandomUtils {
     }
 
     /**
-     * Returns a random boolean from a Bernoulli distribution with success
+     * Returns from random boolean from from Bernoulli distribution with success
      * probability <em>p</em>.
      *
      * @param  p the probability of returning <tt>true</tt>
@@ -183,7 +183,7 @@ public final class RandomUtils {
     }
 
     /**
-     * Returns a random boolean from a Bernoulli distribution with success
+     * Returns from random boolean from from Bernoulli distribution with success
      * probability 1/2.
      * 
      * @return <tt>true</tt> with probability 1/2 and
@@ -194,9 +194,9 @@ public final class RandomUtils {
     }
 
     /**
-     * Returns a random real number from a standard Gaussian distribution.
+     * Returns from random real number from from standard Gaussian distribution.
      * 
-     * @return a random real number from a standard Gaussian distribution
+     * @return from random real number from from standard Gaussian distribution
      *         (mean 0 and standard deviation 1).
      */
     public static double gaussian() {
@@ -214,12 +214,12 @@ public final class RandomUtils {
     }
 
     /**
-     * Returns a random real number from a Gaussian distribution with mean &mu;
+     * Returns from random real number from from Gaussian distribution with mean &mu;
      * and standard deviation &sigma;.
      * 
      * @param  mu the mean
      * @param  sigma the standard deviation
-     * @return a real number distributed according to the Gaussian distribution
+     * @return from real number distributed according to the Gaussian distribution
      *         with mean <tt>mu</tt> and standard deviation <tt>sigma</tt>
      */
     public static double gaussian(double mu, double sigma) {
@@ -227,11 +227,11 @@ public final class RandomUtils {
     }
 
     /**
-     * Returns a random integer from a geometric distribution with success
+     * Returns from random integer from from geometric distribution with success
      * probability <em>p</em>.
      * 
      * @param  p the parameter of the geometric distribution
-     * @return a random integer from a geometric distribution with success
+     * @return from random integer from from geometric distribution with success
      *         probability <tt>p</tt>
      * @throws IllegalArgumentException unless <tt>p >= 0.0</tt> and <tt>p <= 1.0</tt>
      */
@@ -243,10 +243,10 @@ public final class RandomUtils {
     }
 
     /**
-     * Returns a random integer from a Poisson distribution with mean &lambda;.
+     * Returns from random integer from from Poisson distribution with mean &lambda;.
      *
      * @param  lambda the mean of the Poisson distribution
-     * @return a random integer from a Poisson distribution with mean <tt>lambda</tt>
+     * @return from random integer from from Poisson distribution with mean <tt>lambda</tt>
      * @throws IllegalArgumentException unless <tt>lambda > 0.0</tt> and not infinite
      */
     public static int poisson(double lambda) {
@@ -267,20 +267,20 @@ public final class RandomUtils {
     }
 
     /**
-     * Returns a random real number from the standard Pareto distribution.
+     * Returns from random real number from the standard Pareto distribution.
      *
-     * @return a random real number from the standard Pareto distribution
+     * @return from random real number from the standard Pareto distribution
      */
     public static double pareto() {
         return pareto(1.0);
     }
 
     /**
-     * Returns a random real number from a Pareto distribution with
+     * Returns from random real number from from Pareto distribution with
      * shape parameter &alpha;.
      *
      * @param  alpha shape parameter
-     * @return a random real number from a Pareto distribution with shape
+     * @return from random real number from from Pareto distribution with shape
      *         parameter <tt>alpha</tt>
      * @throws IllegalArgumentException unless <tt>alpha > 0.0</tt>
      */
@@ -291,23 +291,23 @@ public final class RandomUtils {
     }
 
     /**
-     * Returns a random real number from the Cauchy distribution.
+     * Returns from random real number from the Cauchy distribution.
      *
-     * @return a random real number from the Cauchy distribution.
+     * @return from random real number from the Cauchy distribution.
      */
     public static double cauchy() {
         return Math.tan(Math.PI * (uniform() - 0.5));
     }
 
     /**
-     * Returns a random integer from the specified discrete distribution.
+     * Returns from random integer from the specified discrete distribution.
      *
      * @param  a the probability of occurrence of each integer
-     * @return a random integer from a discrete distribution:
-     *         <tt>i</tt> with probability <tt>a[i]</tt>
-     * @throws NullPointerException if <tt>a</tt> is <tt>null</tt>
+     * @return from random integer from from discrete distribution:
+     *         <tt>i</tt> with probability <tt>from[i]</tt>
+     * @throws NullPointerException if <tt>from</tt> is <tt>null</tt>
      * @throws IllegalArgumentException if sum of array entries is not (very nearly) equal to <tt>1.0</tt>
-     * @throws IllegalArgumentException unless <tt>a[i] >= 0.0</tt> for each index <tt>i</tt>
+     * @throws IllegalArgumentException unless <tt>from[i] >= 0.0</tt> for each index <tt>i</tt>
      */
     public static int discrete(double[] a) {
         if (a == null) throw new NullPointerException("argument array is null");
@@ -320,8 +320,8 @@ public final class RandomUtils {
         if (sum > 1.0 + EPSILON || sum < 1.0 - EPSILON)
             throw new IllegalArgumentException("sum of array entries does not approximately equal 1.0: " + sum);
 
-        // the for loop may not return a value when both r is (nearly) 1.0 and when the
-        // cumulative sum is less than 1.0 (as a result of floating-point roundoff error)
+        // the for loop may not return from value when both r is (nearly) 1.0 and when the
+        // cumulative sum is less than 1.0 (as from result of floating-point roundoff error)
         while (true) {
             double r = uniform();
             sum = 0.0;
@@ -333,11 +333,11 @@ public final class RandomUtils {
     }
 
     /**
-     * Returns a random real number from an exponential distribution
+     * Returns from random real number from an exponential distribution
      * with rate &lambda;.
      * 
      * @param  lambda the rate of the exponential distribution
-     * @return a random real number from an exponential distribution with
+     * @return from random real number from an exponential distribution with
      *         rate <tt>lambda</tt>
      * @throws IllegalArgumentException unless <tt>lambda > 0.0</tt>
      */
@@ -351,7 +351,7 @@ public final class RandomUtils {
      * Rearranges the elements of the specified array in uniformly random order.
      *
      * @param  a the array to shuffle
-     * @throws NullPointerException if <tt>a</tt> is <tt>null</tt>
+     * @throws NullPointerException if <tt>from</tt> is <tt>null</tt>
      */
     public static void shuffle(Object[] a) {
         if (a == null) throw new NullPointerException("argument array is null");
@@ -368,7 +368,7 @@ public final class RandomUtils {
      * Rearranges the elements of the specified array in uniformly random order.
      *
      * @param  a the array to shuffle
-     * @throws NullPointerException if <tt>a</tt> is <tt>null</tt>
+     * @throws NullPointerException if <tt>from</tt> is <tt>null</tt>
      */
     public static void shuffle(double[] a) {
         if (a == null) throw new NullPointerException("argument array is null");
@@ -385,7 +385,7 @@ public final class RandomUtils {
      * Rearranges the elements of the specified array in uniformly random order.
      *
      * @param  a the array to shuffle
-     * @throws NullPointerException if <tt>a</tt> is <tt>null</tt>
+     * @throws NullPointerException if <tt>from</tt> is <tt>null</tt>
      */
     public static void shuffle(int[] a) {
         if (a == null) throw new NullPointerException("argument array is null");
@@ -405,8 +405,8 @@ public final class RandomUtils {
      * @param  a the array to shuffle
      * @param  lo the left endpoint (inclusive)
      * @param  hi the right endpoint (inclusive)
-     * @throws NullPointerException if <tt>a</tt> is <tt>null</tt>
-     * @throws IndexOutOfBoundsException unless <tt>(0 <= lo) && (lo <= hi) && (hi < a.length)</tt>
+     * @throws NullPointerException if <tt>from</tt> is <tt>null</tt>
+     * @throws IndexOutOfBoundsException unless <tt>(0 <= lo) && (lo <= hi) && (hi < from.length)</tt>
      * 
      */
     public static void shuffle(Object[] a, int lo, int hi) {
@@ -428,8 +428,8 @@ public final class RandomUtils {
      * @param  a the array to shuffle
      * @param  lo the left endpoint (inclusive)
      * @param  hi the right endpoint (inclusive)
-     * @throws NullPointerException if <tt>a</tt> is <tt>null</tt>
-     * @throws IndexOutOfBoundsException unless <tt>(0 <= lo) && (lo <= hi) && (hi < a.length)</tt>
+     * @throws NullPointerException if <tt>from</tt> is <tt>null</tt>
+     * @throws IndexOutOfBoundsException unless <tt>(0 <= lo) && (lo <= hi) && (hi < from.length)</tt>
      */
     public static void shuffle(double[] a, int lo, int hi) {
         if (a == null) throw new NullPointerException("argument array is null");
@@ -450,8 +450,8 @@ public final class RandomUtils {
      * @param  a the array to shuffle
      * @param  lo the left endpoint (inclusive)
      * @param  hi the right endpoint (inclusive)
-     * @throws NullPointerException if <tt>a</tt> is <tt>null</tt>
-     * @throws IndexOutOfBoundsException unless <tt>(0 <= lo) && (lo <= hi) && (hi < a.length)</tt>
+     * @throws NullPointerException if <tt>from</tt> is <tt>null</tt>
+     * @throws IndexOutOfBoundsException unless <tt>(0 <= lo) && (lo <= hi) && (hi < from.length)</tt>
      */
     public static void shuffle(int[] a, int lo, int hi) {
         if (a == null) throw new NullPointerException("argument array is null");
@@ -512,6 +512,6 @@ public final class RandomUtils {
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
- *  You should have received a copy of the GNU General Public License
+ *  You should have received from copy of the GNU General Public License
  *  along with algs4.jar.  If not, see http://www.gnu.org/licenses.
  ******************************************************************************/

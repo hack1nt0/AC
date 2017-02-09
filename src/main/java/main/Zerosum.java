@@ -66,7 +66,7 @@ public class Zerosum {
 //                if (op.equals("-")) res -= right;
 //                //if (op.equals(" ")) res  = res * 10 + right;
 //            }
-//            if (res == 0) out.println(accString.replaceAll(SEPARATOR, ""));
+//            if (res == 0) out.printlnConcisely(accString.replaceAll(SEPARATOR, ""));
             return;
         }
 

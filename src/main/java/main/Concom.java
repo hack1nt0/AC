@@ -1,7 +1,7 @@
 package main;
 
 import template.collection.tuple.Tuple2;
-import template.graph_theory.Edge;
+import template.graph_theory.AbstractEdge;
 import template.graph_theory.Graph;
 
 import java.util.ArrayList;
@@ -20,13 +20,13 @@ public class Concom {
         int maxn = 100;
         Graph graph = new Graph(maxn + 1);
         for (int i = 0; i < en; ++i) {
-            graph.addEdge(new Edge() {
+            graph.addEdge(new AbstractEdge() {
                 int from = in.nextInt();
                 int to = in.nextInt();
                 int cost = in.nextInt();
 
                 @Override
-                public int getCost() {
+                public Integer getCost() {
                     return cost;
                 }
 
@@ -53,9 +53,9 @@ public class Concom {
                     if (visited[from] || shares[from] <= 50) continue;
                     if (start != from) ans.add(new Tuple2<>(start, from));
                     visited[from] = true;
-                    for (Edge e : graph.adj(from)) {
+                    for (AbstractEdge e : graph.adj(from)) {
                         int to = e.getTo();
-                        int share = e.getCost();
+                        int share = (int)e.getCost();
                         shares[to] += share;
                         if (!visited[to] && shares[to] > 50) {
                             updated = true;

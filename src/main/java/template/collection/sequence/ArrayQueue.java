@@ -1,49 +1,50 @@
 package template.collection.sequence;
 
-import java.util.*;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  * Created by dy on 2017/2/8.
  *
  *  Queue for Integer or Indexes.
  */
-public class IntArrayQueue implements Iterable<Integer>{
-    private int[] arr;
+public class ArrayQueue<T> implements Iterable<T>{
+    private T[] arr;
     private int from, to;
     private int N;
 
-    public IntArrayQueue(int initCapacity) {
-        arr = new int[initCapacity];
+    public ArrayQueue(int initCapacity) {
+        arr = (T[])new Object[initCapacity];
     }
 
-    public IntArrayQueue() {
-        arr = new int[1];
+    public ArrayQueue() {
+        arr = (T[]) new Object[1];
     }
 
-    public int getFirst() {
+    public T getFirst() {
         if (isEmpty()) throw new NoSuchElementException("The queue underflow.");
         return arr[from];
     }
 
-    public int getLast() {
+    public T getLast() {
         if (isEmpty()) throw new NoSuchElementException("The queue underflow.");
         return arr[to - 1];
     }
 
-    public int removeFirst() {
+    public T removeFirst() {
         if (isEmpty()) throw new NoSuchElementException("The queue underflow.");
-        int first = arr[from++];
+        T first = arr[from++];
         if (from == arr.length) from = 0;
         N--;
         if (N > 0 && N == arr.length / 4) resize(arr.length / 2);
         return first;
     }
 
-    public int removeLast() {
+    public T removeLast() {
         if (isEmpty()) throw new NoSuchElementException("The queue underflow.");
         to--;
         if (to < 0) to = arr.length - 1;
-        int last = arr[to];
+        T last = arr[to];
         N--;
         if (N > 0 && N == arr.length / 4) resize(arr.length / 2);
         return last;
@@ -53,7 +54,7 @@ public class IntArrayQueue implements Iterable<Integer>{
         return N == 0;
     }
 
-    public void addFirst(int o) {
+    public void addFirst(T o) {
         if (size() == arr.length) resize(arr.length * 2);
         from--;
         if (from < 0) from = arr.length - 1;
@@ -61,17 +62,12 @@ public class IntArrayQueue implements Iterable<Integer>{
         N++;
     }
 
-    public void addLast(int o) {
+    public void addLast(T o) {
         if (size() == arr.length) resize(arr.length * 2);
         arr[to] = o;
         to++;
         if (to == arr.length) to = 0;
         N++;
-    }
-
-    public boolean contains(int o) {
-        for (int i : arr) if (i == o) return true;
-        return false;
     }
 
     public int size() {
@@ -80,7 +76,7 @@ public class IntArrayQueue implements Iterable<Integer>{
 
     private void resize(int capacity) {
         //System.err.println(capacity + " " + N + " " + arr.length);
-        int[] temp = new int[capacity];
+        T[] temp = (T[]) new Object[capacity];
         for (int i = 0; i < N; ++i) temp[i] = arr[(from + i) % arr.length];
         arr = temp;
         from = 0;
@@ -92,37 +88,37 @@ public class IntArrayQueue implements Iterable<Integer>{
         N = 0;
     }
 
-    public int peek() {
+    public T peek() {
         return getFirst();
     }
 
-    public int poll() {
+    public T poll() {
         return removeFirst();
     }
 
-    public int peekLast() {
+    public T peekLast() {
         return getLast();
     }
 
-    public int pollLast() {
+    public T pollLast() {
         return removeLast();
     }
 
-    public void add(int o) {
+    public void add(T o) {
         addLast(o);
     }
 
-    public void push(int o) {
+    public void push(T o) {
         addLast(o);
     }
 
-    public int pop() {
+    public T pop() {
         return pollLast();
     }
 
     @Override
-    public Iterator<Integer> iterator() {
-        return new Iterator<Integer>() {
+    public Iterator<T> iterator() {
+        return new Iterator<T>() {
             int first = from;
             int size = N;
             @Override
@@ -131,8 +127,8 @@ public class IntArrayQueue implements Iterable<Integer>{
             }
 
             @Override
-            public Integer next() {
-                int n = arr[first];
+            public T next() {
+                T n = arr[first];
                 first++;
                 if (first == arr.length) first = 0;
                 return n;
@@ -140,8 +136,8 @@ public class IntArrayQueue implements Iterable<Integer>{
         };
     }
 
-    public Iterator<Integer> stackIterator() {
-        return new Iterator<Integer>() {
+    public Iterator<T> stackIterator() {
+        return new Iterator<T>() {
             int last = to;
             int size = N;
             @Override
@@ -150,7 +146,7 @@ public class IntArrayQueue implements Iterable<Integer>{
             }
 
             @Override
-            public Integer next() {
+            public T next() {
                 last--;
                 if (last < 0) last = arr.length - 1;
                 return arr[last];

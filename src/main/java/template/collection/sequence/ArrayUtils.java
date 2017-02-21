@@ -252,6 +252,13 @@ public class ArrayUtils {
         return res;
     }
 
+    public static int[] clone(int[] a) {
+        if (a.length <= 0) throw new IllegalArgumentException();
+        int[] res = new int[a.length];
+        System.arraycopy(a, 0, res, 0, a.length);
+        return res;
+    }
+
     public static byte[] clone(byte[] a) {
         if (a.length <= 0) throw new IllegalArgumentException();
         byte[] res = new byte[a.length];

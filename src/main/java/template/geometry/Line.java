@@ -21,6 +21,30 @@ public class Line {
         this.c = c / h;
     }
 
+    /**
+     *  y - y0    x - x0
+     * ------- = -------
+     * y1 - y0   x1 - x0
+     * @param p0
+     * @param p1
+     */
+    public Line(Point p0, Point p1) {
+        /*
+        double a = p1.y - p0.y;
+        double b = p0.x - p1.x;
+        double c = (p1.x - p0.x) * p0.y - (p1.y - p0.y) * p0.x;
+        */
+        this(p1.y - p0.y, p0.x - p1.x, (p1.x - p0.x) * p0.y - (p1.y - p0.y) * p0.x);
+    }
+
+    public double y(double x) {
+        return -(a * x + c) / b;
+    }
+
+    public double x(double y) {
+        return -(b * y + c) / a;
+    }
+
     public Point intersect(Line other) {
         if (parallel(other)) {
             return null;

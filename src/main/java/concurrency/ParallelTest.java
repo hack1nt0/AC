@@ -1,7 +1,7 @@
 package concurrency;
 
 import template.graph_theory.AbstractEdge;
-import template.graph_theory.Graph;
+import template.graph_theory.BidirectionalGraph;
 
 import java.util.concurrent.*;
 
@@ -41,7 +41,7 @@ public class ParallelTest {
 
         int N = 30;
         int M = 100;
-        Graph g = new Graph(N);
+        BidirectionalGraph g = new BidirectionalGraph(N);
         int root = -1;
         for (int e = 0; e < M;) {
             int a = (int)(Math.random() * N);
@@ -58,7 +58,7 @@ public class ParallelTest {
     }
 
     static Semaphore[] semaphores;
-    public static void pDfs(int root, Graph g) {
+    public static void pDfs(int root, BidirectionalGraph g) {
 //        locks = new ReentrantLock[g.N];
 //        for (int i = 0; i < locks.length; ++i) locks[i] = new ReentrantLock();
         semaphores = new Semaphore[g.N];
@@ -72,8 +72,8 @@ public class ParallelTest {
 
     private static class pDfsHelper extends RecursiveAction{
         int cur;
-        Graph g;
-        public pDfsHelper(int cur, Graph g) {
+        BidirectionalGraph g;
+        public pDfsHelper(int cur, BidirectionalGraph g) {
             this.cur = cur;
             this.g = g;
         }

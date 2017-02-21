@@ -1,7 +1,7 @@
 /******************************************************************************
  *  Compilation:  javac GraphUtils.java
  *  Execution:    java GraphUtils V E
- *  Dependencies: Graph.java
+ *  Dependencies: BidirectionalGraph.java
  *
  *  A graph generator.
  *

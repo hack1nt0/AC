@@ -3,7 +3,7 @@ package template.operation;
 import template.collection.sequence.IntBinaryHeap;
 import template.collection.sequence.IntArrayQueue;
 import template.graph_theory.AbstractEdge;
-import template.graph_theory.Graph;
+import template.graph_theory.BidirectionalGraph;
 
 import java.util.*;
 
@@ -15,7 +15,7 @@ public class ShortestPath {
     int N, M;
     public HashMap<Integer, AbstractEdge> [] adj;
     
-    public final long INF = Long.MAX_VALUE;
+    public final Integer INF = Integer.MAX_VALUE;
 
     public ShortestPath(int N) {
         this.N = N;
@@ -23,7 +23,7 @@ public class ShortestPath {
         for (int i = 0; i < N; ++i) adj[i] = new HashMap<>();
     }
 
-    public boolean addE (int from, int to, long cost) {
+    public boolean addE (int from, int to, int cost) {
         if (from == to) {
             if (cost < 0) {
                 //throw new RuntimeException("Negative loops exist.");
@@ -32,7 +32,7 @@ public class ShortestPath {
         } else {
             if (dist(from, to) > cost) adj[from].put(to, new AbstractEdge() {
                 @Override
-                public Long getCost() {
+                public int getCost() {
                     return cost;
                 }
             });
@@ -160,19 +160,19 @@ public class ShortestPath {
         for (int k = 0; k < N; ++k)
             for (int i = 0; i < N; ++i)
                 for (int j = 0; j < N; ++j) {
-                    if (ret[i][k] != INF || ret[k][j] != INF) {
+                    if (ret[i][k] != INF && ret[k][j] != INF) {
                         ret[i][j] = Math.min(ret[i][j], ret[i][k] + ret[k][j]);
                     }
                 }
         return ret;
     }
 
-    public Graph graph() {
+    public BidirectionalGraph graph() {
         // TODO: 16-12-11
         return null;
     }
 
-    public Graph minPath(int S, int T) {
+    public BidirectionalGraph minPath(int S, int T) {
         // TODO: 16-12-11
 
         return null;
@@ -205,8 +205,8 @@ public class ShortestPath {
         return null;
     }
 
-    public long dist(int from, int to) {
-        if (from == to) return 0L;
+    public int dist(int from, int to) {
+        if (from == to) return 0;
         return adj[from].containsKey(to) ? adj[from].get(to).getCost() : INF;
     }
 
@@ -215,8 +215,8 @@ public class ShortestPath {
     }
 
     /**
-     * Return the minimum cycle of all one-more-node cycles.
-     * In the form of " from -> to -> c -> ... -> from "
+     * Return the minimum cycle of all there-or-more-node cycles.
+     * In the form of " from -> a -> b -> ... -> from "
      * @param cycle
      * @return length of minimum cycle
      */
@@ -233,24 +233,27 @@ public class ShortestPath {
                 minDist[i][j] = dist(i, j);
                 if (minDist[i][j] != INF && cycle != null) next[i][j] = j;
             }
-
-        int cycleI, cycleJ, cycleK;
-        cycleI = cycleJ = cycleK = -1;
         for (int k = 0; k < N; ++k)
             for (int i = 0; i < N; ++i)
                 for (int j = 0; j < N; ++j) {
-                    if (i <= j && j < k && minDist[i][j] != INF && dist(j, k) != INF && dist(k, i) != INF) {
+                    if (i < j && j < k && minDist[i][j] != INF && dist(j, k) != INF && dist(k, i) != INF) {
                         long curCycleLen = minDist[i][j] + dist(j, k) + dist(k, i);
                         if (curCycleLen < res) {
                             res = curCycleLen;
                             if (cycle != null) {
-                                cycleI = i;
-                                cycleJ = j;
-                                cycleK = k;
+                                cycle.clear();
+                                int t = i;
+                                while (true) {
+                                    cycle.add(t);
+                                    if (t == j) break;
+                                    t = next[t][j];
+                                }
+                                cycle.add(k);
+                                cycle.add(i);
                             }
                         }
                     }
-                    if (minDist[i][k] != INF || minDist[k][j] != INF) {
+                    if (minDist[i][k] != INF && minDist[k][j] != INF) {
                         long curDist = minDist[i][k] + minDist[k][j];
                         if (curDist < minDist[i][j]) {
                             minDist[i][j] = curDist;
@@ -261,25 +264,6 @@ public class ShortestPath {
                     }
 
                 }
-        if (cycle != null) {
-            /**
-             * Cycle with two or more nodes not exist. Which means there are no edges in this graph(only lonely
-             * separated nodes).
-             */
-            if (cycleI == -1 && cycleJ == -1 && cycleK == -1) {
-                cycle.add(0);
-            } else {
-                while (true) {
-                    if (cycleI == cycleJ) break;
-                    cycle.add(cycleI);
-                    cycleI = next[cycleI][cycleJ];
-                }
-                cycle.add(cycleJ);
-                cycle.add(cycleK);
-                cycle.add(cycleI);
-            }
-        }
-
         return res;
     }
 
@@ -290,9 +274,8 @@ public class ShortestPath {
     public static void testCycle() {
         ShortestPath shortestPath = new ShortestPath(3);
         shortestPath.addE(0, 1, 2);
-        shortestPath.addE(1, 0, 2);
-        shortestPath.addE(1, 2, -3242342);
-        shortestPath.addE(2, 1, 2);
+        shortestPath.addE(1, 2, 2);
+        shortestPath.addE(2, 0, 2);
         List<Integer> cycle = new ArrayList<>();
         System.out.println(shortestPath.minCycle(cycle));
         System.out.println(Arrays.toString(cycle.toArray()));

@@ -1,30 +1,27 @@
-8 Runround
+6 Stall4
 6 SINGLE
 7 TASK_ID
 9 input.txt
 7 TASK_ID
 10 output.txt
-3
+1
 0
-5 81361
-5 81362
-1
-1
-10 4523545334
--1
-1
-2
-2 99
--1
+36 5 5
+2 2 5
+3 2 3 4
+2 1 5
+3 1 2 5
+1 2 
+1 4
 1
 18 src/main/java/main
-16 -Xmx256m -Xss64m
-8 runround
-13 main.Runround
+15 -Xmx56m -Xss16m
+6 stall4
+11 main.Stall4
 39 net.egork.chelper.checkers.TokenChecker
 0 
 0
-10 2017.01.28
+10 2017.02.16
 5 usaco
 1
 17 java.util.Scanner

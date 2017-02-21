@@ -1,7 +1,7 @@
 package template.operation;
 
 import template.graph_theory.AbstractEdge;
-import template.graph_theory.Graph;
+import template.graph_theory.BidirectionalGraph;
 
 import java.util.*;
 
@@ -46,7 +46,7 @@ public class MinSpanningTree {
         }
 
         @Override
-        public Integer getCost() {
+        public int getCost() {
             return cost;
         }
 
@@ -114,17 +114,17 @@ public class MinSpanningTree {
             for (Edge e : adj[cure.to]) if (!vis[e.to]) que.add(e);
         }
 
-        if (nvis != N) throw new RuntimeException("Graph isnt connected");
+        if (nvis != N) throw new RuntimeException("BidirectionalGraph isnt connected");
         return ret;
     }
 
-    public Graph tree() {
+    public BidirectionalGraph tree() {
         if (needUpd) {
             needUpd = false;
             recreateAdj();
         }
 
-        Graph ret = new Graph(N);
+        BidirectionalGraph ret = new BidirectionalGraph(N);
         boolean[] vis = new boolean[N];
         vis[0] = true;
         int nvis = 1;
@@ -142,7 +142,7 @@ public class MinSpanningTree {
             for (Edge e : adj[cure.to]) if (!vis[e.to]) que.add(e);
         }
 
-        if (nvis != N) throw new RuntimeException("Graph isnt connected");
+        if (nvis != N) throw new RuntimeException("BidirectionalGraph isnt connected");
         return ret;
     }
 }

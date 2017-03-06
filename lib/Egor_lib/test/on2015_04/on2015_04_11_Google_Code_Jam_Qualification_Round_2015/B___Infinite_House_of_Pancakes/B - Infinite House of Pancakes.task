@@ -3,7 +3,7 @@
 12 LOCAL_REGEXP
 22 B-(small|large).*[.]in
 6 CUSTOM
-5 b.out
+5 to.out
 1
 0
 20 3

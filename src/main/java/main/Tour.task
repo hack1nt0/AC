@@ -1,0 +1,80 @@
+4 Tour
+6 SINGLE
+7 TASK_ID
+9 input.txt
+7 TASK_ID
+10 output.txt
+3
+0
+236 8 9
+Vancouver
+Yellowknife
+Edmonton
+Calgary
+Winnipeg
+Toronto
+Montreal
+Halifax
+Vancouver Edmonton
+Vancouver Calgary
+Calgary Winnipeg
+Winnipeg Toronto
+Toronto Halifax
+Montreal Halifax
+Edmonton Montreal
+Edmonton Yellowknife
+Edmonton Calgary
+1 7
+1
+1
+147         5 5 
+        C1 
+        C2 
+        C3 
+        C4 
+        C5 
+        C5 C4 
+        C2 C3 
+        C3 C1 
+        C4 C1 
+        C5 C2 
+1 1
+1
+2
+257         8 12 
+        A 
+        B 
+        C 
+        D 
+        E 
+        F 
+        G 
+        H 
+        A B 
+        A C 
+        C B 
+        D C 
+        D B 
+        D E 
+        D F 
+        E F 
+        E G 
+        D H 
+        H F 
+        H G 
+1 1
+1
+18 src/main/java/main
+15 -Xmx25m -Xss16m
+4 tour
+9 main.Tour
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.03.02
+5 usaco
+1
+26 template.debug.InputReader
+19 java.io.PrintWriter
+0
+1

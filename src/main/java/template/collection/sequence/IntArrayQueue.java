@@ -11,13 +11,19 @@ public class IntArrayQueue implements Iterable<Integer>{
     private int[] arr;
     private int from, to;
     private int N;
+    private boolean sizeFixed;
+
+    public IntArrayQueue(int initCapacity, boolean sizeFixed) {
+        arr = new int[initCapacity];
+        this.sizeFixed = sizeFixed;
+    }
 
     public IntArrayQueue(int initCapacity) {
-        arr = new int[initCapacity];
+        this(initCapacity, false);
     }
 
     public IntArrayQueue() {
-        arr = new int[1];
+        this(1, false);
     }
 
     public int getFirst() {
@@ -35,7 +41,7 @@ public class IntArrayQueue implements Iterable<Integer>{
         int first = arr[from++];
         if (from == arr.length) from = 0;
         N--;
-        if (N > 0 && N == arr.length / 4) resize(arr.length / 2);
+        if (!sizeFixed) if (N > 0 && N == arr.length / 4) resize(arr.length / 2);
         return first;
     }
 
@@ -45,7 +51,7 @@ public class IntArrayQueue implements Iterable<Integer>{
         if (to < 0) to = arr.length - 1;
         int last = arr[to];
         N--;
-        if (N > 0 && N == arr.length / 4) resize(arr.length / 2);
+        if (!sizeFixed) if (N > 0 && N == arr.length / 4) resize(arr.length / 2);
         return last;
     }
 
@@ -54,7 +60,10 @@ public class IntArrayQueue implements Iterable<Integer>{
     }
 
     public void addFirst(int o) {
-        if (size() == arr.length) resize(arr.length * 2);
+        if (size() == arr.length) {
+            if (sizeFixed) throw new RuntimeException("Queue overflow.");
+            resize(arr.length * 2);
+        }
         from--;
         if (from < 0) from = arr.length - 1;
         arr[from] = o;
@@ -62,7 +71,10 @@ public class IntArrayQueue implements Iterable<Integer>{
     }
 
     public void addLast(int o) {
-        if (size() == arr.length) resize(arr.length * 2);
+        if (size() == arr.length) {
+            if (sizeFixed) throw new RuntimeException("Queue overflow.");
+            resize(arr.length * 2);
+        }
         arr[to] = o;
         to++;
         if (to == arr.length) to = 0;

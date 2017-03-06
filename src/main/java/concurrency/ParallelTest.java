@@ -61,7 +61,7 @@ public class ParallelTest {
     public static void pDfs(int root, BidirectionalGraph g) {
 //        locks = new ReentrantLock[g.N];
 //        for (int i = 0; i < locks.length; ++i) locks[i] = new ReentrantLock();
-        semaphores = new Semaphore[g.N];
+        semaphores = new Semaphore[g.V()];
         for (int i = 0; i < semaphores.length; ++i) semaphores[i] = new Semaphore(1);
         final ForkJoinPool forkJoinPool = new ForkJoinPool();
         for (int i = 0; i < semaphores.length; ++i) if (semaphores[i].getQueueLength() == 0) {
@@ -83,7 +83,7 @@ public class ParallelTest {
             if (!semaphores[cur].tryAcquire(1)) return;
             System.out.println("Thread " + Thread.currentThread().getName() + ": " + cur);
             //List<RecursiveAction> tasks = new ArrayList<>();
-            for (AbstractEdge e: g.adj[cur]) {
+            for (AbstractEdge e: g.adj(cur)) {
                 RecursiveAction task = new pDfsHelper(e.getTo(), g);
                 task.fork();
                 task.join();

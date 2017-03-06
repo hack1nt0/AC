@@ -1,9 +1,11 @@
 package template.geometry;
 
+import template.numbers.DoubleUtils;
+
 /**
  * @author Egor Kulikov (kulikov@devexperts.com)
  */
-public class Point {
+public class Point implements Comparable<Point> {
     public static final Point ORIGIN = new Point(0, 0);
     public final double x;
     public final double y;
@@ -95,5 +97,22 @@ public class Point {
 
     public Point apply(Vector vector, double ratio) {
         return new Point(x + vector.x * ratio, y + vector.y * ratio);
+    }
+
+    @Override
+    public int compareTo(Point o) {
+        int compx = Math.abs(x - o.x) > GeometryUtils.epsilon ? Double.compare(x, o.x) : 0;
+        int compy = Math.abs(y - o.y) > GeometryUtils.epsilon ? Double.compare(y, o.y) : 0;
+        if (compx != 0) return compx;
+        return compy;
+    }
+
+    enum Dir {O, N, NE, E, SE, S, SW, W, NW};
+    public Dir directionOf(Point o) {
+        int compx = Math.abs(x - o.x) > GeometryUtils.epsilon ? Double.compare(x, o.x) : 0;
+        int compy = Math.abs(y - o.y) > GeometryUtils.epsilon ? Double.compare(y, o.y) : 0;
+        if (compx == 0 && compy == 0) return Dir.O;
+        if (compx == 0 && compy < 0) return Dir.N;
+        return Dir.NW;
     }
 }

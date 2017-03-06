@@ -12,13 +12,19 @@ public class ArrayQueue<T> implements Iterable<T>{
     private T[] arr;
     private int from, to;
     private int N;
+    boolean sizeFixed;
+
+    public ArrayQueue(int initCapacity, boolean sizeFixed) {
+        arr = (T[])new Object[initCapacity];
+        this.sizeFixed = sizeFixed;
+    }
 
     public ArrayQueue(int initCapacity) {
-        arr = (T[])new Object[initCapacity];
+        this(initCapacity, false);
     }
 
     public ArrayQueue() {
-        arr = (T[]) new Object[1];
+        this(1, false);
     }
 
     public T getFirst() {
@@ -36,7 +42,7 @@ public class ArrayQueue<T> implements Iterable<T>{
         T first = arr[from++];
         if (from == arr.length) from = 0;
         N--;
-        if (N > 0 && N == arr.length / 4) resize(arr.length / 2);
+        if (!sizeFixed) if (N > 0 && N == arr.length / 4) resize(arr.length / 2);
         return first;
     }
 
@@ -46,7 +52,7 @@ public class ArrayQueue<T> implements Iterable<T>{
         if (to < 0) to = arr.length - 1;
         T last = arr[to];
         N--;
-        if (N > 0 && N == arr.length / 4) resize(arr.length / 2);
+        if (!sizeFixed) if (N > 0 && N == arr.length / 4) resize(arr.length / 2);
         return last;
     }
 
@@ -55,7 +61,10 @@ public class ArrayQueue<T> implements Iterable<T>{
     }
 
     public void addFirst(T o) {
-        if (size() == arr.length) resize(arr.length * 2);
+        if (size() == arr.length) {
+            if (sizeFixed) throw new RuntimeException("Queue overflow.");
+            resize(arr.length * 2);
+        }
         from--;
         if (from < 0) from = arr.length - 1;
         arr[from] = o;
@@ -63,7 +72,10 @@ public class ArrayQueue<T> implements Iterable<T>{
     }
 
     public void addLast(T o) {
-        if (size() == arr.length) resize(arr.length * 2);
+        if (size() == arr.length) {
+            if (sizeFixed) throw new RuntimeException("Queue overflow.");
+            resize(arr.length * 2);
+        }
         arr[to] = o;
         to++;
         if (to == arr.length) to = 0;

@@ -1,5 +1,6 @@
 package template.collection.sequence;
 
+import template.collection.tuple.Tuple3;
 import template.debug.RandomUtils;
 import template.debug.Stopwatch;
 import template.numbers.IntUtils;
@@ -199,10 +200,26 @@ public class ArrayUtils {
         return res;
     }
 
+    public static <T extends Comparable<T>> T min(T[] a) {
+        if (a.length <= 0) throw new RuntimeException();
+        T res = a[0];
+        for (int i = 0; i < a.length; ++i) if (res.compareTo(a[i]) > 0) res = a[i];
+        return res;
+    }
+
     public static int min(int[] a) {
         if (a.length <= 0) throw new RuntimeException();
         int res = a[0];
         for (int i = 0; i < a.length; ++i) if (res > a[i]) res = a[i];
+        return res;
+    }
+
+    public static int min(int[][][][] a) {
+        if (a.length <= 0) throw new RuntimeException();
+        int res = a[0][0][0][0];
+        for (int i = 0; i < a.length; ++i) for (int j = 0; j < a[i].length; ++j)
+            for (int k = 0; k < a[i][j].length; ++k) for (int l = 0; l < a[i][j][k].length; ++l)
+                if (res > a[i][j][k][l]) res = a[i][j][k][l];
         return res;
     }
 
@@ -586,5 +603,50 @@ public class ArrayUtils {
 
     public static void printlnConcisely(Iterable arr1) {
         printlnConcisely(arr1, null, 100);
+    }
+
+    /**
+     *
+     * @param arr MUST be SORTED.
+     * @return
+     */
+    public static int[] unique(int[] arr) {
+        int[] res = new int[arr.length];
+        int p, q;
+        p = q = 0;
+        while (q < arr.length) {
+            if (p == 0 || arr[q] != res[p - 1]) res[p++] = arr[q];
+            q++;
+        }
+        return ArrayUtils.subArray(res, 0, p);
+    }
+
+    public static int[] subArray(int[] original, int from, int to) {
+        int[] res = new int[to - from];
+        for (int i = from; i < to; ++i) res[i] = original[i];
+        return res;
+    }
+
+    public static <T extends Comparable<T>> Tuple3<Integer, Integer, T> minIndex(T[][] arr) {
+        if (arr == null || arr.length == 0) throw new IllegalArgumentException();
+        int I, J; T K;
+        I = J = -1; K = null;
+        for (int i = 0; i < arr.length; ++i)
+            for (int j = 0; j < arr[i].length; ++j) if (K == null || K.compareTo(arr[i][j]) > 0) {
+                K = arr[i][j];
+                I = i; J = j;
+            }
+        return new Tuple3<Integer, Integer, T>(I, J, K);
+    }
+
+    public static <T extends Comparable<T>> int compare(Iterable<T> a, Iterable<T> b) {
+        Iterator<T> ita = a.iterator();
+        Iterator<T> itb = b.iterator();
+        while (ita.hasNext() && itb.hasNext()) {
+            int cmp = ita.next().compareTo(itb.next());
+            if (cmp != 0) return cmp;
+        }
+        if (!ita.hasNext() && !itb.hasNext()) return 0;
+        return ita.hasNext() ? +1 : -1;
     }
 }

@@ -1,5 +1,6 @@
 package main;
 
+import template.graph_theory.BidirectionalGraph;
 import template.operation.MaxFlow;
 
 import java.util.Scanner;
@@ -15,14 +16,15 @@ public class Ditch {
     public void solve(int testNumber, Scanner in, PrintWriter out) {
         int m = in.nextInt();
         int n = in.nextInt();
-        MaxFlow maxFlow = new MaxFlow(n);
+        BidirectionalGraph graph = new BidirectionalGraph(n);
         for (int i = 0; i < m; ++i) {
             int from = in.nextInt() - 1;
             int to = in.nextInt() - 1;
             int cap = in.nextInt();
-            maxFlow.addE(from, to, cap);
+            graph.addEdge(from, to, cap);
         }
 
-        out.println(maxFlow.maxFlow(0, n - 1));
+        MaxFlow maxFlow = new MaxFlow(graph, 0, n - 1);
+        out.println(maxFlow.getMinCuts());
     }
 }

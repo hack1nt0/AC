@@ -44,6 +44,38 @@ public class SparseMatrix implements Iterable<int[]> {
         return matrixR[r].containsKey(c);
     }
 
+    public static SparseMatrix mul(SparseMatrix A, SparseMatrix B) {
+        int N = A.N, M = B.M;
+        SparseMatrix C = new SparseMatrix(N, M);
+        for (int i = 0; i < N; ++i) {
+            if (A.matrixR[i] == null) continue;
+            for (int j = 0; j < M; ++j) {
+                if (B.matrixC[j] == null) continue;
+                int cijv = 0;
+                if (A.matrixR[i].size() < B.matrixC[j].size()) {
+//                    for (Map.Entry<Integer, Long> ake : A.matrixR[i].entrySet()) {
+//                        int ak = ake.getKey();
+//                        Long bkv = B.matrixC[j].get(ak);
+//                        if (bkv == null) continue;
+//                        long akv = ake.getFromValue();
+//                        cijv += akv * bkv;
+//                    }
+                    for (int ak : A.matrixR[i].keySet()) {
+                        if (!B.matrixC[j].containsKey(ak)) continue;
+                        cijv += A.matrixR[i].get(ak) * B.matrixC[j].get(ak);
+                    }
+                } else {
+                    for (int bk : B.matrixC[j].keySet()) {
+                        if (!A.matrixR[i].containsKey(bk)) continue;
+                        cijv += A.matrixR[i].get(bk) * B.matrixC[j].get(bk);
+                    }
+                }
+                C.put(i, j, cijv);
+            }
+        }
+        return C;
+    }
+
     @Override
     public String toString() {
         return "SparseMatrix{" +

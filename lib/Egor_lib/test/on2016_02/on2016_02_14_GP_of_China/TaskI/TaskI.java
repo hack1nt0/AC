@@ -42,7 +42,7 @@ public class TaskI {
                 }
             }
         }
-//        Graph nGraph = new Graph(n);
+//        BidirectionalGraph nGraph = new BidirectionalGraph(n);
 //        for (int i = 0; i < n - 1; i++) {
 //
 //            nGraph.addWeightedEdge(a[i], b[i], 1);

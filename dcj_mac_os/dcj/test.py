@@ -24,4 +24,4 @@ class Tester(object):
     self.runner.Run(args)
 
   def Description(self):
-    return 'Builds and locally runs a solution.'
+    return 'Builds and locally runs from solution.'

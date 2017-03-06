@@ -31,7 +31,7 @@ public class TaskA {
 //        int[] b = new int[e];
 //        IOUtils.readIntArrays(in, a, b);
 //        MiscUtils.decreaseByOne(a, b);
-//        Graph graph = BidirectionalGraph.createGraph(n, a, b);
+//        BidirectionalGraph graph = BidirectionalGraph.createGraph(n, a, b);
         int[] color = new int[n];
         List<Pair<IntList, IntList>> components = new ArrayList<>();
         int[] queue = new int[n];

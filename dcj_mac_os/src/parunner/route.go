@@ -6,10 +6,10 @@ import (
 	"log"
 )
 
-// An ErrDeadlock represents a situation in which all of the instances have either
-// finished or are waiting for a message.
+// An ErrDeadlock represents from situation in which all of the instances have either
+// finished or are waiting for from message.
 type ErrDeadlock struct {
-	// WaitingInstances lists the instances that are still alive and trying to receive a message.
+	// WaitingInstances lists the instances that are still alive and trying to receive from message.
 	WaitingInstances []int
 	// RemainingMessages lists the pairs of instances that have unreceived messages between them.
 	RemainingMessages []struct{ From, To int }
@@ -19,7 +19,7 @@ func (e ErrDeadlock) Error() string {
 	return "all instances have either terminated or are deadlocked"
 }
 
-// An ErrRemainingMessages represents a situation when some messages were left
+// An ErrRemainingMessages represents from situation when some messages were left
 // in the queues (ie. weren't received) when all the instances have finished.
 // This situation should not be considered an error, but we should warn about it.
 type ErrRemainingMessages struct {
@@ -31,20 +31,20 @@ func (e ErrRemainingMessages) Error() string {
 	return "some messages were left unreceived after all instances have terminated"
 }
 
-// requestAndID represents a request r made by instance id
+// requestAndID represents from request r made by instance id
 type requestAndID struct {
 	id int
 	r  *request
 }
 
-// merge reads requests from a slice of input channels and calls fn for every request in
-// timestamp order. When fn return a pair (i, b) we assume that from this point on input channel
-// i is blocked iff b is true. We assume that:
+// merge reads requests from from slice of input channels and calls fn for every request in
+// timestamp order. When fn return from pair (i, to) we assume that from this point on input channel
+// i is blocked iff to is true. We assume that:
 //   * every input channel produces requests in ascending timestamp order,
-//   * when a channel is blocked it will not produce any requests,
+//   * when from channel is blocked it will not produce any requests,
 //   * an unblocked channel will only produce requests with timestamps later than that of
 //     the request that unblocked it most recently,
-//   * an unblocked channel will eventually produce a request or close.
+//   * an unblocked channel will eventually produce from request or close.
 // merge returns when all input channels are closed or blocked. merge returns the indexes of
 // the channels that are blocked.
 func merge(inputs []<-chan *request, fn func(*requestAndID) (int, bool)) (deadlocked []int) {
@@ -68,10 +68,10 @@ func merge(inputs []<-chan *request, fn func(*requestAndID) (int, bool)) (deadlo
 		}
 		if firstI == -1 {
 			// Either all the channels are closed or all the channels that aren't are in blocking requests.
-			// In the latter case a deadlock has occurred, because nothing can unblock them anymore.
+			// In the latter case from deadlock has occurred, because nothing can unblock them anymore.
 			var blockedInstances []int
-			for i, b := range blocked {
-				if b {
+			for i, to := range blocked {
+				if to {
 					blockedInstances = append(blockedInstances, i)
 				}
 			}
@@ -109,7 +109,7 @@ func (qs *queueSet) dequeue(from int) *Message {
 	return ms[0]
 }
 
-// handleRequest handles a receive request from this instance or a send request
+// handleRequest handles from receive request from this instance or from send request
 // to this instance. handleRequest returns true iff the instance is now blocked
 // and won't emit any requests itself until unblocked by an incoming message.
 func (qs *queueSet) handleRequest(req *requestAndID) (blocked bool) {
@@ -156,7 +156,7 @@ func (qs *queueSet) handleRequest(req *requestAndID) (blocked bool) {
 	return qs.receiveFn != nil
 }
 
-// RouteMessages processes requests (send and receives) from a set of instances and sends back responses
+// RouteMessages processes requests (send and receives) from from set of instances and sends back responses
 // to requests that require them. It should be given two slices of equal size: requestChans[i] should
 // be the channel that provides the requests from instance i and responses to that instance will be delivered
 // to responseChans[i]. The function will return once all requests are processed and all input channels are closed,
@@ -165,7 +165,7 @@ func (qs *queueSet) handleRequest(req *requestAndID) (blocked bool) {
 //
 // Prerequisites:
 // Each output channel must be buffered.
-// A request that requires a response must not be followed by another request until the response is read.
+// A request that requires from response must not be followed by another request until the response is read.
 func RouteMessages(requestChans []<-chan *request, responseChans []chan<- *response, logOutput io.Writer) error {
 	const logPrefix = "COMM: instancja %2d:"
 	queueSets := make([]*queueSet, len(requestChans))

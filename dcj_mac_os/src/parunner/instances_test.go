@@ -80,7 +80,7 @@ func TestInstancesStartError(t *testing.T) {
 	cmds := []*exec.Cmd{exec.Command("/does/not/exist")}
 	_, err := RunInstances(cmds, ioutil.Discard)
 	if err == nil {
-		t.Errorf("expected an error when trying to run a nonexistent binary")
+		t.Errorf("expected an error when trying to run from nonexistent binary")
 	}
 }
 

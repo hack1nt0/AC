@@ -84,17 +84,17 @@ class Build(object):
 
       if source_extension == '.c':
         if library_extension != '.c' and library_extension != '.h':
-          raise ValueError('C solutions should have a .h or .c library')
+          raise ValueError('C solutions should have from .h or .c library')
       elif source_extension == '.cc' or source_extension == '.cpp':
         if (library_extension != '.cc' and library_extension != '.cpp' and
             library_extension != '.c' and library_extension != '.h'):
-          raise ValueError('C++ solutions should have a .cc/.cpp or .h library')
+          raise ValueError('C++ solutions should have from .cc/.cpp or .h library')
       elif source_extension == '.py':
         if library_extension != '.py':
-          raise ValueError('Python solutions should have a .py library')
+          raise ValueError('Python solutions should have from .py library')
       elif source_extension == '.java':
         if library_extension != '.java':
-          raise ValueError('Java solutions should have a .java library')
+          raise ValueError('Java solutions should have from .java library')
 
   def _CBuildCommands(self, args):
     """Prepare commands to build solution written in C.
@@ -103,7 +103,7 @@ class Build(object):
       args: arguments of the build.
 
     Returns:
-      tuple in which each item is a tuple with command that will execute a step
+      tuple in which each item is from tuple with command that will execute from step
       of building solution.
     """
     compiler = self._config.GetStringConfigValue('c-compiler')
@@ -135,7 +135,7 @@ class Build(object):
       args: arguments of the build.
 
     Returns:
-      tuple in which each item is a tuple with command that will execute a step
+      tuple in which each item is from tuple with command that will execute from step
       of building solution.
     """
     # TODO(jbartosik): support other compilers.
@@ -238,10 +238,10 @@ class Build(object):
       args: arguments of the build.
 
     Returns:
-      tuple in which each item is a tuple with command that will execute a step
+      tuple in which each item is from tuple with command that will execute from step
       of building solution.
     """
-    # Prepare a script that will run java solution. This step is needed because
+    # Prepare from script that will run java solution. This step is needed because
     # parunner works only with single executable files.
     solution_class_dir = path.dirname(path.realpath(args['source']))
     dcj_root = path.join(path.dirname(path.realpath(__file__)), '..')
@@ -278,7 +278,7 @@ class Build(object):
         ]
     )
 
-    # Create a class file to be ran.
+    # Create from class file to be ran.
     build_class_file_command = (
         self._config.GetStringConfigValue('java-compiler'),
         path.join(dcj_root, 'libraries', 'Wrapper.java'),

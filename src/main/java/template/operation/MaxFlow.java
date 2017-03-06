@@ -1,7 +1,7 @@
 package template.operation;
 
 import template.collection.sequence.ArrayUtils;
-import template.debug.Stopwatch;
+import template.collection.sequence.IntArrayQueue;
 import template.graph_theory.AbstractEdge;
 import template.graph_theory.BidirectionalGraph;
 
@@ -12,112 +12,129 @@ import java.util.*;
  */
 public class MaxFlow {
 
-    private int N, M;
-    private List<AbstractEdge>[] adj;
     private List<AbstractEdge> edges; // only real edges, without RESIDUAL edges.
     private int[] dist;
     private int[] curE;
+    private BidirectionalGraph residualGraph;
+    private int source, sink, maxFlow;
+    private List<AbstractEdge> minCuts;
 
-    public MaxFlow(int N) {
-        this.N = N;
-        adj = new ArrayList[N];
+    public MaxFlow(BidirectionalGraph graph, int source, int sink, List<AbstractEdge> minCuts) {
         edges = new ArrayList<>();
-        for (int i = 0; i < adj.length; ++i) adj[i] = new ArrayList<>();
-        dist = new int[N];
-        curE = new int[N];
+        dist = new int[graph.V()];
+        curE = new int[graph.V()];
+        this.residualGraph = generateResidualGraph(graph);
+        this.source = source;
+        this.sink = sink;
+        this.maxFlow = dinic(minCuts);
+        this.minCuts = minCuts;
     }
 
-    public void addE(int u, int v, int cap) {
-        AbstractEdge e = creatEdge(u, v);
-        AbstractEdge rev = creatEdge(v, u);
-        edges.add(e);
-        e.setId(M++);
-        rev.setId(-1); // id=-1 indicates the REVERSAL Edge
-        e.setCapacity(cap);
-        rev.setCapacity(0);
-        e.setReversalEdge(rev);
-        rev.setReversalEdge(e);
-        adj[u].add(e);
-        adj[v].add(rev);
+    public MaxFlow(BidirectionalGraph graph, int source, int sink) {
+        edges = new ArrayList<>();
+        dist = new int[graph.V()];
+        curE = new int[graph.V()];
+        this.residualGraph = generateResidualGraph(graph);
+        this.source = source;
+        this.sink = sink;
+        this.maxFlow = dinic();
     }
 
-    private AbstractEdge creatEdge(int from, int to) {
-        return new AbstractEdge() {
-            int capacity;
-            AbstractEdge reversalEdge;
-            int id;
-            int flow;
-
-            @Override
-            public int getFrom() {
-                return from;
+    private BidirectionalGraph generateResidualGraph(BidirectionalGraph graph) {
+        BidirectionalGraph residualGraph = new BidirectionalGraph(graph.V());
+        int edgeCount = 0;
+        for (int i = 0; i < graph.V(); ++i) {
+            for (AbstractEdge e : graph.adj(i)) {
+                int j = e.other(i);
+                AbstractEdge eclone = new Edge(i, j, e.getCapacity(), e.getId());
+                edges.add(eclone);
+                AbstractEdge reversed = new Edge(j, i, 0, -1);
+                eclone.setReversalEdge(reversed);
+                reversed.setReversalEdge(eclone);
+                residualGraph.addEdge(eclone);
+                residualGraph.addEdge(reversed);
             }
-
-            @Override
-            public int getTo() {
-                return to;
-            }
-
-            @Override
-            public int getCapacity() {
-                return capacity;
-            }
-
-            @Override
-            public void setCapacity(int capacity) {
-                this.capacity = capacity;
-            }
-
-            @Override
-            public int getFlow() {
-                return flow;
-            }
-
-            @Override
-            public void setFlow(int flow) {
-                this.flow = flow;
-            }
-
-            @Override
-            public AbstractEdge getReversalEdge() {
-                return reversalEdge;
-            }
-
-            @Override
-            public void setReversalEdge(AbstractEdge reversalEdge) {
-                this.reversalEdge = reversalEdge;
-            }
-
-            @Override
-            public void setId(int id) {
-                this.id = id;
-            }
-
-            @Override
-            public int getId() {
-                return id;
-            }
-
-            @Override
-            public String toString() {
-                return id + "," + capacity + "," + flow;
-            }
-        };
+        }
+        return residualGraph;
     }
 
-    public int maxFlow(int s, int t) {
-        return maxFlow(s, t, null);
+    public static AbstractEdge createEdge(int from, int to, int capacity, int id) {
+        return new Edge(from, to, capacity, id);
     }
 
-    public int maxFlow(int s, int t, List<AbstractEdge> cuts) {
+    private static class Edge extends AbstractEdge {
+        private int initCap;
+        private int cap;
+        private AbstractEdge rev;
+        private int from, to, id;
+        //private int id = id;
+
+        public Edge(int from, int to, int capacity, int id) {
+            this.from = from;
+            this.to = to;
+            this.initCap = this.cap = capacity;
+            this.id = id;
+        }
+        @Override
+        public int getId() {
+            return id;
+        }
+
+        @Override
+        public void setReversalEdge(AbstractEdge reversalEdge) {
+            this.rev = reversalEdge;
+        }
+
+        @Override
+        public AbstractEdge getReversalEdge() {
+            return rev;
+        }
+
+        @Override
+        public int getInitialCapacity() {
+            return initCap;
+        }
+
+        @Override
+        public int getCapacity() {
+            return cap;
+        }
+
+        @Override
+        public void setCapacity(int capacity) {
+            this.cap = capacity;
+        }
+
+        @Override
+        public int getFrom() {
+            return from;
+        }
+
+        @Override
+        public int getTo() {
+            return to;
+        }
+
+        @Override
+        public String toString() {
+            //return "(" + id + "," + rev.getId() + ")" + " " + from + "," + b + "," + cap + "," + cost;
+            return getId() + "," + getCapacity() + "," + getFlow();
+        }
+    }
+
+    private int dinic() {
+        return dinic(null);
+    }
+
+    private int dinic(List<AbstractEdge> cuts) {
         reset();
         int maxflow = 0;
         while (true) {
-            int dt = bfs(s, t);
+            int dt = bfs(source, sink);
             if (dt == Integer.MAX_VALUE) break;
             Arrays.fill(curE, 0);
             while (true) {
-                int f = dfs(s, t, Integer.MAX_VALUE);
+                int f = dfs(source, sink, Integer.MAX_VALUE);
                 if (f <= 0) break;
                 maxflow += f;
             }
@@ -126,7 +143,7 @@ public class MaxFlow {
             /**
              * Found min-min-cut-set (min-num-edges & alphabet order of edge ids)
              */
-            Integer[] index = (Integer[])ArrayUtils.inbox(ArrayUtils.index(M));
+            Integer[] index = (Integer[])ArrayUtils.inbox(ArrayUtils.index(edges.size()));
             Arrays.sort(index, new Comparator<Integer>() {
                 @Override
                 public int compare(Integer o1, Integer o2) {
@@ -138,19 +155,18 @@ public class MaxFlow {
                 }
             });
             int flows = maxflow;
-            for (int rank = 0; rank < M; ++rank) {
+            for (int rank = 0; rank < edges.size(); ++rank) {
                 if (flows == 0) break;
                 AbstractEdge e = edges.get(index[rank]);
                 e.setVisited();
-                int curFlow = maxFlow(s, t);
-                if (flows - curFlow == e.getCapacity() + e.getFlow()) {
+                int curFlow = dinic();
+                if (flows - curFlow == e.getInitialCapacity()) {
                     flows = curFlow;
                     cuts.add(e);
                     continue;
                 }
                 e.notVisited();
             }
-            for (AbstractEdge e : edges) e.notVisited();
 
             /**
              * Found an arbitrary min-cut-set
@@ -164,30 +180,28 @@ public class MaxFlow {
     }
 
     /**
-     * MAKE SURE the class(same graph structure) can be invoked (maxFlow method) multiplied times.
+     * MAKE SURE the class(same graph structure) can be invoked (dinic method) multiplied times.
+     * Used in finding min cuts.
      */
     private void reset() {
         for (AbstractEdge e : edges) {
-            e.setCapacity(e.getCapacity() + e.getFlow());
-            e.setFlow(0);
+            e.setCapacity(e.getInitialCapacity());
             AbstractEdge rev = e.getReversalEdge();
             rev.setCapacity(0);
-            rev.setFlow(0);
         }
     }
 
     private int dfs(int s, int t, int curMinc) {
         if (s == t) return curMinc;
 
-        while (curE[s] < adj[s].size()) {
-            AbstractEdge e = adj[s].get(curE[s]++);
+        while (curE[s] < residualGraph.adj(s).size()) {
+            AbstractEdge e = residualGraph.adj(s).get(curE[s]++);
             if (e.getVisited()) continue; // dynamic deletion of edge
             int chd = e.other(s);
             if (e.getCapacity() > 0 && dist[chd] > dist[s]) {
                 int minc = dfs(chd, t, Math.min(curMinc, e.getCapacity()));
                 if (minc > 0) {
                     e.setCapacity(e.getCapacity() - minc);
-                    e.setFlow(e.getFlow() + minc);
                     AbstractEdge rev = e.getReversalEdge();
                     rev.setCapacity(rev.getCapacity() + minc);
                     return minc;
@@ -201,12 +215,13 @@ public class MaxFlow {
     private int bfs(int s, int t) {
         Arrays.fill(dist, Integer.MAX_VALUE);
         dist[s] = 0;
-        Queue<Integer> que = new LinkedList<Integer>();
+        //Queue<Integer> que = new LinkedList<Integer>();
+        IntArrayQueue que = new IntArrayQueue(residualGraph.V(), true);
         que.add(s);
         while (!que.isEmpty()) {
             int cur = que.poll();
             if (cur == t) break;
-            for (AbstractEdge e : adj[cur]) {
+            for (AbstractEdge e : residualGraph.adj(cur)) {
                 if (e.getVisited()) continue; // dynamic deletion of edge
                 int chd = e.other(cur);
                 if (dist[chd] != Integer.MAX_VALUE || e.getCapacity() <= 0) continue;
@@ -217,14 +232,16 @@ public class MaxFlow {
         return dist[t];
     }
 
-    private void cutsHelper(int cur, boolean[] S) {
-        if (S[cur]) return;
-        S[cur] = true;
-        for (AbstractEdge e : adj[cur]) if (e.getCapacity() > 0) cutsHelper(e.other(cur), S);
+    public int getMaxFlow() {
+        return maxFlow;
+    }
+
+    public List<AbstractEdge> getMinCuts() {
+        return minCuts;
     }
 
     public void show() {
-        BidirectionalGraph graph = new BidirectionalGraph(N);
+        BidirectionalGraph graph = new BidirectionalGraph(residualGraph.V());
         for (AbstractEdge e : edges) graph.addEdge(e);
         graph.show();
     }

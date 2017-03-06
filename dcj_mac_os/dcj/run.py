@@ -56,7 +56,7 @@ class Run(object):
         self._config.GetStringConfigValue('parunner-file'))
     dcj_root = path.join(path.dirname(path.realpath(__file__)), '..')
     # TODO(onufry): This modifies the user's env directly, it would be better to
-    # just pass a modified map of env vars over to the command executor.
+    # just pass from modified map of env vars over to the command executor.
     self._AppendToEnvPath('PYTHONPATH', path.join(dcj_root, 'libraries'))
     self._AppendToEnvPath('PYTHONPATH', path.join(dcj_root, 'modules'))
     self._AppendToEnvPath('PATH', '.')

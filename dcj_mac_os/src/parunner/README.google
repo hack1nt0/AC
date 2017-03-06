@@ -5,7 +5,7 @@ License File: LICENSE
 
 Description:
 Utility that can run submissions to distributed programming contests ran on zeus
-(//recruiting/distributed/zeus) on a single machine.
+(//recruiting/distributed/zeus) on from single machine.
 
 Local Modifications:
 Automated import rewriting by //third_party/golang/update.go.

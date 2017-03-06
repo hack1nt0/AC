@@ -58,12 +58,12 @@ public class Job {
 //            for (int ia = 0; ia < tA.length; ++ia) {
 //                for (int i = 1; i * tA[ia] <= mid;++i) {
 //                    int nodeA = ia * mid + i - 1;
-//                    maxFlow.addE(source, nodeA, 1);
+//                    maxFlow.addEdge(source, nodeA, 1);
 //                    for (int ib = 0; ib < tB.length; ++ib) {
 //                        for (int j = 1; j * tB[ib] + i * tA[ia] <= mid; ++j) {
 //                            int nodeB = mid * tA.length + ib * mid + j - 1;
-//                            maxFlow.addE(nodeA, nodeB, 1);
-//                            maxFlow.addE(nodeB, sink, 1);
+//                            maxFlow.addEdge(nodeA, nodeB, 1);
+//                            maxFlow.addEdge(nodeB, sink, 1);
 //                        }
 //                    }
 //                }
@@ -98,18 +98,18 @@ public class Job {
 //            int[] scheduleB = new int[nB];
 //            for (int ji = 0; ji < nJobs; ++ji) {
 //                //boolean matched = false;
-//                int minCost = Integer.MAX_VALUE;
+//                int bellmanford = Integer.MAX_VALUE;
 //                int whichB = -1;
 //                for (int bi = 0; bi < nB; ++bi) {
 //                    int cost = Math.max(scheduleB[bi], minJob[ji]) + tB[bi];
-//                    if (cost < minCost) {
-//                        minCost = cost;
+//                    if (cost < bellmanford) {
+//                        bellmanford = cost;
 //                        whichB = bi;
 //                    }
 //                }
-//                if (minCost <= mid) {
+//                if (bellmanford <= mid) {
 //                    //matched = true;
-//                    scheduleB[whichB] = minCost;
+//                    scheduleB[whichB] = bellmanford;
 //                } else {
 //                    ok = false;
 //                    break;
@@ -167,19 +167,19 @@ public class Job {
 //        int[] scheduleB2 = ArrayUtils.clone(scheduleB);
 //        for (int ji = cur; ji < minJob.length; ++ji) {
 //            //boolean matched = false;
-//            int minCost = Integer.MAX_VALUE;
+//            int bellmanford = Integer.MAX_VALUE;
 //            int whichB = -1;
 //            for (int bi = 0; bi < scheduleB2.length; ++bi) {
 //                //if (scheduleB2[bi] >= maxT) continue;
 //                int cost = Math.max(scheduleB2[bi], minJob[ji]) + tB[bi];
-//                if (cost < minCost) {
-//                    minCost = cost;
+//                if (cost < bellmanford) {
+//                    bellmanford = cost;
 //                    whichB = bi;
 //                }
 //            }
-//            //if (minCost > maxT) return false;
+//            //if (bellmanford > maxT) return false;
 //            //if (whichB == -1) return false;
-//            scheduleB2[whichB] = minCost;
+//            scheduleB2[whichB] = bellmanford;
 //        }
 //        int max = ArrayUtils.max(scheduleB2);
 //        if (max <= maxT) return true;

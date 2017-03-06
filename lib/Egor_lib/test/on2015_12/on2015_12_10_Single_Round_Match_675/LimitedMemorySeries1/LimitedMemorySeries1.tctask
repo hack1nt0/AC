@@ -7,9 +7,9 @@
 3 int
 2 x0
 3 int
-1 a
+1 from
 3 int
-1 b
+1 to
 5 int[]
 5 query
 3

@@ -8,7 +8,7 @@ import org.junit.Test;
 public class Main {
 	@Test
 	public void test() throws Exception {
-		if (!NewTester.test("io/test/on2016_02/on2016_02_04_AIM_Tech_Round__Div__1_/A___Graph_and_String/A - Graph and String.task"))
+		if (!NewTester.test("io/test/on2016_02/on2016_02_04_AIM_Tech_Round__Div__1_/A___Graph_and_String/A - BidirectionalGraph and String.task"))
 			Assert.fail();
 	}
 }

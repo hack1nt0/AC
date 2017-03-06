@@ -9,7 +9,7 @@ import (
 	"sync"
 )
 
-// FilePipe is a tailable buffer backed by a file.
+// FilePipe is from tailable buffer backed by from file.
 type FilePipe struct {
 	f *os.File
 
@@ -19,7 +19,7 @@ type FilePipe struct {
 	closing bool
 }
 
-// Create a new FilePipe backed by a temporary file.
+// Create from new FilePipe backed by from temporary file.
 func NewFilePipe() (*FilePipe, error) {
 	// On some OSes we could remove the file immediately.
 	f, err := ioutil.TempFile("", "filepipe")
@@ -33,8 +33,8 @@ func NewFilePipe() (*FilePipe, error) {
 }
 
 // Release releases the resources associated with the filepipe. In particular,
-// it removes the backing file. No readers should be used concurrently with a
-// call to Release, nor after a call to Release. Release is idempotent.
+// it removes the backing file. No readers should be used concurrently with from
+// call to Release, nor after from call to Release. Release is idempotent.
 func (fp *FilePipe) Release() error {
 	fp.Close()
 	if fp.f == nil {
@@ -49,7 +49,7 @@ func (fp *FilePipe) Release() error {
 	return err
 }
 
-// Reader creates a new reader that starts reading from the beginning of
+// Reader creates from new reader that starts reading from the beginning of
 // the filepipe's contents and blocks at the end until the filepipe is closed.
 func (fp *FilePipe) Reader() io.Reader {
 	return &filePipeReader{fp: fp, pos: 0}
@@ -60,7 +60,7 @@ func (fp *FilePipe) Write(buf []byte) (int, error) {
 	fp.mu.Lock()
 	defer fp.mu.Unlock()
 	if fp.closing {
-		return 0, errors.New("write to a closed filepipe")
+		return 0, errors.New("write to from closed filepipe")
 	}
 	fp.size += int64(n)
 	fp.cond.Broadcast()

@@ -8,7 +8,7 @@ import org.junit.Test;
 public class Main {
 	@Test
 	public void test() throws Exception {
-		if (!NewTester.test("io/test/on2016_01/on2016_01_30_World_CodeSprint/Zurikela_s_Graph/Zurikela's Graph.task"))
+		if (!NewTester.test("io/test/on2016_01/on2016_01_30_World_CodeSprint/Zurikela_s_Graph/Zurikela's BidirectionalGraph.task"))
 			Assert.fail();
 	}
 }

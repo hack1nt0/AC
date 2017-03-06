@@ -240,6 +240,11 @@ public class UndirectionalGraph extends BidirectionalGraph {
         low[cur] = curLow;
     }
 
+    @Override
+    public boolean directional() {
+        return false;
+    }
+
     public boolean isTree() {
         boolean[] visited = new boolean[N];
         return isTree(0, -1, visited);
@@ -285,8 +290,8 @@ public class UndirectionalGraph extends BidirectionalGraph {
             boolean[] vis = new boolean[N];
             generateDot(vis, dot);
         }
-
-        dot.append("}").toString();
+        for (int node = 0; node < N; ++node) dot.append(String.valueOf(node)).append(";");
+        dot.append("}");
         showDot(title, dot);
     }
 

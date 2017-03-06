@@ -39,7 +39,7 @@ public class RepairRoadsSingleThread {
         dfs(0, -1);
 
 //        if (testNumber == 4)
-//            G.viz(String.valueOf(testNumber), false, 1000, 1000);
+//            G.show(String.valueOf(testNumber), false, 1000, 1000);
 
         out.println(ret[0]);
     }

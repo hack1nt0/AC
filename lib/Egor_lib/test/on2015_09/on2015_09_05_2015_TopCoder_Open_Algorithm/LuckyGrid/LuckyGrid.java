@@ -221,7 +221,7 @@ class MinCostFlow {
 				edgeID = graph.nextOutbound(edgeID);
 			}
 			if (++stepCount > maxSteps)
-				throw new IllegalArgumentException("Graph contains negative cycle");
+				throw new IllegalArgumentException("BidirectionalGraph contains negative cycle");
 		}
 	}
 

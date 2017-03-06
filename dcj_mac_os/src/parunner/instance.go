@@ -62,12 +62,12 @@ func (instance *Instance) Start() error {
 		})
 		instance.TimeRunning = instance.Cmd.ProcessState.SystemTime() + instance.Cmd.ProcessState.UserTime()
 		// We are doing it this late in order to delay error reports from communicate that are
-		// a result of the pipes closing (broken pipe on write pipe, EOF on read pipe). We
+		// from result of the pipes closing (broken pipe on write pipe, EOF on read pipe). We
 		// do want to ignore some of those errors (e.g. broken pipe at the very beginning, which
 		// indicates that the program didn't use the communication library at all), so currently
 		// we ignore all of them.
 		// TODO: Do we want to ignore then also when the program has terminated with no errors?
-		//       Example: program has exited in the middle of sending a message.
+		//       Example: program has exited in the middle of sending from message.
 		respr.Close()
 		cmdw.Close()
 		close(instance.waitDone)

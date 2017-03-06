@@ -1,5 +1,6 @@
 package template.operation;
 
+import template.graph_theory.BidirectionalGraph;
 import template.graph_theory.CCTarjan;
 
 /**
@@ -7,56 +8,51 @@ import template.graph_theory.CCTarjan;
  */
 public class SAT2 {
 
-    CCTarjan cc;
+    BidirectionalGraph graph;
     int variables;
 
     public SAT2(int N) {
         if (N % 2 != 0) throw new RuntimeException();
         variables = N / 2;
-        cc = new CCTarjan(N);
+        graph = new BidirectionalGraph(N);
     }
 
     public void addClosure(int a, boolean inva, int b, boolean invb) {
         if (!inva && !invb) {
-            cc.addE(a + variables, b);
-            cc.addE(b + variables, a);
+            graph.addEdge(a + variables, b);
+            graph.addEdge(b + variables, a);
         } else if (!inva && invb) {
-            cc.addE(a + variables, b + variables);
-            cc.addE(b, a);
+            graph.addEdge(a + variables, b + variables);
+            graph.addEdge(b, a);
         } else if (inva && !invb) {
-            cc.addE(a, b);
-            cc.addE(b + variables, a + variables);
+            graph.addEdge(a, b);
+            graph.addEdge(b + variables, a + variables);
         } else if (inva && invb) {
-            cc.addE(a, b + variables);
-            cc.addE(b, a + variables);
+            graph.addEdge(a, b + variables);
+            graph.addEdge(b, a + variables);
         }
     }
 
     public void removeClosure(int a, boolean inva, int b, boolean invb) {
         if (!inva && !invb) {
-            cc.removeE(a + variables, b);
-            cc.removeE(b + variables, a);
+            graph.addEdge(a + variables, b);
+            graph.addEdge(b + variables, a);
         } else if (!inva && invb) {
-            cc.removeE(a + variables, b + variables);
-            cc.removeE(b, a);
+            graph.addEdge(a + variables, b + variables);
+            graph.addEdge(b, a);
         } else if (inva && !invb) {
-            cc.removeE(a, b);
-            cc.removeE(b + variables, a + variables);
+            graph.addEdge(a, b);
+            graph.addEdge(b + variables, a + variables);
         } else if (inva && invb) {
-            cc.removeE(a, b + variables);
-            cc.removeE(b, a + variables);
+            graph.addEdge(a, b + variables);
+            graph.addEdge(b, a + variables);
         }
     }
 
     public boolean check() {
-        int[] idscc = cc.scc();
+        int[] idscc = new CCTarjan(graph).whichSCC();
         for (int i = 0; i < variables; ++i)
             if (idscc[i] == idscc[i + variables]) return false;
         return true;
-    }
-
-    public boolean[] value() {
-        int[] idscc = cc.scc();
-        return null;
     }
 }

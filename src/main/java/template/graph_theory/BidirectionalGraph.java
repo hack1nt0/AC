@@ -4,10 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by dy on 16-12-1.
@@ -15,8 +12,8 @@ import java.util.List;
  */
 public class BidirectionalGraph {
 
-    public int N, M;
-    public List<AbstractEdge>[] adj;
+    protected int N, M;
+    protected List<AbstractEdge>[] adj;
     private int[] indegree;
     private int[] outdegree;
 
@@ -28,6 +25,30 @@ public class BidirectionalGraph {
         for (int i = 0; i < N; ++i) adj[i] = new ArrayList<>();
         indegree = new int[N];
         outdegree = new int[N];
+    }
+
+    public void addEdge (int from, int to, int capacity, int cost) {
+        addEdge(new AbstractEdge() {
+            @Override
+            public int getCost() {
+                return cost;
+            }
+
+            @Override
+            public int getCapacity() {
+                return capacity;
+            }
+
+            @Override
+            public int getFrom() {
+                return from;
+            }
+
+            @Override
+            public int getTo() {
+                return to;
+            }
+        });
     }
 
     public void addEdge (int from, int to, int cost) {
@@ -127,8 +148,35 @@ public class BidirectionalGraph {
         throw new UnsupportedOperationException();
     }
 
-    public boolean planarity() {
+    public boolean hasNegativeCycle() {
+        int n = N;
+        int[][] dist = new int[n][n];
+        int oo = Integer.MAX_VALUE;
+        for (int i = 0; i < n; ++i) Arrays.fill(dist[i], oo);
+        for (int i = 0; i < n; ++i) for (AbstractEdge e : adj(i)) {
+            dist[i][e.other(i)] = e.getCost();
+        }
+        for (int k = 0; k < n; ++k)
+            for (int i = 0; i < n; ++i)
+                for (int j = 0; j < n; ++j) {
+                    if (dist[i][k] != oo && dist[k][j] != oo && dist[i][j] > dist[i][k] + dist[k][j]) {
+                        dist[i][j] = dist[i][k] + dist[k][j];
+                        if (i == j && dist[i][j] < 0) return true;
+                    }
+                }
+        return false;
+    }
+
+    public boolean isSparseGraph() {
+        return N <= 1 || (double)M / N / (N - 1) < 0.45;
+    }
+
+    public boolean isPlanarGraph() {
         throw new UnsupportedOperationException();
+    }
+
+    public boolean directional() {
+        return true;
     }
 
     public boolean isTree() {
@@ -197,8 +245,8 @@ public class BidirectionalGraph {
             boolean[] vis = new boolean[N];
             generateDot(vis, dot);
         }
-
-        dot.append("}").toString();
+        for (int node = 0; node < N; ++node) dot.append(String.valueOf(node)).append(";");
+        dot.append("}");
         showDot(title, dot);
     }
 

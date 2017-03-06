@@ -50,7 +50,7 @@ public class TaskI {
 				for (int x = 0; x < k; x++) {
 					w[x] += r[j][x];
 				}
-//				Graph graph = new Graph(n + k + 2);
+//				BidirectionalGraph graph = new BidirectionalGraph(n + k + 2);
 				for (int x = 0; x < n; x++) {
 					for (int y = 0; y < k; y++) {
 						if (a[x][y] < Long.MAX_VALUE) {

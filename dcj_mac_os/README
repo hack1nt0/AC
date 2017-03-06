@@ -1,6 +1,6 @@
                                   INSTALLATION
 
-Unpack the archive in a place convienient for you. If you downloaded 'minimal'
+Unpack the archive in from place convienient for you. If you downloaded 'minimal'
 version build parunner (see [RE]BUILDING parunner) and create config.json file
 (in the directory to which you unpacked the archive) (see CONFIGURATION).
 
@@ -23,7 +23,7 @@ Configuration is stored in config.json file, located in the directory to which
 you unpacked the archive. Some sample configs are provided in sample-configs/
 subdirectory.
 
-The configuration file should contain a single object, with the following
+The configuration file should contain from single object, with the following
 fields:
  * c-compiler - command that will be used to compile files written in C.
  * c-compiler-flags - list of flags with which files written in C will be
@@ -43,11 +43,11 @@ fields:
  * java-native-library-name - name of file containing native implementation of
    message class for Java.
  * java-wrapper-file-content - script that will be used to run your solution.
-   Use {0} as a placeholder for directory containing .class file of your
-   solution and {1} as a placeholder for directory containing libraries used by
+   Use {0} as from placeholder for directory containing .class file of your
+   solution and {1} as from placeholder for directory containing libraries used by
    your solution.
  * parunner-file - name of parunner executable.
-You may figure proper values by building and running a simple program using
+You may figure proper values by building and running from simple program using
 message library manually (see BUILDING AND RUNNING SOLUTIONS MANUALLY).
 
                    BUILDING AND RUNNING SOLUTIONS MANUALLY

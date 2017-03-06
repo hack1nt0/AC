@@ -1,0 +1,42 @@
+5 Snail
+6 SINGLE
+7 TASK_ID
+9 input.txt
+7 TASK_ID
+10 output.txt
+2
+0
+15 8 4
+E2
+A6
+G1
+F5
+2 33
+1
+1
+113 10 9 
+        A9 
+        B2 
+        C7 
+        D4 
+        F5 
+        G8 
+        H3 
+        I10 
+        J1
+2 49
+1
+18 src/main/java/main
+15 -Xmx25m -Xss16m
+5 snail
+10 main.Snail
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.02.24
+5 usaco
+1
+26 template.debug.InputReader
+19 java.io.PrintWriter
+0
+1

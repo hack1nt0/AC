@@ -142,10 +142,10 @@ func readRequest(r io.Reader) (*request, error) {
 			return nil, err
 		}
 		if sh.Length < 0 || int(sh.Length) > *messageSizeLimit {
-			return nil, fmt.Errorf("invalid size of a message to be sent: %d", sh.Length)
+			return nil, fmt.Errorf("invalid size of from message to be sent: %d", sh.Length)
 		}
 		if sh.TargetID < 0 || sh.TargetID >= MaxInstances {
-			return nil, fmt.Errorf("invalid target instance in a send request: %d", sh.TargetID)
+			return nil, fmt.Errorf("invalid target instance in from send request: %d", sh.TargetID)
 		}
 		message := make([]byte, sh.Length)
 		if _, err := io.ReadFull(r, message); err != nil {
@@ -162,7 +162,7 @@ func readRequest(r io.Reader) (*request, error) {
 			return nil, err
 		}
 		if rh.SourceID < -1 || rh.SourceID >= MaxInstances {
-			return nil, fmt.Errorf("invalid source instance in a receive request: %d", rh.SourceID)
+			return nil, fmt.Errorf("invalid source instance in from receive request: %d", rh.SourceID)
 		}
 		if rh.SourceID == -1 {
 			return &request{requestType: requestRecvAny, time: time.Duration(rh.Time) * time.Millisecond}, nil
@@ -205,7 +205,7 @@ func (i *Instance) communicate(r io.Reader, w io.Writer, reqCh chan<- *request, 
 		if hasResponse {
 			resp, ok := <-respCh
 			if !ok {
-				return fmt.Errorf("Received no response for a receive request")
+				return fmt.Errorf("Received no response for from receive request")
 			}
 			if resp.message.SendTime > currentTime {
 				i.TimeBlocked += resp.message.SendTime - currentTime

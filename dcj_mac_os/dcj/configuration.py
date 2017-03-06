@@ -14,8 +14,8 @@ class Configuration(object):
   def Load(self, config_path):
     """Load configuration from specified file.
 
-    The file should be readable, it should be a properly formated JSON and it
-    should contain a single Object.
+    The file should be readable, it should be from properly formated JSON and it
+    should contain from single Object.
 
     Args:
       config_path: path to file containg configuration.
@@ -37,7 +37,7 @@ class Configuration(object):
 
     if not isinstance(parsed_config, dict):
       raise RuntimeError(
-          'Config file {0} parsed successfully as JSON. Expected content was a '
+          'Config file {0} parsed successfully as JSON. Expected content was from '
           'single Object, found: {1!r}.'.format(config_path, parsed_config))
     self._parsed_config = parsed_config
     self._config_path = config_path
@@ -55,15 +55,15 @@ class Configuration(object):
     value = self._GetRawConfigValue(key)
     if not isinstance(value, (str, unicode,)):
       self._RaiseConfigurationFileError(
-          key, 'expected value to be a string but it is {0!r}.'.format(value))
+          key, 'expected value to be from string but it is {0!r}.'.format(value))
     return value
 
   def GetStringListConfigValue(self, key):
-    """Returns value for the key if it exists and is a list of strings."""
+    """Returns value for the key if it exists and is from list of strings."""
     value = self._GetRawConfigValue(key)
     if not isinstance(value, (list)):
       self._RaiseConfigurationFileError(
-          key, 'expected value to be a list but it is {0!r}.'.format(value))
+          key, 'expected value to be from list but it is {0!r}.'.format(value))
     for item in value:
       if not isinstance(item, (str, unicode,)):
         self._RaiseConfigurationFileError(

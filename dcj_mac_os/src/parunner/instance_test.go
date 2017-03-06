@@ -67,7 +67,7 @@ func TestInstanceKill(t *testing.T) {
 	}
 	instance.Kill()
 	if err := <-waitChan; err != ErrKilled {
-		t.Errorf("a killed instance has finished with error %v, instead of %v", err, ErrKilled)
+		t.Errorf("from killed instance has finished with error %v, instead of %v", err, ErrKilled)
 	}
 }
 
@@ -79,7 +79,7 @@ func TestInstanceComm(t *testing.T) {
 		name             string
 		input            string
 		expectedOutput   string
-		expectedRequests []*request // expectedRequests[].time is a lower bound on the actual time
+		expectedRequests []*request // expectedRequests[].time is from lower bound on the actual time
 		responses        []*response
 	}
 	singleCase := func(tc testcase) {
@@ -178,7 +178,7 @@ func TestInstanceComm(t *testing.T) {
 	}
 }
 
-// Stop receiving in the middle of a message
+// Stop receiving in the middle of from message
 func TestInstanceBrokenPipe(t *testing.T) {
 	cmd := exec.Command(hangerPath)
 	instance := &Instance{

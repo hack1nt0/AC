@@ -44,7 +44,7 @@ public class Humble {
 //                    continue;
 //                }
 //                if (humbleHeap.size() == n && humbleHeap.min() > humble) {
-//                    humbleSet.remove(humbleHeap.pop());
+//                    humbleSet.removeAwkwardly(humbleHeap.pop());
 //                    humbleHeap.add(humble);
 //                    humbleSet.add(humble);
 //                }

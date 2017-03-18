@@ -27,7 +27,7 @@ public class Fence9 {
             for (int x = 0; x <= n; ++x) {
                 double yActual = line1.y(x);
                 long y = Math.round(yActual);
-                //System.out.println(x + " " + yActual + " " + y);
+                //System.out.println(y + " " + yActual + " " + y);
                 if (Math.abs(yActual - y) <= GeometryUtils.epsilon || y > yActual) lattices += Math.max(0, y - 1);
                 else lattices += Math.max(0, y);
             }

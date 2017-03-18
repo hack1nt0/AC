@@ -213,7 +213,7 @@ public class IntBinaryHeap implements Iterable<Integer> {
      * Returns an iterator that iterates over the keys on this priority queue
      * in ascending order.
      * <p>
-     * The iterator doesn't implement <tt>remove()</tt> since it's optional.
+     * The iterator doesn't implement <tt>removeAwkwardly()</tt> since it's optional.
      *
      * @return an iterator that iterates over the keys in ascending order
      */

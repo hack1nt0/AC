@@ -1,0 +1,27 @@
+6 Window
+6 SINGLE
+7 TASK_ID
+9 input.txt
+7 TASK_ID
+10 output.txt
+1
+0
+39 w(a,10,132,20,12)
+w(b,8,76,124,15)
+s(a)
+6 49.167
+1
+18 src/main/java/main
+16 -Xmx256m -Xss64m
+6 window
+11 main.Window
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.03.17
+5 usaco
+1
+26 template.debug.InputReader
+19 java.io.PrintWriter
+0
+1

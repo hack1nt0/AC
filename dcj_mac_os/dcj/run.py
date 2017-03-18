@@ -12,7 +12,7 @@ class Run(object):
   """
 
   def __init__(self, config):
-    self._command_executor = lambda x: None
+    self._command_executor = lambda y: None
     self._config = config
 
   def _AppendToEnvPath(self, path_variable, value_to_append):

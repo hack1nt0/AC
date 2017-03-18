@@ -13,8 +13,8 @@ from dcj import run
 from dcj import test
 
 
-def _print(x):
-  print ' '.join(x)
+def _print(y):
+  print ' '.join(y)
   return 0  # Tell tool that command execution was succesfull.
 
 

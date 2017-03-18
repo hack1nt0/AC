@@ -1,6 +1,5 @@
 package main;
 
-import template.collection.sequence.ArrayQueue;
 import template.debug.InputReader;
 import template.geometry.Point;
 import template.geometry.Rectangle;

@@ -7,55 +7,84 @@ import java.util.List;
  * Created by dy on 17-1-15.
  */
 public class Rectangle {
-    private final Point leftBottom, rightTop;
-    private Point leftTop, rightBottom;
+    private final Point lowerLeft, upperRight;
+    private Point upperLeft, lowerRight;
 
-    public Rectangle(Point leftBottom, Point rightTop) {
-        if (!(leftBottom.x < rightTop.x && leftBottom.y < rightTop.y)) throw new IllegalArgumentException();
-        this.leftBottom = leftBottom;
-        this.rightTop = rightTop;
+    public Rectangle(Point lowerLeft, Point upperRight) {
+        if (!(lowerLeft.x < upperRight.x && lowerLeft.y < upperRight.y)) throw new IllegalArgumentException();
+        this.lowerLeft = lowerLeft;
+        this.upperRight = upperRight;
     }
 
-    public Point getLeftBottom() {
-        return leftBottom;
+    public Point getLowerLeft() {
+        return lowerLeft;
     }
 
-    public Point getRightTop() {
-        return rightTop;
+    public Point getUpperRight() {
+        return upperRight;
     }
 
-    public Point getLeftTop() {
-        if (leftTop == null) leftTop = new Point(leftBottom.x, rightTop.y);
-        return leftTop;
+    public Point getUpperLeft() {
+        if (upperLeft == null) upperLeft = new Point(lowerLeft.x, upperRight.y);
+        return upperLeft;
     }
 
-    public Point getRightBottom() {
-        if (rightBottom == null) rightBottom = new Point(rightTop.x, leftBottom.y);
-        return rightBottom;
+    public Point getLowerRight() {
+        if (lowerRight == null) lowerRight = new Point(upperRight.x, lowerLeft.y);
+        return lowerRight;
     }
 
     public boolean overlapWith(Rectangle that) {
-        boolean xo = !(rightTop.x <= that.leftBottom.x || that.rightTop.x <= leftBottom.x);
-        boolean yo = !(rightTop.y <= that.leftBottom.y || that.rightTop.y <= leftBottom.y);
+        boolean xo = !(upperRight.x <= that.lowerLeft.x || that.upperRight.x <= lowerLeft.x);
+        boolean yo = !(upperRight.y <= that.lowerLeft.y || that.upperRight.y <= lowerLeft.y);
         return xo && yo;
     }
 
     public Rectangle overlap(Rectangle that) {
-        double x1 = Math.max(leftBottom.x, that.leftBottom.x);
-        double x2 = Math.min(rightTop.x, that.rightTop.x);
-        double y1 = Math.max(leftBottom.y, that.leftBottom.y);
-        double y2 = Math.min(rightTop.y, that.rightTop.y);
+        if (!overlapWith(that)) throw new IllegalArgumentException();
+        double x1 = Math.max(lowerLeft.x, that.lowerLeft.x);
+        double x2 = Math.min(upperRight.x, that.upperRight.x);
+        double y1 = Math.max(lowerLeft.y, that.lowerLeft.y);
+        double y2 = Math.min(upperRight.y, that.upperRight.y);
         return new Rectangle(new Point(x1, y1), new Point(x2, y2));
     }
 
     public boolean cover(Rectangle that) {
-        boolean xc = leftBottom.x <= that.leftBottom.x && that.rightTop.x <= rightTop.x;
-        boolean yc = leftBottom.y <= that.leftBottom.y && that.rightTop.y <= rightTop.y;
+        boolean xc = lowerLeft.x <= that.lowerLeft.x && that.upperRight.x <= upperRight.x;
+        boolean yc = lowerLeft.y <= that.lowerLeft.y && that.upperRight.y <= upperRight.y;
         return xc && yc;
     }
 
+    public List<Rectangle> remove(Rectangle o) {
+        List<Rectangle> res = new ArrayList<>();
+        if (!overlapWith(o)) {
+            res.add(this);
+            return res;
+        }
+        double x1 = getLowerLeft().x;
+        double y1 = getLowerLeft().y;
+        double x2 = getUpperRight().x;
+        double y2 = getUpperRight().y;
+        if (x1 < o.getLowerLeft().x) {
+            res.add(new Rectangle(getLowerLeft(), new Point(o.getLowerLeft().x, y2)));
+            x1 = o.getLowerLeft().x;
+        }
+        if (o.getLowerRight().x < x2) {
+            res.add(new Rectangle(new Point(o.getLowerRight().x, y1), getUpperRight()));
+            x2 = o.getLowerRight().x;
+        }
+        if (y1 < o.getLowerLeft().y) {
+            res.add(new Rectangle(new Point(x1, y1), new Point(x2, o.getLowerLeft().y)));
+            y1 = o.getLowerLeft().y;
+        }
+        if (o.getUpperLeft().y < y2) {
+            res.add(new Rectangle(new Point(x1, o.getUpperLeft().y), new Point(x2, y2)));
+            y2 = o.getUpperLeft().y;
+        }
+        return res;
+    }
 
-    public List<Rectangle> remove(Rectangle that) {
+    public List<Rectangle> removeAwkwardly(Rectangle that) {
         List<Rectangle> res = new ArrayList<>();
         if (that.cover(this)) return res;
         if (!overlapWith(that)) {
@@ -63,90 +92,90 @@ public class Rectangle {
             return res;
         }
         Rectangle removed = overlap(that);
-        if (removed.getLeftTop().equals(getLeftTop()) && between(removed.getRightTop(), getLeftTop(), getRightTop()) && between(removed.getLeftBottom(), getLeftTop(), getLeftBottom())) {
-            res.add(new Rectangle(removed.getRightBottom(), getRightTop()));
-            res.add(new Rectangle(getLeftBottom(), new Point(getRightBottom().x, removed.getLeftBottom().y)));
+        if (removed.getUpperLeft().equals(getUpperLeft()) && between(removed.getUpperRight(), getUpperLeft(), getUpperRight()) && between(removed.getLowerLeft(), getUpperLeft(), getLowerLeft())) {
+            res.add(new Rectangle(removed.getLowerRight(), getUpperRight()));
+            res.add(new Rectangle(getLowerLeft(), new Point(getLowerRight().x, removed.getLowerLeft().y)));
             return res;
         }
-        if (removed.getLeftTop().equals(getLeftTop()) && removed.getRightTop().equals(getRightTop()) && between(removed.getLeftBottom(), getLeftTop(), getLeftBottom()) && between(removed.getRightBottom(), getRightTop(), getRightBottom())) {
-            res.add(new Rectangle(getLeftBottom(), removed.getRightBottom()));
+        if (removed.getUpperLeft().equals(getUpperLeft()) && removed.getUpperRight().equals(getUpperRight()) && between(removed.getLowerLeft(), getUpperLeft(), getLowerLeft()) && between(removed.getLowerRight(), getUpperRight(), getLowerRight())) {
+            res.add(new Rectangle(getLowerLeft(), removed.getLowerRight()));
             return res;
         }
-        if (removed.getLeftTop().equals(getLeftTop()) && removed.getLeftBottom().equals(getLeftBottom()) && between(removed.getRightTop(), getLeftTop(), getRightTop()) && between(removed.getRightBottom(), getLeftBottom(), getRightBottom())) {
-            res.add(new Rectangle(removed.getRightBottom(), getRightTop()));
+        if (removed.getUpperLeft().equals(getUpperLeft()) && removed.getLowerLeft().equals(getLowerLeft()) && between(removed.getUpperRight(), getUpperLeft(), getUpperRight()) && between(removed.getLowerRight(), getLowerLeft(), getLowerRight())) {
+            res.add(new Rectangle(removed.getLowerRight(), getUpperRight()));
             return res;
         }
-        if (between(removed.getLeftTop(), getLeftTop(), getRightTop()) && between(removed.getRightTop(), getLeftTop(), getRightTop()) && this.contains(removed.getLeftBottom())) {
-            res.add(new Rectangle(getLeftBottom(), removed.getLeftTop()));
-            res.add(new Rectangle(new Point(removed.getLeftBottom().x, getLeftBottom().y), removed.getRightBottom()));
-            res.add(new Rectangle(new Point(removed.getRightBottom().x, getLeftBottom().y), getRightTop()));
+        if (between(removed.getUpperLeft(), getUpperLeft(), getUpperRight()) && between(removed.getUpperRight(), getUpperLeft(), getUpperRight()) && this.contains(removed.getLowerLeft())) {
+            res.add(new Rectangle(getLowerLeft(), removed.getUpperLeft()));
+            res.add(new Rectangle(new Point(removed.getLowerLeft().x, getLowerLeft().y), removed.getLowerRight()));
+            res.add(new Rectangle(new Point(removed.getLowerRight().x, getLowerLeft().y), getUpperRight()));
             return res;
         }
-        if (between(removed.getLeftTop(), getLeftTop(), getRightTop()) && removed.getRightTop().equals(getRightTop()) && this.contains(removed.getLeftBottom())) {
-            res.add(new Rectangle(getLeftBottom(), removed.getLeftTop()));
-            res.add(new Rectangle(new Point(removed.getLeftBottom().x, getLeftBottom().y), removed.getRightBottom()));
+        if (between(removed.getUpperLeft(), getUpperLeft(), getUpperRight()) && removed.getUpperRight().equals(getUpperRight()) && this.contains(removed.getLowerLeft())) {
+            res.add(new Rectangle(getLowerLeft(), removed.getUpperLeft()));
+            res.add(new Rectangle(new Point(removed.getLowerLeft().x, getLowerLeft().y), removed.getLowerRight()));
             return res;
         }
-        if (between(removed.getLeftTop(), getLeftTop(), getRightTop()) && between(removed.getRightTop(), getLeftTop(), getRightTop()) && between(removed.getLeftBottom(), getLeftBottom(), getRightBottom())) {
-            res.add(new Rectangle(getLeftBottom(), removed.getLeftTop()));
-            res.add(new Rectangle(removed.getRightBottom(), getRightTop()));
+        if (between(removed.getUpperLeft(), getUpperLeft(), getUpperRight()) && between(removed.getUpperRight(), getUpperLeft(), getUpperRight()) && between(removed.getLowerLeft(), getLowerLeft(), getLowerRight())) {
+            res.add(new Rectangle(getLowerLeft(), removed.getUpperLeft()));
+            res.add(new Rectangle(removed.getLowerRight(), getUpperRight()));
             return res;
         }
-        if (between(removed.getLeftTop(), getLeftTop(), getRightTop()) && removed.getRightTop().equals(getRightTop()) && removed.getRightBottom().equals(getRightBottom())) {
-            res.add(new Rectangle(getLeftBottom(), removed.getLeftTop()));
-            return res;
-        }
-
-        if (between(removed.getLeftTop(), getLeftTop(), getLeftBottom()) && between(removed.getLeftBottom(), getLeftTop(), getLeftBottom()) && this.contains(removed.getRightTop())) {
-            res.add(new Rectangle(removed.getLeftTop(), getRightTop()));
-            res.add(new Rectangle(removed.getRightBottom(), new Point(getRightTop().x, removed.getRightTop().y)));
-            res.add(new Rectangle(getLeftBottom(), new Point(getRightTop().x, removed.getRightBottom().y)));
-            return res;
-        }
-        if (between(removed.getLeftTop(), getLeftTop(), getLeftBottom()) && between(removed.getLeftBottom(), getLeftTop(), getLeftBottom()) && between(removed.getRightTop(), getRightBottom(), getRightTop())) {
-            res.add(new Rectangle(removed.getLeftTop(), getRightTop()));
-            res.add(new Rectangle(getLeftBottom(), removed.getRightBottom()));
-            return res;
-        }
-        if (this.contains(removed.getLeftTop()) && this.contains(removed.getLeftBottom()) && this.contains(removed.getRightTop())) {
-            res.add(new Rectangle(getLeftBottom(), new Point(removed.getLeftTop().x, getRightTop().y)));
-            res.add(new Rectangle(removed.getLeftTop(), new Point(removed.getRightTop().x, getRightTop().y)));
-            res.add(new Rectangle(new Point(removed.getLeftBottom().x, getLeftBottom().y), removed.getRightBottom()));
-            res.add(new Rectangle(new Point(removed.getRightBottom().x, getRightBottom().y), getRightTop()));
-            return res;
-        }
-        if (this.contains(removed.getLeftTop()) && this.contains(removed.getLeftBottom()) && between(removed.getRightTop(), getRightBottom(), getRightTop())) {
-            res.add(new Rectangle(getLeftBottom(), new Point(removed.getLeftTop().x, getRightTop().y)));
-            res.add(new Rectangle(removed.getLeftTop(), getRightTop()));
-            res.add(new Rectangle(new Point(removed.getLeftBottom().x, getLeftBottom().y), removed.getRightBottom()));
+        if (between(removed.getUpperLeft(), getUpperLeft(), getUpperRight()) && removed.getUpperRight().equals(getUpperRight()) && removed.getLowerRight().equals(getLowerRight())) {
+            res.add(new Rectangle(getLowerLeft(), removed.getUpperLeft()));
             return res;
         }
 
-        if (between(removed.getLeftTop(), getLeftBottom(), getLeftTop()) && removed.getLeftBottom().equals(getLeftBottom()) && this.contains(removed.getRightTop())) {
-            res.add(new Rectangle(removed.getLeftTop(), getRightTop()));
-            res.add(new Rectangle(removed.getRightBottom(), new Point(getRightBottom().x, removed.getRightTop().y)));
+        if (between(removed.getUpperLeft(), getUpperLeft(), getLowerLeft()) && between(removed.getLowerLeft(), getUpperLeft(), getLowerLeft()) && this.contains(removed.getUpperRight())) {
+            res.add(new Rectangle(removed.getUpperLeft(), getUpperRight()));
+            res.add(new Rectangle(removed.getLowerRight(), new Point(getUpperRight().x, removed.getUpperRight().y)));
+            res.add(new Rectangle(getLowerLeft(), new Point(getUpperRight().x, removed.getLowerRight().y)));
             return res;
         }
-        if (between(removed.getLeftTop(), getLeftBottom(), getLeftTop()) && removed.getLeftBottom().equals(getLeftBottom()) && removed.getRightBottom().equals(getRightBottom())) {
-            res.add(new Rectangle(removed.getLeftTop(), getRightTop()));
+        if (between(removed.getUpperLeft(), getUpperLeft(), getLowerLeft()) && between(removed.getLowerLeft(), getUpperLeft(), getLowerLeft()) && between(removed.getUpperRight(), getLowerRight(), getUpperRight())) {
+            res.add(new Rectangle(removed.getUpperLeft(), getUpperRight()));
+            res.add(new Rectangle(getLowerLeft(), removed.getLowerRight()));
             return res;
         }
-        if (this.contains(removed.getLeftTop()) && this.contains(removed.getRightTop()) && between(removed.getLeftBottom(), getLeftBottom(), getRightBottom())) {
-            res.add(new Rectangle(getLeftBottom(), new Point(removed.getLeftBottom().x, getRightTop().y)));
-            res.add(new Rectangle(removed.getLeftTop(), new Point(removed.getRightTop().x, getRightTop().y)));
-            res.add(new Rectangle(removed.getRightBottom(), getRightTop()));
+        if (this.contains(removed.getUpperLeft()) && this.contains(removed.getLowerLeft()) && this.contains(removed.getUpperRight())) {
+            res.add(new Rectangle(getLowerLeft(), new Point(removed.getUpperLeft().x, getUpperRight().y)));
+            res.add(new Rectangle(removed.getUpperLeft(), new Point(removed.getUpperRight().x, getUpperRight().y)));
+            res.add(new Rectangle(new Point(removed.getLowerLeft().x, getLowerLeft().y), removed.getLowerRight()));
+            res.add(new Rectangle(new Point(removed.getLowerRight().x, getLowerRight().y), getUpperRight()));
             return res;
         }
-        if (this.contains(removed.getLeftTop()) && between(removed.getLeftBottom(), getLeftBottom(), getRightBottom()) && removed.getRightBottom().equals(getRightBottom())) {
-            res.add(new Rectangle(getLeftBottom(), new Point(removed.getLeftBottom().x, getRightTop().y)));
-            res.add(new Rectangle(removed.getLeftTop(), getRightTop()));
+        if (this.contains(removed.getUpperLeft()) && this.contains(removed.getLowerLeft()) && between(removed.getUpperRight(), getLowerRight(), getUpperRight())) {
+            res.add(new Rectangle(getLowerLeft(), new Point(removed.getUpperLeft().x, getUpperRight().y)));
+            res.add(new Rectangle(removed.getUpperLeft(), getUpperRight()));
+            res.add(new Rectangle(new Point(removed.getLowerLeft().x, getLowerLeft().y), removed.getLowerRight()));
+            return res;
+        }
+
+        if (between(removed.getUpperLeft(), getLowerLeft(), getUpperLeft()) && removed.getLowerLeft().equals(getLowerLeft()) && this.contains(removed.getUpperRight())) {
+            res.add(new Rectangle(removed.getUpperLeft(), getUpperRight()));
+            res.add(new Rectangle(removed.getLowerRight(), new Point(getLowerRight().x, removed.getUpperRight().y)));
+            return res;
+        }
+        if (between(removed.getUpperLeft(), getLowerLeft(), getUpperLeft()) && removed.getLowerLeft().equals(getLowerLeft()) && removed.getLowerRight().equals(getLowerRight())) {
+            res.add(new Rectangle(removed.getUpperLeft(), getUpperRight()));
+            return res;
+        }
+        if (this.contains(removed.getUpperLeft()) && this.contains(removed.getUpperRight()) && between(removed.getLowerLeft(), getLowerLeft(), getLowerRight())) {
+            res.add(new Rectangle(getLowerLeft(), new Point(removed.getLowerLeft().x, getUpperRight().y)));
+            res.add(new Rectangle(removed.getUpperLeft(), new Point(removed.getUpperRight().x, getUpperRight().y)));
+            res.add(new Rectangle(removed.getLowerRight(), getUpperRight()));
+            return res;
+        }
+        if (this.contains(removed.getUpperLeft()) && between(removed.getLowerLeft(), getLowerLeft(), getLowerRight()) && removed.getLowerRight().equals(getLowerRight())) {
+            res.add(new Rectangle(getLowerLeft(), new Point(removed.getLowerLeft().x, getUpperRight().y)));
+            res.add(new Rectangle(removed.getUpperLeft(), getUpperRight()));
             return res;
         }
         throw new RuntimeException();
     }
 
     public double area() {
-        return (rightTop.x - leftBottom.x) * (rightTop.y - leftBottom.y);
+        return (upperRight.x - lowerLeft.x) * (upperRight.y - lowerLeft.y);
     }
 
     public boolean between(Point a, Point b, Point c) {
@@ -166,12 +195,16 @@ public class Rectangle {
     }
 
     public boolean contains(Point a, boolean strict) {
-        if (strict) return leftBottom.x < a.x && a.x < rightTop.x && leftBottom.y < a.y && a.y < rightTop.y;
-        return leftBottom.x <= a.x && a.x <= rightTop.x && leftBottom.y <= a.y && a.y <= rightTop.y;
+        if (strict) return lowerLeft.x < a.x && a.x < upperRight.x && lowerLeft.y < a.y && a.y < upperRight.y;
+        return lowerLeft.x <= a.x && a.x <= upperRight.x && lowerLeft.y <= a.y && a.y <= upperRight.y;
     }
 
     public boolean contains(Point a) {
         return contains(a, true);
+    }
+
+    public double perimeter() {
+        return (getLowerRight().x - getLowerLeft().x + getUpperLeft().y - getLowerLeft().y) * 2;
     }
 }
 

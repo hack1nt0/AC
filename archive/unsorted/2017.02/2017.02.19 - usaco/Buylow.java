@@ -67,7 +67,7 @@ public class Buylow {
             next = stock[i];
             //list.add(stock[i]);
             res = res.add(dfs(i, maxLen - 1, maxLens, stock, unique));
-            //list.remove(list.size() - 1);
+            //list.removeAwkwardly(list.size() - 1);
         }
         //System.err.println(to + " " + maxLen + " " + res);
         unique[to] = res;

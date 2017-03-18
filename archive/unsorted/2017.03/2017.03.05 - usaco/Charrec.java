@@ -17,7 +17,7 @@ import java.util.*;
 */
 
 /**
- * some little bugs in... hard to debug.
+ * Problem describing is obscure...
  */
 public class Charrec {
     public void solve(int testNumber, InputReader in, PrintWriter out) {
@@ -43,7 +43,7 @@ public class Charrec {
         int[] minCorrupt = new int[n + 1];
         int oo = Integer.MAX_VALUE / 2;
         Arrays.fill(minCorrupt, oo);
-        minCorrupt[0] = 0;
+        minCorrupt[n] = 0;
         int[][][][] minMatch = new int[21 + 1][dict[0].length + 1][2][2];
         for (int i = 0; i < minMatch.length; ++i)
             for (int j = 0; j < 2; ++j)
@@ -52,13 +52,8 @@ public class Charrec {
             for (int j = 0; j < 2; ++j)
                 for (int k = 0; k < 2; ++k) minMatch[0][i][j][k] = oo;
         minMatch[0][0][0][0] = 0;
-        for (int toInput = 0; toInput < n; ++toInput) {
-            if (toInput < 18) {
-                minCorrupt[toInput + 1] = oo;
-                continue;
-            }
-            int fromInput = Math.max(0, toInput - 20);
-            int lenInput = toInput - fromInput + 1;
+        for (int fromInput = n - 1 - 18; fromInput >= 0; --fromInput) {
+            int lenInput = Math.min(n - fromInput, 21);
             for (int d = 0; d < dict.length; ++d) {
                 for (int i = 0; i < lenInput; ++i) {
                     for (int j = 0; j < dict[d].length; ++j) if (Math.abs(i - j) <= 1) {
@@ -66,46 +61,52 @@ public class Charrec {
                             for (int missing = 0; missing <= 1; ++missing) {
                                 minMatch[i + 1][j + 1][duplicate][missing] = oo;
                                 if (duplicate == 1 && missing == 1) continue;
-                                int diff = Integer.bitCount(input[toInput - i] ^ dict[d][dict[d].length - 1 - j]);
+                                int diff = Integer.bitCount(input[fromInput + i] ^ dict[d][j]);
                                 int res = minMatch[i][j][duplicate][missing] + diff;
                                 if (duplicate == 1 && i > 0) {
                                     res = Math.min(res, minMatch[i - 1][j][0][0] + diff);
                                     res = Math.min(res, minMatch[i][j + 1][0][0]);
                                 }
                                 if (missing == 1) {
-                                    res = Math.min(res, minMatch[i + 1][j][0][0] + 20);
+                                    res = Math.min(res, minMatch[i + 1][j][0][0] + 1);
                                 }
                                 minMatch[i + 1][j + 1][duplicate][missing] = res;
                             }
                         }
                     }
                 }
-                if (lenInput >= 19 && minCorrupt[toInput + 1] > minMatch[19][dict[d].length][0][1] + minCorrupt[toInput + 1 - 19]) {
-                    minCorrupt[toInput + 1] = minMatch[19][dict[d].length][0][1] + minCorrupt[toInput + 1 - 19];
-                    minChar[toInput + 1] = id2Char(d);
-                    minExtend[toInput + 1] = 19;
+                if (lenInput >= 19 && minCorrupt[fromInput] > minMatch[19][dict[d].length][0][1] + minCorrupt[fromInput + 19]) {
+                    minCorrupt[fromInput] = minMatch[19][dict[d].length][0][1] + minCorrupt[fromInput + 19];
+                    minChar[fromInput] = id2Char(d);
+                    minExtend[fromInput] = 19;
                 }
-                if (lenInput >= 20 && minCorrupt[toInput + 1] > minMatch[20][dict[d].length][0][0] + minCorrupt[toInput + 1 - 20]) {
-                    minCorrupt[toInput + 1] = minMatch[20][dict[d].length][0][0] + minCorrupt[toInput + 1 - 20];
-                    minChar[toInput + 1] = id2Char(d);
-                    minExtend[toInput + 1] = 20;
+                if (lenInput >= 20 && minCorrupt[fromInput] > minMatch[20][dict[d].length][0][0] + minCorrupt[fromInput + 20]) {
+                    minCorrupt[fromInput] = minMatch[20][dict[d].length][0][0] + minCorrupt[fromInput + 20];
+                    minChar[fromInput] = id2Char(d);
+                    minExtend[fromInput] = 20;
                 }
-                if (lenInput >= 21 && minCorrupt[toInput + 1] > minMatch[21][dict[d].length][1][0] + minCorrupt[toInput + 1 - 21]) {
-                    minCorrupt[toInput + 1] = minMatch[21][dict[d].length][1][0] + minCorrupt[toInput + 1 - 21];
-                    minChar[toInput + 1] = id2Char(d);
-                    minExtend[toInput + 1] = 21;
+                if (lenInput >= 21 && minCorrupt[fromInput] > minMatch[21][dict[d].length][1][0] + minCorrupt[fromInput + 21]) {
+                    minCorrupt[fromInput] = minMatch[21][dict[d].length][1][0] + minCorrupt[fromInput + 21];
+                    minChar[fromInput] = id2Char(d);
+                    minExtend[fromInput] = 21;
                 }
             }
         }
-        for (int indexInput = n; indexInput > 0;) {
+        for (int indexInput = 0; indexInput < n;) {
             ans.append(minChar[indexInput]);
-            indexInput -= minExtend[indexInput];
+            indexInput += minExtend[indexInput];
         }
-        out.println(ans.reverse().toString());
+        out.println(ans.toString());
     }
 
+    private Tuple3<Integer, Integer, Integer> getDiff(int[] input1, int from1, int to1, int[] input2, int from2, int to2) {
+        if (to2 - from2 != 20) throw new IllegalArgumentException();
+        int len1 = to1 - from1;
+        int len2 = to2 - from2;
+        return null;
+    }
 
-    public void solveWrongly(int testNumber, InputReader in, PrintWriter out) {
+    public void solveW(int testNumber, InputReader in, PrintWriter out) {
         //int[] dict = new int[540];
         int nLetter = 27;
         Integer[][] dict = new Integer[nLetter][20];
@@ -152,7 +153,7 @@ public class Charrec {
                                 int res = minCorrupt[i][j][duplicate][missing] + Integer.bitCount(input[from + i] ^ dictD[j]);
                                 if (duplicate == 1 && i > 0) {
                                     res = Math.min(res, minCorrupt[i - 1][j][0][0] + Integer.bitCount(input[from + i] ^ dictD[j]));
-                                    res = Math.min(res, minCorrupt[i - 1][j][0][0] + Integer.bitCount(input[from + i - 1] ^ dictD[j]));
+                                    res = Math.min(res, minCorrupt[i][j + 1][0][0]);
                                 }
                                 if (missing == 1) {
                                     res = Math.min(res, minCorrupt[i + 1][j][0][0] + 20);

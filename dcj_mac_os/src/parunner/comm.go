@@ -170,7 +170,7 @@ func readRequest(r io.Reader) (*request, error) {
 			return &request{requestType: requestRecv, time: time.Duration(rh.Time) * time.Millisecond, source: int(rh.SourceID)}, nil
 		}
 	default:
-		return nil, fmt.Errorf("invalid operation type 0x%x", opType[0])
+		return nil, fmt.Errorf("invalid operation type 0x%y", opType[0])
 	}
 }
 

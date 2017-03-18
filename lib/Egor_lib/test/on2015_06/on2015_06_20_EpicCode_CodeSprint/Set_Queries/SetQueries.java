@@ -69,8 +69,8 @@ public class SetQueries {
 //            }
 //
 //            @Override
-//            protected long joinDelta(long was, long delta) {
-//                long result = was + delta;
+//            protected long joinDelta(long was, long getDelta) {
+//                long result = was + getDelta;
 //                if (result >= MOD) {
 //                    result -= MOD;
 //                }
@@ -78,8 +78,8 @@ public class SetQueries {
 //            }
 //
 //            @Override
-//            protected long accumulate(long value, long delta, int length) {
-//                return (value + delta * length) % MOD;
+//            protected long accumulate(long value, long getDelta, int length) {
+//                return (value + getDelta * length) % MOD;
 //            }
 //
 //            @Override

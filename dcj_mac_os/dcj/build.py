@@ -6,8 +6,8 @@ class Build(object):
   """A class for building DCJ test executables."""
 
   def __init__(self, config):
-    self._command_executor = lambda x: None
-    self._script_creator = lambda x, y: None
+    self._command_executor = lambda y: None
+    self._script_creator = lambda y, y: None
     self._config = config
 
   def SetCommandExecutor(self, command_executor):

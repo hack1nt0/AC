@@ -1,10 +1,12 @@
 package template.collection.sequence;
 
+import com.sun.javafx.image.IntToIntPixelConverter;
 import template.collection.tuple.Tuple3;
 import template.debug.RandomUtils;
 import template.debug.Stopwatch;
 import template.numbers.IntUtils;
 
+import javax.management.relation.RoleUnresolved;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.*;
@@ -14,24 +16,31 @@ import java.util.*;
  */
 public class ArrayUtils {
     public static void main(String[] args) {
-        //testSort();
-        testReverseOrderPairs();
+        testSort();
+        //testReverseOrderPairs();
+
     }
 
     private static void testSort() {
         while (true) {
-            int[] arr = IntUtils.randomInts(10000000, -100000000, 100000000);
-            int[] arr1 = arr.clone();
-            int[] arr2 = arr.clone();
-            Stopwatch.tic();
-            mergeSort(arr1);
-            Stopwatch.toc();
-            Stopwatch.tic();
-            Arrays.sort(arr2);
-            Stopwatch.toc();
-            if (!Arrays.equals(arr1, arr2)) {
-                //ArrayUtils.printlnTableH(arr1, arr2);
-                System.out.println("error");
+//            int[] arr = IntUtils.randomInts(10000000, -100000000, 100000000);
+//            int[] arr1 = arr.clone();
+//            int[] arr2 = arr.clone();
+//            Stopwatch.tic();
+//            mergeSort(arr1);
+//            Stopwatch.toc();
+//            Stopwatch.tic();
+//            Arrays.sort(arr2);
+//            Stopwatch.toc();
+//            if (!Arrays.equals(arr1, arr2)) {
+//                //ArrayUtils.printlnTableH(arr1, arr2);
+//                System.out.println("error");
+//            }
+            int W = 100000;
+            int[] arr = IntUtils.randomInts(100000, 0, W);
+            countingSort(arr, W);
+            if (!sorted(arr)) {
+                throw new RuntimeException();
             }
         }
     }
@@ -137,6 +146,48 @@ public class ArrayUtils {
 //                throw new RuntimeException();
 //            }
         }
+    }
+
+    public static void countingSort(int[] index, int W) {
+        int min = ArrayUtils.min(index);
+        int offset = 0;
+        if (min < 0) offset = -min;
+        int[] count = new int[W + 1];
+        for (int i : index) count[i + offset + 1]++;
+        for (int i = 0; i < W; ++i) count[i + 1] += count[i];
+        int[] aux = new int[index.length];
+        for (int i = 0; i < aux.length; ++i) aux[count[index[i] + offset]++] = index[i];
+        for (int i = 0; i < aux.length; ++i) index[i] = aux[i];
+    }
+
+    public static void countingSort(int[] index, IntToIntMapper mapper, int W) {
+        int min = Integer.MAX_VALUE;
+        for (int i : index) min = Math.min(min, mapper.map(i));
+        int offset = 0;
+        if (min < 0) offset = -min;
+        int[] count = new int[W + 1];
+        for (int i : index) count[mapper.map(i) + offset + 1]++;
+        for (int i = 0; i < W; ++i) count[i + 1] += count[i];
+        int[] aux = new int[index.length];
+        for (int i = 0; i < aux.length; ++i) aux[count[mapper.map(index[i]) + offset]++] = index[i];
+        for (int i = 0; i < aux.length; ++i) index[i] = aux[i];
+    }
+
+    public static void countingSort(int[] index, IntToIntMapper mapper, int W, int[] aux) {
+        if (aux.length != index.length) throw new IllegalArgumentException();
+        int min = Integer.MAX_VALUE;
+        for (int i : index) min = Math.min(min, mapper.map(i));
+        int offset = 0;
+        if (min < 0) offset = -min;
+        int[] count = new int[W + 1];
+        for (int i : index) count[mapper.map(i) + offset + 1]++;
+        for (int i = 0; i < W; ++i) count[i + 1] += count[i];
+        for (int i = 0; i < aux.length; ++i) aux[count[mapper.map(index[i]) + offset]++] = index[i];
+        for (int i = 0; i < aux.length; ++i) index[i] = aux[i];
+    }
+
+    public static interface IntToIntMapper {
+        public abstract int map(int i);
     }
 
     public static void swap(int[] arr, int i, int j) {
@@ -403,6 +454,33 @@ public class ArrayUtils {
         for (int i = 0; i < arr.length; ++i)
             for (int j = 0; j < arr[i].length; ++j) arr[i][j] = v;
     }
+    public static void fill(int[][][] arr, int v) {
+        for (int i = 0; i < arr.length; ++i) fill(arr[i], v);
+    }
+
+    public static void fill(int[][][][] arr, int v) {
+        for (int i = 0; i < arr.length; ++i) fill(arr[i], v);
+    }
+
+    public static void fill(int[][][][][] arr, int v) {
+        for (int i = 0; i < arr.length; ++i) fill(arr[i], v);
+    }
+
+    public static void fill(long[][] arr, long v) {
+        for (int i = 0; i < arr.length; ++i)
+            for (int j = 0; j < arr[i].length; ++j) arr[i][j] = v;
+    }
+    public static void fill(long [][][] arr, long v) {
+        for (int i = 0; i < arr.length; ++i) fill(arr[i], v);
+    }
+
+    public static void fill(long[][][][] arr, long v) {
+        for (int i = 0; i < arr.length; ++i) fill(arr[i], v);
+    }
+
+    public static void fill(long[][][][][] arr, long v) {
+        for (int i = 0; i < arr.length; ++i) fill(arr[i], v);
+    }
 
     public static int[] flatten(int[][] arr) {
         int N = 0;
@@ -623,7 +701,7 @@ public class ArrayUtils {
 
     public static int[] subArray(int[] original, int from, int to) {
         int[] res = new int[to - from];
-        for (int i = from; i < to; ++i) res[i] = original[i];
+        for (int i = from; i < to; ++i) res[i - from] = original[i];
         return res;
     }
 

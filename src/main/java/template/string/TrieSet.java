@@ -184,7 +184,7 @@ public class TrieSet extends AbstractSet<String> implements Iterable<String> {
         return treep.isString;
     }
 
-/*    public boolean remove(String string) {
+/*    public boolean removeAwkwardly(String string) {
         if (!contains(string)) return false;
         Node treep = root;
         for (int i = 0; i < string.length(); ++i) {
@@ -219,7 +219,7 @@ public class TrieSet extends AbstractSet<String> implements Iterable<String> {
             x.next[c] = remove(x.next[c], key, d+1);
         }
 
-        // remove subtrie rooted at x if it is completely empty
+        // removeAwkwardly subtrie rooted at x if it is completely empty
         if (x.isString) return x;
         for (int c = 0; c < R; c++)
             if (x.next[c] != null)

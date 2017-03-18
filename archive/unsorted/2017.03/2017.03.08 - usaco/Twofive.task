@@ -1,0 +1,51 @@
+7 Twofive
+6 SINGLE
+7 TASK_ID
+9 input.txt
+7 TASK_ID
+10 output.txt
+6
+0
+3 N
+2
+25 ABCDEFGHIJKLMNOPQRSUTVWXY
+1
+1
+27 W
+ABCDEFGHIJKLMNOPQRSUTVWXY
+1 2
+1
+2
+12 N 
+701149020
+-1
+1
+3
+8 N 
+10000
+25 ABCDEFGHIKJMNQRLOTVXPSUWY
+1
+4
+27 W
+ABCDEFGHIKJMNQRLOTVXPSUWY
+5 10000
+1
+5
+12 N 
+152798377
+25 ABDGPCEHKTFIJMVLNQSWORUXY
+1
+18 src/main/java/main
+15 -Xmx25m -Xss16m
+7 twofive
+12 main.Twofive
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.03.08
+5 usaco
+1
+26 template.debug.InputReader
+19 java.io.PrintWriter
+0
+1

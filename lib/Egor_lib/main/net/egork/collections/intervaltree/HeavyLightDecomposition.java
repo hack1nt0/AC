@@ -48,12 +48,12 @@
 //            }
 //
 //            @Override
-//            protected long joinDelta(long was, long delta) {
+//            protected long joinDelta(long was, long getDelta) {
 //                return was;
 //            }
 //
 //            @Override
-//            protected long accumulate(long value, long delta, int length) {
+//            protected long accumulate(long value, long getDelta, int length) {
 //                return value;
 //            }
 //
@@ -97,13 +97,13 @@
 //                }
 //
 //                @Override
-//                protected D joinDelta(D was, D delta) {
-//                    return HeavyLightDecomposition.this.joinDelta(was, delta);
+//                protected D joinDelta(D was, D getDelta) {
+//                    return HeavyLightDecomposition.this.joinDelta(was, getDelta);
 //                }
 //
 //                @Override
-//                protected V accumulate(V value, D delta, int length) {
-//                    return HeavyLightDecomposition.this.accumulate(value, delta, length);
+//                protected V accumulate(V value, D getDelta, int length) {
+//                    return HeavyLightDecomposition.this.accumulate(value, getDelta, length);
 //                }
 //
 //                @Override
@@ -149,19 +149,19 @@
 //        return quantities[vertex];
 //    }
 //
-//    public void update(int from, int to, D delta) {
+//    public void update(int from, int to, D getDelta) {
 //        int lcm = (int) lcmTree.query(Math.min(position[from], position[to]), Math.max(position[from], position[to]));
-//        updateImpl(from, lcm, delta);
-//        updateImpl(to, lcm, delta);
-//        tree[lcm].update(indexInTree[lcm], indexInTree[lcm], delta);
+//        updateImpl(from, lcm, getDelta);
+//        updateImpl(to, lcm, getDelta);
+//        tree[lcm].update(indexInTree[lcm], indexInTree[lcm], getDelta);
 //    }
 //
-//    private void updateImpl(int from, int to, D delta) {
+//    private void updateImpl(int from, int to, D getDelta) {
 //        while (tree[from] != tree[to]) {
-//            tree[from].update(0, indexInTree[from], delta);
+//            tree[from].update(0, indexInTree[from], getDelta);
 //            from = parent[from];
 //        }
-//        tree[from].update(indexInTree[to] + 1, indexInTree[from], delta);
+//        tree[from].update(indexInTree[to] + 1, indexInTree[from], getDelta);
 //    }
 //
 //    public V query(int from, int to) {
@@ -181,8 +181,8 @@
 //    }
 //
 //    protected abstract V joinValue(V left, V right);
-//    protected abstract D joinDelta(D was, D delta);
-//    protected abstract V accumulate(V value, D delta, int length);
+//    protected abstract D joinDelta(D was, D getDelta);
+//    protected abstract V accumulate(V value, D getDelta, int length);
 //    protected abstract V neutralValue();
 //    protected abstract D neutralDelta();
 //}

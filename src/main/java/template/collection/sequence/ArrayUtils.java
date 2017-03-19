@@ -13,37 +13,10 @@ import java.util.*;
 
 /**
  * Created by dy on 16-12-22.
+ *
+ * Both Array and List. (The same in some extent)
  */
 public class ArrayUtils {
-    public static void main(String[] args) {
-        testSort();
-        //testReverseOrderPairs();
-
-    }
-
-    private static void testSort() {
-        while (true) {
-//            int[] arr = IntUtils.randomInts(10000000, -100000000, 100000000);
-//            int[] arr1 = arr.clone();
-//            int[] arr2 = arr.clone();
-//            Stopwatch.tic();
-//            mergeSort(arr1);
-//            Stopwatch.toc();
-//            Stopwatch.tic();
-//            Arrays.sort(arr2);
-//            Stopwatch.toc();
-//            if (!Arrays.equals(arr1, arr2)) {
-//                //ArrayUtils.printlnTableH(arr1, arr2);
-//                System.out.println("error");
-//            }
-            int W = 100000;
-            int[] arr = IntUtils.randomInts(100000, 0, W);
-            countingSort(arr, W);
-            if (!sorted(arr)) {
-                throw new RuntimeException();
-            }
-        }
-    }
 
     public static void testReverseOrderPairs() {
         while (true) {
@@ -79,115 +52,6 @@ public class ArrayUtils {
         System.arraycopy(buf, from, arr, from, to - from);
         //if (!ArrayUtils.sorted(arr, from, to)) throw new RuntimeException();
         return res;
-    }
-    /**
-     * @complexity O(nlogn) and stable
-     * In practice, it is slower than Arrays.sort by 6~7x.
-     * @param arr
-     */
-    public static void mergeSort(int[] arr) {
-        int N = arr.length;
-        if (N < 2) return;
-        int[] tmp = new int[N];
-        for (int len = 1; len < N; len *= 2) {
-            for (int from = 0; from + len < N; from += 2 * len) {
-                //merge(arr, from, from + len, tmp);
-                int p = from + len;
-                int q = p + len;
-                if (q > N) q = N;
-
-                if (q - from < 7) {
-                    insertionSort(arr, from, q);
-                    continue;
-                }
-
-                int i = from;
-                int j = p;
-                int k = from;
-                while (true) {
-                    if (j == q && i == p) break;
-                    // <=(not <) here to maintain original order of elements
-                    if (j == q || i < p && arr[i] <= arr[j]) {
-                        tmp[k++] = arr[i++];
-                    } else {
-                        tmp[k++] = arr[j++];
-                    }
-                }
-                //assert i == p && j == q && k == q;
-                if (arr[p] < arr[p - 1]) {
-                    //faster than loop
-                    System.arraycopy(tmp, from, arr, from, q - from);
-                }
-//                if (!sorted(arr, from, q)) {
-//                    throw new RuntimeException();
-//                }
-            }
-        }
-    }
-
-
-    /**
-     * @complexity O(n^2) and stable
-     * @param arr
-     * @param from
-     * @param to
-     */
-    public static void insertionSort(int[] arr, int from, int to) {
-        for (int i = from + 1; i < to; ++i) {
-            for (int j = from; j < i; ++j) {
-                if (arr[i] < arr[j]) {
-                    int arri = arr[i];
-                    for (int k = i; k > j; --k) arr[k] = arr[k - 1];
-                    arr[j] = arri;
-                    break;
-                }
-            }
-//            if (!sorted(arr, from, i + 1)) {
-//                throw new RuntimeException();
-//            }
-        }
-    }
-
-    public static void countingSort(int[] index, int W) {
-        int min = ArrayUtils.min(index);
-        int offset = 0;
-        if (min < 0) offset = -min;
-        int[] count = new int[W + 1];
-        for (int i : index) count[i + offset + 1]++;
-        for (int i = 0; i < W; ++i) count[i + 1] += count[i];
-        int[] aux = new int[index.length];
-        for (int i = 0; i < aux.length; ++i) aux[count[index[i] + offset]++] = index[i];
-        for (int i = 0; i < aux.length; ++i) index[i] = aux[i];
-    }
-
-    public static void countingSort(int[] index, IntToIntMapper mapper, int W) {
-        int min = Integer.MAX_VALUE;
-        for (int i : index) min = Math.min(min, mapper.map(i));
-        int offset = 0;
-        if (min < 0) offset = -min;
-        int[] count = new int[W + 1];
-        for (int i : index) count[mapper.map(i) + offset + 1]++;
-        for (int i = 0; i < W; ++i) count[i + 1] += count[i];
-        int[] aux = new int[index.length];
-        for (int i = 0; i < aux.length; ++i) aux[count[mapper.map(index[i]) + offset]++] = index[i];
-        for (int i = 0; i < aux.length; ++i) index[i] = aux[i];
-    }
-
-    public static void countingSort(int[] index, IntToIntMapper mapper, int W, int[] aux) {
-        if (aux.length != index.length) throw new IllegalArgumentException();
-        int min = Integer.MAX_VALUE;
-        for (int i : index) min = Math.min(min, mapper.map(i));
-        int offset = 0;
-        if (min < 0) offset = -min;
-        int[] count = new int[W + 1];
-        for (int i : index) count[mapper.map(i) + offset + 1]++;
-        for (int i = 0; i < W; ++i) count[i + 1] += count[i];
-        for (int i = 0; i < aux.length; ++i) aux[count[mapper.map(index[i]) + offset]++] = index[i];
-        for (int i = 0; i < aux.length; ++i) index[i] = aux[i];
-    }
-
-    public static interface IntToIntMapper {
-        public abstract int map(int i);
     }
 
     public static void swap(int[] arr, int i, int j) {
@@ -490,13 +354,6 @@ public class ArrayUtils {
         for (int i = 0; i < arr.length; ++i)
             for (int j = 0; j < arr[i].length; ++j) res[idx++] = arr[i][j];
         return res;
-    }
-
-
-    public static String repeat(String str, int nRepeated) {
-        StringBuilder res = new StringBuilder();
-        for (int i = 0; i < nRepeated; ++i) res.append(str);
-        return res.toString();
     }
 
     public static int[] randomIndexIntArr(int from, int to) {

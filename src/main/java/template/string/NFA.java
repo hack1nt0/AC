@@ -57,7 +57,7 @@ import java.util.List;
  *  @author Robert Sedgewick
  *  @author Kevin Wayne
  */
-public class NFA extends PatternSearch {
+public class NFA {
 
     private Digraph G;         // digraph of epsilon transitions
     private String regexp;     // regular expression
@@ -136,16 +136,6 @@ public class NFA extends PatternSearch {
         for (int v : pc)
             if (v == M) return true;
         return false;
-    }
-
-    @Override
-    public List<Occurrence> search(String text) {
-        return null;
-    }
-
-    @Override
-    public Iterator<Occurrence> searchItr(String text) {
-        return null;
     }
 
     /**

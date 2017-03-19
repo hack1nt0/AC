@@ -5,6 +5,7 @@ package template.collection.intervals;
  */
 public abstract class IntAbstractIntervalTree<RESULT_TYPE> {
     private int ROOT = 0;
+    //private int[] delta; /* range update */
 
     public IntAbstractIntervalTree() {
     }
@@ -23,11 +24,11 @@ public abstract class IntAbstractIntervalTree<RESULT_TYPE> {
 
     protected abstract void initAfter(int root, int left, int right);
 
-    protected abstract void updateLeaf(int root, int from, int to, int left, int right, int updateDelta);
+    protected abstract void updateFull(int root, int from, int to, int left, int right, int updateDelta);
 
     protected abstract void updateAfter(int root, int from, int to, int left, int right, int curDelta);
 
-    protected abstract RESULT_TYPE queryLeaf(int root, int from, int to, int left, int right, int deltaAcc);
+    protected abstract RESULT_TYPE queryFull(int root, int from, int to, int left, int right, int deltaAcc);
 
     protected abstract RESULT_TYPE queryAfter(RESULT_TYPE leftResult, RESULT_TYPE rightResult);
 
@@ -35,6 +36,7 @@ public abstract class IntAbstractIntervalTree<RESULT_TYPE> {
     protected int nodeCount(int arraySize) { return (Integer.highestOneBit(arraySize) << 2) + ROOT;}
 
     protected void init() {
+
         init(ROOT, 0, arraySize());
     }
 
@@ -59,7 +61,7 @@ public abstract class IntAbstractIntervalTree<RESULT_TYPE> {
 
     private void update(int root, int from, int to, int updateFrom, int updateTo, int delta) {
         if (updateFrom <= from && to <= updateTo) {
-            updateLeaf(root, from, to, root * 2 + 1, root * 2 + 2, delta);
+            updateFull(root, from, to, root * 2 + 1, root * 2 + 2, delta);
             setDelta(root, joinDelta(delta, getDelta(root)));
             return;
         }
@@ -71,7 +73,7 @@ public abstract class IntAbstractIntervalTree<RESULT_TYPE> {
 
     private RESULT_TYPE query(int root, int from, int to, int queryFrom, int queryTo, int deltaAcc) {
         if (queryFrom <= from && to <= queryTo) {
-            return queryLeaf(root, from, to, root * 2 + 1, root * 2 + 2, deltaAcc);
+            return queryFull(root, from, to, root * 2 + 1, root * 2 + 2, deltaAcc);
         }
         int mid = from + (to - from) / 2;
         if (queryFrom < mid && mid < queryTo) {

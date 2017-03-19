@@ -57,7 +57,7 @@ public class IntSumIntervalTree extends IntAbstractIntervalTree<Integer> {
     }
 
     @Override
-    public void updateLeaf(int root, int from, int to, int left, int right, int updateDelta) {
+    public void updateFull(int root, int from, int to, int left, int right, int updateDelta) {
         sum[root] += (to - from) * updateDelta;
     }
 
@@ -67,7 +67,7 @@ public class IntSumIntervalTree extends IntAbstractIntervalTree<Integer> {
     }
 
     @Override
-    public Integer queryLeaf(int root, int from, int to, int left, int right, int deltaAcc) {
+    public Integer queryFull(int root, int from, int to, int left, int right, int deltaAcc) {
         return sum[root] + (to - from) * deltaAcc;
     }
     @Override

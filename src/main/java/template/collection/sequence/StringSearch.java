@@ -83,7 +83,7 @@ public abstract class StringSearch<T extends Comparable> {
 //            String pattern = StringUtils.random(1000, 'from', 'z' + 1);
 //            String text = StringUtils.random(150000, 'from', 'z' + 1);
 //            new Stopwatch() {{
-//                ans2 = PatternSearch.search(text, pattern);
+//                ans2 = StringSearch.search(text, pattern);
 //            }}.toc();
 //
 //            //if (ans2.size() == 0) continue;
@@ -95,7 +95,7 @@ public abstract class StringSearch<T extends Comparable> {
 //            Out.printlnV(pattern, text);
 //            Out.printlnV(ans1, ans2);
 //            if (!ans1.equals(ans2)) {
-//                //PatternSearch.search(text, pattern);
+//                //StringSearch.search(text, pattern);
 //                //stringSearch.search(text);
 //                throw new RuntimeException();
 //

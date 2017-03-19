@@ -1,8 +1,11 @@
 package template.string;
 
+import template.collection.tuple.Tuple2;
 import template.debug.RandomUtils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 import static template.debug.Stopwatch.*;
 
@@ -99,11 +102,11 @@ public class StringUtils {
      * Space: O(m), (the stack space), m means max size of sorted strs.
      * @param ss strings to sort
      */
-    public static void sortMSDWay3(String[] ss) {
+    public static void sortMSDWay3(CharSequence[] ss) {
         sortMSDWay3(ss, 0, ss.length, 0);
     }
 
-    private static void sortMSDWay3(String[] ss, int lo, int hi, int d) {
+    private static void sortMSDWay3(CharSequence[] ss, int lo, int hi, int d) {
 
         // cutoff isString insertion sort for small subarrays
         if (hi <= lo + CUTOFF) {
@@ -138,7 +141,7 @@ public class StringUtils {
      for (int i = p1; i < p2; ++i) assert charAt(ss[i], d) == cd;
      for (int i = p3 + 1; i < hi; ++i) assert charAt(ss[i], d) > cd;
      **/
-    private static void way3Partition(String[] ss, int lo, int hi, int d) {
+    private static void way3Partition(CharSequence[] ss, int lo, int hi, int d) {
         int cd = charAt(ss[lo], d);
         int p1 = lo, p2 = lo, p3 = hi - 1;
         while (true) {
@@ -150,7 +153,7 @@ public class StringUtils {
     }
 
     // return dth character of s, -1 if d = length of string
-    private static int charAt(String s, int d) {
+    private static int charAt(CharSequence s, int d) {
         if (d >= s.length()) return -1;
         return s.charAt(d);
     }
@@ -195,14 +198,14 @@ public class StringUtils {
 
 
     // insertion sort from[lo..hi], starting at dth character
-    private static void insertion(String[] a, int lo, int hi, int d) {
+    private static void insertion(CharSequence[] a, int lo, int hi, int d) {
         for (int i = lo; i <= hi; i++)
             for (int j = i; j > lo && less(a[j], a[j-1], d); j--)
                 swap(a, j, j-1);
     }
 
     // is v less than w, starting at character d
-    private static boolean less(String v, String w, int d) {
+    private static boolean less(CharSequence v, CharSequence w, int d) {
         // assert v.substring(0, d).equals(w.substring(0, d));
         for (int i = d; i < Math.min(v.length(), w.length()); i++) {
             if (v.charAt(i) < w.charAt(i)) return true;
@@ -212,8 +215,8 @@ public class StringUtils {
     }
 
     // exchange from[i] and from[j]
-    private static void swap(String[] a, int i, int j) {
-        String temp = a[i];
+    private static void swap(CharSequence[] a, int i, int j) {
+        CharSequence temp = a[i];
         a[i] = a[j];
         a[j] = temp;
     }
@@ -259,8 +262,111 @@ public class StringUtils {
         return res.toString();
     }
 
+    public static List<Tuple2<Integer, Integer>> search(String text, String pattern) {
+        List<Tuple2<Integer, Integer>> res = new ArrayList<>();
+        for (int i = 0; i + pattern.length() <= text.length();) {
+            int p = text.indexOf(pattern, i);
+            if (p == -1) {
+                i++;
+            } else {
+                res.add(new Tuple2<>(p, p + pattern.length()));
+                i = p + 1;
+            }
+        }
+        return res;
+    }
+
+    /**
+     * Invariable
+     *         (1) s[i] < s[i+1] <...< s[j-1] (?) s[j]
+     *         (2) i is the answer
+     *
+     * NOTE lots of implementation on the internet are wrong.
+     * @param origin
+     * @return Cyclic Minimum Representation of String.
+     */
+    public static int cyclicMin(CharSequence origin) {
+        if (origin == null || origin.length() == 0) throw new IllegalArgumentException();
+        if (origin.length() == 1) return 0;
+        int n = origin.length();
+//        StringBuilder stringBuilder = new StringBuilder(origin);
+//        stringBuilder.append(origin);
+        int i = 0, j = 1;
+        while (i < n && j < n) {
+            if (origin.charAt(i) < origin.charAt(j)) {j++; continue;}
+            if (origin.charAt(i) > origin.charAt(j)) {
+                i = j;
+                j++;
+                continue;
+            }
+            int offset = 0;
+            while (offset < n) {
+                int ii = i + offset;
+                if (ii >= n) ii -= n;
+                int jj = j + offset;
+                if (jj >= n) jj -= n;
+                char ichar = origin.charAt(ii);
+                char jchar = origin.charAt(jj);
+                if (ichar < jchar) {
+                    j += offset + 1;
+                    break;
+                }
+                if (ichar > jchar) {
+                    i = j;
+                    j += Math.min(j - i, offset);
+                    if (j == i) j++;
+                    break;
+                }
+                offset++;
+            }
+            if (offset == n) {
+                break;
+            }
+        }
+        if (i >= n) throw new RuntimeException();
+        return i;
+    }
+
+    /**
+     * 'ABCABCAB' -> 'ABC'
+     * @param origin
+     * @return Minimum Repeating Substring of origin.
+     */
+    public static int minRepeatedSubstring(String origin) {
+        int[] back = new KMP(origin).getBack();
+        return origin.length() - back[origin.length()];
+    }
+
     public static void main(String[] args) {
-        testPal();
+        testCyclicMin();
+    }
+
+    private static void testCyclicMin() {
+        while (true) {
+            String s = random(10, 'a', 'b' + 1);
+            StringBuilder sb = new StringBuilder(s);
+            sb.append(s);
+            int from = cyclicMin(s);
+            cyclicMin("bbabb");
+            String min = sb.substring(from, from + s.length());
+            for (int i = 0; i < s.length(); ++i) {
+                String t = sb.substring(i, i + s.length());
+                if (t.compareTo(min) < 0) {
+                    throw new RuntimeException();
+                }
+            }
+        }
+    }
+
+    private static void testMinRepeated() {
+        while (true) {
+            String s = random(10, 'a', 'b' + 1);
+            int to = minRepeatedSubstring(s);
+            System.out.println(s + '\t' + s.substring(0, to));
+            for (int i = to; i < s.length(); ++i) {
+                if (s.charAt(i % to) != s.charAt(i)) throw new RuntimeException();
+            }
+        }
     }
 
     public static void testPal() {

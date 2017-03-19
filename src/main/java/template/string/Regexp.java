@@ -1,5 +1,7 @@
 package template.string;
 
+import template.collection.tuple.Tuple2;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -11,7 +13,7 @@ import java.util.regex.Pattern;
  *
  * Caution!! To match '\' in text, you need '\\\\' in the regexp.
  */
-public class Regexp extends PatternSearch {
+public class Regexp extends StringSearch {
     private Pattern javaPattern;
     private Matcher javaMatcher;
 
@@ -39,26 +41,26 @@ public class Regexp extends PatternSearch {
         return javaMatcher.matches();
     }
 
-    public List<Occurrence> search(String text) {
-        List<Occurrence> res = new ArrayList<>();
+    public List<Tuple2<Integer, Integer>> exploit(String text) {
+        List<Tuple2<Integer, Integer>> res = new ArrayList<>();
         javaMatcher = javaPattern.matcher(text);
         while (javaMatcher.find()) {
-            res.add(new Occurrence(javaMatcher.start(), javaMatcher.end()));
+            res.add(new Tuple2<Integer, Integer>(javaMatcher.start(), javaMatcher.end()));
         }
         return res;
     }
 
-    public Iterator<Occurrence> searchItr(String text) {
+    public Iterator<Tuple2<Integer, Integer>> searchItr(String text) {
         javaMatcher = javaPattern.matcher(text);
-        return new Iterator<Occurrence>() {
+        return new Iterator<Tuple2<Integer, Integer>>() {
             @Override
             public boolean hasNext() {
                 return javaMatcher.find();
             }
 
             @Override
-            public Occurrence next() {
-                return new Occurrence(javaMatcher.start(), javaMatcher.end());
+            public Tuple2<Integer, Integer> next() {
+                return new Tuple2<Integer, Integer>(javaMatcher.start(), javaMatcher.end());
             }
         };
     }

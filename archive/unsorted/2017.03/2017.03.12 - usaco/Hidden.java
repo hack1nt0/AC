@@ -1,5 +1,7 @@
 package main;
 
+
+
 import template.collection.sequence.ArrayUtils;
 import template.debug.InputReader;
 import template.string.StringUtils;
@@ -12,9 +14,72 @@ import java.util.*;
  LANG: JAVA
  TASK: hidden
 */
+
+/**
+ * Cyclic Minimum Representation of String
+ */
 public class Hidden {
     int lenPower;
+
     public void solve(int testNumber, InputReader in, PrintWriter out) {
+        solve2(testNumber, in, out);
+    }
+
+    /**
+     * Executing...
+     Test 1: TEST OK [0.086 secs, -1194644 KB]
+     Test 2: TEST OK [0.079 secs, -1194644 KB]
+     Test 3: TEST OK [0.086 secs, -1194644 KB]
+     Test 4: TEST OK [0.086 secs, -1194644 KB]
+     Test 5: TEST OK [0.086 secs, -1194644 KB]
+     Test 6: TEST OK [0.086 secs, -1194644 KB]
+     Test 7: TEST OK [0.108 secs, -1194644 KB]
+     Test 8: TEST OK [0.151 secs, -1194644 KB]
+     Test 9: TEST OK [0.194 secs, -1194644 KB]
+     Test 10: TEST OK [0.173 secs, -1194644 KB]
+     Test 11: TEST OK [0.151 secs, -1194644 KB]
+     Test 12: TEST OK [0.122 secs, -1194644 KB]
+     Test 13: TEST OK [0.086 secs, -1194644 KB]
+     Test 14: TEST OK [0.130 secs, -1194644 KB]
+
+     All tests OK.
+     * @param testNumber
+     * @param in
+     * @param out
+     */
+    public void solve2(int testNumber, InputReader in, PrintWriter out) {
+        int n = in.readInt();
+        StringBuilder stringBuilder = new StringBuilder();
+        while (!in.isExhausted()) {
+            stringBuilder.append(in.readString());
+        }
+        int from = StringUtils.cyclicMin(stringBuilder);
+        out.println(from);
+    }
+
+    /**
+     * Executing...
+     Test 1: TEST OK [0.086 secs, -1194644 KB]
+     Test 2: TEST OK [0.086 secs, -1194644 KB]
+     Test 3: TEST OK [0.086 secs, -1194644 KB]
+     Test 4: TEST OK [0.115 secs, -1194644 KB]
+     Test 5: TEST OK [0.086 secs, -1194644 KB]
+     Test 6: TEST OK [0.086 secs, -1194644 KB]
+     Test 7: TEST OK [0.115 secs, -1194644 KB]
+     Test 8: TEST OK [0.158 secs, -1194644 KB]
+     Test 9: TEST OK [0.187 secs, -1194644 KB]
+     Test 10: TEST OK [0.216 secs, -1194644 KB]
+     Test 11: TEST OK [0.281 secs, -1194644 KB]
+     Test 12: TEST OK [0.122 secs, -1194644 KB]
+     Test 13: TEST OK [0.086 secs, -1228444 KB]
+     Test 14: TEST OK [0.634 secs, -1194644 KB]
+
+     All tests OK.
+     * @param testNumber
+     * @param in
+     * @param out
+     */
+    public void solve1(int testNumber, InputReader in, PrintWriter out) {
         int n = in.readInt();
         StringBuilder stringBuilder = new StringBuilder();
         while (!in.isExhausted()) {
@@ -26,9 +91,10 @@ public class Hidden {
         for (int i = 0; i < n; ++i) min = Math.min(min, stringBuilder.charAt(i));
         for (int i = 0; i < n; ++i) if (stringBuilder.charAt(i) == min && (i == 0 || stringBuilder.charAt(i - 1) > min)) starts.add(i);
         if (starts.size() < n / 2) out.println(solveStupidly(starts, stringBuilder));
-        else out.println(solve2(stringBuilder));
+        else out.println(solveSuffixArray(stringBuilder));
     }
-    public int solve2(StringBuilder stringBuilder) {
+
+    public int solveSuffixArray(StringBuilder stringBuilder) {
         int n = stringBuilder.length() / 2;
         Integer[][] rank = new Integer[(int)Math.ceil(Math.log(n) / Math.log(2)) + 1][n * 2];
 //        List<Integer> index = new ArrayList<>();

@@ -1,5 +1,8 @@
 package template.numbers;
 
+import template.collection.CollectionUtils;
+import template.collection.IntArrayList;
+import template.collection.IntList;
 import template.collection.sequence.ArrayUtils;
 import template.collection.tuple.Tuple2;
 import template.collection.tuple.Tuple3;
@@ -7,6 +10,7 @@ import template.debug.RandomUtils;
 
 import java.math.BigInteger;
 import java.util.*;
+import java.util.function.BinaryOperator;
 
 /**
  * Created by dy on 16-10-8.
@@ -282,7 +286,7 @@ public class IntUtils {
         romanMap.put("CD", 400);
         romanMap.put("CM", 900);
         long res = 0;
-        List<Integer> factors = new ArrayList<>();
+        IntArrayList factors = new IntArrayList();
         for (int i = 0; i < roman.length(); ) {
             if (i + 1 < roman.length()) {
                 String minus = roman.substring(i, i + 2);
@@ -301,8 +305,7 @@ public class IntUtils {
         boolean decending = true;
         for (int i = 0; i < factors.size() - 1; ++i) if (factors.get(i) < factors.get(i + 1)) {decending = false; break;}
         if (!decending) throw new IllegalArgumentException();
-
-        return ArrayUtils.sum(factors);
+        return factors.stream().sum();
     }
 
     private static boolean isValidRoman(String roman) {

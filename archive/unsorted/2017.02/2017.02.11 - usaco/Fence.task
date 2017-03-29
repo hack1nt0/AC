@@ -71,7 +71,7 @@
 1
 18 src/main/java/main
 16 -Xmx256m -Xss64m
-5 fence
+5 to
 10 main.Fence
 39 net.egork.chelper.checkers.TokenChecker
 0 

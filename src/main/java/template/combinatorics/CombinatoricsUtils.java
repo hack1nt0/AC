@@ -1,5 +1,6 @@
 package template.combinatorics;
 
+import template.collection.Sorter;
 import template.collection.sequence.ArrayUtils;
 import template.debug.RandomUtils;
 import template.numbers.IntUtils;
@@ -99,7 +100,7 @@ public class CombinatoricsUtils {
                 if (next == i) break;
             }
         }
-        if (!ArrayUtils.sorted(arr, 0, arr.length)) throw new RuntimeException();
+        //if (!Sorter.sorted(arr, 0, arr.length)) throw new RuntimeException();
         return perm;
     }
 
@@ -167,7 +168,7 @@ public class CombinatoricsUtils {
             int[] perm = permutationForSorting(arr);
             int[] arr1 = arr.clone();
             permute(arr1, perm);
-            if (!ArrayUtils.sorted(arr1)) {
+            if (!Sorter.sorted(arr1)) {
                 System.out.println(Arrays.toString(arr));
                 System.out.println(Arrays.toString(ArrayUtils.index(n)));
                 System.out.println(Arrays.toString(perm));

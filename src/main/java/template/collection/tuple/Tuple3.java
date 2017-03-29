@@ -45,30 +45,6 @@ public class Tuple3<T extends Comparable, U extends Comparable, V extends Compar
         }
     }
 
-    private static class AnyOrderComparator implements Comparator<Tuple3> {
-        int[] rank;
-        public AnyOrderComparator(int[] rank) {
-            assert rank.length == 3 && ArrayUtils.isIndex(rank);
-            this.rank = rank;
-        }
-
-        public int compare(Tuple3 a, Tuple3 b) {
-            for (int i = 0; i < 3; ++i){
-                if (rank[i] == 0) {
-                    int firstcmp = a.first.compareTo(b.first);
-                    if (firstcmp != 0) return firstcmp;
-                } else if (rank[i] == 1) {
-                    int secondcmp = a.second.compareTo(b.second);
-                    if (secondcmp != 0) return secondcmp;
-                } else if (rank[i] == 2) {
-                    int thirdcmp = a.third.compareTo(b.third);
-                    if (thirdcmp != 0) return thirdcmp;
-                }
-            }
-            return 0;
-        }
-    }
-
     public T getFirst() {
         return first;
     }

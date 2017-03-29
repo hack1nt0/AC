@@ -8,7 +8,7 @@ import java.util.*;
 /**
  * Created by dy on 16-10-1.
  */
-public class LinesToGraph {
+public class Discrete {
 //    public static class Point implements Comparable<Point> {
 //        double x, y;
 //        int id = -1;
@@ -155,9 +155,8 @@ public class LinesToGraph {
 
     /**
      *
-     * Zip the continual infinite geometry space to from discrete finite one.
+     * Zip the continual infinite geometry space to discrete finite one.
      * Only applied to horizontal and vertical line segments.
-     *
      * @param segs
      * @param print
      * @return

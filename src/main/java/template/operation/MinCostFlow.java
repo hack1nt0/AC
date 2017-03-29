@@ -1,6 +1,6 @@
 package template.operation;
 
-import template.collection.sequence.IntArrayQueue;
+import template.collection.IntArrayList;
 import template.collection.tuple.Tuple2;
 import template.graph_theory.AbstractEdge;
 import template.graph_theory.BidirectionalGraph;
@@ -102,7 +102,7 @@ public class MinCostFlow {
             Arrays.fill(d, doo);
             Arrays.fill(inque, false);
             d[source] = 0;
-            IntArrayQueue que = new IntArrayQueue(residualGraph.V(), true);
+            IntArrayList que = new IntArrayList(residualGraph.V(), true);
             que.add(source);
             while (true) {
                 if (que.isEmpty()) break;

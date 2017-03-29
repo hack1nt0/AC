@@ -38,7 +38,7 @@ public class Castle {
                                 if ((map[k][l] >> d & 1) != 0) continue;
                                 int ni = k + di[d];
                                 int nj = l + dj[d];
-                                //if (!valid(ni, nj, n, m)) continue;
+                                //if (!is(ni, nj, n, m)) continue;
                                 if (comp[ni][nj] == -1) {
                                     updated = true;
                                     comp[ni][nj] = compN;

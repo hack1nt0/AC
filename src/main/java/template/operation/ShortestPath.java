@@ -1,7 +1,7 @@
 package template.operation;
 
 import template.collection.sequence.IntBinaryHeap;
-import template.collection.sequence.IntArrayQueue;
+import template.collection.IntArrayList;
 import template.graph_theory.AbstractEdge;
 import template.graph_theory.BidirectionalGraph;
 
@@ -86,7 +86,7 @@ public class ShortestPath {
         boolean[] inque = new boolean[N];
         d[S] = 0;
         //Queue<Integer> que = new LinkedList<Integer>();
-        IntArrayQueue que = new IntArrayQueue(N);
+        IntArrayList que = new IntArrayList(N);
         que.add(S);
         while (true) {
             if (que.isEmpty()) break;

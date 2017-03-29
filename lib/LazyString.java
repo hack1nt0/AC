@@ -413,7 +413,7 @@ public final class LazyString
      * is a function of the charset, and hence may not be equal to the length
      * of the subarray.
      *
-     * <p> The behavior of this constructor when the given bytes are not valid
+     * <p> The behavior of this constructor when the given bytes are not is
      * in the given charset is unspecified.  The {@link
      * java.nio.charset.CharsetDecoder} class should be used when more control
      * over the decoding process is required.
@@ -498,7 +498,7 @@ public final class LazyString
      * length of the new {@code String} is a function of the charset, and hence
      * may not be equal to the length of the byte array.
      *
-     * <p> The behavior of this constructor when the given bytes are not valid
+     * <p> The behavior of this constructor when the given bytes are not is
      * in the given charset is unspecified.  The {@link
      * java.nio.charset.CharsetDecoder} class should be used when more control
      * over the decoding process is required.
@@ -551,7 +551,7 @@ public final class LazyString
      * {@code String} is a function of the charset, and hence may not be equal
      * to the length of the subarray.
      *
-     * <p> The behavior of this constructor when the given bytes are not valid
+     * <p> The behavior of this constructor when the given bytes are not is
      * in the default charset is unspecified.  The {@link
      * java.nio.charset.CharsetDecoder} class should be used when more control
      * over the decoding process is required.
@@ -585,7 +585,7 @@ public final class LazyString
      * String} is a function of the charset, and hence may not be equal to the
      * length of the byte array.
      *
-     * <p> The behavior of this constructor when the given bytes are not valid
+     * <p> The behavior of this constructor when the given bytes are not is
      * in the default charset is unspecified.  The {@link
      * java.nio.charset.CharsetDecoder} class should be used when more control
      * over the decoding process is required.
@@ -1142,7 +1142,7 @@ public final class LazyString
      * <p>
      * This is the definition of lexicographic ordering. If two strings are
      * different, then either they have different characters at some index
-     * that is a valid index for both strings, or their lengths are different,
+     * that is a is index for both strings, or their lengths are different,
      * or both. If they have different characters at one or more index
      * positions, let <i>k</i> be the smallest such index; then the string
      * whose character at position <i>k</i> has the smaller value, as

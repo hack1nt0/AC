@@ -18,169 +18,15 @@ import java.util.*;
  */
 public class ArrayUtils {
 
-    public static void testReverseOrderPairs() {
-        while (true) {
-            int[] arr = IntUtils.randomInts(RandomUtils.uniform(100), 0, 10);
-            int ans = 0;
-            for (int i = 0; i < arr.length; ++i)
-                for (int j = i + 1; j < arr.length; ++j) if (arr[i] > arr[j]) ans++;
-            if (ans != reverseOrderPairs(arr)) {
-                throw new RuntimeException();
-            }
-        }
-    }
-
-
-    public static int reverseOrderPairs(int[] arr) {
-        int[] buf = new int[arr.length];
-        return reverseOrderPairs(arr, 0, arr.length, buf);
-    }
-
-    public static int reverseOrderPairs(int[] arr, int from, int to, int[] buf) {
-        if (from + 1 >= to) return 0;
-        int mid = from + (to - from) / 2;
-        int res = reverseOrderPairs(arr, from, mid, buf) + reverseOrderPairs(arr, mid, to, buf);
-        int i = from, j = mid, k = from;
-        while (true) {
-            if (i == mid && j == to) break;
-            if (j == to || i < mid && arr[i] <= arr[j]) buf[k++] = arr[i++];
-            else {
-                res += mid - i;
-                buf[k++] = arr[j++];
-            }
-        }
-        System.arraycopy(buf, from, arr, from, to - from);
-        //if (!ArrayUtils.sorted(arr, from, to)) throw new RuntimeException();
-        return res;
-    }
-
     public static void swap(int[] arr, int i, int j) {
         int t = arr[i];
         arr[i] = arr[j];
         arr[j] = t;
     }
 
-    public static void swap(Object[] arr, int i, int j) {
-        Object t = arr[i];
-        arr[i] = arr[j];
-        arr[j] = t;
-    }
-
-    public static boolean sorted(int[] arr) {
-        return sorted(arr, 0, arr.length);
-    }
-
-    public static boolean sorted(int[] arr, int from, int to) {
-        assert from < to;
-        int prev = Integer.MIN_VALUE;
-        for (int i = from; i < to; ++i)
-            if (i > from && arr[i - 1] > arr[i]) return false;
-        return true;
-    }
-
-    public static long max(long... a) {
-        if (a.length <= 0) throw new RuntimeException();
-        long res = a[0];
-        for (int i = 0; i < a.length; ++i) if (res < a[i]) res = a[i];
-        return res;
-    }
-
-    public static int max(int... a) {
-        if (a.length <= 0) throw new RuntimeException();
-        int res = a[0];
-        for (int i = 0; i < a.length; ++i) if (res < a[i]) res = a[i];
-        return res;
-    }
-
-    public static int max(int[]... a) {
-        if (a.length <= 0) throw new RuntimeException();
-        int res = a[0][0];
-        for (int i = 0; i < a.length; ++i)
-            for (int j = 0; j < a[i].length; ++j) if (res < a[i][j]) res = a[i][j];
-        return res;
-    }
-
-    public static double max(double... a) {
-        if (a.length <= 0) throw new RuntimeException();
-        double res = a[0];
-        for (int i = 0; i < a.length; ++i) if (res < a[i]) res = a[i];
-        return res;
-    }
-
-    public static double max(double[]... a) {
-        if (a.length <= 0) throw new RuntimeException();
-        double res = a[0][0];
-        for (int i = 0; i < a.length; ++i)
-            for (int j = 0; j < a[i].length; ++j) if (res < a[i][j]) res = a[i][j];
-        return res;
-    }
-
-    public static <T extends Comparable<T>> T min(T[] a) {
-        if (a.length <= 0) throw new RuntimeException();
-        T res = a[0];
-        for (int i = 0; i < a.length; ++i) if (res.compareTo(a[i]) > 0) res = a[i];
-        return res;
-    }
-
-    public static int min(int[] a) {
-        if (a.length <= 0) throw new RuntimeException();
-        int res = a[0];
-        for (int i = 0; i < a.length; ++i) if (res > a[i]) res = a[i];
-        return res;
-    }
-
-    public static int min(int[][][][] a) {
-        if (a.length <= 0) throw new RuntimeException();
-        int res = a[0][0][0][0];
-        for (int i = 0; i < a.length; ++i) for (int j = 0; j < a[i].length; ++j)
-            for (int k = 0; k < a[i][j].length; ++k) for (int l = 0; l < a[i][j][k].length; ++l)
-                if (res > a[i][j][k][l]) res = a[i][j][k][l];
-        return res;
-    }
-
-    public static long min(long[] a) {
-        if (a.length <= 0) throw new RuntimeException();
-        long res = a[0];
-        for (int i = 0; i < a.length; ++i) if (res > a[i]) res = a[i];
-        return res;
-    }
-
-    public static long sum(int[] a) {
-        long res = 0;
-        for (int i = 0; i < a.length; ++i) res += a[i];
-        return res;
-    }
-
-    public static long sum(Collection<Integer> a) {
-        int res = 0;
-        for (int e : a) res += e;
-        return res;
-    }
-
-    public static boolean isIndex(int[] arr) {
-        throw new UnsupportedOperationException();
-    }
-
     public static int[] index(int n) {
         int[] res = new int[n];
         for (int i = 0; i < n; ++i) res[i] = i;
-        return res;
-    }
-
-    public static int count(int[] arr, int a) {
-        int res = 0;
-        for (int i = 0; i < arr.length; ++i)
-            if (arr[i] == a) res++;
-        return res;
-    }
-
-    public static double[][] clone(double[][] a) {
-        if (a.length <= 0) throw new IllegalArgumentException();
-        double[][] res = new double[a.length][];
-        for (int i = 0; i < a.length; ++i) {
-            res[i] = new double[a[i].length];
-            for (int j = 0; j < a[i].length; ++j) res[i][j] = a[i][j];
-        }
         return res;
     }
 
@@ -190,13 +36,34 @@ public class ArrayUtils {
         System.arraycopy(a, 0, res, 0, a.length);
         return res;
     }
+    public static void fill(int[][] arr, int v) {for (int i = 0; i < arr.length; ++i) Arrays.fill(arr[i], v);}
 
-    public static byte[] clone(byte[] a) {
-        if (a.length <= 0) throw new IllegalArgumentException();
-        byte[] res = new byte[a.length];
-        System.arraycopy(a, 0, res, 0, a.length);
-        return res;
+    public static void fill(int[][][] arr, int v) {
+        for (int i = 0; i < arr.length; ++i) fill(arr[i], v);
     }
+
+    public static void fill(int[][][][] arr, int v) {
+        for (int i = 0; i < arr.length; ++i) fill(arr[i], v);
+    }
+
+    public static void fill(int[][][][][] arr, int v) {
+        for (int i = 0; i < arr.length; ++i) fill(arr[i], v);
+    }
+
+    public static void fill(long[][] arr, long v) {for (int i = 0; i < arr.length; ++i) Arrays.fill(arr[i], v);}
+
+    public static void fill(long [][][] arr, long v) {
+        for (int i = 0; i < arr.length; ++i) fill(arr[i], v);
+    }
+
+    public static void fill(long[][][][] arr, long v) {
+        for (int i = 0; i < arr.length; ++i) fill(arr[i], v);
+    }
+
+    public static void fill(long[][][][][] arr, long v) {
+        for (int i = 0; i < arr.length; ++i) fill(arr[i], v);
+    }
+
 
 
     public static Object[] inbox(Object arr) {
@@ -314,38 +181,6 @@ public class ArrayUtils {
         return null;
     }
 
-    public static void fill(int[][] arr, int v) {
-        for (int i = 0; i < arr.length; ++i)
-            for (int j = 0; j < arr[i].length; ++j) arr[i][j] = v;
-    }
-    public static void fill(int[][][] arr, int v) {
-        for (int i = 0; i < arr.length; ++i) fill(arr[i], v);
-    }
-
-    public static void fill(int[][][][] arr, int v) {
-        for (int i = 0; i < arr.length; ++i) fill(arr[i], v);
-    }
-
-    public static void fill(int[][][][][] arr, int v) {
-        for (int i = 0; i < arr.length; ++i) fill(arr[i], v);
-    }
-
-    public static void fill(long[][] arr, long v) {
-        for (int i = 0; i < arr.length; ++i)
-            for (int j = 0; j < arr[i].length; ++j) arr[i][j] = v;
-    }
-    public static void fill(long [][][] arr, long v) {
-        for (int i = 0; i < arr.length; ++i) fill(arr[i], v);
-    }
-
-    public static void fill(long[][][][] arr, long v) {
-        for (int i = 0; i < arr.length; ++i) fill(arr[i], v);
-    }
-
-    public static void fill(long[][][][][] arr, long v) {
-        for (int i = 0; i < arr.length; ++i) fill(arr[i], v);
-    }
-
     public static int[] flatten(int[][] arr) {
         int N = 0;
         for (int i = 0; i < arr.length; ++i) N += arr[i].length;
@@ -356,74 +191,20 @@ public class ArrayUtils {
         return res;
     }
 
-    public static int[] randomIndexIntArr(int from, int to) {
+    public static int[] randomIndex(int from, int to) {
         int[] arr = new int[to - from];
         for (int i = from; i < to; ++i) arr[i - from] = i;
         RandomUtils.shuffle(arr);
         return arr;
     }
 
-    public static void printlnTableV(Object... objects) {
-        printlnTable(null, true, objects);
+
+    public static void printlnConcisely(Object arr1) {
+        printlnConcisely(arr1, null, 100);
     }
 
-    public static void printlnTableVWithHeads(String[] heads, Object... objects) {
-        printlnTable(heads, true, objects);
-    }
-
-    public static void printlnTableH(Object... objects) {
-        printlnTable(null, false, objects);
-    }
-
-    public static void printlnTable(String[] heads, boolean vertical, Object... objects) {
-        final PrintStream out = System.out;
-        int W = 10;
-        String formateStr = "%10s";
-
-        int N = objects.length;
-        if (N == 0) return;
-
-        //printlnTable("-", (N + 1) * W + N);
-
-        Object[][] matrix = new Object[N][];
-        for (int i = 0; i < N; ++i) matrix[i] = inbox(objects[i]);
-
-        if (vertical) {
-            if (heads != null) {
-                out.printf(formateStr, "L\\H");
-                for (int i = 0; i < N; ++i)
-                    out.printf(formateStr, heads[i]);
-                out.println();
-
-                //printlnTable("-", (N + 1) * W + N);
-            }
-
-
-            for (int i = 0; i < matrix[0].length; ++i) {
-                out.printf(formateStr, i);
-                for (int j = 0; j < N; ++j) {
-                    out.printf(formateStr, String.valueOf(matrix[j][i]));
-                }
-                out.println();
-            }
-        } else {
-            out.printf(formateStr, "R\\C");
-            for (int i = 0; i < matrix[0].length; ++i)
-                out.printf(formateStr, i);
-            out.println();
-
-            //printlnTable("-", (N + 1) * W + N);
-
-            for (int i = 0; i < N; ++i) {
-                out.printf(formateStr, i);
-                for (int j = 0; j < matrix[i].length; ++j) {
-                    out.printf(formateStr, String.valueOf(matrix[i][j]));
-                }
-                out.println();
-            }
-        }
-        //printlnTable("-", (N + 1) * W + N);
-        out.println();
+    public static void printlnConcisely(Iterable arr1) {
+        printlnConcisely(arr1, null, 100);
     }
 
     public static void printlnConcisely(Object arr1, String spliter, PrintWriter out, int howManyOfOneRow) {
@@ -532,14 +313,6 @@ public class ArrayUtils {
         return l;
     }
 
-    public static void printlnConcisely(Object arr1) {
-        printlnConcisely(arr1, null, 100);
-    }
-
-    public static void printlnConcisely(Iterable arr1) {
-        printlnConcisely(arr1, null, 100);
-    }
-
     /**
      *
      * @param arr MUST be SORTED.
@@ -574,14 +347,5 @@ public class ArrayUtils {
         return new Tuple3<Integer, Integer, T>(I, J, K);
     }
 
-    public static <T extends Comparable<T>> int compare(Iterable<T> a, Iterable<T> b) {
-        Iterator<T> ita = a.iterator();
-        Iterator<T> itb = b.iterator();
-        while (ita.hasNext() && itb.hasNext()) {
-            int cmp = ita.next().compareTo(itb.next());
-            if (cmp != 0) return cmp;
-        }
-        if (!ita.hasNext() && !itb.hasNext()) return 0;
-        return ita.hasNext() ? +1 : -1;
-    }
+
 }

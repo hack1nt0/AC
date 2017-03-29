@@ -1,0 +1,30 @@
+7 Packrec
+6 SINGLE
+7 TASK_ID
+9 input.txt
+7 TASK_ID
+10 output.txt
+1
+0
+15 1 2
+2 3
+3 4
+4 5
+11 40
+4 10
+5 8
+1
+18 src/main/java/main
+16 -Xmx256m -Xss64m
+7 packrec
+12 main.Packrec
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.03.28
+5 usaco
+1
+26 template.debug.InputReader
+19 java.io.PrintWriter
+0
+1

@@ -1,7 +1,7 @@
 package template.graph_theory;
 
 import template.collection.sequence.ArrayQueue;
-import template.collection.sequence.IntArrayQueue;
+import template.collection.IntArrayList;
 
 import java.util.*;
 
@@ -91,7 +91,7 @@ public class UndirectionalGraph extends BidirectionalGraph {
         if (start == -1) throw new IllegalArgumentException();
 
         // initialize stack with any non-isolated vertex
-        IntArrayQueue stack = new IntArrayQueue();
+        IntArrayList stack = new IntArrayList();
         stack.push(start);
 
         // greedily search through edges in iterative DFS style
@@ -140,7 +140,7 @@ public class UndirectionalGraph extends BidirectionalGraph {
 
         List<Integer> cycle = new ArrayList<>();
         // initialize stack with any non-isolated vertex
-        IntArrayQueue stack = new IntArrayQueue();
+        IntArrayList stack = new IntArrayList();
         stack.push(start);
 
         // greedily search through edges in iterative DFS style

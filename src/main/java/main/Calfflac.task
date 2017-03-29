@@ -1,0 +1,32 @@
+8 Calfflac
+6 SINGLE
+7 TASK_ID
+9 input.txt
+7 TASK_ID
+10 output.txt
+2
+0
+31 Confucius say: Madam, I'm Adam.
+19 11
+Madam, I'm Adam
+
+1
+1
+5 ab
+ba
+-1
+1
+18 src/main/java/main
+16 -Xmx256m -Xss64m
+8 calfflac
+13 main.Calfflac
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.03.27
+5 usaco
+1
+26 template.debug.InputReader
+19 java.io.PrintWriter
+0
+1

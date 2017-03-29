@@ -46,13 +46,13 @@ public class Wormhole {
     public void solve(int testNumber, Scanner in, PrintWriter out) {
         N = in.nextInt();
         points = new ArrayList<>();
-        //List<LinesToGraph.Seg> ps = new ArrayList<>();
+        //List<Discrete.Seg> ps = new ArrayList<>();
         for (int i = 0; i < N; ++i) {
             int x = in.nextInt();
             int y = in.nextInt();
             points.add(new Point(x, y));
         }
-        //LinesToGraph.zip(ps, true, false);
+        //Discrete.zip(ps, true, false);
         Collections.sort(points, new Comparator<Point>() {
             @Override
             public int compare(Point o1, Point o2) {

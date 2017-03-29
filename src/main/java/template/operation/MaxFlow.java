@@ -1,7 +1,7 @@
 package template.operation;
 
 import template.collection.sequence.ArrayUtils;
-import template.collection.sequence.IntArrayQueue;
+import template.collection.IntArrayList;
 import template.graph_theory.AbstractEdge;
 import template.graph_theory.BidirectionalGraph;
 
@@ -216,7 +216,7 @@ public class MaxFlow {
         Arrays.fill(dist, Integer.MAX_VALUE);
         dist[s] = 0;
         //Queue<Integer> que = new LinkedList<Integer>();
-        IntArrayQueue que = new IntArrayQueue(residualGraph.V(), true);
+        IntArrayList que = new IntArrayList(residualGraph.V(), true);
         que.add(s);
         while (!que.isEmpty()) {
             int cur = que.poll();

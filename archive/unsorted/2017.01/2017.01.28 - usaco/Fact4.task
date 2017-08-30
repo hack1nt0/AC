@@ -21,7 +21,7 @@
 15 -Xmx16m -Xms16m
 5 fact4
 10 main.Fact4
-39 net.egork.chelper.checkers.TokenChecker
+39 net.net.egork.chelper.checkers.TokenChecker
 0 
 0
 10 2017.02.05

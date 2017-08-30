@@ -29,7 +29,7 @@
 16 -Xmx256m -Xss64m
 8 Solution
 31 template.UniqueDivideAndConquer
-39 net.egork.chelper.checkers.TokenChecker
+39 net.net.egork.chelper.checkers.TokenChecker
 0 
 0
 10 2016.11.26

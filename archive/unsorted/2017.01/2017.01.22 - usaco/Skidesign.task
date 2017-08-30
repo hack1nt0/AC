@@ -72,7 +72,7 @@
 16 -Xmx256m -Xss64m
 9 skidesign
 14 main.Skidesign
-39 net.egork.chelper.checkers.TokenChecker
+39 net.net.egork.chelper.checkers.TokenChecker
 0 
 0
 10 2017.01.22

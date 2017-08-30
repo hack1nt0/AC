@@ -1,16 +1,14 @@
 package template.numbers;
 
-import template.collection.CollectionUtils;
 import template.collection.IntArrayList;
-import template.collection.IntList;
-import template.collection.sequence.ArrayUtils;
 import template.collection.tuple.Tuple2;
 import template.collection.tuple.Tuple3;
 import template.debug.RandomUtils;
 
 import java.math.BigInteger;
 import java.util.*;
-import java.util.function.BinaryOperator;
+import java.util.function.*;
+import java.util.stream.IntStream;
 
 /**
  * Created by dy on 16-10-8.
@@ -82,35 +80,35 @@ public class IntUtils {
     }
 
 //    public static long div(long a, long b) {
-//        return mul(a, inv(b));
+//        return multiply(a, inv(b));
 //    }
 //
 //    public static long div(long a, long b, long c) {
-//        return mul(a, inv(b), inv(c));
+//        return multiply(a, inv(b), inv(c));
 //    }
 //
 //    public static long div(long a, long b, long c, long d) {
-//        return mul(a, inv(b), inv(c), inv(d));
+//        return multiply(a, inv(b), inv(c), inv(d));
 //    }
 //
 //    public static long div(long a, long b, long c, long d, long e) {
-//        return mul(a, inv(b), inv(c), inv(d), inv(e));
+//        return multiply(a, inv(b), inv(c), inv(d), inv(e));
 //    }
 
 //    public static long div(long a, long b, long[] modReversal) {
-//        return mul(a, modReversal[(int)b]);
+//        return multiply(a, modReversal[(int)b]);
 //    }
 //
 //    public static long div(long a, long b, long c, long[] inv) {
-//        return mul(a, inv[(int)b], inv[(int)c]);
+//        return multiply(a, inv[(int)b], inv[(int)c]);
 //    }
 //
 //    public static long div(long a, long b, long c, long d, long[] inv) {
-//        return mul(a, inv[(int)b], inv[(int)c], inv[(int)d]);
+//        return multiply(a, inv[(int)b], inv[(int)c], inv[(int)d]);
 //    }
 //
 //    public static long div(long a, long b, long c, long d, long e, long[] inv) {
-//        return mul(a, inv[(int)b], inv[(int)c], inv[(int)d], inv[(int)e]);
+//        return multiply(a, inv[(int)b], inv[(int)c], inv[(int)d], inv[(int)e]);
 //    }
 
     //when modulus is from prime
@@ -188,6 +186,8 @@ public class IntUtils {
         return BigInteger.probablePrime(nbits, new Random()).longValue();
     }
 
+
+
     public static List<Integer> primes(int lessThan) {
         assert lessThan >= 2;
         List<Integer> res = new ArrayList<>();
@@ -201,6 +201,36 @@ public class IntUtils {
             for (int j = i * 2; j < lessThan; j += i) isPrime[j] = false;
         }
         return res;
+    }
+
+    /**
+     * The accumulating predict func may cause StackOverFlow error.
+     * @return
+     */
+    public static IntStream primes() {
+        IntPredicate[] predict = {d -> true, null};
+        IntStream primes = IntStream.iterate(2, d -> d + 1)
+                .filter(d -> predict[0].test(d))
+                .peek(d -> predict[0] = predict[0].and(d2 -> d2 % d != 0));
+        return primes;
+    }
+
+    /**
+     * The accumulating predict func may cause StackOverFlow error.
+     * @return
+     */
+    public static int prime(int index) {
+        if (index < 0) throw new IllegalArgumentException();
+        IntPredicate[] predict = {d -> true, null};
+        int ithPrime = IntStream.iterate(2, d -> d + 1)
+                .filter(d -> predict[0].test(d))
+                .peek(d -> predict[0] = predict[0].and(d2 -> d2 % d != 0))
+                .skip(index)
+                .findFirst().getAsInt();
+//        PrimitiveIterator.OfInt iterator = primes().iterator();
+//        for (int i = 0; i < index; ++i) iterator.nextInt();
+//        return iterator.nextInt();
+        return ithPrime;
     }
 
     public static int[] randomInts(int W, int from, int to) {
@@ -313,14 +343,13 @@ public class IntUtils {
     }
 
     public static void main(String[] args) {
-//        long MOD = (long)1e9 + 7;
-//        IntUtils.modulus = MOD;
-//        for (int i = 1; i < MOD; ++i) {
-//            long from = inv(i), to = minv(i, MOD);
-//            if (from != to) System.err.printlnConcisely(i + ", " + from + ", " + to);
-//        }
-        //testRoman();
-        testLinearCongruence();
+        testPrime();
+    }
+
+    public static void testPrime() {
+        System.out.println(IntStream.iterate(2, d -> d + 1).filter(d -> d % 2 == 0).skip(100).findFirst().getAsInt());
+        System.out.println(prime(100000));
+        System.out.println(Arrays.toString(primes().limit(100).toArray()));
     }
 
     public static void testRoman() {
@@ -345,4 +374,13 @@ public class IntUtils {
         System.out.println(linearCongruence(A, B, Mod));
     }
 
+    public static List<Integer> factors(int d) {
+        int dd = d;
+        List<Integer> ans = new ArrayList<>();
+        for (int i = 2; i <= dd; ++i) if (dd % i == 0) {
+            ans.add(i);
+            while (dd % i == 0) dd /= i;
+        }
+        return ans;
+    }
 }

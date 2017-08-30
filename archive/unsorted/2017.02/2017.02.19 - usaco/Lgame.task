@@ -26,7 +26,7 @@ fox
 16 -Xmx256m -Xss16m
 5 lgame
 10 main.Lgame
-39 net.egork.chelper.checkers.TokenChecker
+39 net.net.egork.chelper.checkers.TokenChecker
 0 
 0
 10 2017.02.19

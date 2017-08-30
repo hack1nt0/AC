@@ -1,7 +1,7 @@
 package template.geometry;
 
 /**
- * @author Egor Kulikov (egor@egork.net)
+ * @author Egor Kulikov (egor@net.egork.net)
  */
 public class Angle {
     public final Point o;

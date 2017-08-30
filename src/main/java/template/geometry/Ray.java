@@ -5,12 +5,12 @@ package template.geometry;
  */
 public class Ray {
     public final Point base;
-    public final Line line;
-    private final Line perpendicular;
+    public final Line2D line;
+    private final Line2D perpendicular;
 
     public Ray(Point base, double direction) {
         this.base = base;
-        line = new Line(base, direction);
+        line = new Line2D(base, direction);
         this.perpendicular = line.perpendicular(base);
     }
 

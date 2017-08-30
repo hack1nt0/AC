@@ -31,7 +31,7 @@
 20 -Xmx256m -Xss64m -ea
 5 barn1
 10 main.Barn1
-39 net.egork.chelper.checkers.TokenChecker
+39 net.net.egork.chelper.checkers.TokenChecker
 0 
 0
 10 2017.01.15

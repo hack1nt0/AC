@@ -1,0 +1,39 @@
+8 Cowcycle
+6 SINGLE
+7 TASK_ID
+9 input.txt
+7 TASK_ID
+10 output.txt
+3
+0
+16 2 5
+39 62 12 28
+
+21 39 53
+12 13 15 23 27
+
+1
+1
+15 1 5
+39 62 12 28
+-1
+1
+2
+15 2 1
+39 62 12 28
+-1
+1
+18 src/main/java/main
+16 -Xmx256m -Xss64m
+8 cowcycle
+13 main.Cowcycle
+39 net.net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.04.28
+5 usaco
+1
+26 template.debug.InputReader
+19 java.io.PrintWriter
+0
+0

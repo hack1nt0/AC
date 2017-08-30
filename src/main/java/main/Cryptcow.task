@@ -1,0 +1,35 @@
+8 Cryptcow
+6 SINGLE
+7 TASK_ID
+9 input.txt
+7 TASK_ID
+10 output.txt
+3
+0
+51 Begin the EscCution at the BreOape execWak of Dawn
+
+3 1 1
+1
+1
+55 CBegin the EscCution at the BreOape execWak of OWDawn 
+
+3 1 2
+1
+2
+71 BCC execuO the EsCinCaWCCreaOpWtiOn at OCDOcOWaOegCeWtheOW BWoWk of Wwn
+-1
+1
+18 src/main/java/main
+16 -Xmx256m -Xss64m
+8 cryptcow
+13 main.Cryptcow
+39 net.net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.04.26
+5 usaco
+1
+26 template.debug.InputReader
+19 java.io.PrintWriter
+0
+1

@@ -1,7 +1,5 @@
 package template.geometry;
 
-import template.numbers.DoubleUtils;
-
 /**
  * @author Egor Kulikov (kulikov@devexperts.com)
  */
@@ -20,14 +18,14 @@ public class Point implements Comparable<Point> {
         this.y = y;
     }
 
-    public Line line(Point other) {
+    public Line2D line(Point other) {
         if (equals(other)) {
             return null;
         }
         double a = other.y - y;
         double b = x - other.x;
         double c = -a * x - b * y;
-        return new Line(a, b, c);
+        return new Line2D(a, b, c);
     }
 
     @Override
@@ -59,7 +57,7 @@ public class Point implements Comparable<Point> {
         return GeometryUtils.fastHypot(x - other.x, y - other.y);
     }
 
-    public double distance(Line line) {
+    public double distance(Line2D line) {
         return Math.abs(line.a * x + line.b * y + line.c);
     }
 

@@ -44,7 +44,7 @@
 17 -Xmx2560m -Xss64m
 4 Main1
 20 main.SubsetComponent
-39 net.egork.chelper.checkers.TokenChecker
+39 net.net.egork.chelper.checkers.TokenChecker
 0 
 0
 10 2016.12.04

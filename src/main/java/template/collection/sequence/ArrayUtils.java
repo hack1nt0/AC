@@ -2,6 +2,7 @@ package template.collection.sequence;
 
 import com.sun.javafx.image.IntToIntPixelConverter;
 import template.collection.tuple.Tuple3;
+import template.debug.InputReader;
 import template.debug.RandomUtils;
 import template.debug.Stopwatch;
 import template.numbers.IntUtils;
@@ -335,6 +336,13 @@ public class ArrayUtils {
         return res;
     }
 
+    public static int minIndex(double[] array) {
+        int index = 0;
+        for (int i = 1; i < array.length; ++i)
+            if (array[i] < array[index]) index = i;
+        return index;
+    }
+
     public static <T extends Comparable<T>> Tuple3<Integer, Integer, T> minIndex(T[][] arr) {
         if (arr == null || arr.length == 0) throw new IllegalArgumentException();
         int I, J; T K;
@@ -348,4 +356,19 @@ public class ArrayUtils {
     }
 
 
+    public static int compare(int[] as, int[] bs) {
+        int i, j;
+        for (i = j = 0; i < as.length && j < bs.length; ++j, ++i) {
+            if (as[i] == bs[j]) continue;
+            return as[i] - bs[j];
+        }
+        if (i == as.length && j == bs.length) return 0;
+        return i < as.length ? 1 : -1;
+    }
+
+    public static <T> List<T> asList(T[] xs) {
+        List<T> res = new ArrayList<T>();
+        for (T x : xs) res.add(x);
+        return res;
+    }
 }

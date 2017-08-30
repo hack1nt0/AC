@@ -22,7 +22,7 @@
 20 -Xmx256m -Xss64m -ea
 4 Main
 17 main.MilkPatterns
-39 net.egork.chelper.checkers.TokenChecker
+39 net.net.egork.chelper.checkers.TokenChecker
 0 
 0
 10 2017.01.12

@@ -74,7 +74,7 @@ public class Sort3 {
         ans += s1 * 2;
         out.println(ans);
 //        int ans = 0;
-//        for (List<Integer> ring : CombinatoricsUtils.rings(CombinatoricsUtils.permutationForSorting(arr))) {
+//        for (List<Integer> ring : CombUtils.rings(CombUtils.permutationForSorting(arr))) {
 //            System.err.println(ring);
 //            if (ring.size() == 1) continue;
 //            ans += (ring.size() - 1);

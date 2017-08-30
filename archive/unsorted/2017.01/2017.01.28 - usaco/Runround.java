@@ -57,7 +57,7 @@ public class Runround {
 //
 //            if (ok) break;
 //
-//            if (!CombinatoricsUtils.nextPermutation(ans)) {
+//            if (!CombUtils.nextPermutation(ans)) {
 //                Arrays.fill(used, false);
 //                for (int i = 0; i < ans.length; ++i) used[ans[i]] = true;
 //                for (int i = 1; i < 10; ++i) if (!used[i]) {used[i] = true; break;}

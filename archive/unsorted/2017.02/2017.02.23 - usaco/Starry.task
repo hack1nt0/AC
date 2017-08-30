@@ -67,7 +67,7 @@ b000000e000000000000000
 15 -Xmx25m -Xss16m
 6 starry
 11 main.Starry
-39 net.egork.chelper.checkers.TokenChecker
+39 net.net.egork.chelper.checkers.TokenChecker
 0 
 0
 10 2017.02.23

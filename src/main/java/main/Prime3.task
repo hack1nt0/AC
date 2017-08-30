@@ -1,0 +1,45 @@
+6 Prime3
+6 SINGLE
+7 TASK_ID
+9 input.txt
+7 TASK_ID
+10 output.txt
+2
+0
+4 11 1
+91 11351
+14033
+30323
+53201
+13313
+
+11351
+33203
+30323
+14033
+33311
+
+13313
+13043
+32303
+50231
+13331
+1
+1
+4 11 2
+-1
+1
+18 src/main/java/main
+16 -Xmx256m -Xss64m
+6 prime3
+11 main.Prime3
+39 net.net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.04.29
+5 usaco
+1
+26 template.debug.InputReader
+19 java.io.PrintWriter
+0
+0

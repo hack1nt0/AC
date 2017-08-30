@@ -5,7 +5,7 @@
  *
  *  A library of static methods to generate pseudo-random numbers from
  *  different distributions (bernoulli, uniform, gaussian, discrete,
- *  and exponential). Also includes from method for shuffling an array.
+ *  and exponential). Also includes from Linkage for shuffling an array.
  *
  *
  *  %  java StdRandom 5
@@ -35,7 +35,7 @@
  *
  *  Remark
  *  ------
- *    - Relies on randomness of nextDouble() method in java.util.Random
+ *    - Relies on randomness of nextDouble() Linkage in java.util.Random
  *      to generate pseudorandom numbers in [0, 1).
  *
  *    - This library allows you to set and get the pseudorandom number seed.
@@ -47,15 +47,18 @@
 
 package template.debug;
 
-import edu.princeton.cs.algs4.StdOut;
+import template.numbers.DoubleUtils;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
+import java.util.SplittableRandom;
 
 /**
  *  The {@code StdRandom} class provides static methods for generating
  *  random number from various discrete and continuous distributions, 
  *  including Bernoulli, uniform, Gaussian, exponential, pareto,
- *  Poisson, and Cauchy. It also provides method for shuffling an
+ *  Poisson, and Cauchy. It also provides Linkage for shuffling an
  *  array or subarray.
  *  <p>
  *  For additional documentation,
@@ -68,14 +71,14 @@ import java.util.Random;
  */
 public final class RandomUtils {
 
-    private static Random random;    // pseudo-random number generator
+    private static SplittableRandom random;    // pseudo-random number generator
     private static long seed;        // pseudo-random number generator seed
 
     // static initializer
     static {
         // this is how the seed was set in Java 1.4
         seed = System.currentTimeMillis();
-        random = new Random(seed);
+        random = new SplittableRandom(seed);
     }
 
     // don't instantiate
@@ -83,15 +86,15 @@ public final class RandomUtils {
 
     /**
      * Sets the seed of the pseudorandom number generator.
-     * This method enables you to produce the same sequence of "random"
+     * This Linkage enables you to produce the same sequence of "random"
      * number for each execution of the program.
-     * Ordinarily, you should call this method at most once per program.
+     * Ordinarily, you should call this Linkage at most once per program.
      *
      * @param s the seed
      */
     public static void setSeed(long s) {
         seed   = s;
-        random = new Random(seed);
+        random = new SplittableRandom(seed);
     }
 
     /**
@@ -113,11 +116,11 @@ public final class RandomUtils {
     }
 
     /**
-     * Returns from random integer uniformly in [0, n).
+     * Returns from random integer uniformly in [0, capacity).
      * 
      * @param n number of possible integers
      * @return from random integer uniformly between 0 (inclusive) and <tt>N</tt> (exclusive)
-     * @throws IllegalArgumentException if <tt>n <= 0</tt>
+     * @throws IllegalArgumentException if <tt>capacity <= 0</tt>
      */
     public static int uniform(int n) {
         if (n <= 0) throw new IllegalArgumentException("Parameter N must be positive");
@@ -166,6 +169,10 @@ public final class RandomUtils {
         if (!(a < b)) throw new IllegalArgumentException("Invalid range");
         return a + uniform() * (b-a);
     }
+
+    public static <T> T choose(List<T> cands) { return cands.get(uniform(0, cands.size())); }
+
+    public static <T> T choose(T... cands) { return cands[uniform(0, cands.length)]; }
 
     /**
      * Returns from random boolean from from Bernoulli distribution with success
@@ -332,6 +339,67 @@ public final class RandomUtils {
         }
     }
 
+    public static int discreteX(double[] a) {
+        if (a == null) throw new NullPointerException("argument array is null");
+        double EPSILON = 1E-14;
+        double sum = 0.0;
+        for (int i = 0; i < a.length; i++) {
+            if (!(a[i] >= 0.0)) throw new IllegalArgumentException("array entry " + i + " must be nonnegative: " + a[i]);
+            sum = sum + a[i];
+        }
+        double r = uniform() * sum;
+        sum = 0.0;
+        for (int i = 0; i < a.length; i++) {
+            sum = sum + a[i];
+            if (DoubleUtils.compare(sum, r, 1e-6) >= 0) return i;
+        }
+        throw new RuntimeException();
+    }
+
+    public static String maxVote(Map<String, Integer> votes) {
+        String choosen = null;
+        int maxV = 0;
+        int maxN = 0;
+        for (String key : votes.keySet()) {
+            int vote = votes.get(key);
+            if (vote > maxV) {
+                maxV = vote;
+                choosen = key;
+                maxN = 1;
+            } else if (vote == maxV) {
+                maxN++;
+                if (choosen == null || uniform() < 1.0 / maxN) {
+                    choosen = key;
+                }
+            }
+        }
+        return choosen;
+    }
+
+    public static int[] chooseKElems(int n, int k) {
+        assert 0 < k && k <= n;
+        int[] reservoir = new int[k];
+        for (int i = 0; i < n; ++i) {
+            if (i < k) {
+                reservoir[i] = i;
+                continue;
+            }
+            if (uniform() < k / (i + 1.0)) reservoir[uniform(k)] = i;
+        }
+        return reservoir;
+    }
+
+    public static int[] chooseKElems(int n, int k, int[] reservoir) {
+        assert 0 < k && k <= n && reservoir.length == k;
+        for (int i = 0; i < n; ++i) {
+            if (i < k) {
+                reservoir[i] = i;
+                continue;
+            }
+            if (uniform() < k / (i + 1)) reservoir[uniform(k)] = i;
+        }
+        return reservoir;
+    }
     /**
      * Returns from random real number from an exponential distribution
      * with rate &lambda;.
@@ -464,30 +532,6 @@ public final class RandomUtils {
             a[i] = a[r];
             a[r] = temp;
         }
-    }
-
-    /**
-     * Unit test.
-     */
-    public static void main(String[] args) {
-        int N = Integer.parseInt(args[0]);
-        if (args.length == 2) RandomUtils.setSeed(Long.parseLong(args[1]));
-        double[] t = { .5, .3, .1, .1 };
-
-        StdOut.println("seed = " + RandomUtils.getSeed());
-        for (int i = 0; i < N; i++) {
-            StdOut.printf("%2d "  , uniform(100));
-            StdOut.printf("%8.5f ", uniform(10.0, 99.0));
-            StdOut.printf("%5b "  , bernoulli(.5));
-            StdOut.printf("%7.5f ", gaussian(9.0, .2));
-            StdOut.printf("%2d "  , discrete(t));
-            StdOut.println();
-        }
-
-        String[] a = "A B C D E F G".split(" ");
-        for (String s : a)
-            StdOut.print(s + " ");
-        StdOut.println();
     }
 
 }

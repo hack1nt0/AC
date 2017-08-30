@@ -37,7 +37,7 @@ public class Circle {
         if (distance < GeometryUtils.epsilon) {
             return null;
         }
-        Line line = new Line(2 * (other.center.x - center.x), 2 * (other.center.y - center.y), other.radius * other
+        Line2D line = new Line2D(2 * (other.center.x - center.x), 2 * (other.center.y - center.y), other.radius * other
                 .radius - radius * radius + center.x * center.x - other.center.x * other.center.x +
                 center.y * center.y - other.center.y * other.center.y);
         return line.intersect(this);

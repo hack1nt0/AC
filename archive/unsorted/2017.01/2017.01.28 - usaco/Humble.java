@@ -21,11 +21,11 @@ public class Humble {
 //        IntBinaryHeap<Long> humbleHeap = new IntBinaryHeap<>(Collections.reverseOrder());
 //        for (int i = 0; i < primes.length; ++i) {
 //            int cnt = 0;
-//            int mul = 0;
+//            int multiply = 0;
 //            while (true) {
 //                if (cnt >= n) break;
 //
-//                long humble = primes[i] * mul++;
+//                long humble = primes[i] * multiply++;
 //                if (humbleHeap.size() == n && humble >= humbleHeap.min()) break;
 //
 //                long tmp = humble;

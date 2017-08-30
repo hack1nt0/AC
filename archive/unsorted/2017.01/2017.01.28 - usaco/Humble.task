@@ -39,7 +39,7 @@
 15 -Xmx16m -Xms16m
 6 humble
 11 main.Humble
-39 net.egork.chelper.checkers.TokenChecker
+39 net.net.egork.chelper.checkers.TokenChecker
 0 
 0
 10 2017.02.05

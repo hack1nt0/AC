@@ -109,6 +109,6 @@ GetInt = _message.GetInt
 def GetLL(*args):
   return _message.GetLL(*args)
 GetLL = _message.GetLL
-# This file is compatible with both classic and new-style classes.
+# This file is compatible with both classic and new-style clazz.
 
 

@@ -18922,7 +18922,7 @@
 17 -Xmx1024m -Xss64m
 4 Main
 21 main.SavitaAndFriends
-39 net.egork.chelper.checkers.TokenChecker
+39 net.net.egork.chelper.checkers.TokenChecker
 0 
 0
 10 2016.12.23

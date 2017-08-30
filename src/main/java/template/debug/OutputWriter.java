@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 import java.io.Writer;
 
 /**
- * @author Egor Kulikov (egor@egork.net)
+ * @author Egor Kulikov (egor@net.egork.net)
  */
 public class OutputWriter {
     private final PrintWriter writer;

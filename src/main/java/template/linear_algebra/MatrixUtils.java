@@ -1,8 +1,5 @@
 package template.linear_algebra;
 
-import java.lang.reflect.Array;
-import java.math.BigInteger;
-import java.util.ArrayList;
 
 /**
  * Created by dy on 16-10-8.
@@ -12,10 +9,8 @@ public class MatrixUtils {
     // there may be overflows, or we just need from the sum of some matrix satisfy
     // some from lower bound.
 
-    public static long[][] mul(long[][] A, long[][] B) {
+    public static long[][] multiply(long[][] A, long[][] B) {
         if (A == null || B == null) return null;
-        if (A[0].length != B.length) throw new RuntimeException();
-
         if (A[0].length != B.length) throw new RuntimeException();
         long[][] res = new long[A.length][B[0].length];
         for (int i = 0; i < A.length; ++i)
@@ -28,6 +23,33 @@ public class MatrixUtils {
         return res;
     }
 
+    public static void multiply(double[][] A, double[][] B) {
+        int N = A.length;
+        int M = B[0].length;
+        int K = A[0].length;
+        double[][] res = new double[N][M];
+        assert B.length == K;
+        for (int i = 0; i < M; ++i)
+            for (int j = 0; j < N; ++j)
+                for (int k = 0; k < K; ++k)
+                    res[i][j] += A[i][k] * B[k][j];
+    }
+
+//    public static void multiplyX(DenseMatrix A, DenseMatrix B, DenseMatrix res, boolean transA, boolean transB) {
+//        if (transA && transB) A.transABmult(B, res);
+//        else if (transA) A.transAmult(B, res);
+//        else if (transB) A.transBmult(B, res);
+//        else A.mult(B, res);
+//    }
+
+//    public static DenseMatrix multiplyX(DenseMatrix A, DenseMatrix B) {
+//        int N = A.numRows();
+//        int M = B.numColumns();
+//        DenseMatrix res = new DenseMatrix(N, M);
+//        A.mult(B, res);
+//        return res;
+//    }
+
     public static long[][] pow(long[][] M, long k) {
         if (M.length != M[0].length) throw new RuntimeException();
         if (k < 0) throw new RuntimeException();
@@ -36,8 +58,8 @@ public class MatrixUtils {
         for (int i = 0; i < res.length; ++i) res[i][i] = 1;
         long[][] acc = M;
         while (k > 0) {
-            if ((k & 1) > 0) res = mul(res, acc);
-            acc = mul(acc, acc);
+            if ((k & 1) > 0) res = multiply(res, acc);
+            acc = multiply(acc, acc);
             k >>= 1;
         }
         return res;

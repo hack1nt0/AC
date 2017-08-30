@@ -10,10 +10,19 @@ import java.util.stream.StreamSupport;
  */
 public class CollectionUtils {
 
-    public static int[] toArray(Collection<Integer> collection) {
+    public static int[] toIntArray(Collection<Integer> collection) {
         int[] array = new int[collection.size()];
         int index = 0;
         for (int element : collection) {
+            array[index++] = element;
+        }
+        return array;
+    }
+
+    public static double[] toDoubleArray(Collection<Double> collection) {
+        double[] array = new double[collection.size()];
+        int index = 0;
+        for (double element : collection) {
             array[index++] = element;
         }
         return array;
@@ -45,4 +54,25 @@ public class CollectionUtils {
         return list;
     }
 
+    public static <K, V> TreeMap<V, List<K>> reverse(TreeMap<K, V> kvMap) {
+        TreeMap<V, List<K>> res = new TreeMap<>();
+        for (K key : kvMap.keySet()) {
+            V old = kvMap.get(key);
+            List<K> list = res.getOrDefault(old, new ArrayList<K>());
+            list.add(key);
+            res.put(old, list);
+        }
+        return res;
+    }
+
+    public static <K, V> HashMap<V, List<K>> reverse(HashMap<K, V> kvMap) {
+        HashMap<V, List<K>> res = new HashMap<>();
+        for (K key : kvMap.keySet()) {
+            V old = kvMap.get(key);
+            List<K> list = res.getOrDefault(old, new ArrayList<K>());
+            list.add(key);
+            res.put(old, list);
+        }
+        return res;
+    }
 }

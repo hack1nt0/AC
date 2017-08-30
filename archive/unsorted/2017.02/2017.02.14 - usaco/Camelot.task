@@ -203,7 +203,7 @@ Z 10 Z 11 Z 12 Z 13 Z 14 Z 15 Z 16 Z 17 Z 18 Z 19 Z 20 Z 21 Z 22 Z 23 Z 24 Z 25 
 16 -Xmx256m -Xss16m
 7 camelot
 12 main.Camelot
-39 net.egork.chelper.checkers.TokenChecker
+39 net.net.egork.chelper.checkers.TokenChecker
 0 
 0
 10 2017.02.14

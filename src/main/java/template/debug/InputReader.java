@@ -1,5 +1,7 @@
 package template.debug;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigInteger;
@@ -233,5 +235,22 @@ public class InputReader {
 
     public interface SpaceCharFilter {
         public boolean isSpaceChar(int ch);
+    }
+
+    public void close() {
+        try {
+            stream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static InputReader from(String path) {
+        try {
+            return new InputReader(new FileInputStream(path));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

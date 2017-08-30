@@ -1,10 +1,13 @@
 package template.collection;
 
+import template.concurrency.TaskScheduler;
 import template.debug.RandomUtils;
+import template.debug.Stopwatch;
 import template.misc.IntComparator;
 import template.numbers.IntUtils;
 
 import java.util.*;
+import java.util.concurrent.ForkJoinPool;
 import java.util.function.IntBinaryOperator;
 import java.util.function.IntUnaryOperator;
 
@@ -13,7 +16,7 @@ import java.util.function.IntUnaryOperator;
  */
 public class Sorter {
     private static final int CUTOFF        =  15;   // cutoff for insertion sort
-    private static final int R             = Character.MAX_VALUE + 1;   // extended ASCII alphabet size
+    private static final int R             = Character.MAX_VALUE + 1;   // extended ASCII alphabet capacity
 
     /* Sort */
     public <T extends Comparable<T>> List<T> sort(Iterable<T> iterable, Comparator<T> comparator) {
@@ -32,14 +35,14 @@ public class Sorter {
 
     /**
      * Way-3 partition of MSD
-     * Complexity: O(nm), n means num of sorted strs, m means max size of sorted strs.
+     * Complexity: O(nm), capacity means num of sorted strs, m means max capacity of sorted strs.
      * while so, it only occur in the situation of many strs are of equal ones(or at least common long-same-prefix).
-     * Its amortized complexity is O(nlg_3^n)
+     * Its amortized complexity is O(nlg_3^capacity)
      * More, it can be optimized by insertion sort.
      * In practice, sortMSDWay3 will be faster than sortMSD, because of dynamic space allocation of count array of sortMSD.
      * And also, it is faster than Arrays.sort for most cases.
      *
-     * Space: O(m), (the stack space), m means max size of sorted strs.
+     * Space: O(m), (the stack space), m means max capacity of sorted strs.
      * @param stringList strings to sort
      */
     private static void sortMSDWay3(List<CharSequence> stringList, int lo, int hi, int d) {
@@ -166,9 +169,30 @@ public class Sorter {
         }
     }
 
+    public static void parallelSort(int[] array) {
+        int threshold = 100000;
+        int[] aux = new int[array.length];
+        parallelSortHelper(array, 0, array.length, threshold, aux);
+    }
+
+    private static void parallelSortHelper(int[] array, int from, int to, int threshold, int[] aux) {
+        if (to - from <= threshold) Arrays.sort(array, from, to);
+        else {
+            int mid = from + (to - from) / 2;
+            TaskScheduler.parallel(() -> parallelSortHelper(array, from, mid, threshold, aux),
+                    () -> parallelSortHelper(array, mid, to, threshold, aux));
+            int i = from, j = mid, k = from;
+            while (i < mid || j < to) {
+                if (i < mid && j < to && array[i] < array[j] || j == to) aux[k++] = array[i++];
+                else aux[k++] = array[j++];
+            }
+            System.arraycopy(aux, from, array, from, to - from);
+        }
+    }
+
 
     /**
-     * @complexity O(n^2) and stable
+     * @complexity O(capacity^2) and stable
      * @param arr
      * @param from
      * @param to
@@ -191,8 +215,8 @@ public class Sorter {
      *  @author Robert Sedgewick
      *  @author Kevin Wayne
      * Least Significant Digit(LSD).
-     * Complexity: O(nm), n means num of sorted strs, m means max size of sorted strs.
-     * Space: O(n + w), w means radical of char of sorted strs.
+     * Complexity: O(nm), capacity means num of sorted strs, m means max capacity of sorted strs.
+     * Space: O(capacity + w), w means radical of char of sorted strs.
      * @param ss strings to sort
      */
     public static void sortLSD(String[] ss) {
@@ -233,13 +257,13 @@ public class Sorter {
      *  @author Robert Sedgewick
      *  @author Kevin Wayne
      * Most Significant Digit(MSD).
-     * Complexity: O(nm), n means num of sorted strs, m means max size of sorted strs.
+     * Complexity: O(nm), capacity means num of sorted strs, m means max capacity of sorted strs.
      * while so, it only occur in the situation of many strs are of equal ones(or at least common long-same-prefix).
-     * Its amortized complexity is O(nlg_w^n), w means radical of char of sorted strs.
+     * Its amortized complexity is O(nlg_w^capacity), w means radical of char of sorted strs.
      * More, it can be optimized by insertion sort.
      * In practice, sortMSD will be much faster than sortLSD, but slower than Arrays.sort
      *
-     * Space: O(n + w), w means radical of char of sorted strs.
+     * Space: O(capacity + w), w means radical of char of sorted strs.
      * @param ss strings to sort
      */
     public static void sortMSD(List<CharSequence> ss) {
@@ -336,7 +360,7 @@ public class Sorter {
     }
 
     public static boolean sorted(int[] arr, int from, int to) {
-        assert from < to;
+        assert from <= to : "[" + from + ", " + to + ")";
         int prev = Integer.MIN_VALUE;
         for (int i = from; i < to; ++i)
             if (i > from && arr[i - 1] > arr[i]) return false;
@@ -346,6 +370,30 @@ public class Sorter {
     public static void main(String[] args) {
         //testSort();
         //testReverseOrderPairs();
+        System.out.println(ForkJoinPool.getCommonPoolParallelism());
+        testParallelSort();
+    }
+
+    private static void testParallelSort() {
+        while (true) {
+            int[] arr = IntUtils.randomInts(100000000, -10, 10);
+            int[] arr1 = arr.clone();
+            int[] arr2 = arr.clone();
+            Stopwatch.tic();
+            //mergeSort(arr1, (int a, int b) -> a - b);
+            //Arrays.parallelSort(arr1);
+            Arrays.sort(arr1);
+            Stopwatch.toc();
+            Stopwatch.tic();
+            parallelSort(arr2);
+            Stopwatch.toc();
+            System.out.println();
+            if (!Arrays.equals(arr1, arr2)) {
+                System.out.println(Arrays.toString(arr1));
+                System.out.println(Arrays.toString(arr2));
+                System.out.println("error");
+            }
+        }
     }
 
     private static void testSort() {

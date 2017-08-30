@@ -16,7 +16,7 @@
 16 -Xmx256m -Xss64m
 7 hamming
 12 main.Hamming
-39 net.egork.chelper.checkers.TokenChecker
+39 net.net.egork.chelper.checkers.TokenChecker
 0 
 0
 10 2017.01.27

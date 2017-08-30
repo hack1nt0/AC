@@ -30,7 +30,7 @@ F5
 15 -Xmx25m -Xss16m
 5 snail
 10 main.Snail
-39 net.egork.chelper.checkers.TokenChecker
+39 net.net.egork.chelper.checkers.TokenChecker
 0 
 0
 10 2017.02.24

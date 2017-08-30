@@ -9,7 +9,7 @@
 15 -Xmx25m -Xss16m
 6 starry
 9 main.Task
-39 net.egork.chelper.checkers.TokenChecker
+39 net.net.egork.chelper.checkers.TokenChecker
 0 
 0
 10 2017.02.24

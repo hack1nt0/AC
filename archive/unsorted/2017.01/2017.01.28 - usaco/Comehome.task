@@ -10051,7 +10051,7 @@ k B 215
 16 -Xmx256m -Xss64m
 8 comehome
 13 main.Comehome
-39 net.egork.chelper.checkers.TokenChecker
+39 net.net.egork.chelper.checkers.TokenChecker
 0 
 0
 10 2017.02.03

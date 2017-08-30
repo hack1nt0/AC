@@ -36,7 +36,7 @@
 package template.numbers;
 
 import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.StdRandom;
+import template.debug.RandomUtils;
 
 /**
  *  The <tt>GaussJordanElimination</tt> data type provides methods
@@ -379,10 +379,10 @@ public class GaussJordanElimination {
         double[][] A = new double[N][N];
         for (int i = 0; i < N; i++)
             for (int j = 0; j < N; j++)
-                A[i][j] = StdRandom.uniform(1000);
+                A[i][j] = RandomUtils.uniform(1000);
         double[] b = new double[N];
         for (int i = 0; i < N; i++)
-            b[i] = StdRandom.uniform(1000);
+            b[i] = RandomUtils.uniform(1000);
         test("random " + N + "-by-" + N + " (likely full rank)", A, b);
 
 
@@ -390,16 +390,16 @@ public class GaussJordanElimination {
         A = new double[N][N];
         for (int i = 0; i < N-1; i++)
             for (int j = 0; j < N; j++)
-                A[i][j] = StdRandom.uniform(1000);
+                A[i][j] = RandomUtils.uniform(1000);
         for (int i = 0; i < N-1; i++) {
-            double alpha = StdRandom.uniform(11) - 5.0;
+            double alpha = RandomUtils.uniform(11) - 5.0;
             for (int j = 0; j < N; j++) {
                 A[N-1][j] += alpha * A[i][j];
             }
         }
         b = new double[N];
         for (int i = 0; i < N; i++)
-            b[i] = StdRandom.uniform(1000);
+            b[i] = RandomUtils.uniform(1000);
         test("random " + N + "-by-" + N + " (likely infeasible)", A, b);
     }
 

@@ -180,7 +180,7 @@ public class MaxFlow {
     }
 
     /**
-     * MAKE SURE the class(same graph structure) can be invoked (dinic method) multiplied times.
+     * MAKE SURE the class(same graph structure) can be invoked (dinic Linkage) multiplied times.
      * Used in finding min cuts.
      */
     private void reset() {

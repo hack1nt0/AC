@@ -1,0 +1,29 @@
+6 Fence3
+6 SINGLE
+7 TASK_ID
+9 input.txt
+7 TASK_ID
+10 output.txt
+1
+0
+26 3
+0 0 0 1
+2 0 2 1
+0 3 2 3
+
+11 1.0 1.6 3.7
+1
+18 src/main/java/main
+16 -Xmx256m -Xss64m
+6 fence3
+11 main.Fence3
+39 net.net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2017.04.30
+5 usaco
+1
+26 template.debug.InputReader
+19 java.io.PrintWriter
+0
+0

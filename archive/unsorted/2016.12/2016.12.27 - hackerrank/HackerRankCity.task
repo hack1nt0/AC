@@ -24,7 +24,7 @@
 16 -Xmx256m -Xss64m
 4 Main
 19 main.HackerRankCity
-39 net.egork.chelper.checkers.TokenChecker
+39 net.net.egork.chelper.checkers.TokenChecker
 0 
 0
 10 2016.12.27

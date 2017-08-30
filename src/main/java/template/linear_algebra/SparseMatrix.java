@@ -44,7 +44,7 @@ public class SparseMatrix implements Iterable<int[]> {
         return matrixR[r].containsKey(c);
     }
 
-    public static SparseMatrix mul(SparseMatrix A, SparseMatrix B) {
+    public static SparseMatrix multiply(SparseMatrix A, SparseMatrix B) {
         int N = A.N, M = B.M;
         SparseMatrix C = new SparseMatrix(N, M);
         for (int i = 0; i < N; ++i) {

@@ -56,4 +56,10 @@ public class Tuple3<T extends Comparable, U extends Comparable, V extends Compar
     public V getThird() {
         return third;
     }
+
+
+    @Override
+    public String toString() {
+        return first + " " + second + " " + third;
+    }
 }

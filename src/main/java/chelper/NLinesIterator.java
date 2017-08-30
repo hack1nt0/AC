@@ -1,8 +1,6 @@
 package chelper;
 
-import net.egork.chelper.tester.StringInputStream;
-
-import java.io.BufferedInputStream;
+import java.io.StringReader;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -14,7 +12,7 @@ public class NLinesIterator implements Iterator<String> {
     int nl;
 
     public NLinesIterator(String input, int nl) {
-        in = new Scanner(new BufferedInputStream(new StringInputStream(input)));
+        in = new Scanner(new StringReader(input));
         this.nl = nl;
     }
 

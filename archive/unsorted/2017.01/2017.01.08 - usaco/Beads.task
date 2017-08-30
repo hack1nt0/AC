@@ -19,7 +19,7 @@ rrwwwwbb
 16 -Xmx256m -Xss64m
 5 beads
 10 main.Beads
-39 net.egork.chelper.checkers.TokenChecker
+39 net.net.egork.chelper.checkers.TokenChecker
 0 
 0
 10 2017.01.08

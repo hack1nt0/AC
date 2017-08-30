@@ -621,7 +621,7 @@
 15 -Xmx25m -Xss16m
 7 telecow
 12 main.Telecow
-39 net.egork.chelper.checkers.TokenChecker
+39 net.net.egork.chelper.checkers.TokenChecker
 0 
 0
 10 2017.03.03

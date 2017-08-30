@@ -7,7 +7,7 @@ public class LineSegment {
     public final Point a;
     public final Point b;
     private double distance = Double.NaN;
-    private Line line = null;
+    private Line2D line = null;
 
     public LineSegment(Point a, Point b) {
         this.a = a;
@@ -38,8 +38,8 @@ public class LineSegment {
     }
 
     public Point intersect(LineSegment other, boolean includeEnds) {
-        Line line = line();
-        Line otherLine = other.a.line(other.b);
+        Line2D line = line();
+        Line2D otherLine = other.a.line(other.b);
         if (line.parallel(otherLine)) {
             return null;
         }
@@ -58,18 +58,18 @@ public class LineSegment {
         if (a.equals(b)) {
             return false;
         }
-        Line line = line();
+        Line2D line = line();
         if (!line.contains(point)) {
             return false;
         }
-        Line perpendicular = line.perpendicular(a);
+        Line2D perpendicular = line.perpendicular(a);
         double aValue = perpendicular.value(a);
         double bValue = perpendicular.value(b);
         double pointValue = perpendicular.value(point);
         return aValue < pointValue && pointValue < bValue || bValue < pointValue && pointValue < aValue;
     }
 
-    public Line line() {
+    public Line2D line() {
         if (line == null) {
             line = a.line(b);
         }
@@ -103,8 +103,8 @@ public class LineSegment {
         return new Point[0];
     }
 
-    public Point intersect(Line line) {
-        Line selfLine = line();
+    public Point intersect(Line2D line) {
+        Line2D selfLine = line();
         Point intersect = selfLine.intersect(line);
         if (intersect == null) {
             return null;
@@ -116,8 +116,8 @@ public class LineSegment {
     }
 
     public double distance(LineSegment other) {
-        Line line = line();
-        Line otherLine = other.line();
+        Line2D line = line();
+        Line2D otherLine = other.line();
         Point p = line == null || otherLine == null ? null : line.intersect(otherLine);
         if (p != null && contains(p, true) && other.contains(p, true)) {
             return 0;

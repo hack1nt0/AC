@@ -1,17 +1,12 @@
 package template.string;
 
+import template.collection.CollectionUtils;
 import template.collection.tuple.Tuple2;
-import template.debug.RandomUtils;
-
 import java.util.*;
-
-import static template.debug.Stopwatch.*;
-
 
 /**
  * Created by dy on 17-1-11.
  *
- * the sorted
  */
 public class StringUtils {
 
@@ -113,6 +108,7 @@ public class StringUtils {
     /**
      * BKDR Hash Function (https://www.byvoid.com/zhs/blog/string-hash-compare)
      */
+    @SuppressWarnings("overflow")
     public static int hash(String string, int from, int to) {
         int hash = 0;
         int seed = 131; // 31 131 1313 13131 131313 etc..
@@ -120,6 +116,8 @@ public class StringUtils {
         hash &= 0x7FFFFFFF;
         return hash;
     }
+
+    public static int hash(String string) { return hash(string, 0, string.length());}
 
     public static <T extends Comparable<T>> int compare(Iterable<T> a, Iterable<T> b) {
         Iterator<T> ita = a.iterator();
@@ -131,6 +129,25 @@ public class StringUtils {
         if (!ita.hasNext() && !itb.hasNext()) return 0;
         return ita.hasNext() ? +1 : -1;
     }
+
+    public List<Integer> toCodePoints(CharSequence string) {
+        List<Integer> codes = new ArrayList<>();
+        for (int i = 0; i < string.length(); ++i) {
+            char c = string.charAt(i);
+            if (Character.isHighSurrogate(c)) {
+                codes.add(Character.toCodePoint(c, string.charAt(i + 1)));
+                i++;
+            } else {
+                codes.add((int) c);
+            }
+        }
+        return codes;
+    }
+
+    public String fromCodePoints(List<Integer> codePoints) {
+        return new String(CollectionUtils.toIntArray(codePoints), 0, codePoints.size());
+    }
+
 
     /** Unit Tests **/
     public static void main(String[] args) {

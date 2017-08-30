@@ -1,8 +1,6 @@
 package chelper;
 
-import net.egork.chelper.tester.StringInputStream;
-
-import java.io.BufferedInputStream;
+import java.io.StringReader;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -14,7 +12,7 @@ public class GraphIterator implements Iterator<String> {
     int mpos;
 
     public GraphIterator(String input, int mpos) {
-        in = new Scanner(new BufferedInputStream(new StringInputStream(input)));
+        in = new Scanner(new StringReader(input));
         this.mpos = mpos;
     }
 

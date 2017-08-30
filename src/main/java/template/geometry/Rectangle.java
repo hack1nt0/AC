@@ -55,6 +55,18 @@ public class Rectangle {
         return xc && yc;
     }
 
+    public List<Rectangle> add(Rectangle that) {
+        List<Rectangle> res = new ArrayList<>();
+        if (!overlapWith(that)) {
+            res.add(this);
+            res.add(that);
+            return res;
+        }
+        res.add(this);
+        res.addAll(that.remove(this));
+        return res;
+    }
+
     public List<Rectangle> remove(Rectangle o) {
         List<Rectangle> res = new ArrayList<>();
         if (!overlapWith(o)) {

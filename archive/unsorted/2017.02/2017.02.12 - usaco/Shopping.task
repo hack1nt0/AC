@@ -110,7 +110,7 @@
 15 -Xmx16m -Xss16m
 8 shopping
 13 main.Shopping
-39 net.egork.chelper.checkers.TokenChecker
+39 net.net.egork.chelper.checkers.TokenChecker
 0 
 0
 10 2017.02.12

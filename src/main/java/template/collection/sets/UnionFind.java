@@ -24,9 +24,10 @@ public class UnionFind {
             parent[p] = find(parent[p]);
         return parent[p];
     }
-    public boolean connected(int p, int q) {
-        return find(p) == find(q);
-    }
+//
+//    public boolean connected(int p, int q) {
+//        return find(p) == find(q);
+//    }
 
     public void union(int p, int q) {
         if (p == q) return;

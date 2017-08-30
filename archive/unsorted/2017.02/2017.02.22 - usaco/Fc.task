@@ -10021,7 +10021,7 @@
 15 -Xmx25m -Xss16m
 2 fc
 7 main.Fc
-39 net.egork.chelper.checkers.TokenChecker
+39 net.net.egork.chelper.checkers.TokenChecker
 0 
 0
 10 2017.02.22

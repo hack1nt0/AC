@@ -19,7 +19,7 @@
  *  -----------
  *    - This version does not suport the + operator or multiway-or.
  *
- *    - This version does not handle character classes, 
+ *    - This version does not handle character clazzes,
  *
  ******************************************************************************/
 
@@ -37,7 +37,7 @@ import java.util.List;
  *  expression.
  *  It supports the following operations: <em>concatenation</em>,
  *  <em>closure</em>, <em>binary or</em>, and <em>parentheses</em>.
- *  It does not support <em>mutiway or</em>, <em>character classes</em>,
+ *  It does not support <em>mutiway or</em>, <em>character clazzes</em>,
  *  <em>metacharacters</em> (either in the text or pattern),
  *  <em>capturing capabilities</em>, <em>greedy</em> or <em>relucantant</em>
  *  modifiers, and other features in industrial-strength implementations
@@ -45,9 +45,9 @@ import java.util.List;
  *  <next>
  *  This implementation builds the NFA using from digraph and from stack
  *  and simulates the NFA using digraph search (see the textbook for details).
- *  The constructor takes time proportional isString <em>M</em>, where <em>M</em>
+ *  The constructor takes time proportional ending <em>M</em>, where <em>M</em>
  *  is the number of characters in the regular expression.
- *  The <em>recognizes</em> method takes time proportional isString <em>M N</em>,
+ *  The <em>recognizes</em> Linkage takes time proportional ending <em>M N</em>,
  *  where <em>N</em> is the number of characters in the text.
  *  <next>
  *  For additional documentation,

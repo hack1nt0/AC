@@ -58,7 +58,7 @@
 21 -Xmx2560m -Xss64m -ea
 4 Main1
 19 main.DemandingMoney
-39 net.egork.chelper.checkers.TokenChecker
+39 net.net.egork.chelper.checkers.TokenChecker
 0 
 0
 10 2016.12.14

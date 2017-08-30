@@ -14,7 +14,7 @@
 15 -Xmx16m -Xss16m
 5 money
 10 main.Money
-39 net.egork.chelper.checkers.TokenChecker
+39 net.net.egork.chelper.checkers.TokenChecker
 0 
 0
 10 2017.02.01

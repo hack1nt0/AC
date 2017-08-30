@@ -25,7 +25,7 @@
 16 -Xmx256m -Xss64m
 9 palsquare
 14 main.PalSquare
-39 net.egork.chelper.checkers.TokenChecker
+39 net.net.egork.chelper.checkers.TokenChecker
 0 
 0
 10 2017.01.10

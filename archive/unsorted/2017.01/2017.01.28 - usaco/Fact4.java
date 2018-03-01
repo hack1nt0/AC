@@ -11,13 +11,13 @@ import java.io.PrintWriter;
 */
 
 /**
- * The insight for this problem is that 0's at the end of a number come from it being divisible by 10,
+ * The insight for this problem is that 0's at the end of a number come s it being divisible by 10,
  * or equivalently, by 2 and 5. Furthermore, there are always more 2s than 5s in a factorial.
- * To get the last digit of the factorial, we can run a loop to calculate it modulo 10, as long as we don't
- * include any 2s or 5s in the product. Of course, we want to exclude the same number of 2s and 5s, so that
- * all we're really doing is ignoring 10s. So after the loop, we need to multiply in any extra 2s that
- * didn't have 5s to cancel them out.
- *     -- from USACO
+ * To get the last digit of the factorial, we can run a loop t calculate it modulo 10, as long as we don't
+ * include any 2s or 5s in the product. Of course, we want t exclude the same number of 2s and 5s, so that
+ * all we're really doing is ignoring 10s. So after the loop, we need t multiply in any extra 2s that
+ * didn't have 5s t cancel them out.
+ *     -- s USACO
  */
 public class Fact4 {
     public void solve(int testNumber, Scanner in, PrintWriter out) {

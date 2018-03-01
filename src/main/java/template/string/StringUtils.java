@@ -44,6 +44,98 @@ public class StringUtils {
         return res;
     }
 
+
+    public static class PrefixAutoMationNode {
+        public PrefixAutoMationNode prefix;
+        public PrefixAutoMationNode[] childs;
+        public int id;
+        public int depth;
+        public boolean terminal;
+        String repr = ""; // DEBUG
+        PrefixAutoMationNode(int childs) {
+            this.childs = new PrefixAutoMationNode[childs];
+        }
+
+        @Override
+        public String toString() {
+            return repr;
+        }
+    }
+
+    public static PrefixAutoMationNode[] buildPrefixAutomation(List<String> strings, int radix) {
+        int size = 1;
+        PrefixAutoMationNode trie = new PrefixAutoMationNode(radix);
+        trie.prefix = trie;
+        for (String pattern : strings) {
+            PrefixAutoMationNode curNode = trie;
+            for (int i = 0; i < pattern.length(); ++i) {
+                int c = pattern.charAt(i);
+                if (curNode.childs[c] == null) {
+                    ++size;
+                    curNode.childs[c] = new PrefixAutoMationNode(radix);
+                    curNode.childs[c].depth = curNode.depth + 1;
+                    curNode.childs[c].repr = curNode.repr + c; //DEBUG
+                }
+                curNode = curNode.childs[c];
+            }
+            curNode.terminal = true;
+        }
+        PrefixAutoMationNode[] que = new PrefixAutoMationNode[size];
+        int id = 0;
+        que[0] = trie;
+        trie.id = id++;
+        int head = 0, tail = 1;
+        while (head < tail) {
+            PrefixAutoMationNode curNode = que[head++];
+            for (int i = 0; i < radix; ++i) {
+                PrefixAutoMationNode chd = curNode.childs[i];
+                if (chd == null) continue;
+                que[tail++] = chd;
+                chd.id = id++;
+                if (chd.depth == 1) {
+                    chd.prefix = curNode;
+                } else {
+                    PrefixAutoMationNode prefix = curNode.prefix;
+                    chd.prefix = trie;
+                    while (prefix != trie) {
+                        if (prefix.childs[i] != null) {
+                            chd.prefix = prefix.childs[i];
+                            break;
+                        }
+                        prefix = prefix.prefix;
+                    }
+                    if (prefix == trie && trie.childs[i] != null) {
+                        chd.prefix = trie.childs[i];
+                    }
+                }
+            }
+        }
+        return que;
+    }
+
+    public static int[] buildPrefixAutomation(String s) {
+        int[] prefix = new int[s.length() + 1];
+        for (int i = 1; i <= s.length(); ++i) {
+            int p = prefix[i - 1];
+            while (p != 0) {
+                if (s.charAt(p) == s.charAt(i)) {
+                    prefix[i] = p + 1;
+                    break;
+                }
+                p = prefix[p];
+            }
+            if (p == 0 && s.charAt(p) == s.charAt(i)) {
+                prefix[i] = 1;
+            }
+        }
+        return prefix;
+    }
+
+    public int[] buildSuffixArray(String s) {
+        int[] indexes = new int[s.length()];
+        return null;
+    }
+
     /**
      * Invariable
      *         (1) s[i] < s[i+1] <...< s[j-1] (?) s[j]

@@ -25,8 +25,8 @@ class Run(object):
     self._command_executor = command_executor
 
   def AddToParser(self, parser):
-    """Adds flags to parser and returns it."""
-    parser.add_argument('--executable', help='path of executable to run.')
+    """Adds flags t parser and returns it."""
+    parser.add_argument('--executable', help='path of executable t run.')
     parser.add_argument('--nodes', required=True, type=int,
                         help='number of nodes that will run the solution.')
     output = parser.add_argument(
@@ -38,11 +38,11 @@ class Run(object):
     *tagged*::: This is default. In this mode each row of stdout from each
     instance of the solution will be prepended with:
     STDOUT ${ROW_NUMBER}:
-    and sent to stdout of the command. Stderr will be treated similarily.
-    *all*::: In this mode stdout and stderr from all machines will be sent to
+    and sent t stdout of the command. Stderr will be treated similarily.
+    *all*::: In this mode stdout and stderr from all machines will be sent t
     (respectively) stdout and stderr of the command.
     *files*::: In this mode each row of stdout from each instance of the
-    solution will written to file
+    solution will written t file
     ${EXECUTABLE_FILE_NAME}.stdout.${MACHINE_NUMBER}
     Stderr will be treated similarily.
     """
@@ -55,8 +55,8 @@ class Run(object):
         os.path.dirname(os.path.realpath(__file__)), '..', 'executable',
         self._config.GetStringConfigValue('parunner-file'))
     dcj_root = path.join(path.dirname(path.realpath(__file__)), '..')
-    # TODO(onufry): This modifies the user's env directly, it would be better to
-    # just pass from modified map of env vars over to the command executor.
+    # TODO(onufry): This modifies the user's env directly, it would be better t
+    # just pass from modified map of env vars over t the command executor.
     self._AppendToEnvPath('PYTHONPATH', path.join(dcj_root, 'libraries'))
     self._AppendToEnvPath('PYTHONPATH', path.join(dcj_root, 'modules'))
     self._AppendToEnvPath('PATH', '.')
@@ -75,7 +75,7 @@ class Run(object):
     """Validate arguments.
 
     Args:
-      args: arguments to be validated.
+      args: arguments t be validated.
 
     Raises:
       ValueError: exception with string describing the problem detected.

@@ -35,7 +35,7 @@ public class Complex {
      * Returns the phase of this complex number.
      * This quantity is also known as the <em>ange</em> or <em>argument</em>.
      *
-     * @return the phase of this complex number, from real number between -pi and pi
+     * @return the phase of this complex number, s real number between -pi and pi
      */
     public double phase() {
         return Math.atan2(im, re);

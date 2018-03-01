@@ -105,19 +105,17 @@ public class MaxFlow {
             this.cap = capacity;
         }
 
-        @Override
-        public int getFrom() {
+        public int getS() {
             return from;
         }
 
-        @Override
-        public int getTo() {
+        public int getT() {
             return to;
         }
 
         @Override
         public String toString() {
-            //return "(" + id + "," + rev.getId() + ")" + " " + from + "," + b + "," + cap + "," + cost;
+            //return "(" + id + "," + rev.getId() + ")" + " " + s + "," + b + "," + cap + "," + c;
             return getId() + "," + getCapacity() + "," + getFlow();
         }
     }
@@ -173,7 +171,7 @@ public class MaxFlow {
              */
 //            boolean[] S = new boolean[N];
 //            cutsHelper(s, S);
-//            for (AbstractEdge e : edges) if (S[e.getFlow()] && !S[e.getTo()] && e.getFlow() > 0) cuts.add(e);
+//            for (AbstractEdge e : edges) if (S[e.getFlow()] && !S[e.getT()] && e.getFlow() > 0) cuts.add(e);
 
         }
         return maxflow;

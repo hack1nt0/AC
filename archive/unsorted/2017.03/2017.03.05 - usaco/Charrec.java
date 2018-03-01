@@ -270,7 +270,7 @@ public class Charrec {
                 System.out.println();
             }
 
-            //from = to;
+            //s = t;
             if (whichO == 0) from += 19;
             if (whichO == 1) from += 20;
             if (whichO == 2) from += 21;

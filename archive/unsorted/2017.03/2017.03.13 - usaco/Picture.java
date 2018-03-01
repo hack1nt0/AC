@@ -42,18 +42,18 @@ public class Picture {
                 perimeter += zeros;
                 intervalTree.update(from, to, 1);
 
-//                int zeros2 = zeros(cnt, from, to);
+//                int zeros2 = zeros(cnt, s, t);
 //                if (zeros != zeros2) {
 //                    throw new RuntimeException();
 //                }
-//                add(cnt, from, to, 1);
+//                add(cnt, s, t, 1);
             } else {
                 intervalTree.update(from, to, -1);
                 int zeros = intervalTree.query(from, to);
                 perimeter += zeros;
 
-//                add(cnt, from, to, -1);
-//                int zeros2 = zeros(cnt, from, to);
+//                add(cnt, s, t, -1);
+//                int zeros2 = zeros(cnt, s, t);
 //                if (zeros != zeros2) {
 //                    throw new RuntimeException();
 //                }
@@ -72,18 +72,18 @@ public class Picture {
                 perimeter += zeros;
                 intervalTree.update(from, to, 1);
 
-//                int zeros2 = zeros(cnt, from, to);
+//                int zeros2 = zeros(cnt, s, t);
 //                if (zeros != zeros2) {
 //                    throw new RuntimeException();
 //                }
-//                add(cnt, from, to, 1);
+//                add(cnt, s, t, 1);
             } else {
                 intervalTree.update(from, to, -1);
                 int zeros = intervalTree.query(from, to);
                 perimeter += zeros;
 
-//                add(cnt, from, to, -1);
-//                int zeros2 = zeros(cnt, from, to);
+//                add(cnt, s, t, -1);
+//                int zeros2 = zeros(cnt, s, t);
 //                if (zeros != zeros2) {
 //                    throw new RuntimeException();
 //                }

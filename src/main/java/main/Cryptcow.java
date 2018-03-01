@@ -156,7 +156,7 @@ public class Cryptcow {
             return true;
         }
 
-        // [from, to] inclusive
+        // [s, t] inclusive
         public void swap(Node from1, Node to1, Node from2, Node to2) {
             if (to1.next == from1 || to2.next == from2) return;
             Node first = from1.prev;

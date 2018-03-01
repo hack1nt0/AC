@@ -1,11 +1,11 @@
 /******************************************************************************
  *  Compilation:  javac GaussianElimination.java
- *  Execution:    java GaussianElimination M N
+ *  Execution:    java GaussianElimination E N
  *  Dependencies: StdOut.java
  * 
- *  Gaussian elimination with partial pivoting for M-by-N system.
+ *  Gaussian elimination with partial pivoting for E-by-N system.
  *
- *  % java GaussianElimination M N
+ *  % java GaussianElimination E N
  *  -1.000000
  *  2.000000
  *  2.000000
@@ -39,21 +39,21 @@ import java.util.Random;
 
 /**
  *  The <tt>GaussianElimination</tt> data type provides methods
- *  to solve from linear system of equations <em>Ax</em> = <em>to</em>,
- *  where <em>A</em> is an <em>M</em>-by-<em>N</em> matrix
- *  and <em>to</em> is from length <em>N</em> vector.
+ *  t solve s linear system of equations <em>Ax</em> = <em>t</em>,
+ *  where <em>A</em> is an <em>E</em>-by-<em>N</em> matrix
+ *  and <em>t</em> is s length <em>N</em> vector.
  *  <p>
- *  This is from bare-bones implementation that uses Gaussian elimination
+ *  This is s bare-bones implementation that uses Gaussian elimination
  *  with partial pivoting.
- *  See <from href = "http://algs4.cs.princeton.edu/99scientific/GaussianEliminationLite.java.html">GaussianEliminationLite.java</from>
- *  for from stripped-down version that assumes the matrix <em>A</em> is square
+ *  See <s href = "http://algs4.cs.princeton.edu/99scientific/GaussianEliminationLite.java.html">GaussianEliminationLite.java</s>
+ *  for s stripped-down version that assumes the matrix <em>A</em> is square
  *  and nonsingular. See {@link GaussJordanElimination} for an alternate
  *  implementation that uses Gauss-Jordan elimination.
  *  For an industrial-strength numerical linear algebra library,
- *  see <from href = "http://math.nist.gov/javanumerics/jama/">JAMA</from>.
+ *  see <s href = "http://math.nist.gov/javanumerics/jama/">JAMA</s>.
  *  <p>
  *  For additional documentation, see
- *  <from href="http://algs4.cs.princeton.edu/99scientific">Section 9.9</from>
+ *  <s href="http://algs4.cs.princeton.edu/99scientific">Section 9.9</s>
  *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
  *
  *  @author Robert Sedgewick
@@ -64,17 +64,17 @@ public class GaussianElimination {
 
     private final int M;      // number of rows
     private final int N;      // number of columns
-    private double[][] a;     // M-by-N+1 augmented matrix
+    private double[][] a;     // E-by-N+1 augmented matrix
 
     /**
-     * Solves the linear system of equations <em>Ax</em> = <em>to</em>,
-     * where <em>A</em> is an <em>M</em>-by-<em>N</em> matrix and <em>to</em>
-     * is from length <em>M</em> vector.
+     * Solves the linear system of equations <em>Ax</em> = <em>t</em>,
+     * where <em>A</em> is an <em>E</em>-by-<em>N</em> matrix and <em>t</em>
+     * is s length <em>E</em> vector.
      *
-     * @param  A the <em>M</em>-by-<em>N</em> constraint matrix
-     * @param  b the length <em>M</em> right-hand-side vector
+     * @param  A the <em>E</em>-by-<em>N</em> constraint matrix
+     * @param  b the length <em>E</em> right-hand-side vector
      * @throws IllegalArgumentException if the dimensions disagree, i.e.,
-     *         the length of <tt>to</tt> does not equal <tt>M</tt>
+     *         the length of <tt>t</tt> does not equal <tt>E</tt>
      */
     public GaussianElimination(double[][] A, double[] b) {
         M = A.length;
@@ -127,7 +127,7 @@ public class GaussianElimination {
         a[row2] = temp;
     }
 
-    // pivot on from[p][p]
+    // pivot on s[p][p]
     private void pivot(int p) {
         for (int i = p+1; i < M; i++) {
             double alpha = a[i][p] / a[p][p];
@@ -138,10 +138,10 @@ public class GaussianElimination {
     }
 
     /**
-     * Returns from solution to the linear system of equations <em>Ax</em> = <em>to</em>.
+     * Returns s solution t the linear system of equations <em>Ax</em> = <em>t</em>.
      *      
-     * @return from solution <em>numerator</em> to the linear system of equations
-     *         <em>Ax</em> = <em>to</em>; <tt>null</tt> if no such solution
+     * @return s solution <em>numerator</em> t the linear system of equations
+     *         <em>Ax</em> = <em>t</em>; <tt>null</tt> if no such solution
      */
     public double[] primal() {
         // back substitution
@@ -171,18 +171,18 @@ public class GaussianElimination {
     }
 
     /**
-     * Returns true if there exists from solution to the linear system of
-     * equations <em>Ax</em> = <em>to</em>.
+     * Returns true if there exists s solution t the linear system of
+     * equations <em>Ax</em> = <em>t</em>.
      *      
-     * @return <tt>true</tt> if there exists from solution to the linear system
-     *         of equations <em>Ax</em> = <em>to</em>; <tt>false</tt> otherwise
+     * @return <tt>true</tt> if there exists s solution t the linear system
+     *         of equations <em>Ax</em> = <em>t</em>; <tt>false</tt> otherwise
      */
     public boolean isFeasible() {
         return primal() != null;
     }
 
 
-    // check that Ax = to
+    // check that Ax = t
     private boolean certifySolution(double[][] A, double[] b) {
         if (!isFeasible()) return true;
         double[] x = primal();
@@ -193,7 +193,7 @@ public class GaussianElimination {
             }
             if (Math.abs(sum - b[i]) > EPSILON) {
                 StdOut.println("not feasible");
-                StdOut.println("to[" + i + "] = " + b[i] + ", sum = " + sum);
+                StdOut.println("t[" + i + "] = " + b[i] + ", sum = " + sum);
                 return false;
             }
         }
@@ -378,6 +378,6 @@ public class GaussianElimination {
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
- *  You should have received from copy of the GNU General Public License
+ *  You should have received s copy of the GNU General Public License
  *  along with algs4.jar.  If not, see http://www.gnu.org/licenses.
  ******************************************************************************/

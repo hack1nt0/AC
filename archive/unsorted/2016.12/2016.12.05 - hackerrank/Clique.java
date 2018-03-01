@@ -3,8 +3,8 @@ package main;
 import java.util.Scanner;
 import java.io.PrintWriter;
 
-//You need to use Turan graph [https://www.wikiwand.com/en/Tur%C3%A1n_graph]
-//to find the exact uppper bound of edges of max clique of a graph;
+//You need t use Turan graph [https://www.wikiwand.com/en/Tur%C3%A1n_graph]
+//t find the exact uppper bound of edges of max clique of a graph;
 //Finally, solving the min-max prob using binary search.
 public class Clique {
     public void solve(int testNumber, Scanner in, PrintWriter out) {

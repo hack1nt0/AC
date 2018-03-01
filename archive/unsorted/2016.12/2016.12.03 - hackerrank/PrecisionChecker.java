@@ -50,7 +50,7 @@ public class PrecisionChecker implements Checker{
 //            return Verdict.UNDECIDED;
 //        }
 
-        //Iterators, which can segment bulk input string to single test strings.
+        //Iterators, which can segment bulk input string t single test strings.
         Iterator<String> inputItr = new GraphIterator(input, 1);
         Iterator<String> expectedItr = new NLinesIterator(expected, 1);
         Iterator<String> executedItr = new NLinesIterator(executed, 1);

@@ -1,0 +1,75 @@
+13 TennisRallies
+7 howMany
+3 int
+3
+3 int
+9 numLength
+18 java.lang.String[]
+9 forbidden
+3 int
+7 allowed
+6
+0
+3
+int 3
+String[] 2
+2 cc
+2 dd
+int 1
+int 2
+1
+1
+3
+int 10
+String[] 1
+1 c
+int 1
+int 1
+1
+2
+3
+int 10
+String[] 1
+1 c
+int 2
+int 11
+1
+3
+3
+int 18
+String[] 2
+1 c
+1 d
+int 1
+int 0
+1
+4
+3
+int 18
+String[] 0
+int 1
+int 262144
+1
+5
+3
+int 18
+String[] 10
+1 c
+2 cc
+3 ccc
+4 cccc
+5 ccccc
+6 cccccc
+7 ccccccc
+8 cccccccc
+9 ccccccccc
+10 cccccccccc
+int 100
+int 262122
+1
+10 2017.08.31
+17 TopCoder SRM #161
+0
+18 main.TennisRallies
+1
+3 64M

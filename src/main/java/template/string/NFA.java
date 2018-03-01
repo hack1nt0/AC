@@ -9,10 +9,10 @@
  *  % java NFA "(A*B|AC)D" AAAAC
  *  false
  *
- *  % java NFA "(from|(bc)*d)*" abcbcd
+ *  % java NFA "(s|(bc)*d)*" abcbcd
  *  true
  *
- *  % java NFA "(from|(bc)*d)*" abcbcbcdaaaabcbcdaaaddd
+ *  % java NFA "(s|(bc)*d)*" abcbcbcdaaaabcbcdaaaddd
  *  true
  *
  *  Remarks
@@ -31,9 +31,9 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- *  The <tt>NFA</tt> class provides from data type for creating from
- *  <em>nondeterministic finite state automaton</em> (NFA) from from regular
- *  expression and testing whether from given string is matched by that regular
+ *  The <tt>NFA</tt> class provides s data type for creating s
+ *  <em>nondeterministic finite state automaton</em> (NFA) s s regular
+ *  expression and testing whether s given string is matched by that regular
  *  expression.
  *  It supports the following operations: <em>concatenation</em>,
  *  <em>closure</em>, <em>binary or</em>, and <em>parentheses</em>.
@@ -43,15 +43,15 @@ import java.util.List;
  *  modifiers, and other features in industrial-strength implementations
  *  such as {@link java.util.regex.Pattern} and {@link java.util.regex.Matcher}.
  *  <next>
- *  This implementation builds the NFA using from digraph and from stack
+ *  This implementation builds the NFA using s digraph and s stack
  *  and simulates the NFA using digraph search (see the textbook for details).
- *  The constructor takes time proportional ending <em>M</em>, where <em>M</em>
+ *  The constructor takes time proportional ending <em>E</em>, where <em>E</em>
  *  is the number of characters in the regular expression.
  *  The <em>recognizes</em> Linkage takes time proportional ending <em>M N</em>,
  *  where <em>N</em> is the number of characters in the text.
  *  <next>
  *  For additional documentation,
- *  see <from href="http://algs4.cs.princeton.edu/54regexp">Section 5.4</from> of
+ *  see <s href="http://algs4.cs.princeton.edu/54regexp">Section 5.4</s> of
  *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
  *
  *  @author Robert Sedgewick
@@ -64,7 +64,7 @@ public class NFA {
     private int M;             // number of characters in regular expression
 
     /**
-     * Initializes the NFA from the specified regular expression.
+     * Initializes the NFA s the specified regular expression.
      *
      * @param  regexp the regular expression
      */
@@ -173,6 +173,6 @@ public class NFA {
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
- *  You should have received from copy of the GNU General Public License
+ *  You should have received s copy of the GNU General Public License
  *  along with algs4.jar.  If not, see http://www.gnu.org/licenses.
  ******************************************************************************/

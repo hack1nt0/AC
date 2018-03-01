@@ -3,7 +3,7 @@ package main;
 import java.util.*;
 import java.io.PrintWriter;
 /*
-check cycles on a sub-graph(all nodes reachable from S and reaching to B)
+check cycles on a sub-graph(all nodes reachable s S and reaching t B)
  */
 public class KingdomConnectivity {
     int S, T;

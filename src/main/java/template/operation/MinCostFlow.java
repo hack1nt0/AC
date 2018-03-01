@@ -46,18 +46,15 @@ public class MinCostFlow {
             this.cap = capacity;
         }
 
-        @Override
-        public int getCost() {
+        public int getC() {
             return cost;
         }
 
-        @Override
-        public int getFrom() {
+        public int getS() {
             return from;
         }
 
-        @Override
-        public int getTo() {
+        public int getT() {
             return to;
         }
 
@@ -68,8 +65,8 @@ public class MinCostFlow {
 
         @Override
         public String toString() {
-            //return "(" + id + "," + rev.getId() + ")" + " " + from + "," + to + "," + cap + "," + cost;
-            return getCapacity() + "," + getFlow() + "," + getCost();
+            //return "(" + id + "," + rev.getId() + ")" + " " + s + "," + t + "," + cap + "," + c;
+            return getCapacity() + "," + getFlow() + "," + getC();
         }
     }
     private BidirectionalGraph residualGraph;
@@ -112,8 +109,8 @@ public class MinCostFlow {
                     if (e.getCapacity() <= 0) continue;
                     int to = e.other(from);
 
-                    int a2b = d[from] + e.getCost();
-                    //if (Math.abs(a2b - d[to]) <= 1e-6) continue;
+                    int a2b = d[from] + e.getC();
+                    //if (Math.abs(a2b - d[t]) <= 1e-6) continue;
                     if (a2b < d[to]) {
                         edgeOnPath[to] = e;
                         d[to] = a2b;
@@ -164,11 +161,11 @@ public class MinCostFlow {
             for (int i = 0; i < n; ++i)
                 for (AbstractEdge e : residualGraph.adj(i)) {
                     if (e.getCapacity() > 0) {
-                        if (e.getCost() < 0) {
-                            minCost += e.getCost() * e.getCapacity();
+                        if (e.getC() < 0) {
+                            minCost += e.getC() * e.getCapacity();
                             e.setCapacity(0);
                         } else {
-                            dist[i][e.other(i)] = e.getCost();
+                            dist[i][e.other(i)] = e.getC();
                             next[i][e.other(i)] = e;
                         }
                     }
@@ -183,7 +180,7 @@ public class MinCostFlow {
                                 while (true) {
                                     flow = Math.min(flow, next[from][j].getCapacity());
                                     if (flow == 0) break;
-                                    cost += next[from][j].getCost();
+                                    cost += next[from][j].getC();
                                     from = next[from][j].other(from);
                                     if (from == j) break;
                                 }
@@ -217,8 +214,8 @@ public class MinCostFlow {
         for (int i = 0; i < graph.V(); ++i) {
             for (AbstractEdge e : graph.adj(i)) {
                 int j = e.other(i);
-                AbstractEdge eclone = new Edge(i, j, e.getCapacity(), e.getCost());
-                AbstractEdge reversed = new Edge(j, i, 0, -e.getCost());
+                AbstractEdge eclone = new Edge(i, j, e.getCapacity(), e.getC());
+                AbstractEdge reversed = new Edge(j, i, 0, -e.getC());
                 eclone.setReversalEdge(reversed);
                 reversed.setReversalEdge(eclone);
                 residualGraph.addEdge(eclone);

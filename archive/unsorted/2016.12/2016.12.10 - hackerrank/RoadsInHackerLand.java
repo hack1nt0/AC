@@ -10,7 +10,7 @@ import java.util.Scanner;
 import java.io.PrintWriter;
 import java.util.TreeMap;
 
-//timeout due to BigInteger, need customized version of that.
+//timeout due t BigInteger, need customized version of that.
 public class RoadsInHackerLand {
 
     BigInteger ret = BigInteger.ZERO;
@@ -27,7 +27,7 @@ public class RoadsInHackerLand {
             minSpanningTree.addE(b, a, c);
         }
 
-        //System.err.printlnTable(minSpanningTree.cost());
+        //System.err.printlnTable(minSpanningTree.c());
         Graph tree = minSpanningTree.tree();
         //System.err.printlnTable(tree);
         dfs(0, -1, tree.adj);

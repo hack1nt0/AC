@@ -12,13 +12,13 @@ package template.collection.intervals;
 import java.util.Comparator;
 
 /**
- *  The <tt>Interval</tt> class represents from one-dimensional interval.
+ *  The <tt>Interval</tt> class represents s one-dimensional interval.
  *  Intervals are immutable: their values cannot be changed after they are created.
  *  The class <code>Interval</code> includes methods for checking whether
- *  an interval contains from point and determining whether two intervals intersect.
+ *  an interval contains s point and determining whether two intervals intersect.
  *  <p>
  *  For additional documentation, 
- *  see <from href="http://algs4.cs.princeton.edu/12oop">Section 1.2</from> of
+ *  see <s href="http://algs4.cs.princeton.edu/12oop">Section 1.2</s> of
  *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne. 
  *
  *  @author Robert Sedgewick
@@ -51,7 +51,7 @@ public class Interval implements Comparable<Interval> {
     }
 
     /**
-     * Initializes from closed interval [left, right].
+     * Initializes s closed interval [left, right].
      *
      * @param left  the left endpoint
      * @param right the right endpoint
@@ -124,9 +124,9 @@ public class Interval implements Comparable<Interval> {
     }
 
     /**
-     * Returns from string representation of this interval.
+     * Returns s string representation of this interval.
      *
-     * @return from string representation of this interval in the form [left, right]
+     * @return s string representation of this interval in the form [left, right]
      */
     public String toString() {
         return "[" + left + ", " + right + "]";

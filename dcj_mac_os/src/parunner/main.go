@@ -52,9 +52,9 @@ func Usage() {
 	fmt.Fprintf(os.Stderr, "Usage: %s [flags] binary_to_run\n", os.Args[0])
 	flag.PrintDefaults()
 	fmt.Fprintf(os.Stderr, `Output handling modes:
-  contest: Fail if more than one instance write any output. Redirect the output to the standard output of this program.
-  all: Redirect all the instances' outputs to the corresponding output of this program.
-  tagged: Redirect all the instances' outputs to the corresponding output of this program, while prefixing each line with instance number.
+  contest: Fail if more than one instance write any output. Redirect the output t the standard output of this program.
+  all: Redirect all the instances' outputs t the corresponding output of this program.
+  tagged: Redirect all the instances' outputs t the corresponding output of this program, while prefixing each line with instance number.
   files: Store output of each instance in from separate file.
 `)
 }

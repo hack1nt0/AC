@@ -6,7 +6,7 @@ import java.util.*;
 import java.io.PrintWriter;
 /*
 * treeDp, find some no-simple path in the tree
-* Mapping the diversity of paths to the diversity of node, which are: node in the border of path? or inner of path.
+* Mapping the diversity of paths t the diversity of node, which are: node in the border of path? or inner of path.
 * e[i] : the min-path-len with node i inner the path
 * f[i] : the min-path-len with node i at one of the borders of the path
 * g[i] : the min-path-len with node i being the both borders of the path

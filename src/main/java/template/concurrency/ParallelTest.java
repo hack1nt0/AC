@@ -86,7 +86,7 @@ public class ParallelTest {
             System.out.println("Thread " + Thread.currentThread().getName() + ": " + cur);
             //List<RecursiveAction> tasks = new ArrayList<>();
             for (AbstractEdge e: g.adj(cur)) {
-                RecursiveAction task = new pDfsHelper(e.getTo(), g);
+                RecursiveAction task = new pDfsHelper(e.getT(), g);
                 task.fork();
                 task.join();
             }

@@ -1,0 +1,68 @@
+6 Salary
+7 howMuch
+3 int
+3
+18 java.lang.String[]
+7 arrival
+18 java.lang.String[]
+9 departure
+3 int
+4 wage
+5
+0
+3
+String[] 3
+8 08:00:00
+8 13:00:00
+8 19:27:32
+String[] 3
+8 12:00:00
+8 17:00:00
+8 20:48:10
+int 1000
+int 10015
+1
+1
+3
+String[] 2
+8 01:05:47
+8 16:48:12
+String[] 2
+8 09:27:30
+8 21:17:59
+int 2000
+int 33920
+1
+2
+3
+String[] 1
+8 00:00:00
+String[] 1
+8 23:59:59
+int 10000
+int 299995
+1
+3
+3
+String[] 1
+8 10:00:00
+String[] 1
+8 18:00:00
+int 10000
+int 80000
+1
+4
+3
+String[] 1
+8 22:19:46
+String[] 1
+8 23:12:46
+int 5320
+int 7049
+1
+10 2018.02.17
+17 TopCoder SRM #157
+0
+11 main.Salary
+1
+3 64M

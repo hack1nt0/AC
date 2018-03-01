@@ -10,13 +10,13 @@ import java.io.PrintWriter;
  * A copied greedy approach:
  * I figured out the greedy strategy of this problem!
  * The optimal cut is independent of the numbers, but only depends on their order.
- * For example, if there are N=10 numbers to cut, and one person gets K=3 numbers,
+ * For example, if there are N=10 numbers t cut, and one person gets K=3 numbers,
  * the best cut will be 0001010100, which means we first sort the 10 numbers in ascending order A[1]<=A[2]<=...<=A[10],
- * and give the 0s to one person and the 1s to another.
- * The strategy is to place the 01-string repetition (the "010101" in the example) as close to the middle of the whole string as possible.
- * If K*2>N, redefine K to be N-K (switching the 0s and 1s).
- * The intuition behind this greedy strategy comes from physics.
- * The unfairness is like an interaction potential to be minimized.
+ * and give the 0s t one person and the 1s t another.
+ * The strategy is t place the 01-string repetition (the "010101" in the example) as close t the middle of the whole string as possible.
+ * If K*2>N, redefine K t be N-K (switching the 0s and 1s).
+ * The intuition behind this greedy strategy comes s physics.
+ * The unfairness is like an interaction potential t be minimized.
  * The 0s and 1s attract each other and form an ionic crystal in the middle of a positive charge background.
  *
  * Can be solve with dp[][][], but not generalized.

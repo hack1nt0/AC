@@ -83,8 +83,8 @@ func routeFakes(fis []*fakeInstance) error {
 }
 
 // equivalentMessages returns true if the two messages are equal or differ in the SendTime only
-func equivalentMessages(from, to *Message) bool {
-	return from.Source == to.Source && from.Target == to.Target && bytes.Equal(from.Message, to.Message)
+func equivalentMessages(from, t *Message) bool {
+	return from.Source == t.Source && from.Target == t.Target && bytes.Equal(from.Message, t.Message)
 }
 
 func TestRouterSimple(t *testing.T) {

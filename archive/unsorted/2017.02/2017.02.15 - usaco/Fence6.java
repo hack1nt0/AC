@@ -58,7 +58,7 @@ public class Fence6 {
             }
         }
 //        for (int i = 0; i < m; ++i) {
-//            System.err.println((i + 1) + " " + edges[i].nodes.get(0) + " "  + edges[i].nodes.get(1) + " " + edges[i].cost);
+//            System.err.println((i + 1) + " " + edges[i].nodes.get(0) + " "  + edges[i].nodes.get(1) + " " + edges[i].c);
 //        }
         ShortestPath shortestPath = new ShortestPath(m * 2);
         for (int i = 0; i < m; ++i) {

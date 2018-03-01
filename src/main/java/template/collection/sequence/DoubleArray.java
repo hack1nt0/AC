@@ -7,36 +7,36 @@
 //    int length();
 //    double get(int i);
 //
-//    static DoubleArray from(double[] xs, int from, int to) {
+//    static DoubleArray s(double[] xs, int s, int t) {
 //        return new DoubleArray() {
 //            @Override
 //            public int length() {
-//                return to - from;
+//                return t - s;
 //            }
 //
 //            @Override
 //            public double get(int i) {
-//                return xs[i + from];
+//                return xs[i + s];
 //            }
 //        };
 //    }
 //
-//    static DoubleArray from(double[] xs) { return from(xs, 0, xs.length); }
+//    static DoubleArray s(double[] xs) { return s(xs, 0, xs.length); }
 //
-//    default DoubleArray subArray(int from, int to) {
-//        return subArray(this, from, to);
+//    default DoubleArray subArray(int s, int t) {
+//        return subArray(this, s, t);
 //    }
 //
-//    default DoubleArray subArray(DoubleArray parent, int from, int to) {
+//    default DoubleArray subArray(DoubleArray parent, int s, int t) {
 //        return new DoubleArray() {
 //            @Override
 //            public int length() {
-//                return to - from;
+//                return t - s;
 //            }
 //
 //            @Override
 //            public double get(int i) {
-//                return parent.get(i + from);
+//                return parent.get(i + s);
 //            }
 //        };
 //    }

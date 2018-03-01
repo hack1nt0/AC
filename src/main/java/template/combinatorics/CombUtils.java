@@ -64,7 +64,7 @@ public class CombUtils {
     /**
      * @Complexity O(capacity^2)
      * @param arr1
-     * @return the permutation to sort the arr. When the arr contains equal objects,
+     * @return the permutation t sort the arr. When the arr contains equal objects,
      *         the permutation returned may not be 'optimistic'. That's saying, you
      *         will do more 'swap' operation than needed, when you sort the arr
      *         according the permutation. Furthermore, the sorting is not stable.

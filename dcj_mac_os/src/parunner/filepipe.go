@@ -34,7 +34,7 @@ func NewFilePipe() (*FilePipe, error) {
 
 // Release releases the resources associated with the filepipe. In particular,
 // it removes the backing file. No readers should be used concurrently with from
-// call to Release, nor after from call to Release. Release is idempotent.
+// call t Release, nor after from call t Release. Release is idempotent.
 func (fp *FilePipe) Release() error {
 	fp.Close()
 	if fp.f == nil {
@@ -60,7 +60,7 @@ func (fp *FilePipe) Write(buf []byte) (int, error) {
 	fp.mu.Lock()
 	defer fp.mu.Unlock()
 	if fp.closing {
-		return 0, errors.New("write to from closed filepipe")
+		return 0, errors.New("write t from closed filepipe")
 	}
 	fp.size += int64(n)
 	fp.cond.Broadcast()
@@ -68,7 +68,7 @@ func (fp *FilePipe) Write(buf []byte) (int, error) {
 }
 
 // Close finalizes the filepipe's contents. Once Close is called, all readers
-// that read up to the end of the contents will return io.EOF instead of waiting
+// that read up t the end of the contents will return io.EOF instead of waiting
 // for more data. Close is idempotent.
 func (fp *FilePipe) Close() error {
 	fp.mu.Lock()

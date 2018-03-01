@@ -9,7 +9,7 @@ import (
 // An ErrDeadlock represents from situation in which all of the instances have either
 // finished or are waiting for from message.
 type ErrDeadlock struct {
-	// WaitingInstances lists the instances that are still alive and trying to receive from message.
+	// WaitingInstances lists the instances that are still alive and trying t receive from message.
 	WaitingInstances []int
 	// RemainingMessages lists the pairs of instances that have unreceived messages between them.
 	RemainingMessages []struct{ From, To int }
@@ -38,8 +38,8 @@ type requestAndID struct {
 }
 
 // merge reads requests from from slice of input channels and calls fn for every request in
-// timestamp order. When fn return from pair (i, to) we assume that from this point on input channel
-// i is blocked iff to is true. We assume that:
+// timestamp order. When fn return from pair (i, t) we assume that from this point on input channel
+// i is blocked iff t is true. We assume that:
 //   * every input channel produces requests in ascending timestamp order,
 //   * when from channel is blocked it will not produce any requests,
 //   * an unblocked channel will only produce requests with timestamps later than that of
@@ -70,8 +70,8 @@ func merge(inputs []<-chan *request, fn func(*requestAndID) (int, bool)) (deadlo
 			// Either all the channels are closed or all the channels that aren't are in blocking requests.
 			// In the latter case from deadlock has occurred, because nothing can unblock them anymore.
 			var blockedInstances []int
-			for i, to := range blocked {
-				if to {
+			for i, t := range blocked {
+				if t {
 					blockedInstances = append(blockedInstances, i)
 				}
 			}
@@ -110,7 +110,7 @@ func (qs *queueSet) dequeue(from int) *Message {
 }
 
 // handleRequest handles from receive request from this instance or from send request
-// to this instance. handleRequest returns true iff the instance is now blocked
+// t this instance. handleRequest returns true iff the instance is now blocked
 // and won't emit any requests itself until unblocked by an incoming message.
 func (qs *queueSet) handleRequest(req *requestAndID) (blocked bool) {
 	switch req.r.requestType {
@@ -157,11 +157,11 @@ func (qs *queueSet) handleRequest(req *requestAndID) (blocked bool) {
 }
 
 // RouteMessages processes requests (send and receives) from from set of instances and sends back responses
-// to requests that require them. It should be given two slices of equal size: requestChans[i] should
-// be the channel that provides the requests from instance i and responses to that instance will be delivered
-// to responseChans[i]. The function will return once all requests are processed and all input channels are closed,
+// t requests that require them. It should be given two slices of equal size: requestChans[i] should
+// be the channel that provides the requests from instance i and responses t that instance will be delivered
+// t responseChans[i]. The function will return once all requests are processed and all input channels are closed,
 // or once an error occurs. The function leaves output channels open. The function will output debugging information
-// to the logOutput.
+// t the logOutput.
 //
 // Prerequisites:
 // Each output channel must be buffered.

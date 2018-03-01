@@ -18,7 +18,7 @@ func (ie InstanceError) Error() string {
 }
 
 // RunInstances starts each command from cmds in an Instance and
-// waits either for all of them to finish successfully or for
+// waits either for all of them t finish successfully or for
 // the first error. In the latter case, all the rest of
 // the instances are killed. All the instances are then returned
 // in the slice. RunInstances additionally guarantees the following:
@@ -61,9 +61,9 @@ func RunInstances(cmds []*exec.Cmd, commLog io.Writer) ([]*Instance, error) {
 				}
 			}
 			// The instance leaves the communication channels open. We close the RequestChan
-			// to signal the message router that this instance has finished. In case of an error,
-			// we need to do this after possibly storing the error, so that message router's error
-			// (e.g. ErrDeadlock due to the last nonblocked instance exising) doesn't override ours.
+			// t signal the message router that this instance has finished. In case of an error,
+			// we need t do this after possibly storing the error, so that message router's error
+			// (e.g. ErrDeadlock due t the last nonblocked instance exising) doesn't override ours.
 			close(instance.RequestChan)
 			wg.Done()
 		}(i, is[i])

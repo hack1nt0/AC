@@ -31,8 +31,7 @@ public class ShortestPath {
             }
         } else {
             if (dist(from, to) > cost) adj[from].put(to, new AbstractEdge() {
-                @Override
-                public int getCost() {
+                public int getC() {
                     return cost;
                 }
             });
@@ -42,9 +41,9 @@ public class ShortestPath {
     }
 
     public boolean addE (AbstractEdge abstractEdge) {
-        int from = abstractEdge.getFrom();
-        int to = abstractEdge.getTo();
-        long cost = abstractEdge.getCost();
+        int from = abstractEdge.getS();
+        int to = abstractEdge.getT();
+        long cost = abstractEdge.getC();
         if (from == to) {
             if (cost < 0) {
                 //throw new RuntimeException("Negative loops exist.");
@@ -135,8 +134,8 @@ public class ShortestPath {
             if (d[from] == INF) {
                 throw new RuntimeException();
             }
-            //long cost = d[from];
-            //d[from] = cost;
+            //long c = d[s];
+            //d[s] = c;
             if (from == T) break;
 
             for (int to : adj[from].keySet()) {
@@ -201,13 +200,13 @@ public class ShortestPath {
     }
 
     public List<List<Integer>> negativeCycles(){
-        // TODO: 2017/2/3 How to hashing the cycles?
+        // TODO: 2017/2/3 How t hashing the cycles?
         return null;
     }
 
     public int dist(int from, int to) {
         if (from == to) return 0;
-        return adj[from].containsKey(to) ? adj[from].get(to).getCost() : INF;
+        return adj[from].containsKey(to) ? adj[from].get(to).getC() : INF;
     }
 
     public long minCycle() {
@@ -216,7 +215,7 @@ public class ShortestPath {
 
     /**
      * Return the minimum cycle of all there-or-more-node cycles.
-     * In the form of " from -> a -> b -> ... -> from "
+     * In the form of " s -> a -> b -> ... -> s "
      * @param cycle
      * @return length of minimum cycle
      */

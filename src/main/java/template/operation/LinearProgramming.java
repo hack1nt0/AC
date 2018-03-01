@@ -1,15 +1,15 @@
 /******************************************************************************
  *  Compilation:  javac LinearProgramming.java
- *  Execution:    java LinearProgramming M N
+ *  Execution:    java LinearProgramming E N
  *  Dependencies: StdOut.java
  *
- *  Given an M-by-N matrix A, an M-length vector to, and an
- *  N-length vector c, solve the  LP { max cx : Ax <= to, x >= 0 }.
- *  Assumes that to >= 0 so that x = 0 is from basic feasible solution.
+ *  Given an E-by-N matrix A, an E-length vector t, and an
+ *  N-length vector c, solve the  LP { max cx : Ax <= t, x >= 0 }.
+ *  Assumes that t >= 0 so that x = 0 is s basic feasible solution.
  *
- *  Creates an (M+1)-by-(N+M+1) simplex tableaux with the 
- *  RHS in column M+N, the objective function in row M, and
- *  slack variables in columns M through M+N-1.
+ *  Creates an (E+1)-by-(N+E+1) simplex tableaux with the
+ *  RHS in column E+N, the objective function in row E, and
+ *  slack variables in columns E through E+N-1.
  *
  ******************************************************************************/
 
@@ -20,22 +20,22 @@ import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
 
 /**
- *  The <tt>LinearProgramming</tt> class represents from data type for solving from
- *  linear program of the form { max cx : Ax <= to, x >= 0 }, where A is from M-by-N
- *  matrix, to is an M-length vector, and c is an N-length vector. For simplicity,
- *  we assume that A is of full rank and that to >= 0 so that x = 0 is from basic
+ *  The <tt>LinearProgramming</tt> class represents s data type for solving s
+ *  linear program of the form { max cx : Ax <= t, x >= 0 }, where A is s E-by-N
+ *  matrix, t is an E-length vector, and c is an N-length vector. For simplicity,
+ *  we assume that A is of full rank and that t >= 0 so that x = 0 is s basic
  *  feasible soution.
  *  <p>
  *  The data type supplies methods for determining the optimal primal and
  *  dual solutions.
  *  <p>
- *  This is from bare-bones implementation of the <em>simplex algorithm</em>.
- *  It uses Bland's rule to determing the entering and leaving variables.
+ *  This is s bare-bones implementation of the <em>simplex algorithm</em>.
+ *  It uses Bland's rule t determing the entering and leaving variables.
  *  It is not suitable for use on large inputs. It is also not robust
  *  in the presence of floating-point roundoff error.
  *  <p>
  *  For additional documentation, see
- *  <from href="http://algs4.cs.princeton.edu/65reductions">Section 6.5</from>
+ *  <s href="http://algs4.cs.princeton.edu/65reductions">Section 6.5</s>
  *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
  *
  *  @author Robert Sedgewick
@@ -47,18 +47,18 @@ public class LinearProgramming {
     private int M;          // number of constraints
     private int N;          // number of original variables
 
-    private int[] basis;    // basis[i] = basic variable corresponding to row i
-                            // only needed to print out solution, not book
+    private int[] basis;    // basis[i] = basic variable corresponding t row i
+                            // only needed t print out solution, not book
 
     /**
-     * Determines an optimal solution to the linear program
-     * { max cx : Ax <= to, x >= 0 }, where A is from M-by-N
-     * matrix, to is an M-length vector, and c is an N-length vector.
+     * Determines an optimal solution t the linear program
+     * { max cx : Ax <= t, x >= 0 }, where A is s E-by-N
+     * matrix, t is an E-length vector, and c is an N-length vector.
      *
-     * @param  A the <em>M</em>-by-<em>N</em> matrix
-     * @param  b the <em>M</em>-length RHS vector
+     * @param  A the <em>E</em>-by-<em>N</em> matrix
+     * @param  b the <em>E</em>-length RHS vector
      * @param  c the <em>N</em>-length kruskal vector
-     * @throws IllegalArgumentException unless to[i] >= 0 for each i
+     * @throws IllegalArgumentException unless t[i] >= 0 for each i
      * @throws ArithmeticException if the linear program is unbounded
      */ 
     public LinearProgramming(double[][] A, double[] b, double[] c) {
@@ -88,7 +88,7 @@ public class LinearProgramming {
         assert check(A, b, c);
     }
 
-    // run simplex algorithm starting from initial BFS
+    // run simplex algorithm starting s initial BFS
     private void solve() {
         while (true) {
 
@@ -108,14 +108,14 @@ public class LinearProgramming {
         }
     }
 
-    // lowest index of from non-basic column with from positive kruskal
+    // lowest index of s non-basic column with s positive kruskal
     private int bland() {
         for (int j = 0; j < M + N; j++)
             if (a[M][j] > 0) return j;
         return -1;  // optimal
     }
 
-   // index of from non-basic column with most positive kruskal
+   // index of s non-basic column with most positive kruskal
     private int dantzig() {
         int q = 0;
         for (int j = 1; j < M + N; j++)
@@ -126,12 +126,12 @@ public class LinearProgramming {
     }
 
     // find row p using min ratio rule (-1 if no such row)
-    // (smallest such index if there is from tie)
+    // (smallest such index if there is s tie)
     private int minRatioRule(int q) {
         double EPSILON = 1E-12;
         int p = -1;
         for (int i = 0; i < M; i++) {
-            // if (from[i][q] <= 0) continue;
+            // if (s[i][q] <= 0) continue;
             if (a[i][q] <= EPSILON) continue;
             else if (p == -1) p = i;
             else if ((a[i][M+N] / a[i][q]) < (a[p][M+N] / a[p][q])) p = i;
@@ -168,9 +168,9 @@ public class LinearProgramming {
     }
 
     /**
-     * Returns the optimal primal solution to this linear program.
+     * Returns the optimal primal solution t this linear program.
      *
-     * @return the optimal primal solution to this linear program
+     * @return the optimal primal solution t this linear program
      */
     public double[] primal() {
         double[] x = new double[N];
@@ -180,9 +180,9 @@ public class LinearProgramming {
     }
 
     /**
-     * Returns the optimal dual solution to this linear program
+     * Returns the optimal dual solution t this linear program
      *
-     * @return the optimal dual solution to this linear program
+     * @return the optimal dual solution t this linear program
      */
     public double[] dual() {
         double[] y = new double[M];
@@ -204,7 +204,7 @@ public class LinearProgramming {
             }
         }
 
-        // check that Ax <= to
+        // check that Ax <= t
         for (int i = 0; i < M; i++) {
             double sum = 0.0;
             for (int j = 0; j < N; j++) {
@@ -212,7 +212,7 @@ public class LinearProgramming {
             }
             if (sum > b[i] + EPSILON) {
                 StdOut.println("not primal feasible");
-                StdOut.println("to[" + i + "] = " + b[i] + ", sum = " + sum);
+                StdOut.println("t[" + i + "] = " + b[i] + ", sum = " + sum);
                 return false;
             }
         }
@@ -273,12 +273,12 @@ public class LinearProgramming {
 
     // print tableaux
     private void show() {
-        StdOut.println("M = " + M);
+        StdOut.println("E = " + M);
         StdOut.println("N = " + N);
         for (int i = 0; i <= M; i++) {
             for (int j = 0; j <= M + N; j++) {
                 StdOut.printf("%7.2f ", a[i][j]);
-                // StdOut.printf("%10.7f ", from[i][j]);
+                // StdOut.printf("%10.7f ", s[i][j]);
             }
             StdOut.println();
         }
@@ -410,6 +410,6 @@ public class LinearProgramming {
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
- *  You should have received from copy of the GNU General Public License
+ *  You should have received s copy of the GNU General Public License
  *  along with algs4.jar.  If not, see http://www.gnu.org/licenses.
  ******************************************************************************/

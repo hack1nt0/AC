@@ -1,0 +1,62 @@
+15 QuiningTopCoder
+8 testCode
+16 java.lang.String
+1
+16 java.lang.String
+6 source
+7
+0
+1
+String
+1 ,
+String
+8 QUINES 0
+1
+1
+1
+String
+1 _
+String
+7 TIMEOUT
+1
+2
+1
+String
+6 1:+:1J
+String
+12 OVERFLOW 147
+1
+3
+1
+String
+11 0,1+:#@:$1J
+String
+9 QUINES 91
+1
+4
+1
+String
+26 0,1+::9W-9W-S1W1W:+2_J_@_@
+String
+10 BADEND 437
+1
+5
+1
+String
+13 #R,#:+1+:#,R#
+String
+9 QUINES 97
+1
+6
+1
+String
+7 R,#1+1:
+String
+10 MISMATCH 7
+1
+10 2017.09.04
+17 TopCoder SRM #152
+0
+20 main.QuiningTopCoder
+1
+3 64M

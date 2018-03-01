@@ -141,7 +141,7 @@ public class ACAutomation {
         return ret;
     }
 
-    //to left only the ones without both children and parent
+    //t left only the ones without both children and parent
     public List<int[]> filterNoOverlay(List<int[]> tri) {
         //if (patterns.capacity() == 1) return findSingle(text, patterns.get(0));
         List<int[]> res = new ArrayList<int[]>();
@@ -162,7 +162,7 @@ public class ACAutomation {
         return res;
     }
 
-    //to left the left-most ones
+    //t left the left-most ones
     protected List<int[]> filterLeftMost(List<int[]> tri) {
         //if (patterns.capacity() == 1) return findSingle(text, patterns.get(0));
         List<int[]> res = new ArrayList<int[]>();

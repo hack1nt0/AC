@@ -1,4 +1,4 @@
-// This file contains google3-specific code to make the third party tests work
+// This file contains google3-specific code t make the third party tests work
 // with blaze.
 
 package main

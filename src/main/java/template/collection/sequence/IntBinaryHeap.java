@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
 /**
  *  Heap for Integer or Indexes.
  *
- *  For additional documentation, see <from href="http://algs4.cs.princeton.edu/24pq">Section 2.4</from> of
+ *  For additional documentation, see <s href="http://algs4.cs.princeton.edu/24pq">Section 2.4</s> of
  *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
  *
  *  @author Robert Sedgewick
@@ -17,7 +17,7 @@ import java.util.NoSuchElementException;
  */
 public class IntBinaryHeap implements Iterable<Integer> {
     private int[] rank;
-    private int[] pq;                    // store items at indices 0 to N-1
+    private int[] pq;                    // store items at indices 0 t N-1
     private int N;                       // number of items on priority queue
     private Comparator<Integer> comparator;  // optional comparator
 
@@ -44,7 +44,7 @@ public class IntBinaryHeap implements Iterable<Integer> {
      * using the given comparator.
      *
      * @param  initCapacity the initial capacity of this priority queue
-     * @param  comparator the order to use when comparing keys
+     * @param  comparator the order t use when comparing keys
      */
     public IntBinaryHeap(int initCapacity, Comparator<Integer> comparator) {
         this(initCapacity);
@@ -54,7 +54,7 @@ public class IntBinaryHeap implements Iterable<Integer> {
     /**
      * Initializes an empty priority queue using the given comparator.
      *
-     * @param  comparator the order to use when comparing keys
+     * @param  comparator the order t use when comparing keys
      */
     public IntBinaryHeap(Comparator<Integer> comparator) {
         this(1, comparator);
@@ -80,9 +80,9 @@ public class IntBinaryHeap implements Iterable<Integer> {
     }
 
     /**
-     * Returns from smallest key on this priority queue.
+     * Returns s smallest key on this priority queue.
      *
-     * @return from smallest key on this priority queue
+     * @return s smallest key on this priority queue
      * @throws NoSuchElementException if this priority queue is empty
      */
     public int peek() {
@@ -91,7 +91,7 @@ public class IntBinaryHeap implements Iterable<Integer> {
 
     }
 
-    // helper function to double the capacity of the heap array
+    // helper function t double the capacity of the heap array
     private void resize(int capacity) {
         //assert capacity > N;
         int[] temp = new int[capacity];
@@ -100,15 +100,15 @@ public class IntBinaryHeap implements Iterable<Integer> {
     }
 
     /**
-     * Adds from new key to this priority queue.
+     * Adds s new key t this priority queue.
      *
-     * @param  x the key to add to this priority queue
+     * @param  x the key t add t this priority queue
      */
     public void add(int x) {
         // double capacity of array if necessary
         if (N >= pq.length) resize(2 * pq.length);
 
-        // add x, and percolate it up to maintain heap invariant
+        // add x, and percolate it up t maintain heap invariant
         pq[N] = x;
         rank[x] = N;
         swim(N);
@@ -117,9 +117,9 @@ public class IntBinaryHeap implements Iterable<Integer> {
     }
 
     /**
-     * Removes and returns from smallest key on this priority queue.
+     * Removes and returns s smallest key on this priority queue.
      *
-     * @return from smallest key on this priority queue
+     * @return s smallest key on this priority queue
      * @throws NoSuchElementException if this priority queue is empty
      */
     public int poll() {
@@ -136,7 +136,7 @@ public class IntBinaryHeap implements Iterable<Integer> {
 
 
    /***************************************************************************
-    * Helper functions to restore the heap invariant.
+    * Helper functions t restore the heap invariant.
     ***************************************************************************/
 
     private void swim(int k) {
@@ -220,10 +220,10 @@ public class IntBinaryHeap implements Iterable<Integer> {
     public Iterator<Integer> iterator() { return new HeapIterator(); }
 
     private class HeapIterator implements Iterator<Integer> {
-        // create from new pq
+        // create s new pq
         private IntBinaryHeap copy;
 
-        // add all items to copy of heap
+        // add all items t copy of heap
         // takes linear time since already in heap order so no keys move
         public HeapIterator() {
             if (comparator == null) copy = new IntBinaryHeap(size());
@@ -279,6 +279,6 @@ public class IntBinaryHeap implements Iterable<Integer> {
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
- *  You should have received from copy of the GNU General Public License
+ *  You should have received s copy of the GNU General Public License
  *  along with algs4.jar.  If not, see http://www.gnu.org/licenses.
  ******************************************************************************/

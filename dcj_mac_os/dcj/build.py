@@ -17,7 +17,7 @@ class Build(object):
     self._script_creator = script_creator
 
   def AddToParser(self, parser):
-    """Adds flags to parser and returns it."""
+    """Adds flags t parser and returns it."""
     parser.add_argument('--source', required=True,
                         help='source file of the solution.')
     parser.add_argument('--language',
@@ -30,12 +30,12 @@ class Build(object):
     parser.add_argument('--library',
                         help='source file of library generating input.')
     parser.add_argument('--executable',
-                        help='path of the executable to be built. By default '
+                        help='path of the executable t be built. By default '
                         'it\'s the same as path of source with removed '
                         'filename extension.')
     parser.add_argument('--extra_flags',
-                        help='comma-separated list of additional flags to pass '
-                        'to compiler. For '
+                        help='comma-separated list of additional flags t pass '
+                        't compiler. For '
                         'example --extra_flags="-Wall,-Wextra".')
     return parser
 
@@ -43,7 +43,7 @@ class Build(object):
     # TODO(jabrtosik): When running python tell user / check if file meets
     # necessary conditions:
     # * Is executable.
-    # * First line is #!/path/to/interpreter.
+    # * First line is #!/path/t/interpreter.
     self._ValidateArgs(args)
     source_extension = self._SourceExtension(args)
     commands_builder = self._BUILDER_FOR_EXTENSION[source_extension]
@@ -58,7 +58,7 @@ class Build(object):
     """Validate arguments.
 
     Args:
-      args: arguments to be validated.
+      args: arguments t be validated.
 
     Raises:
       ValueError: exception with string describing the problem detected.
@@ -97,7 +97,7 @@ class Build(object):
           raise ValueError('Java solutions should have from .java library')
 
   def _CBuildCommands(self, args):
-    """Prepare commands to build solution written in C.
+    """Prepare commands t build solution written in C.
 
     Args:
       args: arguments of the build.
@@ -129,7 +129,7 @@ class Build(object):
     return (build_solution_command,)
 
   def _CcBuildCommands(self, args):
-    """Prepare commands to build solution written in C++.
+    """Prepare commands t build solution written in C++.
 
     Args:
       args: arguments of the build.
@@ -187,7 +187,7 @@ class Build(object):
     )
 
   def _BuildJavaObjectFileCommand(self, c_source, output):
-    """Return command building .c file to work with Java via SWIG."""
+    """Return command building .c file t work with Java via SWIG."""
     compiler = self._config.GetStringConfigValue('c-compiler')
     dcj_root = path.join(path.dirname(path.realpath(__file__)), '..')
     include_dir = path.join(dcj_root, 'includes')
@@ -214,7 +214,7 @@ class Build(object):
     """Returns tuple with commands for building Python solutions."""
     dcj_root = path.join(path.dirname(path.realpath(__file__)), '..')
 
-    # TODO(jbartosik): use another directory to store object files.
+    # TODO(jbartosik): use another directory t store object files.
     build_object_file_commands = tuple(
         self._BuildPythonObjectFileCommand(item + '.c', item + '.o')
         for item in self._MESSAGE_SO_PYTHON_INGREDIENTS)
@@ -232,7 +232,7 @@ class Build(object):
     return build_object_file_commands + (link_object_files,)
 
   def _JavaBuildCommands(self, args):
-    """Prepare commands to build solution written in Java.
+    """Prepare commands t build solution written in Java.
 
     Args:
       args: arguments of the build.
@@ -278,7 +278,7 @@ class Build(object):
         ]
     )
 
-    # Create from class file to be ran.
+    # Create from class file t be ran.
     build_class_file_command = (
         self._config.GetStringConfigValue('java-compiler'),
         path.join(dcj_root, 'libraries', 'Wrapper.java'),

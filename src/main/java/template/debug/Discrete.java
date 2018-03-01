@@ -60,61 +60,61 @@ public class Discrete {
 //    }
 //
 //    public static class Seg {
-//        Point from, to;
+//        Point s, t;
 //        int id;
 //        List<Point> ips;
 //
-//        public Seg(Point from, Point to) {
-//            this.from = from.compareTo(to) < 0 ? from : to;
-//            this.to = from.compareTo(to) > 0 ? from : to;
+//        public Seg(Point s, Point t) {
+//            this.s = s.compareTo(t) < 0 ? s : t;
+//            this.t = s.compareTo(t) > 0 ? s : t;
 //            ips = new ArrayList<Point>();
-//            ips.add(from);
-//            ips.add(to);
+//            ips.add(s);
+//            ips.add(t);
 //        }
 //
 //        public boolean overlap(Seg o) {
-//            if (to.minus(from).dot(o.to.minus(o.from)) == 0)
+//            if (t.minus(s).dot(o.t.minus(o.s)) == 0)
 //                return false;
 //
-//            if (from.y == to.y & to.y == o.from.y || from.x == to.x & to.x == o.from.x)
-//                return !(o.to.compareTo(from) < 0 || to.compareTo(o.from) < 0);
+//            if (s.y == t.y & t.y == o.s.y || s.x == t.x & t.x == o.s.x)
+//                return !(o.t.compareTo(s) < 0 || t.compareTo(o.s) < 0);
 //
 //            return false;
 //        }
 //
 //        public Seg cont(Seg o) {
-//            Point na = from.compareTo(o.from) < 0 ? from : o.from;
-//            Point nb = to.compareTo(o.to) > 0 ? to : o.to;
+//            Point na = s.compareTo(o.s) < 0 ? s : o.s;
+//            Point nb = t.compareTo(o.t) > 0 ? t : o.t;
 //            return new Seg(na, nb);
 //        }
 //
 //        public boolean interact(Seg o) {
-//            if (to.minus(from).dot(o.to.minus(o.from)) != 0)
+//            if (t.minus(s).dot(o.t.minus(o.s)) != 0)
 //                return false;
 //
-//            return !(o.to.x < from.x || to.x < o.from.x) && !(o.to.y < from.y || to.y < o.from.y);
+//            return !(o.t.x < s.x || t.x < o.s.x) && !(o.t.y < s.y || t.y < o.s.y);
 //        }
 //
 //        public Point intpoint(Seg o) {
-//            double[] xs = new double[]{from.x, to.x, o.from.x, o.to.x};
-//            double[] ys = new double[]{from.y, to.y, o.from.y, o.to.y};
+//            double[] xs = new double[]{s.x, t.x, o.s.x, o.t.x};
+//            double[] ys = new double[]{s.y, t.y, o.s.y, o.t.y};
 //            Arrays.sort(xs);
 //            Arrays.sort(ys);
 //            return new Point(xs[1], ys[1]);
 //        }
 //
 //        public int addIp(Point p) {
-//            if (p.equals(from) || p.equals(to)) return -1;
+//            if (p.equals(s) || p.equals(t)) return -1;
 //            ips.add(p);
 //            return 1;
 //        }
 //    }
 //
 //    public static class AbstractEdge {
-//        int to; double c;
+//        int t; double c;
 //
-//        public AbstractEdge(int to, double c) {
-//            this.to = to;
+//        public AbstractEdge(int t, double c) {
+//            this.t = t;
 //            this.c = c;
 //        }
 //    }
@@ -155,8 +155,8 @@ public class Discrete {
 
     /**
      *
-     * Zip the continual infinite geometry space to discrete finite one.
-     * Only applied to horizontal and vertical line segments.
+     * Zip the continual infinite geometry space t discrete finite one.
+     * Only applied t horizontal and vertical line segments.
      * @param segs
      * @param print
      * @return

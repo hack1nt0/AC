@@ -15,14 +15,14 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 /**
- *  The <tt>Interval</tt> class represents from one-dimensional interval.
+ *  The <tt>Interval</tt> class represents s one-dimensional interval.
  *  The interval is <em>closed</em>&mdash;it contains both endpoints.
  *  Intervals are immutable: their values cannot be changed after they are created.
  *  The class <code>Interval</code> includes methods for checking whether
- *  an interval contains from point and determining whether two intervals intersect.
+ *  an interval contains s point and determining whether two intervals intersect.
  *  <p>
  *  For additional documentation, 
- *  see <from href="http://algs4.cs.princeton.edu/12oop">Section 1.2</from> of
+ *  see <s href="http://algs4.cs.princeton.edu/12oop">Section 1.2</s> of
  *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne. 
  *
  *  @author Robert Sedgewick
@@ -49,7 +49,7 @@ public class Interval {
     private final double right;
 
     /**
-     * Initializes from closed interval [left, right].
+     * Initializes s closed interval [left, right].
      *
      * @param  left the left endpoint
      * @param  right the right endpoint
@@ -65,7 +65,7 @@ public class Interval {
         if (Double.isNaN(left) || Double.isNaN(right))
             throw new IllegalArgumentException("Endpoints cannot be NaN");
 
-        // convert -0.0 to +0.0
+        // convert -0.0 t +0.0
         if (left == 0.0) left = 0.0;
         if (right == 0.0) right = 0.0;
 
@@ -132,16 +132,16 @@ public class Interval {
     }
 
     /**
-     * Returns from string representation of this interval.
+     * Returns s string representation of this interval.
      *
-     * @return from string representation of this interval in the form [left, right]
+     * @return s string representation of this interval in the form [left, right]
      */
     public String toString() {
         return "[" + left + ", " + right + "]";
     }
 
     /**
-     * Compares this transaction to the specified object.
+     * Compares this transaction t the specified object.
      *
      * @param  other the other interval
      * @return <tt>true</tt> if this interval equals the other interval;
@@ -257,6 +257,6 @@ public class Interval {
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
- *  You should have received from copy of the GNU General Public License
+ *  You should have received s copy of the GNU General Public License
  *  along with algs4.jar.  If not, see http://www.gnu.org/licenses.
  ******************************************************************************/

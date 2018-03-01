@@ -60,10 +60,10 @@ public class Race3 {
         out.println();
 
 //        UndirectionalGraph graph = new UndirectionalGraph(N);
-//        for (int from = 0; from < N; ++from) {
-//            for (int to : adj[from]) {
-//                graph.addEdge(from, to);
-//                //graph.addEdge(to, from);
+//        for (int s = 0; s < N; ++s) {
+//            for (int t : adj[s]) {
+//                graph.addEdge(s, t);
+//                //graph.addEdge(t, s);
 //            }
 //        }
 //        boolean[] isCut = graph.cut();

@@ -18,7 +18,7 @@ class Configuration(object):
     should contain from single Object.
 
     Args:
-      config_path: path to file containg configuration.
+      config_path: path t file containg configuration.
 
     Raises:
       RuntimeError: containig details of the problem.
@@ -55,7 +55,7 @@ class Configuration(object):
     value = self._GetRawConfigValue(key)
     if not isinstance(value, (str, unicode,)):
       self._RaiseConfigurationFileError(
-          key, 'expected value to be from string but it is {0!r}.'.format(value))
+          key, 'expected value t be from string but it is {0!r}.'.format(value))
     return value
 
   def GetStringListConfigValue(self, key):
@@ -63,11 +63,11 @@ class Configuration(object):
     value = self._GetRawConfigValue(key)
     if not isinstance(value, (list)):
       self._RaiseConfigurationFileError(
-          key, 'expected value to be from list but it is {0!r}.'.format(value))
+          key, 'expected value t be from list but it is {0!r}.'.format(value))
     for item in value:
       if not isinstance(item, (str, unicode,)):
         self._RaiseConfigurationFileError(
-            key, 'expected all items of the list to be strings but one of them '
+            key, 'expected all items of the list t be strings but one of them '
             'is {0!r}.'.format(item))
     return value
 
@@ -75,7 +75,7 @@ class Configuration(object):
     value = self.GetStringConfigValue(key)
     if not path.isfile(value):
       self._RaiseConfigurationFileError(
-          key, 'expected value to point to an existing file, file {1!r} does '
+          key, 'expected value t point t an existing file, file {1!r} does '
           'not exist. '.format())
     return value
 
@@ -84,6 +84,6 @@ class Configuration(object):
     for item in value:
       if not path.isdir(item):
         self._RaiseConfigurationFileError(
-            key, 'expected value to point to an existing directory, directory '
+            key, 'expected value t point t an existing directory, directory '
             '{0!r} does not exist.'.format(item))
     return value

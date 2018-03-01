@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 import java.io.PrintWriter;
 
-//mass-order update (contrast to dp)
+//mass-order update (contrast t dp)
 
 public class SynchronousShopping {
     public void solve(int testNumber, Scanner in, PrintWriter out) {

@@ -7,7 +7,7 @@ import java.io.PrintWriter;
 
 /**
  * treeDP
- * For arbitrary node A, its farthest node B lies on the bound of longest path of Tree(how to prove?)
+ * For arbitrary node A, its farthest node B lies on the bound of longest path of Tree(how t prove?)
  *
  * timeout with hashmap, e.t. dp[][] timeout, prefer dp[].
  */

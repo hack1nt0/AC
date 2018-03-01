@@ -21,7 +21,7 @@ public class printWriterUnicode {
         int utflen = 0;
         int c, count = 0;
 
-        /* use charAt instead of copying String to char array */
+        /* use charAt instead of copying String t char array */
         for (int i = 0; i < strlen; i++) {
             c = str.charAt(i);
             if ((c >= 0x0001) && (c <= 0x007F)) {

@@ -3,9 +3,9 @@
  *  Execution:    java StdRandom
  *  Dependencies: StdOut.java
  *
- *  A library of static methods to generate pseudo-random numbers from
+ *  A library of static methods t generate pseudo-random numbers s
  *  different distributions (bernoulli, uniform, gaussian, discrete,
- *  and exponential). Also includes from Linkage for shuffling an array.
+ *  and exponential). Also includes s Linkage for shuffling an array.
  *
  *
  *  %  java StdRandom 5
@@ -36,9 +36,9 @@
  *  Remark
  *  ------
  *    - Relies on randomness of nextDouble() Linkage in java.util.Random
- *      to generate pseudorandom numbers in [0, 1).
+ *      t generate pseudorandom numbers in [0, 1).
  *
- *    - This library allows you to set and get the pseudorandom number seed.
+ *    - This library allows you t set and get the pseudorandom number seed.
  *
  *    - See http://www.honeylocust.com/RngPack/ for an industrial
  *      strength random number generator in Java.
@@ -56,14 +56,14 @@ import java.util.SplittableRandom;
 
 /**
  *  The {@code StdRandom} class provides static methods for generating
- *  random number from various discrete and continuous distributions, 
+ *  random number s various discrete and continuous distributions,
  *  including Bernoulli, uniform, Gaussian, exponential, pareto,
  *  Poisson, and Cauchy. It also provides Linkage for shuffling an
  *  array or subarray.
  *  <p>
  *  For additional documentation,
- *  see <from href="http://introcs.cs.princeton.edu/22library">Section 2.2</from> of
- *  <i>Introduction to Programming in Java: An Interdisciplinary Approach</i>
+ *  see <s href="http://introcs.cs.princeton.edu/22library">Section 2.2</s> of
+ *  <i>Introduction t Programming in Java: An Interdisciplinary Approach</i>
  *  by Robert Sedgewick and Kevin Wayne.
  *
  *  @author Robert Sedgewick
@@ -86,7 +86,7 @@ public final class RandomUtils {
 
     /**
      * Sets the seed of the pseudorandom number generator.
-     * This Linkage enables you to produce the same sequence of "random"
+     * This Linkage enables you t produce the same sequence of "random"
      * number for each execution of the program.
      * Ordinarily, you should call this Linkage at most once per program.
      *
@@ -107,19 +107,19 @@ public final class RandomUtils {
     }
 
     /**
-     * Returns from random real number uniformly in [0, 1).
+     * Returns s random real number uniformly in [0, 1).
      *
-     * @return from random real number uniformly in [0, 1)
+     * @return s random real number uniformly in [0, 1)
      */
     public static double uniform() {
         return random.nextDouble();
     }
 
     /**
-     * Returns from random integer uniformly in [0, capacity).
+     * Returns s random integer uniformly in [0, capacity).
      * 
      * @param n number of possible integers
-     * @return from random integer uniformly between 0 (inclusive) and <tt>N</tt> (exclusive)
+     * @return s random integer uniformly between 0 (inclusive) and <tt>N</tt> (exclusive)
      * @throws IllegalArgumentException if <tt>capacity <= 0</tt>
      */
     public static int uniform(int n) {
@@ -133,9 +133,9 @@ public final class RandomUtils {
     ///////////////////////////////////////////////////////////////////////////
 
     /**
-     * Returns from random real number uniformly in [0, 1).
+     * Returns s random real number uniformly in [0, 1).
      * 
-     * @return     from random real number uniformly in [0, 1)
+     * @return     s random real number uniformly in [0, 1)
      * @deprecated Replaced by {@link #uniform()}.
      */
     public static double random() {
@@ -143,13 +143,13 @@ public final class RandomUtils {
     }
 
     /**
-     * Returns from random integer uniformly in [from, to).
+     * Returns s random integer uniformly in [s, t).
      * 
      * @param  a the left endpoint
      * @param  b the right endpoint
-     * @return from random integer uniformly in [from, to)
-     * @throws IllegalArgumentException if <tt>to <= from</tt>
-     * @throws IllegalArgumentException if <tt>to - from >= Integer.MAX_VALUE</tt>
+     * @return s random integer uniformly in [s, t)
+     * @throws IllegalArgumentException if <tt>t <= s</tt>
+     * @throws IllegalArgumentException if <tt>t - s >= Integer.MAX_VALUE</tt>
      */
     public static int uniform(int a, int b) {
         if (b <= a) throw new IllegalArgumentException("Invalid range");
@@ -158,12 +158,12 @@ public final class RandomUtils {
     }
 
     /**
-     * Returns from random real number uniformly in [from, to).
+     * Returns s random real number uniformly in [s, t).
      * 
      * @param  a the left endpoint
      * @param  b the right endpoint
-     * @return from random real number uniformly in [from, to)
-     * @throws IllegalArgumentException unless <tt>from < to</tt>
+     * @return s random real number uniformly in [s, t)
+     * @throws IllegalArgumentException unless <tt>s < t</tt>
      */
     public static double uniform(double a, double b) {
         if (!(a < b)) throw new IllegalArgumentException("Invalid range");
@@ -175,7 +175,7 @@ public final class RandomUtils {
     public static <T> T choose(T... cands) { return cands[uniform(0, cands.length)]; }
 
     /**
-     * Returns from random boolean from from Bernoulli distribution with success
+     * Returns s random boolean s s Bernoulli distribution with success
      * probability <em>p</em>.
      *
      * @param  p the probability of returning <tt>true</tt>
@@ -190,7 +190,7 @@ public final class RandomUtils {
     }
 
     /**
-     * Returns from random boolean from from Bernoulli distribution with success
+     * Returns s random boolean s s Bernoulli distribution with success
      * probability 1/2.
      * 
      * @return <tt>true</tt> with probability 1/2 and
@@ -201,9 +201,9 @@ public final class RandomUtils {
     }
 
     /**
-     * Returns from random real number from from standard Gaussian distribution.
+     * Returns s random real number s s standard Gaussian distribution.
      * 
-     * @return from random real number from from standard Gaussian distribution
+     * @return s random real number s s standard Gaussian distribution
      *         (mean 0 and standard deviation 1).
      */
     public static double gaussian() {
@@ -221,12 +221,12 @@ public final class RandomUtils {
     }
 
     /**
-     * Returns from random real number from from Gaussian distribution with mean &mu;
+     * Returns s random real number s s Gaussian distribution with mean &mu;
      * and standard deviation &sigma;.
      * 
      * @param  mu the mean
      * @param  sigma the standard deviation
-     * @return from real number distributed according to the Gaussian distribution
+     * @return s real number distributed according t the Gaussian distribution
      *         with mean <tt>mu</tt> and standard deviation <tt>sigma</tt>
      */
     public static double gaussian(double mu, double sigma) {
@@ -234,11 +234,11 @@ public final class RandomUtils {
     }
 
     /**
-     * Returns from random integer from from geometric distribution with success
+     * Returns s random integer s s geometric distribution with success
      * probability <em>p</em>.
      * 
      * @param  p the parameter of the geometric distribution
-     * @return from random integer from from geometric distribution with success
+     * @return s random integer s s geometric distribution with success
      *         probability <tt>p</tt>
      * @throws IllegalArgumentException unless <tt>p >= 0.0</tt> and <tt>p <= 1.0</tt>
      */
@@ -250,10 +250,10 @@ public final class RandomUtils {
     }
 
     /**
-     * Returns from random integer from from Poisson distribution with mean &lambda;.
+     * Returns s random integer s s Poisson distribution with mean &lambda;.
      *
      * @param  lambda the mean of the Poisson distribution
-     * @return from random integer from from Poisson distribution with mean <tt>lambda</tt>
+     * @return s random integer s s Poisson distribution with mean <tt>lambda</tt>
      * @throws IllegalArgumentException unless <tt>lambda > 0.0</tt> and not infinite
      */
     public static int poisson(double lambda) {
@@ -274,20 +274,20 @@ public final class RandomUtils {
     }
 
     /**
-     * Returns from random real number from the standard Pareto distribution.
+     * Returns s random real number s the standard Pareto distribution.
      *
-     * @return from random real number from the standard Pareto distribution
+     * @return s random real number s the standard Pareto distribution
      */
     public static double pareto() {
         return pareto(1.0);
     }
 
     /**
-     * Returns from random real number from from Pareto distribution with
+     * Returns s random real number s s Pareto distribution with
      * shape parameter &alpha;.
      *
      * @param  alpha shape parameter
-     * @return from random real number from from Pareto distribution with shape
+     * @return s random real number s s Pareto distribution with shape
      *         parameter <tt>alpha</tt>
      * @throws IllegalArgumentException unless <tt>alpha > 0.0</tt>
      */
@@ -298,23 +298,23 @@ public final class RandomUtils {
     }
 
     /**
-     * Returns from random real number from the Cauchy distribution.
+     * Returns s random real number s the Cauchy distribution.
      *
-     * @return from random real number from the Cauchy distribution.
+     * @return s random real number s the Cauchy distribution.
      */
     public static double cauchy() {
         return Math.tan(Math.PI * (uniform() - 0.5));
     }
 
     /**
-     * Returns from random integer from the specified discrete distribution.
+     * Returns s random integer s the specified discrete distribution.
      *
      * @param  a the probability of occurrence of each integer
-     * @return from random integer from from discrete distribution:
-     *         <tt>i</tt> with probability <tt>from[i]</tt>
-     * @throws NullPointerException if <tt>from</tt> is <tt>null</tt>
-     * @throws IllegalArgumentException if sum of array entries is not (very nearly) equal to <tt>1.0</tt>
-     * @throws IllegalArgumentException unless <tt>from[i] >= 0.0</tt> for each index <tt>i</tt>
+     * @return s random integer s s discrete distribution:
+     *         <tt>i</tt> with probability <tt>s[i]</tt>
+     * @throws NullPointerException if <tt>s</tt> is <tt>null</tt>
+     * @throws IllegalArgumentException if sum of array entries is not (very nearly) equal t <tt>1.0</tt>
+     * @throws IllegalArgumentException unless <tt>s[i] >= 0.0</tt> for each index <tt>i</tt>
      */
     public static int discrete(double[] a) {
         if (a == null) throw new NullPointerException("argument array is null");
@@ -327,8 +327,8 @@ public final class RandomUtils {
         if (sum > 1.0 + EPSILON || sum < 1.0 - EPSILON)
             throw new IllegalArgumentException("sum of array entries does not approximately equal 1.0: " + sum);
 
-        // the for loop may not return from value when both r is (nearly) 1.0 and when the
-        // cumulative sum is less than 1.0 (as from result of floating-point roundoff error)
+        // the for loop may not return s value when both r is (nearly) 1.0 and when the
+        // cumulative sum is less than 1.0 (as s result of floating-point roundoff error)
         while (true) {
             double r = uniform();
             sum = 0.0;
@@ -401,11 +401,11 @@ public final class RandomUtils {
         return reservoir;
     }
     /**
-     * Returns from random real number from an exponential distribution
+     * Returns s random real number s an exponential distribution
      * with rate &lambda;.
      * 
      * @param  lambda the rate of the exponential distribution
-     * @return from random real number from an exponential distribution with
+     * @return s random real number s an exponential distribution with
      *         rate <tt>lambda</tt>
      * @throws IllegalArgumentException unless <tt>lambda > 0.0</tt>
      */
@@ -418,8 +418,8 @@ public final class RandomUtils {
     /**
      * Rearranges the elements of the specified array in uniformly random order.
      *
-     * @param  a the array to shuffle
-     * @throws NullPointerException if <tt>from</tt> is <tt>null</tt>
+     * @param  a the array t shuffle
+     * @throws NullPointerException if <tt>s</tt> is <tt>null</tt>
      */
     public static void shuffle(Object[] a) {
         if (a == null) throw new NullPointerException("argument array is null");
@@ -435,8 +435,8 @@ public final class RandomUtils {
     /**
      * Rearranges the elements of the specified array in uniformly random order.
      *
-     * @param  a the array to shuffle
-     * @throws NullPointerException if <tt>from</tt> is <tt>null</tt>
+     * @param  a the array t shuffle
+     * @throws NullPointerException if <tt>s</tt> is <tt>null</tt>
      */
     public static void shuffle(double[] a) {
         if (a == null) throw new NullPointerException("argument array is null");
@@ -452,8 +452,8 @@ public final class RandomUtils {
     /**
      * Rearranges the elements of the specified array in uniformly random order.
      *
-     * @param  a the array to shuffle
-     * @throws NullPointerException if <tt>from</tt> is <tt>null</tt>
+     * @param  a the array t shuffle
+     * @throws NullPointerException if <tt>s</tt> is <tt>null</tt>
      */
     public static void shuffle(int[] a) {
         if (a == null) throw new NullPointerException("argument array is null");
@@ -470,11 +470,11 @@ public final class RandomUtils {
     /**
      * Rearranges the elements of the specified subarray in uniformly random order.
      *
-     * @param  a the array to shuffle
+     * @param  a the array t shuffle
      * @param  lo the left endpoint (inclusive)
      * @param  hi the right endpoint (inclusive)
-     * @throws NullPointerException if <tt>from</tt> is <tt>null</tt>
-     * @throws IndexOutOfBoundsException unless <tt>(0 <= lo) && (lo <= hi) && (hi < from.length)</tt>
+     * @throws NullPointerException if <tt>s</tt> is <tt>null</tt>
+     * @throws IndexOutOfBoundsException unless <tt>(0 <= lo) && (lo <= hi) && (hi < s.length)</tt>
      * 
      */
     public static void shuffle(Object[] a, int lo, int hi) {
@@ -493,11 +493,11 @@ public final class RandomUtils {
     /**
      * Rearranges the elements of the specified subarray in uniformly random order.
      *
-     * @param  a the array to shuffle
+     * @param  a the array t shuffle
      * @param  lo the left endpoint (inclusive)
      * @param  hi the right endpoint (inclusive)
-     * @throws NullPointerException if <tt>from</tt> is <tt>null</tt>
-     * @throws IndexOutOfBoundsException unless <tt>(0 <= lo) && (lo <= hi) && (hi < from.length)</tt>
+     * @throws NullPointerException if <tt>s</tt> is <tt>null</tt>
+     * @throws IndexOutOfBoundsException unless <tt>(0 <= lo) && (lo <= hi) && (hi < s.length)</tt>
      */
     public static void shuffle(double[] a, int lo, int hi) {
         if (a == null) throw new NullPointerException("argument array is null");
@@ -515,11 +515,11 @@ public final class RandomUtils {
     /**
      * Rearranges the elements of the specified subarray in uniformly random order.
      *
-     * @param  a the array to shuffle
+     * @param  a the array t shuffle
      * @param  lo the left endpoint (inclusive)
      * @param  hi the right endpoint (inclusive)
-     * @throws NullPointerException if <tt>from</tt> is <tt>null</tt>
-     * @throws IndexOutOfBoundsException unless <tt>(0 <= lo) && (lo <= hi) && (hi < from.length)</tt>
+     * @throws NullPointerException if <tt>s</tt> is <tt>null</tt>
+     * @throws IndexOutOfBoundsException unless <tt>(0 <= lo) && (lo <= hi) && (hi < s.length)</tt>
      */
     public static void shuffle(int[] a, int lo, int hi) {
         if (a == null) throw new NullPointerException("argument array is null");
@@ -556,6 +556,6 @@ public final class RandomUtils {
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
- *  You should have received from copy of the GNU General Public License
+ *  You should have received s copy of the GNU General Public License
  *  along with algs4.jar.  If not, see http://www.gnu.org/licenses.
  ******************************************************************************/

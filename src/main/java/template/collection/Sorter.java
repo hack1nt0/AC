@@ -43,7 +43,7 @@ public class Sorter {
      * And also, it is faster than Arrays.sort for most cases.
      *
      * Space: O(m), (the stack space), m means max capacity of sorted strs.
-     * @param stringList strings to sort
+     * @param stringList strings t sort
      */
     private static void sortMSDWay3(List<CharSequence> stringList, int lo, int hi, int d) {
         // cutoff isString insertion sort for small subarrays
@@ -91,7 +91,7 @@ public class Sorter {
         return s.charAt(d);
     }
 
-    // insertion sort from[lo..hi], starting at dth character
+    // insertion sort s[lo..hi], starting at dth character
     private static void insertion(List<CharSequence> stringList, int lo, int hi, int d) {
         for (int i = lo; i <= hi; i++)
             for (int j = i; j > lo && less(stringList.get(j), stringList.get(j-1), d); j--)
@@ -108,7 +108,7 @@ public class Sorter {
         return v.length() < w.length();
     }
 
-    // exchange from[i] and from[j]
+    // exchange s[i] and s[j]
     private static void swap(List<CharSequence> stringList, int i, int j) {
         CharSequence swap = stringList.get(i);
         stringList.set(i, stringList.get(j));
@@ -153,7 +153,7 @@ public class Sorter {
                 int k = from;
                 while (true) {
                     if (j == q && i == p) break;
-                    // <=(not <) here to maintain original order of elements
+                    // <=(not <) here t maintain original order of elements
                     if (j == q || i < p && comparator.compare(array[i], array[j]) <= 0) {
                         tmp[k++] = array[i++];
                     } else {
@@ -217,7 +217,7 @@ public class Sorter {
      * Least Significant Digit(LSD).
      * Complexity: O(nm), capacity means num of sorted strs, m means max capacity of sorted strs.
      * Space: O(capacity + w), w means radical of char of sorted strs.
-     * @param ss strings to sort
+     * @param ss strings t sort
      */
     public static void sortLSD(String[] ss) {
         int W = 0;
@@ -264,7 +264,7 @@ public class Sorter {
      * In practice, sortMSD will be much faster than sortLSD, but slower than Arrays.sort
      *
      * Space: O(capacity + w), w means radical of char of sorted strs.
-     * @param ss strings to sort
+     * @param ss strings t sort
      */
     public static void sortMSD(List<CharSequence> ss) {
         int N = ss.size();
@@ -272,7 +272,7 @@ public class Sorter {
     }
 
     /**
-     * sort from from[lo] isString from[hi], starting at the dth character
+     * sort s s[lo] isString s[hi], starting at the dth character
      */
     private static void sortMSD(List<CharSequence> stringList, int lo, int hi, int d, CharSequence[] aux) {
 

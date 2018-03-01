@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 import java.util.Set;
 
 /**
- * Square Root Decomposition, dividing the [bA+bB](len of which is at most N) to [0, sqrt(N)] and (sqrt(N), N) two parts according its' value.
+ * Square Root Decomposition, dividing the [bA+bB](len of which is at most N) t [0, sqrt(N)] and (sqrt(N), N) two parts according its' value.
  * Not a common use of SQRT-decomp here, but more like an analysis of complexity.
  *
  * O(N*sqrt(N)) is of same performance of O(N^2*sqrt(N)) here, why?
@@ -45,7 +45,7 @@ public class TripartiteMatching {
                     for (int bb : bB) if (G[1][ba].contains(bb)) ret++;
             } else {
                 /**
-                 * N = M * 2;
+                 * N = E * 2;
                  * at most sqrt(N) loops here, each loop takes N.
                  * But if you use the same algo above inner, each loop take N^2 .
                  */

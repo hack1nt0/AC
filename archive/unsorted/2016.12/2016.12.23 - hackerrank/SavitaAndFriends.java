@@ -12,7 +12,7 @@ import java.io.PrintWriter;
  *
  * This problem illustrate a graph view of min-max(max-min) problem. That is, it's actually a collections of two-dimension curves, each curve is the inner f.
  *
- * Also require geometry, hard to me.
+ * Also require geometry, hard t me.
  */
 public class SavitaAndFriends {
     public void solve(int testNumber, Scanner in, PrintWriter out) {

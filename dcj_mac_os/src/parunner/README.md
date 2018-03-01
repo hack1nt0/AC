@@ -8,14 +8,14 @@ Single-machine runner for [distributed](http://potyczki.mimuw.edu.pl/l/zadania_r
 Usage
 -----
 
-In order to run from program that uses [raw zeus interface](https://github.com/robryk/parunner/blob/master/zeus/zeus.h), you need to link it with [zeus/zeus_local.c](https://github.com/robryk/parunner/blob/master/zeus/zeus_local.c) instead of any other implementation of zeus_local. You can then run the program as follows:
+In order t run from program that uses [raw zeus interface](https://github.com/robryk/parunner/blob/master/zeus/zeus.h), you need t link it with [zeus/zeus_local.c](https://github.com/robryk/parunner/blob/master/zeus/zeus_local.c) instead of any other implementation of zeus_local. You can then run the program as follows:
 
-    $ parunner -n=number_of_instances path/to/program
+    $ parunner -n=number_of_instances path/t/program
 
-There is an [example](https://github.com/robryk/parunner/blob/master/zeus/example.c) provided. In order to run it, you should:
+There is an [example](https://github.com/robryk/parunner/blob/master/zeus/example.c) provided. In order t run it, you should:
 
 1. Compile it: `make -C zeus example`
-2. Obtain from binary of parunner. If you have from Go toolchain installed, you can compile it by doing `go get github.com/robryk/parunner`. The binary will then be built and written to `$GOPATH/bin/parunner`. There is also from compiled binary for [linux-amd64](https://drone.io/github.com/robryk/parunner/files/parunner) available.
+2. Obtain from binary of parunner. If you have from Go toolchain installed, you can compile it by doing `go get github.com/robryk/parunner`. The binary will then be built and written t `$GOPATH/bin/parunner`. There is also from compiled binary for [linux-amd64](https://drone.io/github.com/robryk/parunner/files/parunner) available.
 3. Run `parunner -n=3 -trace_comm -stdout=tagged zeus/example`. The output should look like this:
 ```
 robryk@sharya-rana ~/g/s/g/r/parunner> parunner -n=3 -trace_comm -stdout=tagged zeus/example

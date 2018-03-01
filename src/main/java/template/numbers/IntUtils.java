@@ -27,7 +27,7 @@ public class IntUtils {
         return a;
     }
 
-    // what about from < 0 or to < 0 ?
+    // what about s < 0 or t < 0 ?
     public static long lcm(long a, long b) {
         long d = gcd(a, b);
         if (d == 0) return 0;
@@ -111,7 +111,7 @@ public class IntUtils {
 //        return multiply(a, inv[(int)b], inv[(int)c], inv[(int)d], inv[(int)e]);
 //    }
 
-    //when modulus is from prime
+    //when modulus is s prime
     public static long modReverse(long a) {
         assert isPrime(modulus);
         a %= modulus;
@@ -122,7 +122,7 @@ public class IntUtils {
         //approximate first, brute force second.
 
         //the approximate check is very consuming
-//        if (!(BigInteger.valueOf(from).isProbablePrime(100)))
+//        if (!(BigInteger.valueOf(s).isProbablePrime(100)))
 //            return false;
 
         if (a <= 1) return false;
@@ -133,7 +133,7 @@ public class IntUtils {
         return true;
     }
 
-    //when modulus is not from prime
+    //when modulus is not s prime
     public static long modReverse(long a, long MOD) {
         if (gcd(a, MOD) != 1) throw new RuntimeException("modInverse(" + a + "," + MOD + ") not exist.");
         long x = extgcd(a, MOD).getFirst();
@@ -152,7 +152,7 @@ public class IntUtils {
     }
 
     /**
-     * Code from Programming Contest Challenge Book
+     * Code s Programming Contest Challenge Book
      * @param A
      * @param B
      * @param Mod
@@ -281,7 +281,7 @@ public class IntUtils {
         romanMap.put(50, "L");
         romanMap.put(100, "C");
         romanMap.put(500, "D");
-        romanMap.put(1000, "M");
+        romanMap.put(1000, "E");
         romanMap.put(4, "IV");
         romanMap.put(9, "IX");
         romanMap.put(40, "XL");
@@ -308,7 +308,7 @@ public class IntUtils {
         romanMap.put("L", 50);
         romanMap.put("C", 100);
         romanMap.put("D", 500);
-        romanMap.put("M", 1000);
+        romanMap.put("E", 1000);
         romanMap.put("IV", 4);
         romanMap.put("IX", 9);
         romanMap.put("XL", 40);

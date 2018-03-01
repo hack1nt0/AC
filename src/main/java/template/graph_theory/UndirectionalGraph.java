@@ -22,18 +22,15 @@ public class UndirectionalGraph extends BidirectionalGraph {
     public void addEdge (int from, int to, int cost) {
         addEdge(new AbstractEdge() {
             boolean visited = false;
-            @Override
-            public int getCost() {
+            public int getC() {
                 return cost;
             }
 
-            @Override
-            public int getFrom() {
+            public int getS() {
                 return from;
             }
 
-            @Override
-            public int getTo() {
+            public int getT() {
                 return to;
             }
 
@@ -42,13 +39,11 @@ public class UndirectionalGraph extends BidirectionalGraph {
 
     public void addEdge (int from, int to) {
         addEdge(new AbstractEdge() {
-            @Override
-            public int getFrom() {
+            public int getS() {
                 return from;
             }
 
-            @Override
-            public int getTo() {
+            public int getT() {
                 return to;
             }
         });
@@ -56,10 +51,10 @@ public class UndirectionalGraph extends BidirectionalGraph {
 
     @Override
     public void addEdge(AbstractEdge e) {
-        int from = e.getFrom(), to = e.getTo();
+        int from = e.getS(), to = e.getT();
         adj[from].add(e);
         adj[to].add(e);
-        M++;
+        E++;
         degree[from]++;
         degree[to]++;
     }
@@ -78,7 +73,7 @@ public class UndirectionalGraph extends BidirectionalGraph {
 
     public List<Integer> cycle() {
         List<Integer> cycle = new ArrayList<>();
-        if (M == 0) return cycle;
+        if (E == 0) return cycle;
 
         // necessary condition: all vertices have even degree
         // (this test is needed or it might find an Eulerian path instead of cycle)
@@ -107,12 +102,12 @@ public class UndirectionalGraph extends BidirectionalGraph {
                 stack.push(v);
                 v = edge.other(v);
             }
-            // push vertex with no more leaving edges to cycle
+            // push vertex with no more leaving edges t cycle
             cycle.add(v);
         }
 
         // check if all edges are used
-        if (cycle.size() != M + 1) throw new RuntimeException();
+        if (cycle.size() != E + 1) throw new RuntimeException();
 
         return cycle;
     }
@@ -155,12 +150,12 @@ public class UndirectionalGraph extends BidirectionalGraph {
                 stack.push(v);
                 v = edge.other(v);
             }
-            // push vertex with no more leaving edges to cycle
+            // push vertex with no more leaving edges t cycle
             cycle.add(v);
         }
 
         // check if all edges are used
-        if (cycle.size() != M + 1) throw new RuntimeException();
+        if (cycle.size() != E + 1) throw new RuntimeException();
 
         return cycle;
     }
@@ -225,7 +220,7 @@ public class UndirectionalGraph extends BidirectionalGraph {
                     Set<Integer> bcc = new HashSet<>();
                     while (true) {
                         AbstractEdge cure = stack.pop();
-                        int from = cure.getFrom(), to = cure.getTo();
+                        int from = cure.getS(), to = cure.getT();
                         bcc.add(from); bcc.add(to);
                         if (from == cur && to == chd) break;
                     }
@@ -297,12 +292,12 @@ public class UndirectionalGraph extends BidirectionalGraph {
 
 //    private void showTree(int cur, int fa, StringBuffer dot) {
 //        for (AbstractEdge e : adj[cur]) {
-//            if (e.getTo() == fa) continue;
-//            dot.append(cur).append(getEdgeStyle()).append(e.getTo()).append(';');
+//            if (e.getT() == fa) continue;
+//            dot.append(cur).append(getEdgeStyle()).append(e.getT()).append(';');
 //        }
 //        for (AbstractEdge e : adj[cur]) {
-//            if (e.getTo() == fa) continue;
-//            showTree(e.getTo(), cur, dot);
+//            if (e.getT() == fa) continue;
+//            showTree(e.getT(), cur, dot);
 //        }
 //    }
 

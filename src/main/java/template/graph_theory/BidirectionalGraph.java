@@ -2,7 +2,6 @@ package template.graph_theory;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.*;
 
@@ -12,7 +11,7 @@ import java.util.*;
  */
 public class BidirectionalGraph {
 
-    protected int N, M;
+    protected int N, E;
     protected List<AbstractEdge>[] adj;
     private int[] indegree;
     private int[] outdegree;
@@ -29,8 +28,7 @@ public class BidirectionalGraph {
 
     public void addEdge (int from, int to, int capacity, int cost) {
         addEdge(new AbstractEdge() {
-            @Override
-            public int getCost() {
+            public int getC() {
                 return cost;
             }
 
@@ -39,13 +37,11 @@ public class BidirectionalGraph {
                 return capacity;
             }
 
-            @Override
-            public int getFrom() {
+            public int getS() {
                 return from;
             }
 
-            @Override
-            public int getTo() {
+            public int getT() {
                 return to;
             }
         });
@@ -53,18 +49,15 @@ public class BidirectionalGraph {
 
     public void addEdge (int from, int to, int cost) {
         addEdge(new AbstractEdge() {
-            @Override
-            public int getCost() {
+            public int getC() {
                 return cost;
             }
 
-            @Override
-            public int getFrom() {
+            public int getS() {
                 return from;
             }
 
-            @Override
-            public int getTo() {
+            public int getT() {
                 return to;
             }
         });
@@ -72,22 +65,20 @@ public class BidirectionalGraph {
 
     public void addEdge (int from, int to) {
         addEdge(new AbstractEdge() {
-            @Override
-            public int getFrom() {
+            public int getS() {
                 return from;
             }
 
-            @Override
-            public int getTo() {
+            public int getT() {
                 return to;
             }
         });
     }
 
     public void addEdge(AbstractEdge e) {
-        int from = e.getFrom(), to = e.getTo();
+        int from = e.getS(), to = e.getT();
         adj[from].add(e);
-        M++;
+        E++;
         indegree[to]++;
         outdegree[from]++;
     }
@@ -99,7 +90,7 @@ public class BidirectionalGraph {
     public int indegree(int v) { return indegree[v];}
     public int outdegree(int v) { return outdegree[v];}
 
-    public int E() {return M;};
+    public int E() {return E;};
     public int V() {return N;};
 
 
@@ -154,7 +145,7 @@ public class BidirectionalGraph {
         int oo = Integer.MAX_VALUE;
         for (int i = 0; i < n; ++i) Arrays.fill(dist[i], oo);
         for (int i = 0; i < n; ++i) for (AbstractEdge e : adj(i)) {
-            dist[i][e.other(i)] = e.getCost();
+            dist[i][e.other(i)] = e.getC();
         }
         for (int k = 0; k < n; ++k)
             for (int i = 0; i < n; ++i)
@@ -168,7 +159,7 @@ public class BidirectionalGraph {
     }
 
     public boolean isSparseGraph() {
-        return N <= 1 || (double)M / N / (N - 1) < 0.45;
+        return N <= 1 || (double) E / N / (N - 1) < 0.45;
     }
 
     public boolean isPlanarGraph() {
@@ -188,7 +179,7 @@ public class BidirectionalGraph {
         if (visited[cur]) return false;
         visited[cur] = true;
         for (AbstractEdge e : adj[cur]) {
-            int to = e.getTo();
+            int to = e.getT();
             if (!isTree(to, cur, visited)) return false;
         }
         return true;
@@ -204,7 +195,7 @@ public class BidirectionalGraph {
         if (vis[cur] ==  1) return true;
         vis[cur] = -1;
         for (AbstractEdge e : adj[cur]) {
-            int to = e.getTo();
+            int to = e.getT();
             if (!isDAG(to, cur, vis)) return false;
         }
         vis[cur] = 1;
@@ -213,9 +204,9 @@ public class BidirectionalGraph {
 
     @Override
     public String toString() {
-        StringBuffer res = new StringBuffer(N + " " + M + "\n");
+        StringBuffer res = new StringBuffer(N + " " + E + "\n");
         for (int i = 0; i < N; ++i)
-            for (AbstractEdge e : adj[i]) res.append(i + " " + e.other(i)+ " " + e.getCost() + "\n");
+            for (AbstractEdge e : adj[i]) res.append(i + " " + e.other(i)+ " " + e.getC() + "\n");
         return res.toString();
     }
 
@@ -252,12 +243,12 @@ public class BidirectionalGraph {
 
 //    private void showTree(int cur, int fa, StringBuffer dot) {
 //        for (AbstractEdge e : adj[cur]) {
-//            if (e.getTo() == fa) continue;
-//            dot.append(cur).append(getEdgeStyle()).append(e.getTo()).append(';');
+//            if (e.getT() == fa) continue;
+//            dot.append(cur).append(getEdgeStyle()).append(e.getT()).append(';');
 //        }
 //        for (AbstractEdge e : adj[cur]) {
-//            if (e.getTo() == fa) continue;
-//            showTree(e.getTo(), cur, dot);
+//            if (e.getT() == fa) continue;
+//            showTree(e.getT(), cur, dot);
 //        }
 //    }
 
@@ -271,7 +262,7 @@ public class BidirectionalGraph {
         vis[cur] = true;
 
         for (AbstractEdge e : adj[cur]) {
-            int to = e.getTo();
+            int to = e.getT();
             dot.append(cur).append(getEdgeStyle()).append(to);
             if (e.toString() != null) dot.append(" [label=\"").append(e.toString()).append("\"];");
             else dot.append(';');

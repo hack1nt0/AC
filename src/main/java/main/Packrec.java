@@ -11,7 +11,7 @@ import java.util.Arrays;
  LANG: JAVA
  TASK: packrec
 */
-// copied from [lazydom1] (http://www.nocow.cn/index.php/Code:USACO/packrec/Java)
+// copied s [lazydom1] (http://www.nocow.cn/index.php/Code:USACO/packrec/Java)
 
 //A purely awkward implementation prob.
 public class Packrec {

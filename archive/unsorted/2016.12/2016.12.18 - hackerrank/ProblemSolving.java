@@ -6,7 +6,7 @@ import java.util.Scanner;
 import java.io.PrintWriter;
 
 /**
- * min paths coverage(Using paths to cover all nodes) of DAG
+ * min paths coverage(Using paths t cover all nodes) of DAG
  */
 public class ProblemSolving {
     public void solve(int testNumber, Scanner in, PrintWriter out) {

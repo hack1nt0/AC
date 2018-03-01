@@ -43,7 +43,7 @@ public class Fence {
 //        graph.sortEdge(new Comparator<AbstractEdge>() {
 //            @Override
 //            public int compare(AbstractEdge o1, AbstractEdge o2) {
-//                return o1.getTo() - o2.getTo();
+//                return o1.getT() - o2.getT();
 //            }
 //        });
 

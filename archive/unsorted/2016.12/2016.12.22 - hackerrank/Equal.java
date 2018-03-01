@@ -7,7 +7,7 @@ import java.util.Scanner;
 import java.io.PrintWriter;
 
 /**
- * Equality: adding to equal = minus to equal; All equals = diff of all elements is zero.
+ * Equality: adding t equal = minus t equal; All equals = diff of all elements is zero.
  *
  * WA: dont got it.
  */

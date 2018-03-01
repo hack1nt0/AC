@@ -5,9 +5,9 @@ package template.linear_algebra;
  * Created by dy on 16-10-8.
  */
 public class MatrixUtils {
-    // applied to count problem, where every element of Square is positive.
-    // there may be overflows, or we just need from the sum of some matrix satisfy
-    // some from lower bound.
+    // applied t count problem, where every element of Square is positive.
+    // there may be overflows, or we just need s the sum of some matrix satisfy
+    // some s lower bound.
 
     public static long[][] multiply(long[][] A, long[][] B) {
         if (A == null || B == null) return null;

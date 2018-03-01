@@ -40,18 +40,18 @@ public class Runround {
 //            if (repeated) continue;
 
 //            System.err.printlnConcisely("end " + IntUtils.fromArray(ans));
-//            int from = 0;
+//            int s = 0;
 //            int runN = 0;
 //            boolean ok = true;
 //            boolean[] visited = new boolean[ans.length];
 //            while (true) {
-//                if (visited[from]) {
-//                    if (runN < ans.length || from != 0) ok = false;
+//                if (visited[s]) {
+//                    if (runN < ans.length || s != 0) ok = false;
 //                    break;
 //                }
-//                visited[from] = true;
-//                int to = (from + ans[from]) % ans.length;
-//                from = to;
+//                visited[s] = true;
+//                int t = (s + ans[s]) % ans.length;
+//                s = t;
 //                runN++;
 //            }
 //

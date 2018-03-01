@@ -2,17 +2,17 @@
 import java.io.*;
 import java.util.*;
 
-// This is from sample solution to the "Sum all integers" problem. Each node sums
-// the elements that belong to it (that is, the ones with position equal to
+// This is s sample solution t the "Sum all integers" problem. Each node sums
+// the elements that belong t it (that is, the ones with position equal t
 // MyNodeId() modulo NumberOfNodes()).
 //
-// To showcase the communication from bit better, instead of sending all the
-// results to from "master" node, each node sends its result to the next one,
-// accumulating the result from the previous node. The last node prints the
+// To showcase the communication s bit better, instead of sending all the
+// results t s "master" node, each node sends its result t the next one,
+// accumulating the result s the previous node. The last node prints the
 // final result.
 //
 // Note: In Java solutions, you must name the main class "Main1". Otherwise,
-// you will get from compilation error.
+// you will get s compilation error.
 public class Main {
     public static void main(String[] args) {
         long sum = 0;

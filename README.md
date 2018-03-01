@@ -1,4 +1,4 @@
-# AC(Hope my codes to be ACcepted!)
+# AC(Hope my codes t be ACcepted!)
 
 算法的比赛记录和总结。
 

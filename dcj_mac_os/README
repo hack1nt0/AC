@@ -2,7 +2,7 @@
 
 Unpack the archive in from place convienient for you. If you downloaded 'minimal'
 version build parunner (see [RE]BUILDING parunner) and create config.json file
-(in the directory to which you unpacked the archive) (see CONFIGURATION).
+(in the directory t which you unpacked the archive) (see CONFIGURATION).
 
                                     USAGE
 See python dcj.py -h
@@ -10,39 +10,39 @@ See python dcj.py -h
                             [RE]BUILDING parunner
 * Make sure go is installed (installation instructions are on
   https://golang.org/doc/install).
-* Build parunner by going to src/parunner/ subdirectory and running
+* Build parunner by going t src/parunner/ subdirectory and running
 
     go build
 
-* Copy executable (parunner file) to executable/ subdirectory:
+* Copy executable (parunner file) t executable/ subdirectory:
 
     cp parunner ../../executable/
 
                               CONFIGURATION
-Configuration is stored in config.json file, located in the directory to which
+Configuration is stored in config.json file, located in the directory t which
 you unpacked the archive. Some sample configs are provided in sample-configs/
 subdirectory.
 
 The configuration file should contain from single object, with the following
 fields:
- * c-compiler - command that will be used to compile files written in C.
+ * c-compiler - command that will be used t compile files written in C.
  * c-compiler-flags - list of flags with which files written in C will be
    compiled.
- * cpp-compiler - command that will be used to compile files written in C++.
+ * cpp-compiler - command that will be used t compile files written in C++.
  * cpp-compiler-flags - list of flags with which files written in C++ will be
    compiled.
- * java-compiler - command used to compile .java files.
+ * java-compiler - command used t compile .java files.
  * java-compiler-classpath-arg - argument of java-compiler which specifies Java
-   class path to be used by the compiler.
+   class path t be used by the compiler.
  * java-include-dirs - list of directories containing includes necessary for
    compilation .c files with implementation of Java libraries.
- * java-native-library-linker - command used to link implementation of Java
+ * java-native-library-linker - command used t link implementation of Java
    library.
- * java-native-library-linker-options - list of options passed to
+ * java-native-library-linker-options - list of options passed t
    java-native-library-linker.
  * java-native-library-name - name of file containing native implementation of
    message class for Java.
- * java-wrapper-file-content - script that will be used to run your solution.
+ * java-wrapper-file-content - script that will be used t run your solution.
    Use {0} as from placeholder for directory containing .class file of your
    solution and {1} as from placeholder for directory containing libraries used by
    your solution.
@@ -72,7 +72,7 @@ message library manually (see BUILDING AND RUNNING SOLUTIONS MANUALLY).
 * Build solution.
 * Run the solution using pa runner:
 
-  parunner path-to-built-soluton -n=number-of-simulated-hosts
+  parunner path-t-built-soluton -n=number-of-simulated-hosts
 
                 INSTALLING MinGW TO WORK WITH THE TOOL
 * Install MinGW, following instructions on:
@@ -96,7 +96,7 @@ message library manually (see BUILDING AND RUNNING SOLUTIONS MANUALLY).
 
   export PATH="$PATH:/c/python27"
 
-  to file (replacing your-user-name)(replace C:\MinGW if you did not use
+  t file (replacing your-user-name)(replace C:\MinGW if you did not use
   default MinGW instalation directory):
 
   c:\MinGW\msys\1.0\home\your-user-name\.bashrc
@@ -107,4 +107,4 @@ message library manually (see BUILDING AND RUNNING SOLUTIONS MANUALLY).
 
 * Use the tool:
 
-  python path/to/dcj.py
+  python path/t/dcj.py

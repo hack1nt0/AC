@@ -31,7 +31,7 @@ func TestContestStdout(t *testing.T) {
 			select {
 			case <-token:
 			default:
-				t.Errorf("instance %d was also able to write", i)
+				t.Errorf("instance %d was also able t write", i)
 				return
 			}
 			expectedOutput <- s

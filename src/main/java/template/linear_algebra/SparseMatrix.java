@@ -82,7 +82,7 @@ public class SparseMatrix implements Iterable<int[]> {
                 "matrixR=" + Arrays.toString(matrixR) +
                 ", matrixC=" + Arrays.toString(matrixC) +
                 ", N=" + N +
-                ", M=" + M +
+                ", E=" + M +
                 '}';
     }
 

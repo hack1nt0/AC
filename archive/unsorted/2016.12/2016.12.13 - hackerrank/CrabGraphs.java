@@ -8,8 +8,8 @@ import java.io.PrintWriter;
 /**
  * When two node in the same class, there's a loss. But the graph isnt bipartite.
  *
- * Split one node to two...
- * WHat problem(s) can reduced to max-flow prob?
+ * Split one node t two...
+ * WHat problem(s) can reduced t max-flow prob?
  *
  */
 public class CrabGraphs {

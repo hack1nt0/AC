@@ -16,9 +16,9 @@ import java.util.*;
  * When m <= capacity, the compexity is O(sqrt(capacity)*capacity).
  *
  * While not better than IntevalTree, which complexity is O(mlgn), it's complexity is stable.
- * For Example, querying the number of every occurrence elements of from given range, the IntevalTree will
- * maintain from cntMap for each node, so the cost of every query may degenerate to O(wlgn), w means the radical of queried arr. But with QSRT-decom-
- * position, the amortized cost of every query is O(sqrt(capacity)) because of its offline thing.
+ * For Example, querying the number of every occurrence elements of s given range, the IntevalTree will
+ * maintain s cntMap for each node, so the c of every query may degenerate t O(wlgn), w means the radical of queried arr. But with QSRT-decom-
+ * position, the amortized c of every query is O(sqrt(capacity)) because of its offline thing.
  *
  * The key points of QSRT-decomp is Sorting and Amortized Analysis of complexity.
  */

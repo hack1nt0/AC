@@ -1,7 +1,9 @@
 package template.operation;
 
+import template.collection.sets.UnionFind;
 import template.graph_theory.AbstractEdge;
 import template.graph_theory.BidirectionalGraph;
+import template.graph_theory.GraphUtils;
 
 import java.util.*;
 
@@ -9,20 +11,27 @@ import java.util.*;
  * Created by dy on 16-12-3.
  */
 public class MinSpanningTree {
-    public class Edge extends AbstractEdge implements Comparable<Edge> {
-        public int from, to;
-        public int cost;
 
-        public Edge(int a, int to, int cost) {
-            this.from = a;
-            this.to = to;
-            this.cost = cost;
+    public static class Edge extends AbstractEdge implements Comparable<Edge> {
+        public int s, t;
+        public int c;
+
+        public Edge(int s, int t, int c) {
+            this.s = s;
+            this.t = t;
+            this.c = c;
+        }
+
+        public Edge(Edge o) {
+            this.s = o.s;
+            this.t = o.t;
+            this.c = o.c;
         }
 
         @Override
         public int compareTo(Edge o) {
-            if (cost > o.cost) return 1;
-            if (cost < o.cost) return -1;
+            if (c > o.c) return 1;
+            if (c < o.c) return -1;
             return 0;
         }
 
@@ -33,35 +42,37 @@ public class MinSpanningTree {
 
             Edge edge = (Edge) o;
 
-            if (from != edge.from) return false;
-            return to == edge.to;
+            if (s != edge.s) return false;
+            return t == edge.t;
 
         }
 
         @Override
         public int hashCode() {
-            int result = from;
-            result = 31 * result + to;
+            int result = s;
+            result = 31 * result + t;
             return result;
         }
 
-        @Override
-        public int getCost() {
-            return cost;
+        public int getC() {
+            return c;
+        }
+
+        public int getS() {
+            return s;
+        }
+
+        public int getT() {
+            return t;
         }
 
         @Override
-        public int getFrom() {
-            return from;
-        }
-
-        @Override
-        public int getTo() {
-            return to;
+        public String toString() {
+            return "" + s + "-->" + t + "(" + c + ")";
         }
     }
 
-    int N, M;
+    int N, E;
     public List<Edge>[] adj;
     public Map<Edge, Integer> edges;
     public boolean needUpd = false;
@@ -73,20 +84,21 @@ public class MinSpanningTree {
         edges = new HashMap<Edge, Integer>();
     }
 
-    public void addE (int a, int b, int cost) {
+    public void addEdge (int a, int b, int cost) {
         if (a == b) return;
         needUpd = true;
         Edge edge = new Edge(a, b, cost);
         if (edges.containsKey(edge) && edges.get(edge) <= cost) return;
+        adj[a].add(edge);
         edges.put(edge, cost);
-        M++;
+        E++;
     }
 
     public void recreateAdj() {
         for (List<Edge> elist : adj) elist.clear();
         for (Edge e : edges.keySet()) {
-            e.cost = edges.get(e);
-            adj[e.from].add(e);
+            e.c = edges.get(e);
+            adj[e.s].add(e);
         }
         needUpd = false;
     }
@@ -107,11 +119,11 @@ public class MinSpanningTree {
             if (nvis == N) break;
             if (que.isEmpty()) break;
             Edge cure = que.poll();
-            if (vis[cure.to]) continue;
-            vis[cure.to] = true;
-            ret += cure.cost;
+            if (vis[cure.t]) continue;
+            vis[cure.t] = true;
+            ret += cure.c;
             nvis++;
-            for (Edge e : adj[cure.to]) if (!vis[e.to]) que.add(e);
+            for (Edge e : adj[cure.t]) if (!vis[e.t]) que.add(e);
         }
 
         if (nvis != N) throw new RuntimeException("BidirectionalGraph isnt connected");
@@ -134,15 +146,83 @@ public class MinSpanningTree {
             if (nvis == N) break;
             if (que.isEmpty()) break;
             Edge cure = que.poll();
-            if (vis[cure.to]) continue;
-            vis[cure.to] = true;
-            ret.addEdge(cure.from, cure.to, cure.cost);
-            ret.addEdge(cure.to, cure.from, cure.cost);
+            if (vis[cure.t]) continue;
+            vis[cure.t] = true;
+            ret.addEdge(cure.s, cure.t, cure.c);
+            ret.addEdge(cure.t, cure.s, cure.c);
             nvis++;
-            for (Edge e : adj[cure.to]) if (!vis[e.to]) que.add(e);
+            for (Edge e : adj[cure.t]) if (!vis[e.t]) que.add(e);
         }
 
         if (nvis != N) throw new RuntimeException("BidirectionalGraph isnt connected");
         return ret;
     }
+
+    public int mst(int s) {
+        int r = 0;
+        PriorityQueue<Edge>[] ins = new PriorityQueue[N];
+        for (int i = 0; i < N; ++i) ins[i] = new PriorityQueue<>();
+        for (int i = 0; i < N; ++i) for (Edge e : adj[i]) ins[e.t].add(new Edge(e));
+        Edge[] in = new Edge[N];
+        for (int i = 0; i < N; ++i) if (i != s) {
+            in[i] = ins[i].poll();
+            r += in[i].c;
+        }
+        UnionFind uf = new UnionFind(N);
+        while (true) {
+            int[] visited = new int[N]; visited[s] = +1;
+            boolean found = false;
+            for (int i = 0; i < N; ++i) if (visited[uf.find(i)] == 0) {
+                int cp = cyclePoint(uf.find(i), in, visited, uf);
+                if (cp != -1) {
+                    found = true;
+                    int k = cp;
+                    PriorityQueue<Edge> cins = new PriorityQueue<>();
+                    ArrayList<Integer> cps = new ArrayList<>();
+                    while (true) {
+                        cps.add(k);
+                        k = uf.find(in[k].s);
+                        if (k == uf.find(cp)) break;
+                        uf.union(cp, k);
+                    }
+                    int np = uf.find(cp);
+                    for (int cpp : cps) {
+                        for (Edge e : ins[cpp]) if (uf.find(e.s) != np) { e.c -= in[cpp].c; cins.add(e); }
+                    }
+                    ins[np] = cins;
+                    in[np] = cins.poll();
+                    r += in[np].c;
+//                    break;
+                }
+            }
+            if (!found) break;
+        }
+        return r;
+    }
+
+    private int cyclePoint(int cur, Edge[] in, int[] visited, UnionFind uf) {
+        if (visited[cur] == -1) return cur;
+        if (visited[cur] == +1) return -1;
+        visited[cur] = -1;
+        int p = -1;
+        try {
+            p = cyclePoint(uf.find(in[cur].s), in, visited, uf);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        visited[cur] = 1;
+        return p;
+    }
+
+    public void viz(Edge[] tree) {
+        String[] nodes = new String[N];
+        String[] edges = new String[E + N - 1];
+        for (int i = 0; i < N; ++i) nodes[i] = "" + i;
+        int c = 0;
+        for (int i = 0; i < N; ++i) for (Edge e : adj[i]) edges[c++] = "" + e.s + " -> " + e.t + " [label = " + e.c + "]";
+        if (tree != null)
+            for (Edge e : tree) if (e != null) edges[c++] = "" + e.s + " -> " + e.t + " [color = blue, label = " + e.c + "]";
+        GraphUtils.viz(true, true, false, nodes, edges);
+    }
+
 }

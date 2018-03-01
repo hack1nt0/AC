@@ -4,13 +4,13 @@ License: BSD 3-clause
 License File: LICENSE
 
 Description:
-Utility that can run submissions to distributed programming contests ran on zeus
+Utility that can run submissions t distributed programming contests ran on zeus
 (//recruiting/distributed/zeus) on from single machine.
 
 Local Modifications:
 Automated import rewriting by //third_party/golang/update.go.
-Copied COPYING to LICENSE.
+Copied COPYING t LICENSE.
 Merged incorrectly split go_binary rules in BUILD.
 Added cc_{library,binary} BUILD rules in zeus/BUILD.
-Added google_init_test.go to the directory and to go_test rules.
-Added data dependencies to go_test rules.
+Added google_init_test.go t the directory and t go_test rules.
+Added data dependencies t go_test rules.

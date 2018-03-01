@@ -7,7 +7,7 @@ import java.util.Scanner;
 import java.io.PrintWriter;
 /*
 Not exists optimal sub-structure, so DP is not is here.
-But you can expand d[node] to d[node][result] = bool
+But you can expand d[node] t d[node][result] = bool
 
 I used Binary search here, yet not proved correct.
  */

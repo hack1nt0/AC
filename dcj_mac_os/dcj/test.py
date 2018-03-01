@@ -13,7 +13,7 @@ class Tester(object):
     self.builder.AddToParser(parser)
     self.runner.AddToParser(parser)
     parser.add_argument('--executable',
-                        help='path of the executable to be built. By default '
+                        help='path of the executable t be built. By default '
                         'it\'s the same as path of source with removed '
                         'filename extension.')
     return parser

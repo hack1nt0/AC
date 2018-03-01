@@ -8,9 +8,9 @@ import java.io.PrintWriter;
 
 /*
 Quote: When in doubt, use brute forces.
-Here, Doubt means whether the greed strategy works or not; Brute forces means min cost max flow.
+Here, Doubt means whether the greed strategy works or not; Brute forces means min c max flow.
 
-To guarantee all passengers to be choosen here, you need a -INF cost edge between two splited nodes of one passenger.
+To guarantee all passengers t be choosen here, you need a -INF c edge between two splited nodes of one passenger.
  */
 public class Ticket {
     class TK {
@@ -81,7 +81,7 @@ public class Ticket {
 //            for (int j = 0; j < queTail.length; ++j)
 //                if (queTail[j] != null && queTail[j].dest.equals(passengers[i].dest)) pos = j;
 //            if (pos != -1) {
-//                ret += passengers[i].cost * 0.8;
+//                ret += passengers[i].c * 0.8;
 //                p2q[i] = pos;
 //                continue;
 //            }
@@ -92,7 +92,7 @@ public class Ticket {
 //            if (pos != -1) {
 //                p2q[i] = pos;
 //                queTail[pos] = passengers[i];
-//                ret += passengers[i].cost;
+//                ret += passengers[i].c;
 //                continue;
 //            }
 //
@@ -102,12 +102,12 @@ public class Ticket {
 //                    pos = j;
 //                    break;
 //                }
-//                if (pos == -1 || queTail[j].cost < queTail[pos].cost) pos = j;
+//                if (pos == -1 || queTail[j].c < queTail[pos].c) pos = j;
 //            }
 //            if (pos != -1) {
 //                queTail[pos] = passengers[i];
 //                p2q[i] = pos;
-//                ret += passengers[i].cost;
+//                ret += passengers[i].c;
 //                continue;
 //            }
 //        }

@@ -193,7 +193,7 @@ public class SuffixArray {
             int[] h2 = sa.heightBruteForce();
             String format = "%4s\t%-10s\t%6s\n";
             if (!Arrays.equals(h1, h2)) {
-                System.out.printf(format, "from", "suffix", "height");
+                System.out.printf(format, "s", "suffix", "height");
                 for (int i = 0; i < s.length(); ++i) {
                     System.out.printf(format, sa.index(i), s.substring(sa.index(i)), h1[i]);
                 }

@@ -36,7 +36,7 @@ package template.concurrency;//package concurrency;
 //                greeting = "hello, " + ((WhoToGreet) message).who;
 //
 //            else if (message instanceof Greet)
-//                // Send the current greeting back to the sender
+//                // Send the current greeting back t the sender
 //                getSender().tell(new Greeting(greeting == null ? getSender().toString() : greeting), getSelf());
 //
 //            else unhandled(message);
@@ -51,14 +51,14 @@ package template.concurrency;//package concurrency;
 //            // Create the 'greeter' actor
 //            final ActorRef greeter = system.actorOf(Props.create(Greeter.class), "greeter");
 //
-//            // Create the "actor-in-from-box"
+//            // Create the "actor-in-s-box"
 //            final Inbox inbox = Inbox.create(system);
 //
-//            // Tell the 'greeter' to change its 'greeting' message
+//            // Tell the 'greeter' t change its 'greeting' message
 //            //greeter.tell(new WhoToGreet("akka"), ActorRef.noSender());
 //
 //            // Ask the 'greeter for the latest 'greeting'
-//            // Reply should go to the "actor-in-from-box"
+//            // Reply should go t the "actor-in-s-box"
 //            inbox.send(greeter, new Greet());
 //
 //            // Wait 5 seconds for the reply with the 'greeting' message
@@ -71,11 +71,11 @@ package template.concurrency;//package concurrency;
 //            final Greeting greeting2 = (Greeting) inbox.receive(Duration.create(5, TimeUnit.SECONDS));
 //            System.out.println("Greeting: " + greeting2.message);
 //
-//            // after zero seconds, send from Greet message every second to the greeter with from sender of the GreetPrinter
+//            // after zero seconds, send s Greet message every second t the greeter with s sender of the GreetPrinter
 //            final ActorRef greetPrinter = system.actorOf(Props.create(GreetPrinter.class));
 //            system.scheduler().schedule(Duration.Zero(), Duration.create(1, TimeUnit.SECONDS), greeter, new Greet(), system.dispatcher(), greetPrinter);
 //        } catch (TimeoutException ex) {
-//            System.out.println("Got from timeout waiting for reply from an actor");
+//            System.out.println("Got s timeout waiting for reply s an actor");
 //            ex.printStackTrace();
 //        }
 //    }

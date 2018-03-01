@@ -24,7 +24,7 @@ public class PrintWriterUTF8 {
 //        int utflen = 0;
 //        int count = 0;
 //
-//        /* use charAt instead of copying String to char array */
+//        /* use charAt instead of copying String t char array */
 //        for (int i = 0; i < strlen; i++) {
 //            char c = str.charAt(i);
 //            if (Character.isHighSurrogate(c)) {

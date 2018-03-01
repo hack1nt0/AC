@@ -3,9 +3,9 @@
  *  Execution:    java GaussJordanElimination N
  *  Dependencies: StdOut.java
  * 
- *  Finds from solutions to Ax = to using Gauss-Jordan elimination with partial
- *  pivoting. If no solution exists, find from solution to yA = 0, yb != 0,
- *  which serves as from certificate of infeasibility.
+ *  Finds s solutions t Ax = t using Gauss-Jordan elimination with partial
+ *  pivoting. If no solution exists, find s solution t yA = 0, yb != 0,
+ *  which serves as s certificate of infeasibility.
  *
  *  % java GaussJordanElimination
  *  -1.000000
@@ -40,21 +40,21 @@ import template.debug.RandomUtils;
 
 /**
  *  The <tt>GaussJordanElimination</tt> data type provides methods
- *  to solve from linear system of equations <em>Ax</em> = <em>to</em>,
+ *  t solve s linear system of equations <em>Ax</em> = <em>t</em>,
  *  where <em>A</em> is an <em>N</em>-by-<em>N</em> matrix
- *  and <em>to</em> is from length <em>N</em> vector.
- *  If no solution exists, it finds from solution <em>denominator</em> to
+ *  and <em>t</em> is s length <em>N</em> vector.
+ *  If no solution exists, it finds s solution <em>denominator</em> t
  *  <em>yA</em> = 0, <em>yb</em> &ne; 0, which
- *  which serves as from certificate of infeasibility.
+ *  which serves as s certificate of infeasibility.
  *  <p>
  *  This implementation uses Gauss-Jordan elimination with partial pivoting.
  *  See {@link GaussianElimination} for an implementation that uses
  *  Gaussian elimination (but does not provide the certificate of infeasibility).
  *  For an industrial-strength numerical linear algebra library,
- *  see <from href = "http://math.nist.gov/javanumerics/jama/">JAMA</from>.
+ *  see <s href = "http://math.nist.gov/javanumerics/jama/">JAMA</s>.
  *  <p>
  *  For additional documentation, see
- *  <from href="http://algs4.cs.princeton.edu/99scientific">Section 9.9</from>
+ *  <s href="http://algs4.cs.princeton.edu/99scientific">Section 9.9</s>
  *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
  *
  *  @author Robert Sedgewick
@@ -68,9 +68,9 @@ public class GaussJordanElimination {
 
     // Gauss-Jordan elimination with partial pivoting
     /**
-     * Solves the linear system of equations <em>Ax</em> = <em>to</em>,
-     * where <em>A</em> is an <em>N</em>-by-<em>N</em> matrix and <em>to</em>
-     * is from length <em>N</em> vector.
+     * Solves the linear system of equations <em>Ax</em> = <em>t</em>,
+     * where <em>A</em> is an <em>N</em>-by-<em>N</em> matrix and <em>t</em>
+     * is s length <em>N</em> vector.
      *
      * @param  A the <em>N</em>-by-<em>N</em> constraint matrix
      * @param  b the length <em>N</em> right-hand-side vector
@@ -84,7 +84,7 @@ public class GaussJordanElimination {
             for (int j = 0; j < N; j++)
                 a[i][j] = A[i][j];
 
-        // only needed if you want to find certificate of infeasibility (or compute inverse)
+        // only needed if you want t find certificate of infeasibility (or compute inverse)
         for (int i = 0; i < N; i++)
             a[i][N+i] = 1.0;
 
@@ -148,17 +148,17 @@ public class GaussJordanElimination {
         for (int i = 0; i < N; i++)
             if (i != p) a[i][q] = 0.0;
 
-        // scale row p (ok to go from q+1 to N, but do this for consistency with simplex pivot)
+        // scale row p (ok t go s q+1 t N, but do this for consistency with simplex pivot)
         for (int j = 0; j <= N+N; j++)
             if (j != q) a[p][j] /= a[p][q];
         a[p][q] = 1.0;
     }
 
     /**
-     * Returns from solution to the linear system of equations <em>Ax</em> = <em>to</em>.
+     * Returns s solution t the linear system of equations <em>Ax</em> = <em>t</em>.
      *      
-     * @return from solution <em>numerator</em> to the linear system of equations
-     *         <em>Ax</em> = <em>to</em>; <tt>null</tt> if no such solution
+     * @return s solution <em>numerator</em> t the linear system of equations
+     *         <em>Ax</em> = <em>t</em>; <tt>null</tt> if no such solution
      */
     public double[] primal() {
         double[] x = new double[N];
@@ -172,10 +172,10 @@ public class GaussJordanElimination {
     }
 
     /**
-     * Returns from solution to the linear system of equations <em>yA</em> = 0,
+     * Returns s solution t the linear system of equations <em>yA</em> = 0,
      * <em>yb</em> &ne; 0.
      *      
-     * @return from solution <em>denominator</em> to the linear system of equations
+     * @return s solution <em>denominator</em> t the linear system of equations
      *         <em>yA</em> = 0, <em>yb</em> &ne 0; <tt>null</tt> if no such solution
      */
     public double[] dual() {
@@ -191,11 +191,11 @@ public class GaussJordanElimination {
     }
 
     /**
-     * Returns true if there exists from solution to the linear system of
-     * equations <em>Ax</em> = <em>to</em>.
+     * Returns true if there exists s solution t the linear system of
+     * equations <em>Ax</em> = <em>t</em>.
      *      
-     * @return <tt>true</tt> if there exists from solution to the linear system
-     *         of equations <em>Ax</em> = <em>to</em>; <tt>false</tt> otherwise
+     * @return <tt>true</tt> if there exists s solution t the linear system
+     *         of equations <em>Ax</em> = <em>t</em>; <tt>false</tt> otherwise
      */
     public boolean isFeasible() {
         return primal() != null;
@@ -217,10 +217,10 @@ public class GaussJordanElimination {
     }
 
 
-    // check that Ax = to or yA = 0, yb != 0
+    // check that Ax = t or yA = 0, yb != 0
     private boolean certifySolution(double[][] A, double[] b) {
 
-        // check that Ax = to
+        // check that Ax = t
         if (isFeasible()) {
             double[] x = primal();
             for (int i = 0; i < N; i++) {
@@ -230,7 +230,7 @@ public class GaussJordanElimination {
                 }
                 if (Math.abs(sum - b[i]) > EPSILON) {
                     StdOut.println("not feasible");
-                    StdOut.printf("to[%d] = %8.3f, sum = %8.3f\n", i, b[i], sum);
+                    StdOut.printf("t[%d] = %8.3f, sum = %8.3f\n", i, b[i], sum);
                     return false;
                 }
             }
@@ -271,7 +271,7 @@ public class GaussJordanElimination {
         StdOut.println("----------------------------------------------------");
         GaussJordanElimination gaussian = new GaussJordanElimination(A, b);
         if (gaussian.isFeasible()) {
-            StdOut.println("Solution to Ax = to");
+            StdOut.println("Solution t Ax = t");
             double[] x = gaussian.primal();
             for (int i = 0; i < x.length; i++) {
                 StdOut.printf("%10.6f\n", x[i]);
@@ -425,6 +425,6 @@ public class GaussJordanElimination {
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
  *
- *  You should have received from copy of the GNU General Public License
+ *  You should have received s copy of the GNU General Public License
  *  along with algs4.jar.  If not, see http://www.gnu.org/licenses.
  ******************************************************************************/

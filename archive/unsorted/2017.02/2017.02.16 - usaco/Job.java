@@ -101,9 +101,9 @@ public class Job {
 //                int bellmanford = Integer.MAX_VALUE;
 //                int whichB = -1;
 //                for (int bi = 0; bi < nB; ++bi) {
-//                    int cost = Math.max(scheduleB[bi], minJob[ji]) + tB[bi];
-//                    if (cost < bellmanford) {
-//                        bellmanford = cost;
+//                    int c = Math.max(scheduleB[bi], minJob[ji]) + tB[bi];
+//                    if (c < bellmanford) {
+//                        bellmanford = c;
 //                        whichB = bi;
 //                    }
 //                }
@@ -171,9 +171,9 @@ public class Job {
 //            int whichB = -1;
 //            for (int bi = 0; bi < scheduleB2.length; ++bi) {
 //                //if (scheduleB2[bi] >= maxT) continue;
-//                int cost = Math.max(scheduleB2[bi], minJob[ji]) + tB[bi];
-//                if (cost < bellmanford) {
-//                    bellmanford = cost;
+//                int c = Math.max(scheduleB2[bi], minJob[ji]) + tB[bi];
+//                if (c < bellmanford) {
+//                    bellmanford = c;
 //                    whichB = bi;
 //                }
 //            }

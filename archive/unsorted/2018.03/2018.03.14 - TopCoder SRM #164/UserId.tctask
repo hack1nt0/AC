@@ -1,0 +1,94 @@
+6 UserId
+2 id
+16 java.lang.String
+4
+18 java.lang.String[]
+5 inUse
+16 java.lang.String
+5 first
+16 java.lang.String
+6 middle
+16 java.lang.String
+4 last
+5
+0
+4
+String[] 4
+6 bjones
+8 bjones03
+7 bmjones
+7 old34id
+String
+3 Bob
+String
+0 
+String
+5 Jones
+String
+8 bjones01
+1
+1
+4
+String[] 4
+6 bjones
+8 bjones03
+7 bmjones
+7 old34id
+String
+8 Bob Mack
+String
+9 Hertobise
+String
+6 Jone's
+String
+7 bhjones
+1
+2
+4
+String[] 4
+8 bjonesto
+8 bjones01
+8 bjonesto
+7 old34id
+String
+8 BoB-Mack
+String
+2 Mo
+String
+9 Jonestone
+String
+8 BAD DATA
+1
+3
+4
+String[] 3
+8 momorris
+4 mmmm
+8 momorr01
+String
+4 'm m
+String
+0 
+String
+9 O'Morrisy
+String
+8 momorr02
+1
+4
+4
+String[] 0
+String
+4 'm m
+String
+3 J.J
+String
+9 O'Morrisy
+String
+8 BAD DATA
+1
+10 2018.03.14
+17 TopCoder SRM #164
+0
+11 main.UserId
+1
+3 64M

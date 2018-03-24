@@ -1,0 +1,50 @@
+9 Justifier
+7 justify
+18 java.lang.String[]
+1
+18 java.lang.String[]
+6 textIn
+3
+0
+1
+String[] 3
+3 BOB
+5 TOMMY
+3 JIM
+String[] 3
+5   BOB
+5 TOMMY
+5   JIM
+1
+1
+1
+String[] 4
+4 JOHN
+4 JAKE
+4 ALAN
+4 BLUE
+String[] 4
+4 JOHN
+4 JAKE
+4 ALAN
+4 BLUE
+1
+2
+1
+String[] 4
+7 LONGEST
+1 A
+6 LONGER
+5 SHORT
+String[] 4
+7 LONGEST
+7       A
+7  LONGER
+7   SHORT
+1
+10 2018.03.09
+17 TopCoder SRM #164
+0
+14 main.Justifier
+1
+3 64M

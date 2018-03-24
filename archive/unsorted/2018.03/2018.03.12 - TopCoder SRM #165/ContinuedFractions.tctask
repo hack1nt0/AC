@@ -1,0 +1,75 @@
+18 ContinuedFractions
+10 squareRoot
+5 int[]
+1
+3 int
+1 n
+6
+0
+1
+int 2
+int[] 2
+1
+2
+1
+1
+1
+int 41
+int[] 4
+6
+2
+2
+12
+1
+2
+1
+int 63
+int[] 3
+7
+1
+14
+1
+3
+1
+int 158
+int[] 9
+12
+1
+1
+3
+12
+3
+1
+1
+24
+1
+4
+1
+int 512
+int[] 13
+22
+1
+1
+1
+2
+6
+11
+6
+2
+1
+1
+1
+44
+1
+5
+1
+int 1000
+-1
+1
+10 2018.03.12
+17 TopCoder SRM #165
+1
+31 main.ContinuedFractionsTestCase
+23 main.ContinuedFractions
+1
+3 64M

@@ -1,0 +1,58 @@
+10 LongNumber
+9 findDigit
+3 int
+1
+3 int
+1 k
+9
+0
+1
+int 1
+int 2
+1
+1
+1
+int 5
+int 1
+1
+2
+1
+int 78
+int 5
+0
+3
+1
+int 1000000
+int 6
+0
+4
+1
+int 1780243932
+int 1
+0
+5
+1
+int 2
+int 7
+0
+6
+1
+int 3
+int 2
+1
+7
+1
+int 4
+int 6
+1
+8
+1
+int 2147483647
+-1
+1
+10 2018.03.24
+17 TopCoder SRM #166
+0
+15 main.LongNumber
+1
+3 64M

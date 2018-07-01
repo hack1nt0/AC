@@ -1,0 +1,43 @@
+18 A - Antipalindrome
+6 SINGLE
+8 STANDARD
+-1
+8 STANDARD
+-1
+4
+0
+4 mew
+
+2 3
+
+1
+1
+7 wuffuw
+
+2 5
+
+1
+2
+9 qqqqqqqq
+
+2 0
+
+1
+3
+1 q
+1 0
+1
+18 src/main/java/main
+8 -Xmx256M
+4 Main
+10 main.TaskA
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2018.05.28
+25 Avito Code Challenge 2018
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+1

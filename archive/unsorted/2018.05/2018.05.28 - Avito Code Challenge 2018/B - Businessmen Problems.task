@@ -1,0 +1,46 @@
+24 B - Businessmen Problems
+6 SINGLE
+8 STANDARD
+-1
+8 STANDARD
+-1
+2
+0
+33 3
+1 2
+7 2
+3 10
+4
+1 4
+2 4
+3 4
+4 4
+
+3 24
+
+1
+1
+37 1
+1000000000 239
+3
+14 15
+92 65
+35 89
+
+4 408
+
+1
+18 src/main/java/main
+8 -Xmx256M
+4 Main
+10 main.TaskB
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2018.05.28
+25 Avito Code Challenge 2018
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+1

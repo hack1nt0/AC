@@ -1,0 +1,43 @@
+8 Rochambo
+4 wins
+3 int
+1
+16 java.lang.String
+8 opponent
+5
+0
+1
+String
+2 PS
+int 1
+1
+1
+1
+String
+6 PSRRPS
+int 3
+1
+2
+1
+String
+10 PSRPSRPRSR
+int 7
+1
+3
+1
+String
+19 SRPSRPSPRSPRPSRPSRP
+int 16
+1
+4
+1
+String
+50 RPPPRRPSSSRRRSRSPPSSPRRPSRRRRSPPPPSSPSSSSSRSSSRPRR
+int 18
+1
+10 2018.03.07
+17 TopCoder SRM #163
+0
+13 main.Rochambo
+1
+3 64M

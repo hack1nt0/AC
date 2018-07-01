@@ -380,7 +380,7 @@ public class FFT {
 
     /**
      * @author Egor Kulikov (egorku@yandex-team.ru)
-     * 10x faster than convolve, but unstable s lot too...
+     * 10x faster than convolve, but unstable a lot too...
      */
     public static void fft1(double[] a, double[] b, boolean invert) {
         int count = a.length;

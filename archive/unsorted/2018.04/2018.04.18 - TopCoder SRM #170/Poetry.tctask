@@ -1,0 +1,135 @@
+6 Poetry
+11 rhymeScheme
+16 java.lang.String
+1
+18 java.lang.String[]
+4 poem
+7
+0
+1
+String[] 3
+19 I hope this problem
+26 is a whole lot better than
+17 this stupid haiku
+String
+3 abc
+1
+1
+1
+String[] 9
+5      
+19 Measure your height
+16 AND WEIGHT      
+15 said the doctor
+0 
+32 And make sure to take your pills
+27    to   cure   your    ills
+5 Every
+3 DAY
+String
+9  aab ccde
+1
+2
+1
+String[] 9
+41 One bright day in the middle of the night
+29 Two dead boys got up to fight
+34 Back to back they faced each other
+37 Drew their swords and shot each other
+0 
+32 A deaf policeman heard the noise
+36 And came to arrest the two dead boys
+40 And if you dont believe this lie is true
+31 Ask the blind man he saw it too
+String
+9 aabb cdef
+1
+3
+1
+String[] 4
+0 
+0 
+0 
+0 
+String
+4     
+1
+4
+1
+String[] 37
+31 This poem has uppercase letters
+19 In its rhyme scheme
+5 Alpha
+7 Blaster
+3 Cat
+6 Desert
+8 Elephant
+4 Frog
+5 Gulch
+5 Horse
+7 Ireland
+3 Jam
+12 Krispy Kreme
+6 Loofah
+3 Moo
+4 Narf
+3 Old
+4 Pink
+5 Quash
+7 Rainbow
+4 Star
+4 Tour
+5 Uvula
+4 Very
+4 Will
+4 Xmas
+5 Young
+3 Zed
+9 deception
+5 comic
+5 grout
+4 oval
+5 cable
+3 rob
+5 steal
+5 steel
+4 weak
+String
+37 abcdefghibjkblmnopqrstcuvwxyzABCbDEFG
+1
+5
+1
+String[] 16
+1  
+5      
+9 This poem
+9          
+1  
+1  
+0 
+23 Has lots of blank lines
+1  
+6       
+44                                             
+9          
+1  
+14               
+50                                                   
+23   in      it           
+String
+16   a    b       c
+1
+6
+1
+String[] 2
+14 too bad   your
+25      solution went   sour
+String
+2 aa
+1
+10 2018.04.18
+17 TopCoder SRM #170
+0
+11 main.Poetry
+1
+3 64M

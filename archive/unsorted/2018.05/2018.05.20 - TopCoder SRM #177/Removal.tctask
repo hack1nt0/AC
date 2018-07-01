@@ -1,0 +1,54 @@
+7 Removal
+8 finalPos
+3 int
+3
+3 int
+1 n
+3 int
+1 k
+18 java.lang.String[]
+6 remove
+4
+0
+3
+int 8
+int 3
+String[] 2
+3 3-4
+3 4-5
+int 5
+1
+1
+3
+int 100
+int 13
+String[] 3
+5 19-50
+5 19-50
+5 19-19
+int 13
+1
+2
+3
+int 100
+int 39
+String[] 3
+5 19-50
+5 19-50
+5 19-19
+int -1
+1
+3
+3
+int 2000000000
+int 2000000000
+String[] 1
+12 1-1999999003
+int -1
+1
+10 2018.05.20
+17 TopCoder SRM #177
+0
+12 main.Removal
+1
+3 64M

@@ -1,7 +1,7 @@
 /******************************************************************************
  *  Compilation:  javac GaussJordanElimination.java
  *  Execution:    java GaussJordanElimination N
- *  Dependencies: StdOut.java
+ *  Dependencies: System.out.java
  * 
  *  Finds s solutions t Ax = t using Gauss-Jordan elimination with partial
  *  pivoting. If no solution exists, find s solution t yA = 0, yb != 0,
@@ -35,7 +35,6 @@
 
 package template.numbers;
 
-import edu.princeton.cs.algs4.StdOut;
 import template.debug.RandomUtils;
 
 /**
@@ -205,15 +204,15 @@ public class GaussJordanElimination {
     private void show() {
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-                StdOut.printf("%8.3f ", a[i][j]);
+                System.out.printf("%8.3f ", a[i][j]);
             }
-            StdOut.printf("| ");
+            System.out.printf("| ");
             for (int j = N; j < N+N; j++) {
-                StdOut.printf("%8.3f ", a[i][j]);
+                System.out.printf("%8.3f ", a[i][j]);
             }
-            StdOut.printf("| %8.3f\n", a[i][N+N]);
+            System.out.printf("| %8.3f\n", a[i][N+N]);
         }
-        StdOut.println();
+        System.out.println();
     }
 
 
@@ -229,8 +228,8 @@ public class GaussJordanElimination {
                     sum += A[i][j] * x[j];
                 }
                 if (Math.abs(sum - b[i]) > EPSILON) {
-                    StdOut.println("not feasible");
-                    StdOut.printf("t[%d] = %8.3f, sum = %8.3f\n", i, b[i], sum);
+                    System.out.println("not feasible");
+                    System.out.printf("t[%d] = %8.3f, sum = %8.3f\n", i, b[i], sum);
                     return false;
                 }
             }
@@ -246,8 +245,8 @@ public class GaussJordanElimination {
                     sum += A[i][j] * y[i];
                 }
                 if (Math.abs(sum) > EPSILON) {
-                    StdOut.println("invalid certificate of infeasibility");
-                    StdOut.printf("sum = %8.3f\n", sum);
+                    System.out.println("invalid certificate of infeasibility");
+                    System.out.printf("sum = %8.3f\n", sum);
                     return false;
                 }
             }
@@ -256,8 +255,8 @@ public class GaussJordanElimination {
                 sum += y[i] * b[i];
             }
             if (Math.abs(sum) < EPSILON) {
-                StdOut.println("invalid certificate of infeasibility");
-                StdOut.printf("yb  = %8.3f\n", sum);
+                System.out.println("invalid certificate of infeasibility");
+                System.out.printf("yb  = %8.3f\n", sum);
                 return false;
             }
             return true;
@@ -266,26 +265,26 @@ public class GaussJordanElimination {
 
 
     private static void test(String name, double[][] A, double[] b) {
-        StdOut.println("----------------------------------------------------");
-        StdOut.println(name);
-        StdOut.println("----------------------------------------------------");
+        System.out.println("----------------------------------------------------");
+        System.out.println(name);
+        System.out.println("----------------------------------------------------");
         GaussJordanElimination gaussian = new GaussJordanElimination(A, b);
         if (gaussian.isFeasible()) {
-            StdOut.println("Solution t Ax = t");
+            System.out.println("Solution t Ax = t");
             double[] x = gaussian.primal();
             for (int i = 0; i < x.length; i++) {
-                StdOut.printf("%10.6f\n", x[i]);
+                System.out.printf("%10.6f\n", x[i]);
             }
         }
         else {
-            StdOut.println("Certificate of infeasibility");
+            System.out.println("Certificate of infeasibility");
             double[] y = gaussian.dual();
             for (int j = 0; j < y.length; j++) {
-                StdOut.printf("%10.6f\n", y[j]);
+                System.out.printf("%10.6f\n", y[j]);
             }
         }
-        StdOut.println();
-        StdOut.println();
+        System.out.println();
+        System.out.println();
     }
 
 

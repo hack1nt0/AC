@@ -1,0 +1,208 @@
+11 Spamatronic
+6 filter
+5 int[]
+2
+18 java.lang.String[]
+9 knownSpam
+18 java.lang.String[]
+7 newMail
+6
+0
+2
+String[] 1
+29 This is a vile piece of spam.
+String[] 3
+19 Spam is spiced ham.
+13 Spam is VILE!
+17 Spam is not vile.
+int[] 1
+0
+1
+1
+2
+String[] 4
+49 We have the best mortgage rates. Refinance today.
+49 Money-making opportunity! $5000/week potential!!!
+50 Don't Feel Short; try Elevator Shoes for increase.
+50 All-new pics: Stacy, Tiffany, Donner, and Blitzen.
+String[] 2
+21 5000 bucks for shoes?
+26 Short bucks for new shoes?
+int[] 1
+0
+1
+2
+2
+String[] 4
+49 We have the best mortgage rates. Refinance today.
+49 Money-making opportunity! $5000/week potential!!!
+50 Don't Feel Short; try Elevator Shoes for increase.
+50 All-new pics: Stacy, Tiffany, Donner, and Blitzen.
+String[] 1
+47 On, Dasher! On, Dancer! On, Donner and Blitzen!
+int[] 1
+0
+1
+3
+2
+String[] 4
+49 We have the best mortgage rates. Refinance today.
+49 Money-making opportunity! $5000/week potential!!!
+50 Don't Feel Short; try Elevator Shoes for increase.
+50 All-new pics: Stacy, Tiffany, Donner, and Blitzen.
+String[] 3
+19 Try the prime ribs.
+29 Donner: New Prime Rates Today
+19 Try the prime ribs.
+int[] 1
+0
+1
+4
+2
+String[] 4
+25 One, two, buckle my shoe.
+20 Eins, zwei, polizei.
+43 On the first day of Christmas, my true love
+38 gave to me a partridge in a pear tree.
+String[] 4
+30 Christmas shoe buckle madness!
+30 Partridge polizei madness day!
+27 I did not shoot the deputy.
+48 The second day of Christmas, a partridge bit me.
+int[] 1
+2
+1
+5
+2
+String[] 50
+50 ArnQ iGue ORAr tYMK GLPK pcdV QCOQ TJGj JFgv QuDv 
+50 BbPq hpBp Quuv VsQe oJYB GuIh syuO XNTl tLgZ GlET 
+50 LYUT feoz ArcZ SFED Txbg DTQd SCID Vztx ERDj hkXY 
+50 qTLZ nDXV sDKm lUsS cQVI UElK JkNT xbcc oSvE tnzK 
+50 ysrX jLeu vIJe NYmX oeRC SWfg UfCU Iumf xnuE Dsay 
+50 sXKj DCSY LCbJ ovIj tTGm AYyL KcTV PJFZ ZIaH yPnk 
+50 EJcc ESfL PaRN OMpb DJGZ VQlA AUoD mrXE afWW otpR 
+50 njeP FDib qEEt sZjP Ybsv XplI dPvn tuUM rnhE sRdG 
+50 Rtbd oCEF xECT VOZP aKdp ARuG ZyqG BpOx KiZg VwjP 
+50 zkmC JuIK jEaC AjuA jXRX TUyI cpJP bmnE qXsI BYAM 
+50 JcJO BEQN bTrL OpXy fKfx XGyV aMFv TNCG xrmH rnsq 
+50 olSb fBig LuzT rJbq IEjR ygzg GgpS qaiS GDMT wMoN 
+50 Ypxx tWrb WSEe COmB XwqK GOWj ZCQW qtkm riJO weoj 
+50 uDHD nmTu yruZ zVEu Bhyl qheT KqwD YFTK frMk daSC 
+50 ywfg arFu KGOk rciT PZQX tSll dpXd Aczq EYjW RQkh 
+50 BJcC dJkr lWPM jaJI UCMt NQiy azlc encg srwA YhUH 
+50 wqET eMLv kFYM GbDi hkQq sFvy ZwLi gvbu wdLz bZzl 
+50 NIVA xpTx SUOz vhQM fYTn NkrJ pKYm sVpf DMxL RtAn 
+50 kCXI TAzJ aaeQ zYqX TpfN nLpA bsmp GsAa rDhI kexj 
+50 ibLo DWfO aEYD Dkzt gqOf IKeP jDJk iaAH viBk kbyz 
+50 ArnQ iGue ORAr tYMK GLPK pcdV QCOQ TJGj JFgv QuDv 
+50 BbPq hpBp Quuv VsQe oJYB GuIh syuO XNTl tLgZ GlET 
+50 LYUT feoz ArcZ SFED Txbg DTQd SCID Vztx ERDj hkXY 
+50 qTLZ nDXV sDKm lUsS cQVI UElK JkNT xbcc oSvE tnzK 
+50 ysrX jLeu vIJe NYmX oeRC SWfg UfCU Iumf xnuE Dsay 
+50 sXKj DCSY LCbJ ovIj tTGm AYyL KcTV PJFZ ZIaH yPnk 
+50 EJcc ESfL PaRN OMpb DJGZ VQlA AUoD mrXE afWW otpR 
+50 njeP FDib qEEt sZjP Ybsv XplI dPvn tuUM rnhE sRdG 
+50 Rtbd oCEF xECT VOZP aKdp ARuG ZyqG BpOx KiZg VwjP 
+50 zkmC JuIK jEaC AjuA jXRX TUyI cpJP bmnE qXsI BYAM 
+50 JcJO BEQN bTrL OpXy fKfx XGyV aMFv TNCG xrmH rnsq 
+50 olSb fBig LuzT rJbq IEjR ygzg GgpS qaiS GDMT wMoN 
+50 Ypxx tWrb WSEe COmB XwqK GOWj ZCQW qtkm riJO weoj 
+50 uDHD nmTu yruZ zVEu Bhyl qheT KqwD YFTK frMk daSC 
+50 ywfg arFu KGOk rciT PZQX tSll dpXd Aczq EYjW RQkh 
+50 BJcC dJkr lWPM jaJI UCMt NQiy azlc encg srwA YhUH 
+50 wqET eMLv kFYM GbDi hkQq sFvy ZwLi gvbu wdLz bZzl 
+50 NIVA xpTx SUOz vhQM fYTn NkrJ pKYm sVpf DMxL RtAn 
+50 kCXI TAzJ aaeQ zYqX TpfN nLpA bsmp GsAa rDhI kexj 
+50 ibLo DWfO aEYD Dkzt gqOf IKeP jDJk iaAH viBk kbyz 
+50 ArnQ iGue ORAr tYMK GLPK pcdV QCOQ TJGj JFgv QuDv 
+50 BbPq hpBp Quuv VsQe oJYB GuIh syuO XNTl tLgZ GlET 
+50 LYUT feoz ArcZ SFED Txbg DTQd SCID Vztx ERDj hkXY 
+50 qTLZ nDXV sDKm lUsS cQVI UElK JkNT xbcc oSvE tnzK 
+50 ysrX jLeu vIJe NYmX oeRC SWfg UfCU Iumf xnuE Dsay 
+50 sXKj DCSY LCbJ ovIj tTGm AYyL KcTV PJFZ ZIaH yPnk 
+50 EJcc ESfL PaRN OMpb DJGZ VQlA AUoD mrXE afWW otpR 
+50 njeP FDib qEEt sZjP Ybsv XplI dPvn tuUM rnhE sRdG 
+50 Rtbd oCEF xECT VOZP aKdp ARuG ZyqG BpOx KiZg VwjP 
+50 Rtbd oCEF xECT VOZP aKdp ARuG ZyqG BpOx KiZg VwjP 
+String[] 50
+50 qXsI hRfD viBk KGOk GLPK kFYM WSEe oCEF ysrX Gicz 
+50 YMav Clmy LuzT wdLz nmTu jiCs gvbu sRdG aaeQ EMFM 
+50 syuO pKYm ootQ UyOJ TpfN encg LuzT sRdG TJGj elbx 
+50 LuzT nDXV boPm zOqG jLeu gcxH zOqG KqwD RQkh PJFZ 
+50 srwA aKdp VOZP rJbq viBk WIlz kexj ysrX icKO OpXy 
+50 Flij SHTh shhx EMFM pcdV viBk ESfL zkmC sHHV TNCG 
+50 GDMT lWPM tWrb tnzK aEYD dJkr NQiy CyZJ GOWj Ybsv 
+50 wBEy IEjR COmB bZzl vhQM iaAH EMFM bsmp GLPK lWPM 
+50 tWrb HFzg XPoH ZCQW zOqG PZQX CyZJ qnsD Txbg tLgZ 
+50 LYUT vODC DzEE bTrL Clmy AYyL lBJT EYjW fBig MGEK 
+50 UbbN DTQd ysrX vhQM tSll bZzl qXsI DWfO LzXO UfCU 
+50 BYAM wAAt Aczq Ckym lWPM lBJT KcTV Hbut rJbq ibLo 
+50 feoz qaiS oSvE kFYM XGyV lWPM NIVA sDKm QuDv rnsq 
+50 BYAM UDNV GuIh GuIh bKFz ootQ sFvy zpXB ZbWY NQiy 
+50 cWfG oeRC LHJC NYmX ppzA NIVA rDhI QCOQ fBig aMFv 
+50 RQkh SUOz WkoW wqET sRdG sRdG tnzK ARuG OMpb xbcc 
+50 gvbu AjuA GgpS nLpA TUyI Swfg LCbJ aaeQ XGyV yruZ 
+50 ygzg xnuE afWW tuUM KGOk GOWj ousC mrXE ZwLi FSll 
+50 ckKT frMk McdI zVEu nVIK ygzg daSC ArcZ Dagc ryuQ 
+50 bPhx zurF XAIM gqOf aRSX Ypxx dfwy aKdp chtc iCCo 
+50 ovIj ywfg QuDv pKYm iaAH BbPq LHJC tTGm Vztx VwjP 
+50 TpfN TAzJ Vztx tTGm sXKj IKeP AUoD qXsI DMxL azlc 
+50 sRdG WYmV NQuu xnuE TUyI XPoH YhUH ousC AYyL jEaC 
+50 RQkh BbPq UbbN GuIh oCEF tLgZ arFu qTLZ Dkzt zVEu 
+50 NIVA FDib PZQX McdI GgpS Euso ppzA Dagc Vztx LHJC 
+50 ZvMg Bhyl GOWj sDKm ywfg oJYB AjuA jaJI ZIaH Dkzt 
+50 ygzg oSvE qheT encg SUOz vODC mDVo KcTV swcU Dkzt 
+50 GgpS RtAn TpfN JFgv kexj qXsI DMxL MhEv ArnQ oSvE 
+50 TEig YhUH SHTh KGOk EYjW XGyV yruZ GLPK oeRC QIEM 
+50 Ybsv jXRX Iumf kFYM wdLz gvbu hkXY QCOQ COmB tLgZ 
+50 EYjW vhQM xECT UfCU iaAH JuIK KqwD XNTl wdLz Ypxx 
+50 rdmJ RQkh avBu TSWv UtFm VsQe bZzl bZzl MGEK KGOk 
+50 LuzT Euso UbGd jiCs qaqp wAMV ywfg nVIK LuzT otpR 
+50 aEjf jELm ibwU eUXx OBwq UyOJ BbPq QEut Flij ysrX 
+50 srwA FSll RtAn VQlA SrZq FRJh OMpb JFgv srwA KiZg 
+50 DCSY ZIaH cQVI frMk zYqX McdI wdLz qTLZ BYAM srwA 
+50 mhEw rnhE tWrb aEjf tXuk RtPo aeGI ootQ kexj DTQd 
+50 PJFZ GOWj bTrL tuUM bmnE sZjP aKdp GuIh XplI Txbg 
+50 tuUM EYjW viBk nLpA jDJk LuzT lUsS PZQX Dkzt aEYD 
+50 vIJe ERDj jXRX aRPM aKdp xbcc qXsI Uosx YhUH WSEe 
+50 SoOP Ypxx XNTl SUOz tTGm rJbq xbcc NIVA jDJk rnsq 
+50 pcdV riJO zkmC JFgv yruZ fYTn njeP dPvn VsQe xECT 
+50 iaAH TUyI QIEM zVEu BbuB Aseu xpTx aKdp WSEe tWrb 
+50 UhJb sFvy ArnQ dfwy eUXx ENkl elbx VwjP kbyz UElK 
+50 daSC vpco bmnE NwgV LYUT JkNT nDXV YMav aKdp NwgV 
+50 rDhI GOWj AjuA mrXE BbPq aaeQ FGcp ckKT GlET ESfL 
+50 Bhyl tSIB njeP nDXV VwjP VOZP tXuk NYmX UCMt KcTV 
+50 BpOx JwQv TUyI Blsk PJFZ sFvy cpJP RtAn sZjP NYmX 
+50 SFED Ybsv ootQ QCOQ DTQd pcdV kCXI TAzJ zVEu QCOQ 
+50 SFED Ybsv ootQ QCOQ DTQd pcdV kCXI TAzJ zVEu QCOQ 
+int[] 22
+1
+2
+3
+5
+8
+9
+11
+13
+14
+18
+19
+22
+24
+26
+28
+31
+32
+33
+36
+42
+43
+44
+1
+10 2018.05.24
+17 TopCoder SRM #180
+0
+16 main.Spamatronic
+1
+3 64M

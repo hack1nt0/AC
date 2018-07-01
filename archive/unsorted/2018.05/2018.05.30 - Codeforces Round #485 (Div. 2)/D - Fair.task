@@ -1,0 +1,47 @@
+8 D - Fair
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+2
+0
+38 5 5 4 3
+1 2 4 3 2
+1 2
+2 3
+3 4
+4 1
+4 5
+
+11 2 2 2 2 3 
+
+1
+1
+46 7 6 3 2
+1 2 3 3 2 2 1
+1 2
+2 3
+3 4
+2 5
+5 6
+6 7
+
+15 1 1 1 2 2 1 1 
+
+1
+18 src/main/java/main
+8 -Xmx512M
+4 Main
+10 main.TaskD
+39 net.egork.chelper.checkers.TokenChecker
+0 
+1
+18 main.TaskDTestCase
+10 2018.05.30
+30 Codeforces Round #485 (Div. 2)
+1
+26 template.debug.InputReader
+27 template.debug.OutputWriter
+0
+1

@@ -1,5 +1,8 @@
 package template.linear_algebra;
 
+import template.numbers.DoubleUtils;
+
+import java.util.Arrays;
 
 /**
  * Created by dy on 16-10-8.
@@ -35,21 +38,6 @@ public class MatrixUtils {
                     res[i][j] += A[i][k] * B[k][j];
     }
 
-//    public static void multiplyX(DenseMatrix A, DenseMatrix B, DenseMatrix res, boolean transA, boolean transB) {
-//        if (transA && transB) A.transABmult(B, res);
-//        else if (transA) A.transAmult(B, res);
-//        else if (transB) A.transBmult(B, res);
-//        else A.mult(B, res);
-//    }
-
-//    public static DenseMatrix multiplyX(DenseMatrix A, DenseMatrix B) {
-//        int N = A.numRows();
-//        int M = B.numColumns();
-//        DenseMatrix res = new DenseMatrix(N, M);
-//        A.mult(B, res);
-//        return res;
-//    }
-
     public static long[][] pow(long[][] M, long k) {
         if (M.length != M[0].length) throw new RuntimeException();
         if (k < 0) throw new RuntimeException();
@@ -77,8 +65,142 @@ public class MatrixUtils {
         return res;
     }
 
+    public static class MatrixStat {
+        public int rank;
+        public double determinant;
+        public double[] x;
+        public boolean unique, infinite, none;
+
+        @Override
+        public String toString() {
+            return "MatrixStat{" +
+                    "rank=" + rank +
+                    ", determinant=" + determinant +
+                    ", x=" + Arrays.toString(x) +
+                    ", unique=" + unique +
+                    ", infinite=" + infinite +
+                    ", none=" + none +
+                    '}';
+        }
+    }
+
+    public static MatrixStat solve(double[][] A, double[] b) {
+        MatrixStat res = new MatrixStat();
+        int n = A.length, m = A[0].length;
+        if (n != b.length) throw new IllegalArgumentException();
+        res.determinant = 1D;
+        res.x = new double[m];
+        int nswap = 0;
+        double eps = DoubleUtils.epsilon;
+        for (int v = 0; v < m; ++v) {
+            int se = Math.min(n - 1, v);
+            int max = se;
+            for (int e = max + 1; e < n; ++e)
+                if (Math.abs(A[e][v]) > Math.abs(A[max][v]))
+                    max = e;
+            if (max != se) {
+                nswap++;
+                double[] t = A[se];
+                A[se] = A[max];
+                A[max] = t;
+                double t2 = b[se];
+                b[se] = b[max];
+                b[max] = t2;
+                max = se;
+            }
+            if (Math.abs(A[max][v]) < eps) {
+                res.determinant = 0D;
+            } else {
+                res.rank++;
+                res.determinant *= A[max][v];
+                int e = max;
+                while (true) {
+                    if (e == max) {
+                        for (int vv = v + 1; vv < m; ++vv)
+                            A[e][vv] /= A[e][v];
+                        b[e] /= A[e][v];
+                        A[e][v] = 1D;
+                    } else {
+                        for (int vv = v + 1; vv < m; ++vv)
+                            A[e][vv] -= A[max][vv] * A[e][v];
+                        b[e] -= b[max] * A[e][v];
+                        A[e][v] = 0D;
+                    }
+                    e = (e + 1) % n;
+                    if (e == max)
+                        break;
+                }
+            }
+        }
+        if (nswap % 2 == 1)
+            res.determinant = -res.determinant;
+        for (int v = 0; v < m; ++v) {
+            int e = Math.min(n - 1, v);
+            double denom = Math.abs(A[e][v]) < eps ? 0D : A[e][v];
+            double numer = Math.abs(b[e]) < eps ? 0D : b[e];
+            res.x[v] = numer / denom;
+            if (Double.isInfinite(res.x[v]))
+                res.none = true;
+            if (Double.isNaN(res.x[v])) {
+                res.infinite = true;
+                res.x[v] = 0D;
+            }
+        }
+        res.unique = !res.none && !res.infinite;
+        if (res.rank > Math.min(n, m))
+            throw new RuntimeException();
+        return res;
+    }
+
+    private static void testUnique() {
+        double[][] A = {
+                { 0, 1,  1 },
+                { 2, 4, -2 },
+                { 0, 3, 15 }
+        };
+        double[] b = { 4, 2, 36 };
+        System.out.println(solve(A, b));
+    }
+
+    private static void testNone() {
+        double[][] A = {
+                {  2, -1,  1 },
+                {  3,  2, -4 },
+                { -6,  3, -3 },
+        };
+        double[] b = { 1, 4, 2 };
+        System.out.println(solve(A, b));
+    }
+
+    private static void testInfinite() {
+        double[][] A = {
+                {  1, -1,  2 },
+                {  4,  4, -2 },
+                { -2,  2, -4 },
+        };
+        double[] b = { -3, 1, 6 };
+        System.out.println(solve(A, b));
+    }
+
+    public static String toString(double[][] m) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < m.length; ++i) {
+            for (int j = 0; j < m[i].length; ++j)
+                sb.append(m[i][j] + (j < m[i].length - 1 ? " " : ""));
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
+
+    public static String toString(double[] v) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < v.length; ++i)
+            sb.append(v[i] + "\n");
+        return sb.toString();
+    }
+
     public static long sum(long[][] A) {
-        Long res = new Long(0);
+        long res = 0L;
         for (int i = 0; i < A.length; ++i)
             for (int j = 0; j < A[i].length; ++j) res += A[i][j];
         return res;
@@ -133,5 +255,11 @@ public class MatrixUtils {
             rj--;
         }
         return res;
+    }
+
+    public static void main(String[] args) {
+        testUnique();
+        testNone();
+        testInfinite();
     }
 }

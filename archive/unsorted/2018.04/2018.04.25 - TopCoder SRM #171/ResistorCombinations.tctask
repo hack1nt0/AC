@@ -1,0 +1,101 @@
+20 ResistorCombinations
+12 closestValue
+6 double
+2
+18 java.lang.String[]
+11 resistances
+6 double
+6 target
+9
+0
+2
+String[] 3
+1 2
+1 3
+1 5
+double 2.5
+double 2.5
+1
+1
+2
+String[] 3
+1 2
+1 3
+1 5
+double 1.0
+double 0.9677419354838714
+1
+2
+2
+String[] 4
+5 10.25
+5 13.31
+5 6.777
+4 12.2
+double 10.5
+double 10.510805181371508
+1
+3
+2
+String[] 5
+5 10000
+4 2000
+3 300
+2 40
+1 5
+double 20000.0
+double 12345.0
+1
+4
+2
+String[] 5
+9 125.10000
+7 00270.9
+9 000625.55
+9 90.100000
+10 0015.60000
+double 153.0
+double 152.75975812465546
+1
+5
+2
+String[] 2
+6 562242
+6 830593
+double 184581.0
+double 335283.2672254789
+1
+6
+2
+String[] 3
+6 925162
+6 265426
+6 490406
+double 416049.0
+double 415984.2597796304
+1
+7
+2
+String[] 3
+6 448873
+6 304173
+6 121581
+double 476997.0
+double 448873.0
+1
+8
+2
+String[] 4
+6 853777
+6 702163
+6 913915
+6 126697
+double 534755.0
+double 523780.12231525953
+1
+10 2018.04.25
+17 TopCoder SRM #171
+0
+25 main.ResistorCombinations
+1
+3 64M

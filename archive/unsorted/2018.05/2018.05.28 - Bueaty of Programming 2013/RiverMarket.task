@@ -1,0 +1,33 @@
+11 RiverMarket
+12 MULTI_NUMBER
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+1
+0
+25 1
+5
+0 8
+1 6
+4 4
+-5 7
+-6 1
+19 Case #1: -1.000000
+
+1
+18 src/main/java/main
+16 -Xmx256m -Xss64m
+4 Main
+16 main.RiverMarket
+39 net.egork.chelper.checkers.TokenChecker
+0 
+1
+24 main.RiverMarketTestCase
+10 2018.05.28
+26 Bueaty of Programming 2013
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+1

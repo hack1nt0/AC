@@ -248,9 +248,9 @@ public class IntUtils {
         return C;
     }
 
-    public static int reverse(int n) {
+    public static long reverse(long n) {
         if (n < 0) throw new IllegalArgumentException();
-        int ans = 0;
+        long ans = 0;
         while (true) {
             if (n == 0) break;
             ans = ans * 10 + n % 10;
@@ -260,15 +260,12 @@ public class IntUtils {
     }
 
     public static int[] toArray(long n) {
-        String nstr = String.valueOf(n);
-        int[] res = new int[nstr.length()];
-        for (int i = 0; i < res.length; ++i) res[i] = nstr.charAt(i) - '0';
-        return res;
+        throw new RuntimeException();
     }
 
     public static long fromArray(int[] arr) {
         long res = 0;
-        for (int i = 0; i < arr.length; ++i) res = res * 10 + arr[i];
+        for (int i = arr.length - 1; i >= 0; --i) res = res * 10 + arr[i];
         return res;
     }
 
@@ -374,13 +371,54 @@ public class IntUtils {
         System.out.println(linearCongruence(A, B, Mod));
     }
 
-    public static List<Integer> factors(int d) {
+    public static Integer[] factors(int d) {
         int dd = d;
         List<Integer> ans = new ArrayList<>();
-        for (int i = 2; i <= dd; ++i) if (dd % i == 0) {
+        for (int i = 2; i * i <= dd; ++i) if (dd % i == 0) {
+            while (dd % i == 0) {
+                dd /= i;
+            }
             ans.add(i);
-            while (dd % i == 0) dd /= i;
         }
+        if (dd > 1)
+            ans.add(dd);
+        return ans.toArray(new Integer[0]);
+    }
+
+    public static Map<Integer, Integer> decompose(int d) {
+        int dd = d;
+        Map<Integer, Integer> ans = new HashMap<>();
+        for (int i = 2; i * i <= dd; ++i) if (dd % i == 0) {
+            int count = 0;
+            while (dd % i == 0) {
+                dd /= i;
+                count++;
+            }
+            ans.put(i, count);
+        }
+        if (dd > 1)
+            ans.put(dd, 1);
         return ans;
+    }
+
+    public static int digitCount(long d) {
+        d = Math.abs(d);
+        int count = 0;
+        while (d > 0) {
+            count++;
+            d /= 10;
+        }
+        return count;
+    }
+
+    public static int[] digits(long d) {
+        d = Math.abs(d);
+        int[] ds = new int[digitCount(d)];
+        int i = 0;
+        while (d > 0) {
+            ds[i++] = (int) (d % 10);
+            d /= 10;
+        }
+        return ds;
     }
 }

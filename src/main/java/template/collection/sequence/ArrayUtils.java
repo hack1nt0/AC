@@ -129,6 +129,14 @@ public class ArrayUtils {
         return null;
     }
 
+    public static int[] unbox(Integer[] xs) {
+        int[] ans = new int[xs.length];
+        for (int i = 0; i < xs.length; ++i)
+            ans[i] = xs[i];
+//        System.arraycopy(xs, 0, ans, 0, xs.length);
+        return ans;
+    }
+
     public static Object outbox(Object arr) {
         boolean isObjectArray = arr instanceof Object[];
         boolean isPrimitiveArray = !isObjectArray && arr.getClass().isArray();
@@ -360,15 +368,36 @@ public class ArrayUtils {
         int i, j;
         for (i = j = 0; i < as.length && j < bs.length; ++j, ++i) {
             if (as[i] == bs[j]) continue;
-            return as[i] - bs[j];
+            return Math.min(+1, Math.max(-1, as[i] - bs[j]));
         }
-        if (i == as.length && j == bs.length) return 0;
-        return i < as.length ? 1 : -1;
+        return Math.min(+1, Math.max(-1, as.length - bs.length));
     }
 
     public static <T> List<T> asList(T[] xs) {
         List<T> res = new ArrayList<T>();
         for (T x : xs) res.add(x);
         return res;
+    }
+
+    public static int count(boolean[] array, boolean value) {
+        int ans = 0;
+        for (boolean v : array)
+            if (v == value)
+                ans++;
+        return ans;
+    }
+
+    public static int sum(int[] xs) {
+        int r = 0;
+        for (int x : xs)
+            r += x;
+        return r;
+    }
+
+    public static int minIndex(int[] array) {
+        int index = 0;
+        for (int i = 1; i < array.length; ++i)
+            if (array[i] < array[index]) index = i;
+        return index;
     }
 }

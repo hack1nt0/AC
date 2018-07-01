@@ -1,0 +1,22 @@
+11 Convolution
+6 SINGLE
+8 STANDARD
+9 input.txt
+8 STANDARD
+10 output.txt
+0
+18 src/main/java/main
+16 -Xmx256m -Xss64m
+4 Main
+16 main.Convolution
+39 net.egork.chelper.checkers.TokenChecker
+0 
+1
+24 main.ConvolutionTestCase
+10 2018.05.27
+26 Bueaty of Programming 2013
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+1

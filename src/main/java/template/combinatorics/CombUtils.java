@@ -146,6 +146,26 @@ public class CombUtils {
         return ans;
     }
 
+    public static List<int[]> groups(int n) {
+        List<int[]> ans = new ArrayList<>();
+        int[] acc = new int[n];
+        groups(0, n, 0, ans, acc);
+        return ans;
+    }
+
+    private static void groups(int cur, int n, int ngroup, List<int[]> ans, int[] acc) {
+        if (cur == n) {
+            ans.add(acc.clone());
+            return;
+        }
+        for (int i = 0; i < ngroup; ++i) {
+            acc[cur] = i;
+            groups(cur + 1, n, ngroup, ans, acc);
+        }
+        acc[cur] = ngroup;
+        groups(cur + 1, n, ngroup + 1, ans, acc);
+    }
+
     // End of Permutation
 
     public static void main(String[] args) {

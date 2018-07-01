@@ -119,7 +119,7 @@ public class Interval implements Comparable<Interval> {
      *
      * @return the length of this interval (right - left)
      */
-    public double length() {
+    public int length() {
         return right - left;
     }
 

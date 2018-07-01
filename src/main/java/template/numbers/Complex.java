@@ -13,6 +13,13 @@ public class Complex {
         im = imag;
     }
 
+    public Complex(double abs, double angle, boolean polar) {
+        // x^ 2 + y ^ 2 = abs ^ 2
+        // y / x = tan(angle)
+        re = Math.cos(angle) * abs;
+        im = Math.sin(angle) * abs;
+    }
+
     public String toString() {
         if (im == 0) return re + "";
         if (re == 0) return im + "i";

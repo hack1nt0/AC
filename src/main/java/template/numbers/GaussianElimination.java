@@ -192,8 +192,8 @@ public class GaussianElimination {
                 sum += A[i][j] * x[j];
             }
             if (Math.abs(sum - b[i]) > EPSILON) {
-                StdOut.println("not feasible");
-                StdOut.println("t[" + i + "] = " + b[i] + ", sum = " + sum);
+//                StdOut.println("not feasible");
+//                StdOut.println("t[" + i + "] = " + b[i] + ", sum = " + sum);
                 return false;
             }
         }
@@ -205,21 +205,21 @@ public class GaussianElimination {
      * Unit tests the <tt>GaussianElimination</tt> data type.
      */
     private static void test(String name, double[][] A, double[] b) {
-        StdOut.println("----------------------------------------------------");
-        StdOut.println(name);
-        StdOut.println("----------------------------------------------------");
-        GaussianElimination gaussian = new GaussianElimination(A, b);
-        double[] x = gaussian.primal();
-        if (gaussian.isFeasible()) {
-            for (int i = 0; i < x.length; i++) {
-                StdOut.printf("%.6f\n", x[i]);
-            }
-        }
-        else {
-            StdOut.println("System is infeasible");
-        }
-        StdOut.println();
-        StdOut.println();
+//        StdOut.println("----------------------------------------------------");
+//        StdOut.println(name);
+//        StdOut.println("----------------------------------------------------");
+//        GaussianElimination gaussian = new GaussianElimination(A, b);
+//        double[] x = gaussian.primal();
+//        if (gaussian.isFeasible()) {
+//            for (int i = 0; i < x.length; i++) {
+//                StdOut.printf("%.6f\n", x[i]);
+//            }
+//        }
+//        else {
+//            StdOut.println("System is infeasible");
+//        }
+//        StdOut.println();
+//        StdOut.println();
     }
 
 

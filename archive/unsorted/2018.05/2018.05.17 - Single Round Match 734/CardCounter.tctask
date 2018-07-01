@@ -1,0 +1,112 @@
+11 CardCounter
+13 winningChance
+6 double
+3
+5 int[]
+4 deck
+3 int
+6 dealer
+5 int[]
+6 player
+5
+0
+3
+int[] 10
+0
+0
+0
+0
+0
+0
+0
+4
+0
+4
+int 9
+int[] 2
+9
+9
+double 0.5
+1
+1
+3
+int[] 10
+0
+0
+0
+0
+0
+0
+0
+4
+0
+4
+int 10
+int[] 2
+5
+5
+double 0.2857142857142858
+1
+2
+3
+int[] 10
+0
+0
+0
+4
+0
+0
+0
+0
+0
+4
+int 10
+int[] 2
+10
+7
+double 0.5
+1
+3
+3
+int[] 10
+0
+0
+2
+2
+2
+2
+2
+2
+2
+2
+int 6
+int[] 2
+10
+10
+double 0.7348901098901098
+0
+4
+3
+int[] 10
+0
+0
+0
+0
+0
+0
+0
+4
+4
+4
+int 6
+int[] 2
+10
+2
+double 1.0
+1
+10 2018.05.17
+22 Single Round Match 734
+0
+16 main.CardCounter
+1
+4 256M

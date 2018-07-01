@@ -45,15 +45,15 @@ public class StringUtils {
     }
 
 
-    public static class PrefixAutoMationNode {
-        public PrefixAutoMationNode prefix;
-        public PrefixAutoMationNode[] childs;
+    public static class PrefixAutomatonNode {
+        public PrefixAutomatonNode prefix;
+        public PrefixAutomatonNode[] childs;
         public int id;
         public int depth;
         public boolean terminal;
         String repr = ""; // DEBUG
-        PrefixAutoMationNode(int childs) {
-            this.childs = new PrefixAutoMationNode[childs];
+        PrefixAutomatonNode(int childs) {
+            this.childs = new PrefixAutomatonNode[childs];
         }
 
         @Override
@@ -62,17 +62,17 @@ public class StringUtils {
         }
     }
 
-    public static PrefixAutoMationNode[] buildPrefixAutomation(List<String> strings, int radix) {
+    public static PrefixAutomatonNode[] buildPrefixAutomaton(List<String> strings, int radix) {
         int size = 1;
-        PrefixAutoMationNode trie = new PrefixAutoMationNode(radix);
+        PrefixAutomatonNode trie = new PrefixAutomatonNode(radix);
         trie.prefix = trie;
         for (String pattern : strings) {
-            PrefixAutoMationNode curNode = trie;
+            PrefixAutomatonNode curNode = trie;
             for (int i = 0; i < pattern.length(); ++i) {
-                int c = pattern.charAt(i);
+                char c = pattern.charAt(i);
                 if (curNode.childs[c] == null) {
                     ++size;
-                    curNode.childs[c] = new PrefixAutoMationNode(radix);
+                    curNode.childs[c] = new PrefixAutomatonNode(radix);
                     curNode.childs[c].depth = curNode.depth + 1;
                     curNode.childs[c].repr = curNode.repr + c; //DEBUG
                 }
@@ -80,22 +80,22 @@ public class StringUtils {
             }
             curNode.terminal = true;
         }
-        PrefixAutoMationNode[] que = new PrefixAutoMationNode[size];
+        PrefixAutomatonNode[] que = new PrefixAutomatonNode[size];
         int id = 0;
         que[0] = trie;
         trie.id = id++;
         int head = 0, tail = 1;
         while (head < tail) {
-            PrefixAutoMationNode curNode = que[head++];
+            PrefixAutomatonNode curNode = que[head++];
             for (int i = 0; i < radix; ++i) {
-                PrefixAutoMationNode chd = curNode.childs[i];
+                PrefixAutomatonNode chd = curNode.childs[i];
                 if (chd == null) continue;
                 que[tail++] = chd;
                 chd.id = id++;
                 if (chd.depth == 1) {
                     chd.prefix = curNode;
                 } else {
-                    PrefixAutoMationNode prefix = curNode.prefix;
+                    PrefixAutomatonNode prefix = curNode.prefix;
                     chd.prefix = trie;
                     while (prefix != trie) {
                         if (prefix.childs[i] != null) {
@@ -113,7 +113,7 @@ public class StringUtils {
         return que;
     }
 
-    public static int[] buildPrefixAutomation(String s) {
+    public static int[] buildPrefixAutomaton(String s) {
         int[] prefix = new int[s.length() + 1];
         for (int i = 1; i <= s.length(); ++i) {
             int p = prefix[i - 1];
@@ -173,8 +173,9 @@ public class StringUtils {
                 }
                 if (ichar > jchar) {
                     i = j;
-                    j += Math.min(j - i, offset);
-                    if (j == i) j++;
+//                    j += Math.min(j - i, offset);
+                    j += offset;
+//                    if (j == i) j++;
                     break;
                 }
                 offset++;

@@ -1,0 +1,87 @@
+8 Matching
+9 findMatch
+18 java.lang.String[]
+2
+18 java.lang.String[]
+5 first
+18 java.lang.String[]
+6 second
+4
+0
+2
+String[] 4
+7 DIAMOND
+4 BLUE
+5 SOLID
+3 ONE
+String[] 4
+7 DIAMOND
+5 GREEN
+5 SOLID
+3 TWO
+String[] 4
+7 DIAMOND
+3 RED
+5 SOLID
+5 THREE
+1
+1
+2
+String[] 4
+6 CIRCLE
+5 GREEN
+5 EMPTY
+3 TWO
+String[] 4
+7 DIAMOND
+4 BLUE
+7 STRIPED
+3 ONE
+String[] 4
+8 SQUIGGLE
+3 RED
+5 SOLID
+5 THREE
+1
+2
+2
+String[] 4
+7 DIAMOND
+3 RED
+5 SOLID
+3 ONE
+String[] 4
+8 SQUIGGLE
+4 BLUE
+5 SOLID
+3 TWO
+String[] 4
+6 CIRCLE
+5 GREEN
+5 SOLID
+5 THREE
+1
+3
+2
+String[] 4
+8 SQUIGGLE
+3 RED
+7 STRIPED
+3 ONE
+String[] 4
+8 SQUIGGLE
+3 RED
+7 STRIPED
+3 ONE
+String[] 4
+8 SQUIGGLE
+3 RED
+7 STRIPED
+3 ONE
+1
+10 2018.05.14
+17 TopCoder SRM #176
+0
+13 main.Matching
+1
+3 64M

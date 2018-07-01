@@ -75,4 +75,30 @@ public class CollectionUtils {
         }
         return res;
     }
+
+    public static <V> boolean deepEquals(List<V> a, List<V> b) {
+        if (a.size() != b.size())
+            return false;
+        for (int i = 0; i < a.size(); ++i)
+            if (!a.get(i).equals(b.get(i)))
+                return false;
+        return true;
+    }
+
+    public static <V> long count(Collection<V> collection, V i) {
+        long ans = 0;
+        for (V v : collection)
+            if (v.equals(i))
+                ans++;
+        return ans;
+    }
+
+    public static <T> Set<T> union(Collection<T>... sets) {
+        Set<T> join = new HashSet<T>();
+        for (Collection<T> set : sets) {
+            for (T e : set)
+                join.add(e);
+        }
+        return join;
+    }
 }

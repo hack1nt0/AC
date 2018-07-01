@@ -1,0 +1,49 @@
+9 NameCheck
+10 formatList
+18 java.lang.String[]
+1
+18 java.lang.String[]
+8 namelist
+3
+0
+1
+String[] 6
+12 Doug#as good
+9 bArneY R.
+15 bArneY   Rubble
+10  Bob Stone
+14 Bob B. J. Toms
+5 J. Lo
+String[] 2
+13 Barney Rubble
+5 J. Lo
+1
+1
+1
+String[] 6
+7 Doug G.
+14 GG WALNUT DOUG
+9 AB. JONES
+9 A. BOB J.
+7 Gg DouG
+7 GG DOUG
+String[] 3
+14 Gg Walnut Doug
+7 Gg Doug
+7 Gg Doug
+1
+2
+1
+String[] 4
+10 A BIG Mess
+16 A. Big Mess.Mess
+4 ABig
+6 M.MESS
+String[] 0
+1
+10 2018.05.23
+17 TopCoder SRM #179
+0
+14 main.NameCheck
+1
+3 64M

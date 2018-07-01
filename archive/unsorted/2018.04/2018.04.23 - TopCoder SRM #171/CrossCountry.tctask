@@ -1,0 +1,55 @@
+12 CrossCountry
+9 scoreMeet
+16 java.lang.String
+2
+3 int
+8 numTeams
+16 java.lang.String
+11 finishOrder
+5
+0
+2
+int 2
+String
+11 AABBABBABBA
+String
+2 AB
+1
+1
+2
+int 3
+String
+13 CCCBBBBBAAACC
+String
+2 BC
+1
+2
+2
+int 4
+String
+21 ABDCBADBDCCDBCDBCAAAC
+String
+4 BDCA
+1
+3
+2
+int 10
+String
+50 BDHCEAJBIDBCCHGCBDJEBAAHEGAGGADHGIECJEHAEBDADJCDHG
+String
+7 BCDAHEG
+1
+4
+2
+int 3
+String
+11 BABCAABABAB
+String
+2 AB
+1
+10 2018.04.23
+17 TopCoder SRM #171
+0
+17 main.CrossCountry
+1
+3 64M

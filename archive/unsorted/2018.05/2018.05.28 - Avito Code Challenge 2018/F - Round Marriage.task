@@ -1,0 +1,37 @@
+18 F - Round Marriage
+6 SINGLE
+8 STANDARD
+-1
+8 STANDARD
+-1
+2
+0
+12 2 4
+0 1
+2 3
+
+2 1
+
+1
+1
+64 10 100
+3 14 15 92 65 35 89 79 32 38
+2 71 82 81 82 84 5 90 45 23
+
+3 27
+
+1
+18 src/main/java/main
+8 -Xmx256M
+4 Main
+10 main.TaskF
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2018.05.28
+25 Avito Code Challenge 2018
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+1

@@ -1,0 +1,47 @@
+5 TaskA
+12 MULTI_NUMBER
+12 LOCAL_REGEXP
+11 A-.+.in.txt
+7 TASK_ID
+10 output.txt
+1
+0
+47 3
+3 4
+CODE
+????
+?JAM
+3 3
+G??
+?C?
+??J
+
+2 2
+CA
+KE
+59 Case #1:
+GGJ
+CCJ
+CCJ
+Case #2:
+CODE
+COAE
+JJAM
+Case #3:
+CA
+KE
+1
+18 src/main/java/main
+16 -Xmx256m -Xss64m
+4 Main
+10 main.TaskA
+39 net.egork.chelper.checkers.TokenChecker
+0 
+0
+10 2018.05.05
+21 CodeJam-2017-Round-1A
+1
+17 java.util.Scanner
+19 java.io.PrintWriter
+0
+1

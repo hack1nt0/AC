@@ -1,0 +1,108 @@
+18 RecurrenceRelation
+9 moduloTen
+3 int
+3
+5 int[]
+12 coefficients
+5 int[]
+7 initial
+3 int
+1 N
+7
+0
+3
+int[] 2
+2
+1
+int[] 2
+9
+7
+int 3
+int 9
+1
+1
+3
+int[] 2
+1
+1
+int[] 2
+0
+1
+int 9
+int 4
+1
+2
+3
+int[] 1
+2
+int[] 1
+1
+int 20
+int 6
+1
+3
+3
+int[] 1
+2
+int[] 1
+1
+int 64
+int 6
+1
+4
+3
+int[] 2
+25
+143
+int[] 2
+0
+0
+int 100000
+int 0
+1
+5
+3
+int[] 10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+0
+int[] 10
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+int 654
+int 5
+1
+6
+3
+int[] 3
+901
+492
+100
+int[] 3
+-6
+-15
+-39
+int 0
+int 4
+1
+10 2018.04.18
+17 TopCoder SRM #170
+0
+23 main.RecurrenceRelation
+1
+3 64M

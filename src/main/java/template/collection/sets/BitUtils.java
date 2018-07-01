@@ -33,22 +33,12 @@ import java.util.*;
  */
 public class BitUtils {
 
-    private static final int nbits = 64;
-    private static Map<Long, Integer> cacheLog2;
-
     //Long.MIN <= s <= Long.MAX
     public static List<Integer> elements(long s) {
-        if (cacheLog2 == null) {
-            cacheLog2 = new HashMap<Long, Integer>();
-            for (int i = 0; i < nbits; ++i) cacheLog2.put(1L << i, i);
-        }
         List<Integer> ret = new ArrayList<Integer>();
-        while (true) {
-            if (s == 0) break;
-            long lowestBit = s & -s;
-            ret.add(cacheLog2.get(lowestBit));
-            s &= ~lowestBit;
-        }
+        for (int bit = 0; bit < 64; ++bit)
+            if ((s >> bit & 1) != 0)
+                ret.add(bit);
         return ret;
     }
 
@@ -82,7 +72,7 @@ public class BitUtils {
         long comb = (1L << k) - 1;
         while (comb < (1L << n)) {
             ret.add(comb);
-            System.err.println(Long.toBinaryString(comb));
+//            System.err.println(Long.toBinaryString(comb));
             long x = comb & -comb, y = comb + x;
             if (x == 0) {
                 throw new RuntimeException();

@@ -3,9 +3,21 @@ package template.graph_theory;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
-import java.util.Objects;
+import java.util.*;
 
 public class GraphUtils {
+
+
+    public static void vizDirected(List<Integer>[] adj) {
+        int n = adj.length;
+        String[] nodes = new String[n];
+        for (int i = 0; i < n; ++i) nodes[i] = "" + i;
+        List<String> edges = new ArrayList<>();
+        for (int i = 0; i < n; ++i)
+            for (int j : adj[i])
+                edges.add("" + i + " -> " + j);
+        viz(true, true, false, nodes, edges.toArray(new String[0]));
+    }
 
     public static void viz(boolean vertical, boolean directed, boolean edgeDuplicated,
                            String[] nodes, String[] edges) {

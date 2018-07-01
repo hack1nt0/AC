@@ -4,12 +4,10 @@ import template.debug.RandomUtils;
 import template.debug.Stopwatch;
 import template.numbers.IntUtils;
 
-import java.util.Arrays;
-
 /**
  * @author dy[jealousing@gmail.com] on 17-3-14.
  */
-public class IntMinIntervalTree extends IntAbstractIntervalTree<Integer> {
+public class IntMinIntervalTree extends AbstractIntervalTree<Integer> {
     int[] array;
     int[] min;
     int[] delta;

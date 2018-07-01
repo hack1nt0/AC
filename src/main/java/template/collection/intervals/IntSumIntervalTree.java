@@ -7,7 +7,7 @@ import template.numbers.IntUtils;
 /**
  * @author dy[jealousing@gmail.com] on 17-3-15.
  */
-public class IntSumIntervalTree extends IntAbstractIntervalTree<Integer> {
+public class IntSumIntervalTree extends AbstractIntervalTree<Integer> {
     private int[] array;
     private int nodeCount;
     private int[] delta;

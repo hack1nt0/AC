@@ -1,0 +1,133 @@
+12 TreasureHunt
+12 findTreasure
+5 int[]
+2
+18 java.lang.String[]
+6 island
+18 java.lang.String[]
+12 instructions
+6
+0
+2
+String[] 6
+8 ..OOOO..
+8 .OOOO...
+8 OOXOOOOO
+8 OOOOOOO.
+8 .OOOO...
+8 ..OOO...
+String[] 3
+3 W 3
+3 S 1
+3 E 2
+int[] 2
+3
+2
+1
+1
+2
+String[] 7
+7 .......
+7 .OOOOO.
+7 .OOOOO.
+7 .OOXOO.
+7 .OOOOO.
+7 .OOOOO.
+7 .......
+String[] 1
+3 N 1
+int[] 2
+3
+4
+1
+2
+2
+String[] 3
+12 OOOOOOOOOOO.
+12 OX..........
+12 OOOOOOOOOOO.
+String[] 1
+3 W 2
+int[] 2
+1
+0
+1
+3
+2
+String[] 7
+7 ....OO.
+7 ..OOXOO
+7 OOOO...
+7 .OOOOOO
+7 ...OOOO
+7 .OOOOO.
+7 ..OOO..
+String[] 3
+3 N 1
+3 E 1
+3 N 4
+int[] 2
+3
+1
+1
+4
+2
+String[] 1
+1 X
+String[] 4
+3 N 1
+3 E 1
+3 S 1
+3 W 1
+int[] 0
+1
+5
+2
+String[] 20
+20 .................O..
+20 ..OO.......OOOOO.O..
+20 ..OOO..OOO.OOOOOOOO.
+20 ..OOOOOOOOOOOOOOOOO.
+20 ..OOOOOOOOOOOOOOOOO.
+20 ...OOOOOOOOOOOOOOOO.
+20 OO.OOOOOOOXOOOOOO...
+20 .OOOOOOO..OOOOOOOO..
+20 OOOOOOOOO..OOOOOOOO.
+20 OOOOOOOOO..OOOOOOO..
+20 .OOOOOOOOO..........
+20 OOOOOOOOOOOOOOOOOO..
+20 ..OOOOOOOOOOOOOOO...
+20 OOOOOOOOOOOOOOOOO...
+20 .OOOOOOOOOOOOOOOOOOO
+20 OOOOOOOOOOOOOOOOOO..
+20 ..OOOOOOOOOOOOOOOOO.
+20 OOOOO.OOOOOO..OOO...
+20 O..OO.OOOO.....OOO..
+20 O......O.OO......OO.
+String[] 16
+3 N 2
+3 E 3
+3 N 4
+3 E 2
+3 S 1
+3 W 2
+3 E 9
+3 E 2
+3 N 3
+3 W 5
+3 N 1
+3 W 6
+3 N 6
+3 S 1
+3 S 1
+3 E 7
+int[] 2
+10
+6
+1
+10 2018.05.07
+17 TopCoder SRM #173
+0
+17 main.TreasureHunt
+1
+3 64M

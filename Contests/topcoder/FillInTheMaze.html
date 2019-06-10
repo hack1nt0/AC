@@ -1,0 +1,66 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p>
+There is a very simple way to draw mazes using ASCII characters.
+One sample maze with three entrances is shown below.
+(The '#'s represent walls, the '.'s represent empty cells.)
+</p>
+<pre>
+#######.#####
+......#.#...#
+#.###.#.#.#.#
+#.#.......#.#
+#.#######.#.#
+#.......#.#.#
+#########.###
+</pre>
+<p>
+Here is the construction of such a maze in more detail.
+Let's take a look at an unfinished maze that has walls everywhere.
+</p>
+<pre>
+#############
+#.#.#.#.#.#.#
+#############
+#.#.#.#.#.#.#
+#############
+#.#.#.#.#.#.#
+#############
+</pre>
+<p>
+Rows and columns of the bitmap are numbered starting from 0 in the top left corner.
+Notice that the cells with both coordinates odd are still empty.
+These cells are called <i>rooms</i>.
+The cells that share a side with a room are called <i>hallways</i> and the remaining cells are called <i>pillars</i>.
+Hence, pillars have both coordinates even. 
+Pillars will always be walls.
+Some hallways will eventually be empty while others will be walls.
+</p>
+<p>
+You are given ints <b>R</b>, <b>C</b>, and <b>X</b>.
+Your task is to design any maze with <b>R</b> rows and <b>C</b> columns of rooms (that is, 2<b>R</b>+1 rows of characters, each containing 2<b>C</b>+1 characters).
+The maze must have the following additional properties:
+</p>
+<ul>
+<li>Each room must be reachable from each other room, without leaving the maze.</li>
+<li>There have to be exactly <b>X</b> exits (i.e., empty hallways on the boundary of the maze).</li>
+<li>The total number of wall cells ('#' characters) must be maximized.</li>
+</ul>
+<p>
+Return a vector &lt;string&gt; with the resulting maze. Any valid answer will be accepted.
+</p></td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>FillInTheMaze</td></tr><tr><td>Method:</td><td>filled</td></tr><tr><td>Parameters:</td><td>int, int, int</td></tr><tr><td>Returns:</td><td>vector &lt;string&gt;</td></tr><tr><td>Method signature:</td><td>vector &lt;string&gt; filled(int R, int C, int X)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td colspan="2"><h3>Limits</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Time limit (s):</td><td>2.000</td></tr><tr><td>Memory limit (MB):</td><td>256</td></tr></table></td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>R</b> will be between 1 and 24, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td><b>C</b> will be between 1 and 24, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td><b>X</b> will be between 1 and 2<b>R</b>+2<b>C</b>, inclusive.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>3</pre></td></tr><tr><td><pre>6</pre></td></tr><tr><td><pre>3</pre></td></tr></table></td></tr><tr><td><pre>Returns: 
+{&quot;#######.#####&quot;,
+ &quot;......#.#...#&quot;,
+ &quot;#.###.#.#.#.#&quot;,
+ &quot;#.#.......#.#&quot;,
+ &quot;#.#######.#.#&quot;,
+ &quot;#.......#.#.#&quot;,
+ &quot;#########.###&quot; }</pre></td></tr><tr><td><table><tr><td colspan="2">These dimensions correspond to the examples in the problem statement. The maze shown in the statement is indeed one of the optimal solutions.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>1</pre></td></tr><tr><td><pre>3</pre></td></tr><tr><td><pre>2</pre></td></tr></table></td></tr><tr><td><pre>Returns: {&quot;#######&quot;, &quot;.......&quot;, &quot;#######&quot; }</pre></td></tr><tr><td><table><tr><td colspan="2">A very simple maze with just one row of rooms and with two exits.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>2</pre></td></tr><tr><td><pre>2</pre></td></tr><tr><td><pre>8</pre></td></tr></table></td></tr><tr><td><pre>Returns: {&quot;#.#.#&quot;, &quot;.....&quot;, &quot;#.###&quot;, &quot;.....&quot;, &quot;#.#.#&quot; }</pre></td></tr><tr><td><table><tr><td colspan="2">The returned maze:
+<pre>
+#.#.#
+.....
+#.###
+.....
+#.#.#
+</pre>
+
+Notice the one hallway that remained a wall. An answer without that wall would not be accepted, as the number of '#'s would not be as large as possible.
+</td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>

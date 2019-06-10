@@ -1,0 +1,38 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p>
+In this problem, all strings are strings of lowercase English letters ('a'-'z').
+</p>
+<p>
+You are given the strings <b>A</b> and <b>B</b> such that <b>A</b> &lt; <b>B</b>.
+If there is a string C such that <b>A</b> &lt; C &lt; <b>B</b>, return any such string.
+(The returned string C must have at most 50 characters, and each character of C must be a lowercase English letter.)
+If there is no such string C, return the string "IMPOSSIBLE" instead.
+</p>
+<p>
+&nbsp;
+</p>
+<p>
+Below, we define how to compare two strings.
+This definition is the standard one and we include it just to have a complete, self-contained problem statement.
+If you already know how string comparison works, you do not have to read it.
+</p>
+<p>
+Suppose S and T are two distinct strings.
+We say that S is smaller than T in lexicographic order (denoted S &lt; T) if:
+</p>
+<ol>
+<li>either S is a proper prefix of T,</li>
+<li>or there is some i &gt;= 0 such that:
+    <ol>
+    <li>the first i characters of S are the same as the first i characters of T</li>
+    <li>the next character of S is smaller than the next character of T</li>
+    </ol>
+</li>
+</ol>
+<p>
+For example:
+</p>
+<ul>
+<li>"car" &lt; "careful" because "car" is a proper prefix of "careful"</li>
+<li>"dog" &lt; "donut" because the first two characters of both strings are the same ("do") and 'g' is smaller than 'n'.</li>
+</ul>
+</td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>LexOrder</td></tr><tr><td>Method:</td><td>between</td></tr><tr><td>Parameters:</td><td>string, string</td></tr><tr><td>Returns:</td><td>string</td></tr><tr><td>Method signature:</td><td>string between(string A, string B)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td colspan="2"><h3>Limits</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Time limit (s):</td><td>2.000</td></tr><tr><td>Memory limit (MB):</td><td>256</td></tr></table></td></tr><tr><td colspan="2"><h3>Notes</h3></td></tr><tr><td align="center" valign="top">-</td><td>The statements "character x is smaller than character y", "character x is earlier in the alphabet than character y", and "character x has a smaller ASCII code than character y" are equivalent.</td></tr><tr><td align="center" valign="top">-</td><td>The return value is case-sensitive. The string IMPOSSIBLE must be in all-uppercase.</td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>A</b> will have between 1 and 10 characters, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td><b>B</b> will have between 1 and 10 characters, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td>Each character of <b>A</b> and <b>B</b> will be a lowercase English letter ('a'-'z').</td></tr><tr><td align="center" valign="top">-</td><td><b>A</b> will be lexicographically smaller than <b>B</b>.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;car&quot;</pre></td></tr><tr><td><pre>&quot;dog&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;careful&quot;</pre></td></tr><tr><td><table><tr><td colspan="2">Other valid return values include "ceiling", "catastrophiccancellation", "darling", "do", and "dododododo".</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;car&quot;</pre></td></tr><tr><td><pre>&quot;cat&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;cash&quot;</pre></td></tr><tr><td><table><tr><td colspan="2"></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;abcdefghij&quot;</pre></td></tr><tr><td><pre>&quot;abcdefghik&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;abcdefghijklmnopqrst&quot;</pre></td></tr><tr><td><table><tr><td colspan="2">Note that the input strings always have at most 10 characters but the string you return may be longer (up to 50 characters).</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>&quot;man&quot;</pre></td></tr><tr><td><pre>&quot;mana&quot;</pre></td></tr></table></td></tr><tr><td><pre>Returns: &quot;IMPOSSIBLE&quot;</pre></td></tr><tr><td><table><tr><td colspan="2"></td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>

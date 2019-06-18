@@ -24,8 +24,9 @@ set clipboard=unnamedplus
 nnoremap <C-W> :bdelete<CR>
 nnoremap <C-N> :bnext<CR>
 nnoremap <C-P> :bprev<CR>
-nnoremap <F5> :!g++ -fmax-errors=1 -Wshadow -Wcast-qual -Wcast-align -Wno-unused-result -std=c++17 -O2 -DLOCAL -o %< % <CR>
-noremap <F6> :!./%< < in <CR>
-noremap <F7> :!./%< <CR>
+"nnoremap <F5> :!g++ -fmax-errors=1 -Wshadow -Wcast-qual -Wcast-align -Wno-unused-result -std=c++17 -O2 -DLOCAL -o %< % <CR>
+nnoremap <F5> :!g++ -fmax-errors=1 -Wshadow -Wcast-qual -Wcast-align -Wno-unused-result -std=c++17 -O2 -DLOCAL -o o % <CR>
+noremap <F6> :!./o < in <CR>
+noremap <F7> :!./o <CR>
 noremap <SPACE> :!<CR>
 

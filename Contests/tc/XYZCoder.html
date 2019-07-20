@@ -1,0 +1,38 @@
+<html><body bgcolor="#000000" text="#ffffff"><table><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><p>
+You are going to take part in a popular online programming contest.
+During the contest the contestants will be split across <b>room</b> rooms, with exactly <b>size</b> contestants in each room.
+(Hence, there will be exactly <b>room</b>*<b>size</b> contestants.)
+The rooms will be numbered from 1 to <b>room</b>.
+</p>
+
+<p>
+The contest is such that there will be no ties.
+After the contest, each contestant will have a distinct rank between 1 and <b>room</b>*<b>size</b>, inclusive.
+(The contestant with rank 1 is the winner.)
+</p>
+
+<p>
+A <i>room winner</i> is the contestant with the best (i.e., smallest) rank in their room.
+</p>
+
+<p>
+You are interested in the ranks of all room winners.
+Once the contest finishes, you will write down a sequence of <b>room</b> positive integers.
+For each i, the i-th element of this sequence will be the rank of the winner of room i.
+</p>
+
+<p>
+You are given the ints <b>room</b> and <b>size</b>.
+Let L be the number of different sequences you can possibly obtain.
+Compute and return the value (L modulo 1,000,000,007).
+</p></td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Class:</td><td>XYZCoder</td></tr><tr><td>Method:</td><td>countWays</td></tr><tr><td>Parameters:</td><td>int, int</td></tr><tr><td>Returns:</td><td>int</td></tr><tr><td>Method signature:</td><td>int countWays(int room, int size)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></table></td></tr><tr><td colspan="2"><h3>Limits</h3></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td>Time limit (s):</td><td>2.000</td></tr><tr><td>Memory limit (MB):</td><td>256</td></tr><tr><td>Stack limit (MB):</td><td>256</td></tr></table></td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td align="center" valign="top">-</td><td><b>room</b> will be between 1 and 100, inclusive.</td></tr><tr><td align="center" valign="top">-</td><td><b>size</b> will be between 1 and 100, inclusive.</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td align="center" nowrap="true">0)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>2</pre></td></tr><tr><td><pre>1</pre></td></tr></table></td></tr><tr><td><pre>Returns: 2</pre></td></tr><tr><td><table><tr><td colspan="2">There are 2 rooms, each with 1 contestant.
+If contestant in room 1 wins the contest, you will write down the list {1,2}.
+Otherwise, you will write down the list {2,1}.
+Note that these are considered to be two distinct sequences.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">1)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>1</pre></td></tr><tr><td><pre>2</pre></td></tr></table></td></tr><tr><td><pre>Returns: 1</pre></td></tr><tr><td><table><tr><td colspan="2">There is 1 room with 2 contestants.
+Regardless of which of them wins, the winner of the only room will have rank 1, so you will write down the list {1}.</td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">2)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>2</pre></td></tr><tr><td><pre>2</pre></td></tr></table></td></tr><tr><td><pre>Returns: 4</pre></td></tr><tr><td><table><tr><td colspan="2">Now we have 2 rooms, each with 2 contestants.
+In this case you will write down one of the following four lists: {1,2}, {2,1}, {1,3}, or {3,1}.
+Note the following:
+<ul>
+<li>You will never write down the list {2,3}, because the winner of the entire contest (rank 1) has to be the winner of one of the rooms.</li>
+<li>You will never write down the list {1,4}, because the contestant with rank 4 cannot be a room winner in this setting.</li>
+</ul></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">3)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>4</pre></td></tr><tr><td><pre>5</pre></td></tr></table></td></tr><tr><td><pre>Returns: 6840</pre></td></tr><tr><td><table><tr><td colspan="2"></td></tr></table></td></tr></table></td></tr><tr><td align="center" nowrap="true">4)</td><td></td></tr><tr><td>&#160;&#160;&#160;&#160;</td><td><table><tr><td><table><tr><td><pre>100</pre></td></tr><tr><td><pre>100</pre></td></tr></table></td></tr><tr><td><pre>Returns: 718243627</pre></td></tr><tr><td><table><tr><td colspan="2"></td></tr></table></td></tr></table></td></tr></table><p>This problem statement is the exclusive and proprietary property of TopCoder, Inc.  Any unauthorized use or reproduction of this information without the prior written consent of TopCoder, Inc. is strictly prohibited.  (c)2003, TopCoder, Inc.  All rights reserved.  </p></body></html>

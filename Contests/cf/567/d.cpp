@@ -20,6 +20,7 @@ struct bst {
 		assert(k <= sons[0]);
 		int cur = 0;
 		while (true) {
+			if (k == 1313
 			if (sons[cur] == 1) {
 				assert(k == 1);
 				return xs[cur];

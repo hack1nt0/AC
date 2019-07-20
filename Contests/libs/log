@@ -1,0 +1,43 @@
+/tmp/pbs-47749f.o: In function `main':
+pbs.cpp:(.text+0xeb): undefined reference to `std::cout'
+pbs.cpp:(.text+0xf4): undefined reference to `std::ostream::operator<<(int)'
+pbs.cpp:(.text+0x105): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::endl<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&)'
+pbs.cpp:(.text+0x113): undefined reference to `std::ostream::operator<<(std::ostream& (*)(std::ostream&))'
+pbs.cpp:(.text+0x15f): undefined reference to `std::cout'
+pbs.cpp:(.text+0x16d): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::operator<< <std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&, char const*)'
+pbs.cpp:(.text+0x17e): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::endl<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&)'
+pbs.cpp:(.text+0x18c): undefined reference to `std::ostream::operator<<(std::ostream& (*)(std::ostream&))'
+/tmp/pbs-47749f.o: In function `main::$_1::operator()(__gnu_pbds::priority_queue<int, std::less<int>, __gnu_pbds::pairing_heap_tag, std::allocator<char> > const&) const':
+pbs.cpp:(.text+0x3e6): undefined reference to `std::cout'
+pbs.cpp:(.text+0x3ed): undefined reference to `std::ostream::operator<<(int)'
+pbs.cpp:(.text+0x3fb): undefined reference to `std::basic_ostream<char, std::char_traits<char> >& std::endl<char, std::char_traits<char> >(std::basic_ostream<char, std::char_traits<char> >&)'
+pbs.cpp:(.text+0x406): undefined reference to `std::ostream::operator<<(std::ostream& (*)(std::ostream&))'
+/tmp/pbs-47749f.o: In function `__cxx_global_var_init':
+pbs.cpp:(.text.startup+0x13): undefined reference to `std::ios_base::Init::Init()'
+pbs.cpp:(.text.startup+0x19): undefined reference to `std::ios_base::Init::~Init()'
+/tmp/pbs-47749f.o: In function `__gnu_pbds::priority_queue<int, std::less<int>, __gnu_pbds::pairing_heap_tag, std::allocator<char> >::~priority_queue()':
+pbs.cpp:(.text._ZN10__gnu_pbds14priority_queueIiSt4lessIiENS_16pairing_heap_tagESaIcEED0Ev[_ZN10__gnu_pbds14priority_queueIiSt4lessIiENS_16pairing_heap_tagESaIcEED0Ev]+0x1e): undefined reference to `operator delete(void*)'
+/tmp/pbs-47749f.o: In function `__gnu_pbds::detail::left_child_next_sibling_heap<int, std::less<int>, __gnu_pbds::null_type, std::allocator<char> >::recursive_copy_node(__gnu_pbds::detail::left_child_next_sibling_heap_node_<int, __gnu_pbds::null_type, std::allocator<char> > const*)':
+pbs.cpp:(.text._ZN10__gnu_pbds6detail28left_child_next_sibling_heapIiSt4lessIiENS_9null_typeESaIcEE19recursive_copy_nodeEPKNS0_34left_child_next_sibling_heap_node_IiS4_S5_EE[_ZN10__gnu_pbds6detail28left_child_next_sibling_heapIiSt4lessIiENS_9null_typeESaIcEE19recursive_copy_nodeEPKNS0_34left_child_next_sibling_heap_node_IiS4_S5_EE]+0xe4): undefined reference to `__cxa_begin_catch'
+pbs.cpp:(.text._ZN10__gnu_pbds6detail28left_child_next_sibling_heapIiSt4lessIiENS_9null_typeESaIcEE19recursive_copy_nodeEPKNS0_34left_child_next_sibling_heap_node_IiS4_S5_EE[_ZN10__gnu_pbds6detail28left_child_next_sibling_heapIiSt4lessIiENS_9null_typeESaIcEE19recursive_copy_nodeEPKNS0_34left_child_next_sibling_heap_node_IiS4_S5_EE]+0xff): undefined reference to `__cxa_rethrow'
+pbs.cpp:(.text._ZN10__gnu_pbds6detail28left_child_next_sibling_heapIiSt4lessIiENS_9null_typeESaIcEE19recursive_copy_nodeEPKNS0_34left_child_next_sibling_heap_node_IiS4_S5_EE[_ZN10__gnu_pbds6detail28left_child_next_sibling_heapIiSt4lessIiENS_9null_typeESaIcEE19recursive_copy_nodeEPKNS0_34left_child_next_sibling_heap_node_IiS4_S5_EE]+0x112): undefined reference to `__cxa_end_catch'
+/tmp/pbs-47749f.o: In function `__gnu_cxx::new_allocator<__gnu_pbds::detail::left_child_next_sibling_heap_node_<int, __gnu_pbds::null_type, std::allocator<char> > >::allocate(unsigned long, void const*)':
+pbs.cpp:(.text._ZN9__gnu_cxx13new_allocatorIN10__gnu_pbds6detail34left_child_next_sibling_heap_node_IiNS1_9null_typeESaIcEEEE8allocateEmPKv[_ZN9__gnu_cxx13new_allocatorIN10__gnu_pbds6detail34left_child_next_sibling_heap_node_IiNS1_9null_typeESaIcEEEE8allocateEmPKv]+0x33): undefined reference to `std::__throw_bad_alloc()'
+pbs.cpp:(.text._ZN9__gnu_cxx13new_allocatorIN10__gnu_pbds6detail34left_child_next_sibling_heap_node_IiNS1_9null_typeESaIcEEEE8allocateEmPKv[_ZN9__gnu_cxx13new_allocatorIN10__gnu_pbds6detail34left_child_next_sibling_heap_node_IiNS1_9null_typeESaIcEEEE8allocateEmPKv]+0x43): undefined reference to `operator new(unsigned long)'
+/tmp/pbs-47749f.o: In function `__clang_call_terminate':
+pbs.cpp:(.text.__clang_call_terminate[__clang_call_terminate]+0x2): undefined reference to `__cxa_begin_catch'
+pbs.cpp:(.text.__clang_call_terminate[__clang_call_terminate]+0xb): undefined reference to `std::terminate()'
+/tmp/pbs-47749f.o: In function `__gnu_cxx::new_allocator<__gnu_pbds::detail::left_child_next_sibling_heap_node_<int, __gnu_pbds::null_type, std::allocator<char> > >::deallocate(__gnu_pbds::detail::left_child_next_sibling_heap_node_<int, __gnu_pbds::null_type, std::allocator<char> >*, unsigned long)':
+pbs.cpp:(.text._ZN9__gnu_cxx13new_allocatorIN10__gnu_pbds6detail34left_child_next_sibling_heap_node_IiNS1_9null_typeESaIcEEEE10deallocateEPS6_m[_ZN9__gnu_cxx13new_allocatorIN10__gnu_pbds6detail34left_child_next_sibling_heap_node_IiNS1_9null_typeESaIcEEEE10deallocateEPS6_m]+0x1c): undefined reference to `operator delete(void*)'
+/tmp/pbs-47749f.o: In function `__gnu_cxx::new_allocator<int>::allocate(unsigned long, void const*)':
+pbs.cpp:(.text._ZN9__gnu_cxx13new_allocatorIiE8allocateEmPKv[_ZN9__gnu_cxx13new_allocatorIiE8allocateEmPKv]+0x33): undefined reference to `std::__throw_bad_alloc()'
+pbs.cpp:(.text._ZN9__gnu_cxx13new_allocatorIiE8allocateEmPKv[_ZN9__gnu_cxx13new_allocatorIiE8allocateEmPKv]+0x43): undefined reference to `operator new(unsigned long)'
+/tmp/pbs-47749f.o: In function `__gnu_cxx::new_allocator<int>::deallocate(int*, unsigned long)':
+pbs.cpp:(.text._ZN9__gnu_cxx13new_allocatorIiE10deallocateEPim[_ZN9__gnu_cxx13new_allocatorIiE10deallocateEPim]+0x1c): undefined reference to `operator delete(void*)'
+/tmp/pbs-47749f.o:(.rodata._ZTISt15binary_functionIiibE[_ZTISt15binary_functionIiibE]+0x0): undefined reference to `vtable for __cxxabiv1::__class_type_info'
+/tmp/pbs-47749f.o:(.rodata._ZTISt4lessIiE[_ZTISt4lessIiE]+0x0): undefined reference to `vtable for __cxxabiv1::__si_class_type_info'
+/tmp/pbs-47749f.o:(.rodata._ZTIN10__gnu_pbds6detail28left_child_next_sibling_heapIiSt4lessIiENS_9null_typeESaIcEEE[_ZTIN10__gnu_pbds6detail28left_child_next_sibling_heapIiSt4lessIiENS_9null_typeESaIcEEE]+0x0): undefined reference to `vtable for __cxxabiv1::__si_class_type_info'
+/tmp/pbs-47749f.o:(.rodata._ZTIN10__gnu_pbds6detail12pairing_heapIiSt4lessIiESaIcEEE[_ZTIN10__gnu_pbds6detail12pairing_heapIiSt4lessIiESaIcEEE]+0x0): undefined reference to `vtable for __cxxabiv1::__si_class_type_info'
+/tmp/pbs-47749f.o:(.rodata._ZTIN10__gnu_pbds14priority_queueIiSt4lessIiENS_16pairing_heap_tagESaIcEEE[_ZTIN10__gnu_pbds14priority_queueIiSt4lessIiENS_16pairing_heap_tagESaIcEEE]+0x0): undefined reference to `vtable for __cxxabiv1::__vmi_class_type_info'
+/tmp/pbs-47749f.o:(.eh_frame+0x4b): undefined reference to `__gxx_personality_v0'
+clang: error: linker command failed with exit code 1 (use -v to see invocation)

@@ -7,11 +7,9 @@ using namespace std;
 
 typedef long long llt;
 typedef vector<int> vi;
-typedef vector<llt> vl;
+typedef vector<llt> vll;
 typedef vector<vi> vvi;
-typedef vector<vl> vvl;
 typedef pair<int, int> pii;
-typedef pair<llt, llt> pll;
 #define pb push_back
 #define all(x) x.begin(),x.end()
 #define fi first
@@ -41,9 +39,14 @@ int main(int argc, char* args[]) {
 	cin.tie(0);
 	cout.precision(10);
 	cout << fixed;
-	solver sol;
-	sol.input();
-	sol.solve();
-	sol.print();
+	int n, k; cin >> n >> k;
+	vi a(n);
+	for (int i = 0; i < n; ++i) cin >> a[i];
+	vll psum(n);
+	for (int i = 0; i < n; ++i) psum[i] = a[i] + (i > 0 ? psum[i - 1] : 0);
+	llt x = 0;
+	for (int i = k - 1; i < n; ++i)
+		x += psum[i] - (i - k >= 0 ? psum[i - k] : 0);
+	cout << x / (n - k + 1.0) << endl;
 	return 0;
 }

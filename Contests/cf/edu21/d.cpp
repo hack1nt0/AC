@@ -7,11 +7,10 @@ using namespace std;
 
 typedef long long llt;
 typedef vector<int> vi;
-typedef vector<llt> vl;
+typedef vector<llt> vll;
 typedef vector<vi> vvi;
-typedef vector<vl> vvl;
+typedef vector<vll> vvll;
 typedef pair<int, int> pii;
-typedef pair<llt, llt> pll;
 #define pb push_back
 #define all(x) x.begin(),x.end()
 #define fi first
@@ -41,9 +40,36 @@ int main(int argc, char* args[]) {
 	cin.tie(0);
 	cout.precision(10);
 	cout << fixed;
-	solver sol;
-	sol.input();
-	sol.solve();
-	sol.print();
+	int n; cin >> n;
+	vi a(n);
+	for (int i = 0; i < n; ++i) cin >> a[i];
+	llt sum = 0;
+	for (int x : a) sum += x;
+	if (n < 2 || sum % 2) {
+		cout << "NO" << endl;
+		return 0;
+	}
+	bool ok = false;
+	llt lsum = 0;
+	set<llt> lset;
+	llt half = sum / 2;
+	map<llt, int> rmap;
+	for (int x : a) rmap[x]++;
+	for (int i = 0; i <= n; ++i) {
+		if (lsum == half
+				|| lsum > half && lset.count(lsum - half)
+				|| lsum < half && rmap[half - lsum]
+				) {
+			//debug(sum / 2, lsum, lset);
+			ok = true;
+			break;
+		}
+		if (i == n) break;
+		lsum += a[i];
+		lset.insert(a[i]);
+		rmap[a[i]]--;
+	}
+
+	cout << (ok ? "YES" : "NO") << endl;
 	return 0;
 }

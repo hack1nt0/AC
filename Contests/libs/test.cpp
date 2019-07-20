@@ -2,7 +2,6 @@
 using namespace std;
 #ifdef LOCAL
 #include <sys/resource.h>
-#include "../../libs/debug.h"
 #endif
 
 typedef long long llt;
@@ -16,16 +15,10 @@ typedef pair<llt, llt> pll;
 #define all(x) x.begin(),x.end()
 #define fi first
 #define se second
-#define size(x) int(x.size())
+#define sz(x) int(x.size())
 
-struct solver {
-	void input(istream& is = cin) {
-	}
-	void solve() {
-	}
-	void print(ostream& os = cout) {
-	}
-};
+#include "debug.h"
+#include "costflow.h"
 
 int main(int argc, char* args[]) {
 #ifdef LOCAL
@@ -41,9 +34,11 @@ int main(int argc, char* args[]) {
 	cin.tie(0);
 	cout.precision(10);
 	cout << fixed;
-	solver sol;
-	sol.input();
-	sol.solve();
-	sol.print();
+	graph g(4);
+	g.adde(0, 1, 1, 1);
+	g.adde(0, 2, 2, 1);
+	g.adde(1, 3, 2, 1);
+	g.adde(2, 3, 2, 1);
+	debug(g.mincost(0, 3, 10));
 	return 0;
 }

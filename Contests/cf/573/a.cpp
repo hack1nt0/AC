@@ -7,11 +7,10 @@ using namespace std;
 
 typedef long long llt;
 typedef vector<int> vi;
-typedef vector<llt> vl;
+typedef vector<llt> vll;
 typedef vector<vi> vvi;
-typedef vector<vl> vvl;
+typedef vector<vll> vvll;
 typedef pair<int, int> pii;
-typedef pair<llt, llt> pll;
 #define pb push_back
 #define all(x) x.begin(),x.end()
 #define fi first
@@ -41,9 +40,20 @@ int main(int argc, char* args[]) {
 	cin.tie(0);
 	cout.precision(10);
 	cout << fixed;
-	solver sol;
-	sol.input();
-	sol.solve();
-	sol.print();
+	int x; cin >> x;
+	typedef pair<char, int> T;
+	auto c = [](int y)->char {
+		switch (y % 4) {
+			case 0 : return 'D';
+			case 1 : return 'A';
+			case 2 : return 'C';
+			case 3 : return 'B';
+		}
+	};
+	T r = {c(x), 0};
+	for (int a = 1; a <= 2; ++a) {
+		r = min(r, T{c(a + x), a});
+	}
+	cout << r.se << " " << r.fi << endl;
 	return 0;
 }

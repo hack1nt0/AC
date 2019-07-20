@@ -7,11 +7,10 @@ using namespace std;
 
 typedef long long llt;
 typedef vector<int> vi;
-typedef vector<llt> vl;
+typedef vector<llt> vll;
 typedef vector<vi> vvi;
-typedef vector<vl> vvl;
+typedef vector<vll> vvll;
 typedef pair<int, int> pii;
-typedef pair<llt, llt> pll;
 #define pb push_back
 #define all(x) x.begin(),x.end()
 #define fi first
@@ -27,6 +26,7 @@ struct solver {
 	}
 };
 
+//WA
 int main(int argc, char* args[]) {
 #ifdef LOCAL
 	struct rlimit rlim;
@@ -41,9 +41,16 @@ int main(int argc, char* args[]) {
 	cin.tie(0);
 	cout.precision(10);
 	cout << fixed;
-	solver sol;
-	sol.input();
-	sol.solve();
-	sol.print();
+	int n; cin >> n;
+	vi a(n);
+	llt s = 0;
+	for (int i = 0; i < n; ++i) cin >> a[i], s += a[i];
+	bool win;
+	if (s <= 1) {
+		win = false;
+	} else {
+		win = s % 2 == 0;
+	}
+	cout << (win ? "sjfnb" : "cslnb") << endl;
 	return 0;
 }

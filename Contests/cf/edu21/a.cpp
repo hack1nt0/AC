@@ -9,9 +9,7 @@ typedef long long llt;
 typedef vector<int> vi;
 typedef vector<llt> vl;
 typedef vector<vi> vvi;
-typedef vector<vl> vvl;
 typedef pair<int, int> pii;
-typedef pair<llt, llt> pll;
 #define pb push_back
 #define all(x) x.begin(),x.end()
 #define fi first
@@ -39,11 +37,25 @@ int main(int argc, char* args[]) {
 #endif
 	cin.sync_with_stdio(0);
 	cin.tie(0);
-	cout.precision(10);
-	cout << fixed;
-	solver sol;
-	sol.input();
-	sol.solve();
-	sol.print();
+	int n; cin >> n;
+	vi xs;
+	int x = n;
+	while (x) {
+		xs.pb(x % 10);
+		x /= 10;
+	}
+	xs.back() += 1;
+	fill(xs.begin(), xs.end() - 1, 0);
+	if (xs.back() == 10) {
+		xs.back() = 0;
+		xs.pb(1);
+	}
+	auto d = [](vi xs) {
+		int r = 0;
+		for (int i = size(xs) - 1; i >= 0; --i)
+			r = r * 10 + xs[i];
+		return r;
+	};
+	cout << d(xs) - n << endl;
 	return 0;
 }

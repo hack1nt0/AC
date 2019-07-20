@@ -1,0 +1,215 @@
+Sorting...
+Full Text Search...
+embassy-domainatrix/stable 0.1.660-1 amd64
+  Extra EMBOSS commands to handle domain classification file
+
+embassy-domalign/stable 0.1.660-1 amd64
+  Extra EMBOSS commands for protein domain alignment
+
+embassy-domsearch/stable 1:0.1.660-1 amd64
+  Extra EMBOSS commands to search for protein domains
+
+fp-units-math/stable 3.0.0+dfsg-11+deb9u1 amd64
+  Free Pascal - math units dependency package
+
+fp-units-math-3.0.0/stable 3.0.0+dfsg-11+deb9u1 amd64
+  Free Pascal - math units
+
+gambas3-gb-gmp/stable 3.9.1-3 amd64
+  Gambas GMP component
+
+givaro-dev-doc/stable,stable 4.0.2-5 all
+  Developer Documentation for Givaro (obsolete)
+
+givaro-user-doc/stable,stable 4.0.2-5 all
+  User Documentation for Givaro (obsolete)
+
+gmp-doc/stable,stable 6.0.0-1 all
+  GMP (Multiprecision arithmetic library) documentation
+
+gmp-ecm/stable 7.0.4+ds-1 amd64
+  Factor integers using the Elliptic Curve Method
+
+gmpc/stable 11.8.16-10 amd64
+  GNOME Music Player Client (graphical interface to MPD)
+
+gmpc-data/stable,stable 11.8.16-10 all
+  GNOME Music Player Client - data files
+
+gmpc-dbg/stable 11.8.16-10 amd64
+  GNOME Music Player Client - debugging symbols
+
+gmpc-dev/stable 11.8.16-10 amd64
+  GNOME Music Player Client (plugin development files)
+
+gmpc-plugins/stable 11.8.16-3 amd64
+  Plugins for the GNOME Music Player Client
+
+gmpc-plugins-dbg/stable 11.8.16-3 amd64
+  Plugins for the GNOME Music Player Client (debugging symbols)
+
+igmpproxy/stable 0.1-1 amd64
+  IGMP multicast routing daemon
+
+libcreal-ocaml-dev/stable 0.7-6+b5 amd64
+  O'Caml library that implements exact real arithmetic
+
+libcrypt-dh-gmp-perl/stable 0.00012-1+b3 amd64
+  Crypt::DH replacement that uses GMP directly
+
+libecm1/stable 7.0.4+ds-1 amd64
+  factor integers using the Elliptic Curve Method -- lib
+
+libecm1-dev/stable 7.0.4+ds-1 amd64
+  factor integers using the Elliptic Curve Method -- libdev
+
+libecm1-dev-common/stable,stable 7.0.4+ds-1 all
+  factor integers using the Elliptic Curve Method -- header
+
+libgivaro-dev/stable 4.0.2-5 amd64
+  arithmetic and algebraic computations - development files
+
+libgivaro-doc/stable,stable 4.0.2-5 all
+  Documentation for Givaro
+
+libgivaro9/stable 4.0.2-5 amd64
+  arithmetic and algebraic computations
+
+libgmp-dev/stable 2:6.1.2+dfsg-1 amd64
+  Multiprecision arithmetic library developers tools
+
+libgmp-ocaml/stable 20021123-18+b1 amd64
+  OCaml bindings for the GNU multiprecision arithmetic library
+
+libgmp-ocaml-dev/stable 20021123-18+b1 amd64
+  OCaml bindings for the GNU multiprecision arithmetic library
+
+libgmp10/stable,now 2:6.1.2+dfsg-1 amd64 [installed]
+  Multiprecision arithmetic library
+
+libgmp10-doc/stable,stable 2:6.1.2+dfsg-1 all
+  Multiprecision arithmetic library example code
+
+libgmp3-dev/stable 2:6.1.2+dfsg-1 amd64
+  Multiprecision arithmetic library developers tools
+
+libgmpada4/stable 1.0-3 amd64
+  Ada binding to the GNU MultiPrecision library: shared library
+
+libgmpada6-dev/stable 1.0-3 amd64
+  Ada binding to the GNU MultiPrecision library: development
+
+libgmpxx4ldbl/stable 2:6.1.2+dfsg-1 amd64
+  Multiprecision arithmetic library (C++ bindings)
+
+libgnatcoll-gmp1.7/stable 1.7gpl2015-2+b3 amd64
+  GNATColl, general purpose Ada library (GMP runtime)
+
+libgnatcoll-gmp1.7-dev/stable 1.7gpl2015-2+b3 amd64
+  GNATColl, general purpose Ada library (GMP)
+
+libhogweed4/stable,now 3.3-1+b2 amd64 [installed]
+  low level cryptographic library (public-key cryptos)
+
+liblrsgmp-dev/stable 0.51-2+b1 amd64
+  package to enumerate vertices and extreme rays (development file)
+
+liblrsgmp0/stable 0.51-2+b1 amd64
+  package to enumerate vertices and extreme rays (shared libraries)
+
+libmath-bigint-gmp-perl/stable 1.6003-1 amd64
+  module for arbitrary precision arithmetic using GMP
+
+libmath-gmp-perl/stable 2.13-1 amd64
+  high speed arbitrary size integer math for perl
+
+libmath-prime-util-gmp-perl/stable 0.41-1 amd64
+  utilities related to prime numbers, using GMP
+
+libmath-prime-util-perl/stable 0.60-1 amd64
+  utilities related to prime numbers, including fast sieves and factoring
+
+libnettle6/stable,now 3.3-1+b2 amd64 [installed]
+  low level cryptographic library (symmetric and one-way cryptos)
+
+libpari-gmp-tls5/stable 2.9.1-1 amd64
+  PARI/GP Computer Algebra System shared library
+
+libstrongswan/stable 5.5.1-4+deb9u4 amd64
+  strongSwan utility and crypto library
+
+libzarith-ocaml/stable 1.4.1-2 amd64
+  arithmetic and logical operations over arbitrary-precision integers (runtime)
+
+libzarith-ocaml-dev/stable 1.4.1-2 amd64
+  arithmetic and logical operations over arbitrary-precision integers (dev)
+
+libzarith-ocaml-doc/stable,stable 1.4.1-2 all
+  arithmetic and logical operations over arbitrary-precision integers (doc)
+
+ostinato/stable 0.8-1+b1 amd64
+  Packet/Traffic Generator and Analyzer
+
+packeth/stable 1.6.5-2+b2 amd64
+  Ethernet packet generator
+
+php-gmp/stable,stable 1:7.0+49 all
+  GMP module for PHP [default]
+
+php7.0-gmp/stable 7.0.33-0+deb9u3 amd64
+  GMP module for PHP
+
+postgresql-9.6-pgmp/stable 1.0.2-3 amd64
+  arbitrary precision integers and rationals for PostgreSQL 9.6
+
+pyecm/stable,stable 2.0.2-2 all
+  integer factorization with the Elliptic Curve Method (ECM)
+
+python-gmplot/stable,stable 1.1.1-1 all
+  matplotlib-like interface to plotting data with Google Maps
+
+python-gmpy/stable 1.17-3 amd64
+  interfaces GMP to Python for fast, unbound-precision computations
+
+python-gmpy-doc/stable,stable 1.17-3 all
+  interfaces GMP to Python for fast, unbound-precision computations
+
+python-gmpy2/stable 2.0.7-2+b1 amd64
+  interfaces GMP to Python 2 for fast, unbound-precision computations
+
+python-gmpy2-common/stable,stable 2.0.7-2 all
+  interfaces GMP to Python for fast, unbound-precision computations
+
+python-mpmath/stable,stable 0.19-3 all
+  library for arbitrary-precision floating-point arithmetic
+
+python-mpmath-doc/stable,stable 0.19-3 all
+  library for arbitrary-precision floating-point arithmetic - Documentation
+
+python3-gmplot/stable,stable 1.1.1-1 all
+  matplotlib-like interface to plotting data with Google Maps (python3)
+
+python3-gmpy2/stable 2.0.7-2+b1 amd64
+  interfaces GMP to Python 3 for fast, unbound-precision computations
+
+python3-mpmath/stable,stable 0.19-3 all
+  library for arbitrary-precision floating-point arithmetic (Python3)
+
+smcroute/stable 2.0.0-5+b1 amd64
+  static multicast router daemon
+
+t50/stable 5.6.8-1 amd64
+  Multi-protocol packet injector tool
+
+tcpdump/stable 4.9.2-1~deb9u1 amd64
+  command-line network traffic analyzer
+
+texlive-metapost/stable,stable 2016.20170123-5 all
+  TeX Live: MetaPost and Metafont packages
+
+xorp/stable 1.8.6~wip.20160715-2+b1 amd64
+  eXtensible Open Router Platform
+
+youtube-dl/stretch,stretch,mx,mx 2019.06.21-0.1~mx17+1 all
+  downloader of videos from YouTube and other sites
+
